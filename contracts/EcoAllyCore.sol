@@ -72,12 +72,19 @@ contract EcoAllyCore is EcoAllyOwnership {
         return square;
     }
 
-    function addAlly() external returns(address owner) {
-        return _createEcoAlly(12345, "fred");
+    function addAlly(string _name) external returns(address owner) {
+        return _createEcoAlly(_name);
     }
 
     function numAllies() external view returns(uint count) {
         return ecoAllies.length;
+    }
+
+    function randNum(uint str) external view returns (uint) {
+        return uint(keccak256(str, msg.sender));
+    }
+    function randDna(string _str) external view returns (uint){
+        return _generateRandomDna(_str);
     }
 
 }

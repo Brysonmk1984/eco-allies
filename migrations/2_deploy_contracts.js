@@ -4,6 +4,7 @@ var Ownable = artifacts.require("../contracts/Ownable");
 var ERC721 = artifacts.require("../contracts/ERC721");
 var EcoAllyOwnership = artifacts.require("../contracts/EcoAllyOwnership");
 var EcoAllyCore = artifacts.require("../contracts/EcoAllyCore");
+
 module.exports = function(deployer) {
 //   deployer.deploy(EcoAllyAccessControl);
 //   deployer.deploy(EcoAllyBase);
