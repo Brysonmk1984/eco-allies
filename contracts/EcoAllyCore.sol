@@ -87,4 +87,8 @@ contract EcoAllyCore is EcoAllyOwnership {
         return _generateRandomDna(_str);
     }
 
+    function transferEcoAlly(address _from, address _to, uint _tokenId) external {
+        return _transfer(_from, _to, _tokenId);
+    }
+
 }

@@ -85,4 +85,37 @@ contract EcoAllyOwnership is EcoAllyBase, ERC721 {
         return ecoAllies.length - 1;
     }
 
+
+    /// @notice Returns a list of all EcoAlly IDs assigned to an address.
+    /// @param _owner The owner whose EcoAllies we are interested in.
+    /// @dev This method MUST NEVER be called by smart contract code. First, it's fairly
+    ///  expensive (it walks the entire EcoAlly array looking for cats belonging to owner),
+    ///  but it also returns a dynamic array, which is only supported for web3 calls, and
+    ///  not contract-to-contract calls.
+    function tokensOfOwner(address _owner) external view returns(uint256[] ownerTokens) {
+        uint256 tokenCount = balanceOf(_owner);
+
+        if(tokenCount == 0){
+            // return an empty array
+            return new uint256[](0);
+        } else {
+            uint256[] memory result = new uint256[](tokenCount);
+            uint256 totalEcoAllies = totalSupply();
+            uint256 resultIndex = 0;
+
+            // We count on the fact that all allies have IDs starting at 1 and increasing to the
+            // totalEcoAllies count.
+            uint256 ecoAllyId;
+
+            for(ecoAllyId = 1; ecoAllyId <= totalEcoAllies; ecoAllyId++) {
+                if(ecoAllyIndexToOwner[ecoAllyId] == _owner) {
+                    result[resultIndex] = ecoAllyId;
+                    resultIndex++;
+                }
+            }
+
+            return result;
+        }
+    }
+
 }

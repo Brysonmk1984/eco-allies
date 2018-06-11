@@ -1,4 +1,4 @@
-import chai from chai-as-promised;
+
 
 
 const Core = artifacts.require('EcoAllyCore');
