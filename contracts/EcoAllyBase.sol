@@ -24,7 +24,6 @@ contract EcoAllyBase is EcoAllyAccessControl {
     
 
     /// @dev all EcoAllies in existence. The ID of each ally is actually an index into this array
-    /// ID 0 is invalid
     EcoAlly[] ecoAllies;
 
     /// @dev maps the ally IDs to addresses of the owners
@@ -65,8 +64,8 @@ contract EcoAllyBase is EcoAllyAccessControl {
     /// Will Generate both the birth and transfer events
     function _createEcoAlly(string _name) internal returns (address owner) {
         uint _dna = _generateRandomDna(_name);
-        uint256 newEcoAllyId = ecoAllies.push(EcoAlly(_dna, _name)) - 1;
-        //ecoAllyIndexToOwner[newEcoAllyId] = msg.sender;
+        uint256 newEcoAllyId = ecoAllies.push(EcoAlly(_dna, _name));
+
         /// @dev emit the creation event
         emit Creation(msg.sender, newEcoAllyId, _dna);
 
@@ -75,5 +74,9 @@ contract EcoAllyBase is EcoAllyAccessControl {
 
         return ecoAllyIndexToOwner[newEcoAllyId];
     }
+
+    
+
+    
 
 }

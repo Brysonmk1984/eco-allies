@@ -9,6 +9,18 @@ contract EcoAllyOwnership is EcoAllyBase, ERC721 {
     ///string public constant name = "EcoAllies";
     ///string public constant symbol = "CK";
 
+    bytes4 constant InterfaceSignature_ERC721 =
+    bytes4(keccak256("name()"))^
+    bytes4(keccak256("symbol()"))^
+    bytes4(keccak256("totalSupply()"))^
+    bytes4(keccak256("balanceOf(address)"))^
+    bytes4(keccak256("ownerOf(uint256)"))^
+    bytes4(keccak256("approve(address,uint256)"))^
+    bytes4(keccak256("transfer(address,uint256)"))^
+    bytes4(keccak256("transferFrom(address,address,uint256)"))^
+    bytes4(keccak256("tokensOfOwner(address)"))^
+    bytes4(keccak256("tokenMetadata(uint256,string)"));
+
     function _owns(address _claimant, uint256 _tokenId) internal view returns (bool) {
         return ecoAllyIndexToOwner[_tokenId] == _claimant;
     }
@@ -82,7 +94,7 @@ contract EcoAllyOwnership is EcoAllyBase, ERC721 {
     /// @notice Returns the total number of EcoAllies currently in existence.
     /// @dev Required for ERC-721 compliance.
     function totalSupply() public view returns (uint) {
-        return ecoAllies.length - 1;
+        return ecoAllies.length;
     }
 
 
@@ -107,7 +119,7 @@ contract EcoAllyOwnership is EcoAllyBase, ERC721 {
             // totalEcoAllies count.
             uint256 ecoAllyId;
 
-            for(ecoAllyId = 1; ecoAllyId <= totalEcoAllies; ecoAllyId++) {
+            for(ecoAllyId = 0; ecoAllyId <= totalEcoAllies; ecoAllyId++) {
                 if(ecoAllyIndexToOwner[ecoAllyId] == _owner) {
                     result[resultIndex] = ecoAllyId;
                     resultIndex++;
@@ -117,5 +129,6 @@ contract EcoAllyOwnership is EcoAllyBase, ERC721 {
             return result;
         }
     }
+
 
 }

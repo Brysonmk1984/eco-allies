@@ -1,0 +1,16 @@
+{
+  "name": "eco-allies",
+  "version": "1.0.0",
+  "description": "Crypto based digital heroes",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Bryson Kruk",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
+  }
+}

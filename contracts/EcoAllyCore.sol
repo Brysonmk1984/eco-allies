@@ -51,8 +51,12 @@ contract EcoAllyCore is EcoAllyOwnership {
     /// @notice Returns all the relevant information about a specific EcoAlly.
     function getEcoAlly(uint256 _id) external view returns(uint256 dna, string name ) {
         EcoAlly storage ally = ecoAllies[_id];
-        dna = ally.dna;
-        name = ally.name;
+        return (dna = ally.dna, name = ally.name);
+    }
+
+    function getEcoAllyDnaOnly(uint256 _id) external view returns(uint256) {
+        EcoAlly storage ally = ecoAllies[_id];
+        return ally.dna;
     }
 
     /// @dev Override unpause so it requires all external contract addresses
@@ -67,17 +71,8 @@ contract EcoAllyCore is EcoAllyOwnership {
         super.unpause();
     }
 
-    function testInteraction(uint8 num) external pure returns (uint8 square) {
-        square = num * num;
-        return square;
-    }
-
     function addAlly(string _name) external returns(address owner) {
         return _createEcoAlly(_name);
-    }
-
-    function numAllies() external view returns(uint count) {
-        return ecoAllies.length;
     }
 
     function randNum(uint str) external view returns (uint) {
@@ -88,7 +83,8 @@ contract EcoAllyCore is EcoAllyOwnership {
     }
 
     function transferEcoAlly(address _from, address _to, uint _tokenId) external {
-        return _transfer(_from, _to, _tokenId);
+        _transfer(_from, _to, _tokenId);
     }
+
 
 }
