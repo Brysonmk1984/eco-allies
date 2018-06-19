@@ -1,7 +1,8 @@
 import React from 'react';
+import '../assets/scss/footer.scss';
 
 const Footer = () => (
-    <footer>
+    <footer className="center-align">
         <div>
             <strong>&copy; Bryson Kruk Design & Development</strong><br />
             <a href="htttp://brysonkruk.com" >www.brysonkruk.com</a>

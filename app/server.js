@@ -6,7 +6,7 @@ const app = express();
  
 const compiler = webpack(webpackConfig);
 
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/src/devIndex.html'));
  
 app.use(webpackDevMiddleware(compiler, {
   hot: true,

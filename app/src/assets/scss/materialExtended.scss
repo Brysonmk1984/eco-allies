@@ -1,0 +1,9 @@
+@import "./variables.scss";
+
+.btn, .btn-large, .btn-small{
+    background-color: $secondaryBackground;
+    &.btn-reverse{
+        background-color: $primaryBackground;
+        border:solid 1px $tertiaryBackground;
+    }
+}

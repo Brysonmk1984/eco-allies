@@ -5,8 +5,26 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 
+const plugins = [];
+
+
 module.exports = env => {
-  if(typeof env === 'undefined'){env = 'development'}
+  if(env === 'production'){
+    plugins.push(
+      new CleanWebpackPlugin(['dist']),
+      new HtmlWebpackPlugin({filename:'index.html', template: 'index.html'}),
+      new MiniCssExtractPlugin({filename: 'assets/css/[name].[hash].css'})
+    );
+  }else{
+    env = 'development';
+    plugins.push(
+      new HtmlWebpackPlugin({filename:'index.html', template: 'index.html'}),
+      new webpack.HotModuleReplacementPlugin()
+    );
+  }
+  
+  
+  
   return {
     context: path.join(__dirname, 'src'),
     entry: [
@@ -30,7 +48,7 @@ module.exports = env => {
         {
           test: /\.(sa|sc|c)ss$/,
           use: [
-              env.development ? "style-loader" : MiniCssExtractPlugin.loader,
+              env === 'development' ? "style-loader" : MiniCssExtractPlugin.loader,
               "css-loader",
               "sass-loader"
           ]
@@ -43,15 +61,7 @@ module.exports = env => {
         },
       ],
     },
-    plugins: [
-      new CleanWebpackPlugin(['dist']),
-      new HtmlWebpackPlugin({filename:'index.html', template: 'index.html'}),
-      new webpack.HotModuleReplacementPlugin(),
-      new MiniCssExtractPlugin({
-
-        filename: env.development ?'assets/css/[name].css' : 'assets/css/[name].[hash].css'
-      })
-    ],
-    mode: env.development ? 'development' : 'production'
+    plugins,
+    mode: env
   }
 };

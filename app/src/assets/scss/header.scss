@@ -1,5 +1,26 @@
 @import "./variables.scss";
 
 header{
-    background-color: $secondaryBackground;
+    background-color: $primaryBackground;
+    nav.nav-wrapper{
+        background-color:transparent;
+        ul{
+            li{
+                a{
+                    color: $darkText;
+                    &:hover{
+                        background-color:$tertiaryBackground;
+                    }
+                    &.btn-reverse{
+                        
+                    }
+                }
+            }
+        }
+        
+        img{
+            height:50px;
+            margin-top:.5rem;
+        }
+    }
 }
