@@ -1,7 +1,14 @@
 @import "./variables.scss";
 
+@font-face {
+    font-family: 'Avenir';
+    src : url('/assets/fonts/Avenir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
 body, html{
     margin:0px;
     padding:0px;
-    font-family: 'Roboto';
+    font-family: 'Avenir', Helvetica, sans-serif;
 }
