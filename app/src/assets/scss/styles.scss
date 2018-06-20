@@ -12,3 +12,64 @@ body, html{
     padding:0px;
     font-family: 'Avenir', Helvetica, sans-serif;
 }
+
+
+
+section {
+    h1{
+        font-size:8em;
+        color: $mediumText;
+    }
+    h2{
+        font-size:4em;
+        color: $darkText;
+        border-bottom:solid 1px $bottomBorder;
+    }
+    h3{
+        font-size:1.5em;
+        color: $darkText;
+    }
+
+    // Wrapping div around all sections
+    > div{
+        display:grid;
+        grid-template-columns: auto;
+        grid-template-rows: 1.2fr 1fr 1fr;
+        height:250vh;
+        justify-items:stretch;
+        
+    }
+}
+.section{
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    display:grid;
+    place-items:center;
+
+    &.title-section{
+        background-color:$secondaryBackground;
+       
+    }
+    &.ally-section{
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        background-color:$primaryBackground;
+    }
+    &.about-section{
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+        background-color:$secondaryBackground;
+    }
+
+    > div.subsection{
+        width:80%;
+        text-align:center;
+        &:first-child{
+            align-self:flex-end;
+        }
+        &:last-child{
+            align-self:flex-start;
+        }
+    }
+}
+

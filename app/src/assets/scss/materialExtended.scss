@@ -6,4 +6,11 @@
         background-color: $primaryBackground;
         border:solid 1px $tertiaryBackground;
     }
+    &.btn-primary{
+        background-color: $primaryButton;
+        &:hover{
+            background-color: $tertiaryBackground;
+            color:$darkText;
+        }
+    }
 }
