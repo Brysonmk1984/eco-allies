@@ -6,13 +6,13 @@ import About from './About';
 class Content extends React.Component{
     render(){
         return(
-            <section>
-                <Route exact path="/" component={About} />
+            <div className="route-wrapper">
+                <Route exact path="/" component={Trade} />
                 <Route path="/about" component={About} />
                 <Route path="/trade" component={Trade} />
                 {/* <Route path="faq" component={Faq} />
                 <Route path="gettingStarted" component={GettingStarted} /> */}
-            </section>
+            </div>
         );
     }
 }

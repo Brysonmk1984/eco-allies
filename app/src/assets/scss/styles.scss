@@ -15,7 +15,7 @@ body, html{
 
 
 
-section {
+div.route-wrapper {
     h1{
         text-transform:uppercase;
         font-size:8em;
@@ -25,7 +25,7 @@ section {
         text-transform:uppercase;
         font-size:3em;
         color: $darkText;
-        border-bottom:solid 1px $bottomBorder;
+        border-bottom:solid 1px $primaryBorder;
         padding-bottom:10px;
     }
     h3{
@@ -36,66 +36,6 @@ section {
     }
     p{
         font-size:1.2em;
-    }
-
-    // Wrapping div around all sections
-    > div{
-        display:grid;
-        grid-template-columns: auto;
-        grid-template-rows: 2fr 1fr 1fr;
-        height:200vh;
-        justify-items:stretch;
-        
-    }
-}
-// Children of the Div above
-.section{
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-
-    // But also it's own grid
-    display:grid;
-    place-items:center;
-
-    &.title-section{
-        background-color:$secondaryBackground;
-        grid-template-rows: 1.5fr 1fr 1fr;
-        height:100vh;
-        place-items:center;
-       p{
-           color:$mediumText;
-       }
-       .subsection{
-            &:first-child{
-                grid-column: 1 / 2;
-                grid-row: 1 / 2;
-            }
-            &:last-child{
-                grid-column: 1 / 2;
-                grid-row: 3 / 4;
-            }
-       }
-    }
-    &.ally-section{
-        grid-column: 1 / 2;
-        grid-row: 2 / 3;
-        background-color:$primaryBackground;
-    }
-    &.about-section{
-        grid-column: 1 / 2;
-        grid-row: 3 / 4;
-        background-color:$secondaryBackground;
-    }
-
-    > div.subsection{
-        width:80%;
-        text-align:center;
-        &:first-child{
-            align-self:flex-end;
-        }
-        &:last-child{
-            align-self:flex-start;
-        }
     }
 }
 
