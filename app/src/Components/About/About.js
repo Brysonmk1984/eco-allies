@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Watermark from '../assets/images/watermark.png';
-import '../assets/scss/about.scss';
+import Watermark from '../../assets/images/watermark.png';
+import './about.scss';
 
 const About = () => (
     <div className="page-wrapper about-page">
@@ -34,7 +34,7 @@ const About = () => (
                 <h2>Collect Unique Heroes</h2>
                 <h3>Help the Fight for our Environment</h3>
             </div>
-            <div class="subsection">
+            <div className="subsection">
                 <p>Eco Allies is built on blockchain technology—the same breakthrough that makes things like Bitcoin and Ethereum possible. Bitcoin and ether are cryptocurrencies but Eco Allies are cryptocollectibles. You can trade your CryptoKitty like it was a traditional collectible, or hold onto it as a badge of honor for helping Gaea. Your Ally is secure in the knowledge that blockchain will track ownership securely.</p>
             </div>
         </section>

@@ -58,6 +58,12 @@ module.exports = env => {
           exclude: /node_modules/,
           use : ['file-loader?name=[name]-[hash:6].[ext]&outputPath=assets/images/']
         },
+        {
+          test: /\.json$/,
+          include: '/dist/assets',
+          use : ['json-loader']
+          
+        },
         { test: /\.(woff)(\?[a-z0-9]+)?$/, loader: 'file-loader?name=[name].[ext]&publicPath=../../&outputPath=assets/font/' },
         //{ test: /\.woff$/, loader: 'url?limit=65000&mimetype=application/font-woff&name=[name]-[hash:6].[ext]&outputPath=assets/fonts/' },
         //{ test: /\.woff2$/, loader: 'url?limit=65000&mimetype=application/font-woff2&name=[name]-[hash:6].[ext]&outputPath=assets/fonts/' },

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Trade from './Trade';
-import About from './About';
+import Trade from './Trade/Trade';
+import About from './About/About';
 
 class Content extends React.Component{
     render(){

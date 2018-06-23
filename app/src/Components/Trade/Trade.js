@@ -1,11 +1,11 @@
 import React from 'react';
-import '../assets/scss/trade.scss';
-import Fred from '../assets/images/fred.png';
-import Dave from '../assets/images/sherrif.png';
-import Xin from '../assets/images/ninja.png';
+import './trade.scss';
+import Fred from '../../assets/images/fred.png';
+import Dave from '../../assets/images/sherrif.png';
+import Xin from '../../assets/images/ninja.png';
 
 const Trade = () => (
-    <div class="page-wrapper trade-page">
+    <div className="page-wrapper trade-page">
         <section className="title-section">
             <div className="subsection">
                 <h1>ECO ALLIES</h1>
