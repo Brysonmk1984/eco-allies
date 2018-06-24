@@ -60,7 +60,7 @@ module.exports = env => {
         },
         {
           test: /\.json$/,
-          include: '/dist/assets',
+          include: '/build/contracts/EcoAllyBase.json',
           use : ['json-loader']
           
         },

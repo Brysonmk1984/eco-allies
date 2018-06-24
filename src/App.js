@@ -5,7 +5,7 @@ import Content from './Components/Content';
 import Footer from './Components/Footer';
 import TruffleContract from 'truffle-contract';
 // for testing only
-import contractJson from './assets/EcoAllyCore.json';
+import contractJson from '../build/contracts/EcoAllyCore.json';
 import './assets/scss/styles.scss';
 import 'materialize-css/dist/css/materialize.css'
 import './assets/scss/materialExtended.scss';
