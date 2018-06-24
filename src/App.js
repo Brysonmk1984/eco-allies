@@ -16,7 +16,7 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      allies : ['asd'],
+      allies : [],
       account : '',
     };
     this.web3;
@@ -55,11 +55,47 @@ class App extends React.Component {
 
 
 
+        let tokenCount = 0;
+        const allies = [];
+
+        instance.totalSupply.call().then((count) =>{
+          tokenCount = count.toNumber();
+        }).then(()=>{
+          console.log('TOKEN COUNT',tokenCount);
+          function getAlly(tokenCount, _this){
+            instance.getEcoAlly.call(tokenCount).then((ally) =>{
+              console.log('ally',ally);
+              allies.push({name : ally[1], dna : ally[0].toNumber()});
+              tokenCount --;
+
+              console.log(tokenCount);
+              if(tokenCount >= 0){
+                getAlly(tokenCount);
+              }else{
+                _this.setState(() => allies, () =>{
+                  console.log('STATEA',_this.state.allies);
+                });
+              }
+              
+            });
+            
+          }
+          //debugger;
+          getAlly(tokenCount -1, this);
+          
+          
+
+        });
 
         
-        this.instance.totalSupply.call().then((count)=>{
-          console.log(count.toNumber());
-        });
+        
+
+        
+
+        
+          
+          
+ 
 
 
         
