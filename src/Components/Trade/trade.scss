@@ -50,8 +50,13 @@ div.page-wrapper.trade-page{
                         margin:20px;
                         border-radius: 8px;
                         border: solid 1px $primaryBorder;
-                        span{
-                            display:block;
+                        text-align:left;
+                        display:flex;
+                        justify-content:center;
+                        ul{
+                            li{
+                                list-style:initial;
+                            }
                         }
                     }
                     .ally-history{

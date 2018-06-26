@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from './Components/Header';
 import Content from './Components/Content';
 import Footer from './Components/Footer';
+import generateSeed from './common/generateNum';
 import TruffleContract from 'truffle-contract';
 // for testing only
 import contractJson from '../build/contracts/EcoAllyCore.json';
@@ -20,7 +21,10 @@ class App extends React.Component {
       account : '',
     };
     this.web3;
+    this.imageArray = ['Fred.png', 'ninja.png', 'sherrif.png'];
   }
+
+
 
 
 
@@ -62,25 +66,25 @@ class App extends React.Component {
           tokenCount = count.toNumber();
         }).then(()=>{
           console.log('TOKEN COUNT',tokenCount);
+          const cachedThis = this;
+          // Get each ally in existence
           function getAlly(tokenCount, _this){
             instance.getEcoAlly.call(tokenCount).then((ally) =>{
-              console.log('ally',ally);
+              console.log('ally',ally[1], ally[0].toNumber());
               allies.push({name : ally[1], dna : ally[0].toNumber()});
               tokenCount --;
 
-              console.log(tokenCount);
               if(tokenCount >= 0){
                 getAlly(tokenCount);
               }else{
-                _this.setState(() => allies, () =>{
-                  console.log('STATEA',_this.state.allies);
-                });
+                cachedThis.setState((()=>({allies})));
               }
+
               
             });
             
           }
-          //debugger;
+          
           getAlly(tokenCount -1, this);
           
           
@@ -122,12 +126,16 @@ class App extends React.Component {
 })
   }
 
+  componentDidUpdate(){
+    console.log(this.state, generateSeed());
+  }
 
   render() {
+
     return (
         <div>
             <Header />
-            <Content />
+            <Content allies={this.state.allies}  />
             <Footer />
         </div>
     );

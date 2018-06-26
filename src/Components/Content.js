@@ -7,9 +7,9 @@ class Content extends React.Component{
     render(){
         return(
             <div className="route-wrapper">
-                <Route exact path="/" component={Trade} />
+                <Route exact path="/" component={() => (<Trade allies ={this.props.allies} /> )} />
                 <Route path="/about" component={About} />
-                <Route path="/trade" component={Trade} />
+                <Route path="/trade" component={Trade} allies={this.props.allies} />
                 {/* <Route path="faq" component={Faq} />
                 <Route path="gettingStarted" component={GettingStarted} /> */}
             </div>
