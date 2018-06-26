@@ -27,6 +27,11 @@ class App extends React.Component {
 
 
 
+  buildAlly(){
+    const num = generateSeed();
+    console.log('NUM', num, this.web3.eth.accounts);
+    this.instance.addAlly('bill', num, {from : this.web3.eth.accounts[0]});
+  }
 
 
 
@@ -34,24 +39,22 @@ class App extends React.Component {
     // Check if Web 3 has been injected by the browser
     if(typeof web3 !== 'undefined'){
       // Use Browser/metamask version
-      this.web3Provider = web3.currentProvider
+      this.web3Provider = web3.currentProvider;
       
     }else{
       //console.log('Sorry, you need metamask to use this application.');
       this.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
     }
 
-    this.web3 = new Web3(this.web3provider);
+    this.web3 = new Web3(this.web3Provider);
 
-    //const contractAddress = '0xb73c64abdf3387aa4837c4af31ab82b5fdf74979';
-    console.log(contractJson);
      // instantiate a new truffle contract
      this.tContract = TruffleContract(contractJson);
      this.tContract.setProvider(this.web3Provider);
 
 
 
-     // TODO: Refactor with promise chain
+    
     this.web3.eth.getCoinbase((err, account) => {
       this.setState({ account })
       this.tContract.deployed().then((instance) => {
@@ -67,10 +70,11 @@ class App extends React.Component {
         }).then(()=>{
           console.log('TOKEN COUNT',tokenCount);
           const cachedThis = this;
+          
           // Get each ally in existence
           function getAlly(tokenCount, _this){
             instance.getEcoAlly.call(tokenCount).then((ally) =>{
-              console.log('ally',ally[1], ally[0].toNumber());
+              //console.log('ally',ally[1], ally[0].toNumber());
               allies.push({name : ally[1], dna : ally[0].toNumber()});
               tokenCount --;
 
@@ -79,15 +83,11 @@ class App extends React.Component {
               }else{
                 cachedThis.setState((()=>({allies})));
               }
-
-              
             });
             
           }
           
           getAlly(tokenCount -1, this);
-          
-          
 
         });
 
@@ -122,9 +122,12 @@ class App extends React.Component {
         // this.electionInstance.voters(this.state.account).then((hasVoted) => {
         //   this.setState({ hasVoted, loading: false })
         // })
-      })
-})
+      });
+    });
+
+
   }
+
 
   componentDidUpdate(){
     console.log(this.state, generateSeed());
@@ -135,7 +138,7 @@ class App extends React.Component {
     return (
         <div>
             <Header />
-            <Content allies={this.state.allies}  />
+            <Content allies={this.state.allies} buildAlly={this.buildAlly.bind(this)}  />
             <Footer />
         </div>
     );

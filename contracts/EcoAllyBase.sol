@@ -36,8 +36,8 @@ contract EcoAllyBase is EcoAllyAccessControl {
 
     
     /// @dev Generates Unique DNA
-    function _generateRandomDna(string _str) internal view returns (uint) {
-        uint rand = uint(keccak256(_str, msg.sender));
+    function _generateRandomDna(uint _seed) internal view returns (uint) {
+        uint rand = uint(keccak256(_seed));
         return rand % dnaModulus;
     }
 
@@ -62,8 +62,8 @@ contract EcoAllyBase is EcoAllyAccessControl {
     /// @dev an internal method that creates a new eco ally and stores it
     /// Doesn't do any checking, and should only be called when the input data is known to be accurate.
     /// Will Generate both the birth and transfer events
-    function _createEcoAlly(string _name) internal returns (address owner) {
-        uint _dna = _generateRandomDna(_name);
+    function _createEcoAlly(string _name, uint _seed) internal returns (address owner) {
+        uint _dna = _generateRandomDna(_seed);
         uint256 newEcoAllyId = ecoAllies.push(EcoAlly(_dna, _name));
 
         /// @dev emit the creation event
