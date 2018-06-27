@@ -1,8 +1,8 @@
 import React from 'react';
 import Ally from '../Ally';
-import './trade.scss';
+import './userCollection.scss';
 
-class Trade extends React.Component{
+class UserCollection extends React.Component{
     constructor(props){
         super(props);
         this.buildAlly = this.props.buildAlly.bind(this);
@@ -15,13 +15,13 @@ class Trade extends React.Component{
         });
     }
 
-    render(){console.log('look', this.props.buildAlly);
+    render(){console.log('THIS>P', this.props.allies);
         return(
             <div className="page-wrapper trade-page">
                 <section className="title-section">
                     <div className="subsection">
                         <h1>ECO ALLIES</h1>
-                        <p>Meet the Team <button data-test="123" onClick={this.buildAlly}>Build Ally</button></p>
+                        <p>Defenders of Gaia <button data-test="123" onClick={this.buildAlly}>Build Ally</button></p>
                         
                     </div>
                 </section>
@@ -38,4 +38,4 @@ class Trade extends React.Component{
    
 };
 
-export default Trade;
+export default UserCollection;

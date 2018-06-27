@@ -9,7 +9,8 @@ const Nav = () => (
         </a>
         <ul id="nav-mobile" className="right hide-on-small-only">
             <li><Link to="/about">About</Link></li>
-            <li><Link to="/trade">Trade</Link></li>
+            <li><Link to="/gallery">Gallery</Link></li>
+            <li><Link to="/user-collection">Collection</Link></li>
             <li><Link to="/faq">FAQ</Link></li>
             <li>
                 <Link to="/gettingStarted" className="btn-small">Get Started</Link>

@@ -1,0 +1,80 @@
+@import "../../assets/scss/variables.scss";
+
+div.page-wrapper.trade-page{
+    display:grid;
+    grid-template-columns: auto;
+    grid-template-rows: 220px auto 220px;
+    min-height:100vh;
+    place-items: stretch;
+
+    section{
+        &.title-section{
+            background-color: $secondaryBackground;
+            h1{
+                margin-bottom:0px;
+            }
+            p{
+                color:$mediumText;
+            }
+        }
+        &.ally-section{
+            h2{
+                font-size:1.8em;
+            }
+            h3{
+                font-size:1.1em;
+                margin-top:0px;
+                margin-bottom:0px;
+            }
+
+            > div.subsection{
+                display:grid;
+                grid-gap: 30px;
+                grid-template-columns: repeat(3, auto);
+                grid-template-rows: 550px 550px 550px;
+                grid-auto-flow: row;
+
+                aside.ally{
+                    grid-column: auto / auto;
+                    grid-row: auto / auto;
+
+                    .ally-image{
+                        img{
+                            max-width:100%;
+                            max-height:180px;
+                        }
+                    }
+                    .ally-skills{
+                        background:$tertiaryBackground;
+                        padding:20px;
+                        margin:20px;
+                        border-radius: 8px;
+                        border: solid 1px $primaryBorder;
+                        text-align:left;
+                        display:flex;
+                        justify-content:center;
+                        ul{
+                            li{
+                                list-style:initial;
+                            }
+                        }
+                    }
+                    .ally-history{
+                        color: $mediumText;
+                    }
+                    
+                }
+            }
+            
+        }
+
+        &.bottom-section{
+            background-color: $secondaryBackground;
+        }
+
+        .subsection{
+            text-align:center;
+        }
+        
+    }
+}

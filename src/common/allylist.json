@@ -1,0 +1,61 @@
+[{
+    "character" : "Chrono Guy",
+    "skills" : ["Time Freeze", "Blink Out", "Warp Out Enemy", "Entropy Ray", "Slow Speed Field"],
+    "image" : "",
+    "description" : "test descriptuon"
+},
+{
+    "character" : "Compost Creature",
+    "skills" : ["Rapid Decay","Mulch Munch","Regenerate Land","Summon Creepy Crawlers","Potent Stench"],
+    "image" : "",
+    "description" : "test descriptuon"
+},
+{
+    "character" : "Empath",
+    "skills" : ["Enlightenment","Psychic Messaging","Lift Allied Spirits","Mindful Powerup","Entrance"],
+    "image" : "",
+    "description" : "test descriptuon"
+},
+{
+    "character" : "Filterborg",
+    "skills" : ["Convert Water","Toxin Feedback Spray","Pollution Feedback Gust","Harmonize with Water","Harmonize with Air"],
+    "image" : "filterborg.png",
+    "description" : "test descriptuon"
+},
+{
+    "character" : "Geothermal Golem",
+    "skills" : ["Heat Breath","Vaporize","Geothermal Vents","Sauna Recovery","Hot Rock Punch"],
+    "image" : "geothermal_golem.png",
+    "description" : "test descriptuon"
+},
+{
+    "character" : "Reuse Bot",
+    "skills" : ["Repurpose Trash","Assemble Drones","Revert to Supplies","Trash Cannon","Reduce, Reuse, Recycle Foe"],
+    "image" : "",
+    "description" : "test descriptuon"
+},
+{
+    "character" : "Root Elemental",
+    "skills" : ["Entangling Roots","Subterranean Translocate","Subterranean Regeneration","Root Spikes","Shift Terrain"],
+    "image" : "",
+    "description" : "test descriptuon"
+},
+{
+    "character" : "Solar Sprite",
+    "skills" : ["Concentrated Solar Beam","Solar Shield","Photon Speed","Blinding Flash","EMP Flare"],
+    "image" : "solar_sprite.png",
+    "description" : "test descriptuon"
+},
+{
+    "character" : "Wild Speaker",
+    "skills" : ["Summon Birds","Summon Forest Critters","Commune with Animals","Spirit of the Bear","Spirit of the Tiger"],
+    "image" : "",
+    "description" : "test descriptuon"
+},
+{
+    "character" : "Wind Machine",
+    "skills" : ["Blowback","Undercurrent","Whirling Blades","Turbine Hypnosis","Wyoming Wind Strength"],
+    "image" : "",
+    "description" : "test descriptuon"
+}]
+

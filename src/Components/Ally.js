@@ -1,32 +1,29 @@
 import React from 'react';
-import { determineAlly, determineSkills } from '../common/crackDna';
-import Fred from '../assets/images/fred.png';
-import Dave from '../assets/images/sherrif.png';
-import Xin from '../assets/images/ninja.png';
-
-
-
-// Remove later when pulling in correct image
-function imageRandomizer(){
-    const arr = [Fred, Dave, Xin];
-    return arr[Math.floor(Math.random() * 3) + 0];
-}
+import { determineAlly, determineSkills, determineImage } from '../common/crackDna';
 
 
 const Ally = (props) => {
-    determineSkills(props.dna);
+    const specificAlly = determineAlly(props.dna);
+
+    console.log('!', specificAlly);
+    const ally = {
+        character : specificAlly.character,
+        skills : determineSkills(props.dna, specificAlly.character),
+        image : determineImage(props.dna, specificAlly)
+    }
+    console.log('IMAGE',ally.image);
     return(
         <aside className="ally">
             <div className="ally-title">
                 <h2>{props.name}</h2>
-                <h3>{determineAlly(props.dna)}</h3>
+                <h3>{ally.character}</h3>
             </div>
             <div className="ally-image">
-                <img src={ imageRandomizer() } />
+                <img src={ ally.image } />
             </div>
             <div className="ally-skills">
                 <ul>
-                    { determineSkills(props.dna).map((skill, i)=>(<li key={i}>{skill}</li>)) }
+                    { ally.skills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
                 </ul>
             </div>
             <div className="ally-history">

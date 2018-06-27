@@ -1,8 +1,24 @@
 
-const allyList = ['Chrono Guy', 'Compost Creature', 'Empath', 'Filter Borg', 'Geothermal Golem', 'Reuse Bot', 'Root Elemental', 'Solar Sprite', 'Wild Speaker', 'Wind Machine'];
+import Fred from '../assets/images/fred.png';
+import Dave from '../assets/images/sherrif.png';
+import Xin from '../assets/images/ninja.png';
+
+import filterborg from '../assets/images/filterborg.png';
+import solar_sprite from '../assets/images/solar_sprite.png';
+import geothermal_golem from '../assets/images/geothermal_golem.png';
+
+import allyList from './allyList.json';
+
+// Remove later when pulling in correct image
+function imageRandomizer(){
+    const arr = [Fred, Dave, Xin];
+    return arr[Math.floor(Math.random() * 3) + 0];
+}
+
 
 function determineAlly(dna){
     const substr = parseInt(dna.toString().substring(0,3));
+    
     switch(true){
         case (0 <= substr && substr <= 99):
             return allyList[0];
@@ -26,23 +42,30 @@ function determineAlly(dna){
             return allyList[9];
     }
 }
-
-const allySkills = {
-    'Chrono Guy' : ['Time Freeze', 'Blink Out', 'Warp Out Enemy', 'Entropy Ray', 'Slow Speed Field'],
-    'Compost Creature' : ['Rapid Decay','Mulch Munch','Regenerate Land','Summon Creepy Crawlers','Potent Stench'],
-    'Empath' : ['Enlightenment','Psychic Messaging','Lift Allied Spirits','Mindful Powerup','Entrance'],
-    'Filter Borg' : ['Convert Water','Toxin Feedback Spray','Pollution Feedback Gust','Harmonize with Water','Harmonize with Air'],
-    'Geothermal Golem' : ['Heat Breath','Vaporize','Geothermal Vents','Sauna Recovery','Hot Rock Punch'],
-    'Reuse Bot' : ['Repurpose Trash','Assemble Drones','Revert to Supplies','Trash Cannon','Reduce, Reuse, Recycle Foe'],
-    'Root Elemental' : ['Entangling Roots','Subterranean Translocate','Subterranean Regeneration','Root Spikes','Shift Terrain'],
-    'Solar Sprite' : ['Concentrated Solar Beam','Solar Shield','Photon Speed','Blinding Flash','EMP Flare'],
-    'Wild Speaker' : ['Summon Birds','Summon Forest Critters','Commune with Animals','Spirit of the Bear','Spirit of the Tiger'],
-    'Wind Machine' : ['Blowback','Undercurrent','Whirling Blades','Turbine Hypnosis','Wyoming Wind Strength']
+const allyImages = {
+    'Chrono Guy' : imageRandomizer(),
+    'Compost Creature' : imageRandomizer(),
+    'Empath' : imageRandomizer(),
+    'Filterborg' : filterborg,
+    'Geothermal Golem' : geothermal_golem,
+    'Reuse Bot' : imageRandomizer(),
+    'Root Elemental' : imageRandomizer(),
+    'Solar Sprite' : solar_sprite,
+    'Wild Speaker' : imageRandomizer(),
+    'Wind Machine' : imageRandomizer()
 }
-function determineSkills(dna){
-    const ally = determineAlly(dna);
+function determineImage(dna, character){
+    console.log('C',character);
+    return character.image ? `../assets/images/${character.image}` : imageRandomizer();
+}
+
+function determineSkills(dna, character){
     const skill = parseInt(dna.toString().substring(3,6));
-    const a = allySkills[ally];
+    
+    const a = allyList.find((a)=>{
+        return a.character === character;
+    }).skills;
+
     const crackedSkills = [];
     switch(true){
 
@@ -155,4 +178,4 @@ function determineSkills(dna){
 
 }
 
-export { determineAlly, determineSkills };
+export { determineAlly, determineSkills, determineImage };

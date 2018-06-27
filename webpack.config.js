@@ -34,7 +34,6 @@ module.exports = env => {
     output: {
       path: path.join(__dirname, 'dist'),
       filename: 'bundle.js',
-      publicPath: '/'
     },
     module: {
       rules: [
@@ -56,7 +55,7 @@ module.exports = env => {
         {
           test: /\.(png|gif|jpg)$/,
           exclude: /node_modules/,
-          use : ['file-loader?name=[name]-[hash:6].[ext]&outputPath=assets/images/']
+          use : ['file-loader?name=[name].[ext]&outputPath=assets/images/']
         },
         {
           test: /\.json$/,
