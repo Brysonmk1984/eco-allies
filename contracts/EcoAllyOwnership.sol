@@ -94,7 +94,7 @@ contract EcoAllyOwnership is EcoAllyBase, ERC721 {
     /// @notice Returns the total number of EcoAllies currently in existence.
     /// @dev Required for ERC-721 compliance.
     function totalSupply() public view returns (uint) {
-        return ecoAllies.length;
+        return ecoAllies.length -1;
     }
 
 

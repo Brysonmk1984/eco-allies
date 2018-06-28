@@ -19,23 +19,10 @@ class App extends React.Component {
     this.state = {
       allies : [],
       account : '',
+      account2 : '0xcc1A64c458ba381C593aD92CA651Fb276092A1D3'
     };
     this.web3;
-    this.imageArray = ['Fred.png', 'ninja.png', 'sherrif.png'];
   }
-
-
-
-
-  buildAlly(e, name){
-    e.preventDefault();
-    console.log(name);
-    const num = generateSeed();
-    //console.log('NUM', num, this.web3.eth.accounts);
-    this.instance.addAlly(name, num, {from : this.web3.eth.accounts[0]});
-  }
-
-
 
   componentDidMount(){
     // Check if Web 3 has been injected by the browser
@@ -50,100 +37,141 @@ class App extends React.Component {
 
     this.web3 = new Web3(this.web3Provider);
 
-     // instantiate a new truffle contract
-     this.tContract = TruffleContract(contractJson);
-     this.tContract.setProvider(this.web3Provider);
+    // instantiate a new truffle contract
+    this.tContract = TruffleContract(contractJson);
+    this.tContract.setProvider(this.web3Provider);
 
-
-
-    
+    // Get specific Eth Account
     this.web3.eth.getCoinbase((err, account) => {
-      this.setState({ account })
-      this.tContract.deployed().then((instance) => {
-        this.instance = instance;
-
-
-
-        let tokenCount = 0;
-        const allies = [];
-
-        instance.totalSupply.call().then((count) =>{
-          tokenCount = count.toNumber();
-        }).then(()=>{
-          console.log('TOKEN COUNT',tokenCount);
-          const cachedThis = this;
+      this.setState(() => ({account : account}), ()=>{
+        this.tContract.deployed().then((instance) => {
+          this.instance = instance;
+          // let tokenCount = 0;
+          // this.getTokenCount().then((tokenCount)=>{  
+            //this.getAllAllies(tokenCount -1);
+          // });
+  
           
-          // Get each ally in existence
-          function getAlly(tokenCount, _this){
-            instance.getEcoAlly.call(tokenCount).then((ally) =>{
-              //console.log('ally',ally[1], ally[0].toNumber());
-              allies.push({name : ally[1], dna : ally[0].toNumber()});
-              tokenCount --;
-
-              if(tokenCount >= 0){
-                getAlly(tokenCount);
-              }else{
-                cachedThis.setState((()=>({allies})));
-              }
-            });
-            
-          }
-          
-          getAlly(tokenCount -1, this);
-
+          this.getAlliesOfUser();
+          // Watch for when new Allies are created
+          this.watchForCreation();
+  
         });
 
-        
-        
-
-        
-
-        
-          
-          
- 
-
-
-        
-        //this.watchEvents();
-
-
-        // this.instance.candidatesCount().then((candidatesCount) => {
-        //   for (var i = 1; i <= candidatesCount; i++) {
-        //     this.electionInstance.candidates(i).then((candidate) => {
-        //       const candidates = [...this.state.candidates]
-        //       candidates.push({
-        //         id: candidate[0],
-        //         name: candidate[1],
-        //         voteCount: candidate[2]
-        //       });
-        //       this.setState({ candidates: candidates })
-        //     });
-        //   }
-        // })
-        // this.electionInstance.voters(this.state.account).then((hasVoted) => {
-        //   this.setState({ hasVoted, loading: false })
-        // })
-      });
+      })
+      
     });
+
+    // Check to see if user changed metamask account
+    setInterval(() => {
+      if (web3.eth.accounts[0] !== this.state.account) {
+        this.setState(() =>({account : web3.eth.accounts[0]}), () => {
+          this.getAlliesOfUser();
+        });
+      }
+    }, 1000);
 
 
   }
+  
 
+  getTokenCount(){
+    return this.instance.totalSupply.call().then((count) =>{
+      return count.toNumber();
+    })
+  }
+
+  getAllAllies(tokenCount){
+    const cachedThis = this;
+    const allies = [];
+    tokenCount = tokenCount;
+    function getAllies(){
+      cachedThis.instance.getEcoAlly.call(tokenCount).then((ally) =>{
+        //console.log('ally',ally[1], ally[0].toNumber());
+        allies.push({name : ally[1], dna : ally[0].toNumber()});
+        tokenCount --;
+        if(tokenCount > 0){
+          getAllies(tokenCount);
+        }else{
+          cachedThis.setState((()=>({allies})));
+        }
+      });
+    }
+    getAllies(tokenCount);
+  }
+
+  getLatestAlly(tokenPosition){
+    this.instance.getEcoAlly.call(tokenPosition).then((ally) =>{
+      //console.log('ally',ally[1], ally[0].toNumber());
+      this.setState((prevState)=>({
+        allies : [{name : ally[1], dna : ally[0].toNumber()}, ...prevState.allies]
+      }));
+    });
+  }
+
+  getAlliesOfUser(){
+    this.instance.tokensOfOwner.call(this.state.account).then((tokens)=>{
+      
+      const tokenPositions = tokens.map((token) =>{
+        //console.log('TOKENS',token.toNumber());
+        return token.toNumber();
+      });
+      
+      const allies = [];
+      const tokenPromises = tokenPositions.map((tp) => {
+        return this.instance.getEcoAlly(tp);
+      });
+
+      Promise.all(tokenPromises).then((values) =>{
+          values.forEach((ally,i)=>{
+            allies.push({name : ally[1], dna : ally[0].toNumber()});
+          });
+        
+          this.setState((()=>({allies})));
+      });
+
+    });
+  }
+
+  watchForCreation(){
+    const creationEvent = this.instance.Creation();
+        
+    creationEvent.watch((error, result) =>{
+      if(error){
+        console.log('ERROR', error);
+      }else{
+
+        if(result.args.owner === this.state.account){
+          // Get new token count and fetch latest token
+          this.getTokenCount().then((tokenCount)=>{
+            this.getLatestAlly(tokenCount);
+          });
+        }
+      }
+    });
+
+  }
+
+  buildAlly(e, name){
+    e.preventDefault();
+    const num = generateSeed();
+    this.instance.addAlly(name, num, {from : this.state.account});
+  }
 
   componentDidUpdate(){
-    console.log(this.state, generateSeed());
+    console.log('STATE', this.state);
+
   }
 
   render() {
-
     return (
-        <div>
-            <Header />
-            <Content allies={this.state.allies} buildAlly={this.buildAlly.bind(this)}  />
-            <Footer />
-        </div>
+      <div>
+        <Header />
+        <Content allies={this.state.allies} buildAlly={this.buildAlly.bind(this)}  />
+        <Footer />
+      </div>
     );
   }
 }
+
 export default App;

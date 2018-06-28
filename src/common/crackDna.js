@@ -44,7 +44,6 @@ function determineAlly(dna){
 }
 
 function determineImage(dna, character){
-    console.log('C',character);
     return character.image ? `assets/images/${character.image}` : imageRandomizer();
 }
 

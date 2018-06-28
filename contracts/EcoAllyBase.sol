@@ -64,7 +64,7 @@ contract EcoAllyBase is EcoAllyAccessControl {
     /// Will Generate both the birth and transfer events
     function _createEcoAlly(string _name, uint _seed) internal returns (address owner) {
         uint _dna = _generateRandomDna(_seed);
-        uint256 newEcoAllyId = ecoAllies.push(EcoAlly(_dna, _name));
+        uint256 newEcoAllyId = ecoAllies.push(EcoAlly(_dna, _name)) -1;
 
         /// @dev emit the creation event
         emit Creation(msg.sender, newEcoAllyId, _dna);
