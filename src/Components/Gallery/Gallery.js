@@ -1,20 +1,22 @@
 import React from 'react';
-import Ally from '../Ally';
+import GenericAlly from './GenericAlly';
 import './gallery.scss';
+import allyList from '~/common/allyList.json';
+
 
 class Gallery extends React.Component{
     constructor(props){
         super(props);
     }
     buildAllyList(){
-        return this.props.allies.map((ally, i) => {
+        return allyList.map((ally, i) => {
             return (
-                <Ally key={i} name={ally.name} dna={ally.dna} />
+                <GenericAlly key={i} ally={ally}  />
             );
         });
     }
 
-    render(){console.log('THIS>P', this.props.allies);
+    render(){
         return(
             <div className="page-wrapper trade-page">
                 <section className="title-section">
@@ -26,29 +28,7 @@ class Gallery extends React.Component{
                 </section>
                 <section className="ally-section">
                     <div className="subsection">
-                        <aside className="ally">
-                            <div className="ally-title">
-                                <h2>{props.name}</h2>
-                                <h3>{determineAlly(props.dna)}</h3>
-                            </div>
-                            <div className="ally-image">
-                                <img src={ determineImage(props.dna) } />
-                            </div>
-                            <div className="ally-skills">
-                                <ul>
-                                    <li>skill 1</li>
-                                    <li>skill 1</li>
-                                    <li>skill 1</li>
-                                    <li>skill 1</li>
-                                    <li>skill 1</li>
-                                </ul>
-                            </div>
-                            <div className="ally-history">
-                                <p>
-                                    Fred was out defending the farm when the evil dust storm hit and wiped away his house. He came back to life to avenge his loss.
-                                </p>
-                            </div>
-                        </aside>
+                        {this.buildAllyList()}
                     </div>
                 </section>
                 <section className="bottom-section">

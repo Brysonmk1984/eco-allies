@@ -20,7 +20,7 @@ class UserCollection extends React.Component{
             <div className="page-wrapper trade-page">
                 <section className="title-section">
                     <div className="subsection">
-                        <h1>ECO ALLIES</h1>
+                        <h1>Eco Alliess</h1>
                         <p>Defenders of Gaia <button data-test="123" onClick={this.buildAlly}>Build Ally</button></p>
                         
                     </div>

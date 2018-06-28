@@ -14,12 +14,16 @@ app.use(webpackDevMiddleware(compiler, {
   stats: {
     colors: true,
   },
-  historyApiFallback: true,
-  noInfo: true,
+  //historyApiFallback: true,
+  //noInfo: true,
   publicPath: webpackConfig.output.publicPath
 }));
 
-app.use(require("webpack-hot-middleware")(compiler));
+app.use(require("webpack-hot-middleware")(compiler, {
+    'log': false, 
+    'path': '/__webpack_hmr', 
+    'heartbeat': 10 * 1000
+}));
  
 const server = app.listen(3000, function() {
   const host = server.address().address;

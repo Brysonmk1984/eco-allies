@@ -42,21 +42,10 @@ function determineAlly(dna){
             return allyList[9];
     }
 }
-const allyImages = {
-    'Chrono Guy' : imageRandomizer(),
-    'Compost Creature' : imageRandomizer(),
-    'Empath' : imageRandomizer(),
-    'Filterborg' : filterborg,
-    'Geothermal Golem' : geothermal_golem,
-    'Reuse Bot' : imageRandomizer(),
-    'Root Elemental' : imageRandomizer(),
-    'Solar Sprite' : solar_sprite,
-    'Wild Speaker' : imageRandomizer(),
-    'Wind Machine' : imageRandomizer()
-}
+
 function determineImage(dna, character){
     console.log('C',character);
-    return character.image ? `../assets/images/${character.image}` : imageRandomizer();
+    return character.image ? `assets/images/${character.image}` : imageRandomizer();
 }
 
 function determineSkills(dna, character){

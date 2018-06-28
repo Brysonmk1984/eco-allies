@@ -3,33 +3,31 @@ import { determineAlly, determineSkills, determineImage } from '../common/crackD
 
 
 const Ally = (props) => {
-    const specificAlly = determineAlly(props.dna);
+    const ally = determineAlly(props.dna);
+    const allySkills = determineSkills(props.dna, ally.character);
+    const allyImage = determineImage(props.dna, ally);
 
-    console.log('!', specificAlly);
-    const ally = {
-        character : specificAlly.character,
-        skills : determineSkills(props.dna, specificAlly.character),
-        image : determineImage(props.dna, specificAlly)
-    }
-    console.log('IMAGE',ally.image);
     return(
         <aside className="ally">
             <div className="ally-title">
                 <h2>{props.name}</h2>
-                <h3>{ally.character}</h3>
+                <h3>{ ally.character }</h3>
             </div>
             <div className="ally-image">
-                <img src={ ally.image } />
+                <img src={ allyImage } />
             </div>
             <div className="ally-skills">
                 <ul>
-                    { ally.skills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
+                    { allySkills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
                 </ul>
             </div>
-            <div className="ally-history">
-                <p>
-                    Fred was out defending the farm when the evil dust storm hit and wiped away his house. He came back to life to avenge his loss.
-                </p>
+            <div className="ally-mods">
+                <ul>
+                    <li>Alignment</li>
+                    <li>Sign</li>
+                    <li>Color Adjustment</li>
+                    <li>Novelty</li>
+                </ul>
             </div>
         </aside>
     );

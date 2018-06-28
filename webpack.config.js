@@ -74,6 +74,11 @@ module.exports = env => {
       ],
     },
     plugins,
+    resolve: {
+      alias: {
+         '~' : path.resolve( __dirname, 'src' )
+      },
+    },
     mode: env
   }
 };
