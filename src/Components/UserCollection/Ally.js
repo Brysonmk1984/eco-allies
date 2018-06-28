@@ -1,5 +1,5 @@
 import React from 'react';
-import { determineAlly, determineSkills, determineImage } from '../common/crackDna';
+import { determineAlly, determineSkills, determineImage } from '~/common/crackDna';
 
 
 const Ally = (props) => {
@@ -10,8 +10,8 @@ const Ally = (props) => {
     return(
         <aside className="ally">
             <div className="ally-title">
-                <h2>{props.name}</h2>
-                <h3>{ ally.character }</h3>
+                <h3>{props.name}</h3>
+                <h4>{ ally.character }</h4>
             </div>
             <div className="ally-image">
                 <img src={ allyImage } />

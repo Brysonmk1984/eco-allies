@@ -1,11 +1,6 @@
 import React from 'react';
 
-import allyList from '~/common/allyList.json';
-
-
 const Ally = (props) => {
-
-    console.log('I', props.ally);
     return(
         <aside className="ally">
             <div className="ally-title">

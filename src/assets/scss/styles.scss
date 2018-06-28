@@ -22,17 +22,24 @@ div.route-wrapper {
         color: $mediumText;
     }
     h2{
+        font-size:2em;
+        text-transform:uppercase;
+        color: $mediumText;
+        text-align:center;
+        border-bottom:solid 1px $primaryBorder;
+    }
+    h3{
         text-transform:uppercase;
         font-size:3em;
         color: $darkText;
         border-bottom:solid 1px $primaryBorder;
         padding-bottom:10px;
     }
-    h3{
+    h4{
         text-transform:uppercase;
         font-size:1.3em;
         color: $mediumText;
-        margin-bottom:60px;
+        padding-bottom:25px;
     }
     p{
         font-size:1.2em;

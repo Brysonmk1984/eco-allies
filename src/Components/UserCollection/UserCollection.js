@@ -1,5 +1,5 @@
 import React from 'react';
-import Ally from '../Ally';
+import Ally from './Ally';
 import './userCollection.scss';
 
 class UserCollection extends React.Component{
@@ -15,17 +15,30 @@ class UserCollection extends React.Component{
         });
     }
 
-    render(){console.log('THIS>P', this.props.allies);
+    render(){
         return(
             <div className="page-wrapper trade-page">
                 <section className="title-section">
                     <div className="subsection">
                         <h1>Eco Alliess</h1>
-                        <p>Defenders of Gaia <button data-test="123" onClick={this.buildAlly}>Build Ally</button></p>
-                        
+                        <p>Defenders of Gaia</p>
+                    </div>
+                </section>
+                <section className="input-section">
+                    <h2>Create New Ally</h2>
+                    <div className="subsection">
+                        <form onSubmit={(e) =>{this.buildAlly(e, this.refs.name.value)}}>
+                            <div>
+                                <input ref="name" type="text" placeholder="Enter Name" maxLength="20" />
+                            </div>
+                            <div>
+                                <button type="submit">Build Ally</button>
+                            </div>
+                        </form>
                     </div>
                 </section>
                 <section className="ally-section">
+                    <h2>Your Ally List</h2>
                     <div className="subsection">
                         {this.buildAllyList()}
                     </div>

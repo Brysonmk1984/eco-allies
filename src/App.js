@@ -27,10 +27,12 @@ class App extends React.Component {
 
 
 
-  buildAlly(){
+  buildAlly(e, name){
+    e.preventDefault();
+    console.log(name);
     const num = generateSeed();
-    console.log('NUM', num, this.web3.eth.accounts);
-    this.instance.addAlly('bill', num, {from : this.web3.eth.accounts[0]});
+    //console.log('NUM', num, this.web3.eth.accounts);
+    this.instance.addAlly(name, num, {from : this.web3.eth.accounts[0]});
   }
 
 
