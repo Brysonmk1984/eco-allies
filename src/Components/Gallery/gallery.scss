@@ -1,6 +1,6 @@
 @import "../../assets/scss/variables.scss";
 
-div.page-wrapper.trade-page{
+div.page-wrapper.gallery-page{
     display:grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto 220px;
@@ -19,19 +19,21 @@ div.page-wrapper.trade-page{
         }
         &.ally-section{
             h3{
-                font-size:1.8em;
+                font-size:1.5em;
             }
             h4{
-                font-size:1.1em;
+                font-size:.9em;
                 margin-top:0px;
                 margin-bottom:0px;
             }
+            
 
             > div.subsection{
                 display:grid;
-                grid-gap: 30px;
+                grid-gap: 20px;
+                grid-row-gap: 60px;
                 grid-template-columns: repeat(3, auto);
-                grid-template-rows: 550px 550px 550px;
+                grid-template-rows: auto auto auto;
                 grid-auto-flow: row;
 
                 aside.ally{
@@ -46,13 +48,14 @@ div.page-wrapper.trade-page{
                     }
                     .ally-skills{
                         background:$tertiaryBackground;
-                        padding:20px;
+                        padding:0px 10px;
                         margin:20px;
                         border-radius: 8px;
                         border: solid 1px $primaryBorder;
                         text-align:left;
                         display:flex;
                         justify-content:center;
+                        font-size:.8em;
                         ul{
                             li{
                                 list-style:initial;

@@ -18,10 +18,14 @@ function imageRandomizer(){
 
 
 function determineAlly(dna){
-    const substr = parseInt(dna.toString().substring(0,3));
-    
+    const dnaString = dna.toString();
+    const substr = parseInt(dnaString.substring(0,3));
+
+
+
     switch(true){
-        case (0 <= substr && substr <= 99):
+        // JavaScript removes first zero, so this is needed for first 100 possibilities
+        case (dnaString.length === 15):
             return allyList[0];
         case (100 <= substr && substr <= 199):
             return allyList[1];

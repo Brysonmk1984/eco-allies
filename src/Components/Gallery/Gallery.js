@@ -18,7 +18,7 @@ class Gallery extends React.Component{
 
     render(){
         return(
-            <div className="page-wrapper trade-page">
+            <div className="page-wrapper gallery-page">
                 <section className="title-section">
                     <div className="subsection">
                         <h1>ECO ALLIES</h1>

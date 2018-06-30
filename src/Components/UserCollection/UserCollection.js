@@ -18,7 +18,7 @@ class UserCollection extends React.Component{
 
     render(){
         return(
-            <div className="page-wrapper trade-page">
+            <div className="page-wrapper user-collection-page">
                 <section className="title-section">
                     <div className="subsection">
                         <h1>Eco Alliess</h1>
