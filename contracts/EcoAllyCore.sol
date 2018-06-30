@@ -66,7 +66,6 @@ contract EcoAllyCore is EcoAllyOwnership {
     ///  without using an expensive CALL.
     function unpause() public onlyCEO whenPaused {
         require(newContractAddress == address(0));
-
         // Unpause contract
         super.unpause();
     }
@@ -75,9 +74,6 @@ contract EcoAllyCore is EcoAllyOwnership {
         return _createEcoAlly(_name, _seed);
     }
 
-    function randNum(uint str) external view returns (uint) {
-        return uint(keccak256(str, msg.sender));
-    }
     function randDna(uint _seed) external view returns (uint){
         return _generateRandomDna(_seed);
     }

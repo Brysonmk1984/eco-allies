@@ -6,6 +6,7 @@ class UserCollection extends React.Component{
     constructor(props){
         super(props);
         this.buildAlly = this.props.buildAlly.bind(this);
+        this.transferAlly = this.props.transferAlly.bind(this);
     }
     buildAllyList(){
         return this.props.allies.map((ally, i) => {
@@ -33,6 +34,9 @@ class UserCollection extends React.Component{
                             </div>
                             <div>
                                 <button type="submit">Build Ally</button>
+                            </div>
+                            <div>
+                                <button type="button" onClick={this.props.transferAlly}>Transfer Ally</button>
                             </div>
                         </form>
                     </div>

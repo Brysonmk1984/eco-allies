@@ -1,7 +1,7 @@
 [{
     "character" : "Chrono Guy",
     "skills" : ["Time Freeze", "Blink Out", "Warp Out Enemy", "Entropy Ray", "Slow Speed Field"],
-    "image" : "fred.png",
+    "image" : "chrono_guy.png",
     "description" : "Time Traveling Renegade",
     "history" : "my background story"
 },

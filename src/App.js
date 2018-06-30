@@ -19,6 +19,7 @@ class App extends React.Component {
     this.state = {
       allies : [],
       account : '',
+      account1 : '0x8626cc10af4ae48e97926bbcf3c4f32aadfd5c7d',
       account2 : '0xcc1A64c458ba381C593aD92CA651Fb276092A1D3'
     };
     this.web3;
@@ -158,6 +159,10 @@ class App extends React.Component {
     this.instance.addAlly(name, num, {from : this.state.account});
   }
 
+  transferAlly(e, from = this.state.account1, to = this.state.account2, allyIndex = 0){
+    this.instance.transferEcoAlly(from, to, allyIndex, {from : this.state.account});
+  }
+
   componentDidUpdate(){
     console.log('STATE', this.state);
 
@@ -167,7 +172,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <Content allies={this.state.allies} buildAlly={this.buildAlly.bind(this)}  />
+        <Content allies={this.state.allies} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)} />
         <Footer />
       </div>
     );

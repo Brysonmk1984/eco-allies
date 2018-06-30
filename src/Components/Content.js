@@ -12,11 +12,11 @@ class Content extends React.Component{
     render(){
         return(
             <div className="route-wrapper">
-                <Route exact path="/" component={() => (<UserCollection allies={this.props.allies}  buildAlly={this.props.buildAlly} /> )}  />
+                <Route exact path="/" component={() => (<UserCollection allies={this.props.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} /> )}  />
                 {/* <Route exact path="/" component={() => (<Gallery   /> )}  /> */}
                 <Route path="/about" component={About} />
                 <Route path="/gallery" component={() => (<Gallery allies ={this.props.allies}  /> )} />
-                <Route path="/user-collection" component={() => (<UserCollection allies ={this.props.allies}  buildAlly={this.props.buildAlly} /> )}  />
+                <Route path="/user-collection" component={() => (<UserCollection allies ={this.props.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} /> )}  />
                 {/* <Route path="faq" component={Faq} />
                 <Route path="gettingStarted" component={GettingStarted} /> */}
             </div>
