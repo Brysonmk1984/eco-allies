@@ -7,6 +7,7 @@ import filterborg from '../assets/images/filterborg.png';
 import solar_sprite from '../assets/images/solar_sprite.png';
 import geothermal_golem from '../assets/images/geothermal_golem.png';
 import chrono_guy from '../assets/images/chrono_guy.png';
+import wild_speaker from '../assets/images/wild_speaker.png';
 
 import allyList from './allyList.json';
 

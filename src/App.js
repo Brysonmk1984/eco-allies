@@ -51,7 +51,7 @@ class App extends React.Component {
           // this.getTokenCount().then((tokenCount)=>{  
             //this.getAllAllies(tokenCount -1);
           // });
-  
+          console.log('INSTANCE', this.instance);
           
           this.getAlliesOfUser();
           // Watch for when new Allies are created
@@ -62,16 +62,6 @@ class App extends React.Component {
       })
       
     });
-
-    // Check to see if user changed metamask account
-    setInterval(() => {
-      if (web3.eth.accounts[0] !== this.state.account) {
-        this.setState(() =>({account : web3.eth.accounts[0]}), () => {
-          this.getAlliesOfUser();
-        });
-      }
-    }, 1000);
-
 
   }
   
@@ -111,6 +101,7 @@ class App extends React.Component {
   }
 
   getAlliesOfUser(){
+    
     this.instance.tokensOfOwner.call(this.state.account).then((tokens)=>{
       
       const tokenPositions = tokens.map((token) =>{
@@ -132,6 +123,14 @@ class App extends React.Component {
       });
 
     });
+  }
+
+  checkForAccountMatch(){
+    if (web3.eth.accounts[0] && web3.eth.accounts[0] !== this.state.account) {
+      this.setState(() =>({account : web3.eth.accounts[0]}), () => {
+          this.getAlliesOfUser();
+      });
+    }
   }
 
   watchForCreation(){
@@ -172,7 +171,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <Content allies={this.state.allies} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)} />
+        <Content allies={this.state.allies} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)} getAlliesOfUser={this.checkForAccountMatch.bind(this)} />
         <Footer />
       </div>
     );

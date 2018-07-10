@@ -1,5 +1,6 @@
 import React from 'react';
 import Ally from './Ally';
+import TransferModal from './TransferModal';
 import './userCollection.scss';
 
 class UserCollection extends React.Component{
@@ -14,6 +15,13 @@ class UserCollection extends React.Component{
                 <Ally key={i} name={ally.name} dna={ally.dna} />
             );
         });
+    }
+
+    componentDidMount(){
+        // Check to see if user changed metamask account, if they did, get allies
+        setInterval(() => {
+            this.props.getAlliesOfUser();
+        }, 1000);
     }
 
     render(){
@@ -49,6 +57,7 @@ class UserCollection extends React.Component{
                 </section>
                 <section className="bottom-section">
                 </section>
+                <TransferModal />
             </div>
         );
     }

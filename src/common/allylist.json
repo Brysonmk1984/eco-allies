@@ -57,7 +57,7 @@
 {
     "character" : "Wild Speaker",
     "skills" : ["Summon Birds","Summon Forest Critters","Commune with Animals","Spirit of the Bear","Spirit of the Tiger"],
-    "image" : "fred.png",
+    "image" : "wild_speaker.png",
     "description" : "Summoner of Beasts",
     "history" : "my background story"
 },
