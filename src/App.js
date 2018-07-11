@@ -51,7 +51,6 @@ class App extends React.Component {
           // this.getTokenCount().then((tokenCount)=>{  
             //this.getAllAllies(tokenCount -1);
           // });
-          console.log('INSTANCE', this.instance);
           
           this.getAlliesOfUser();
           // Watch for when new Allies are created
@@ -163,7 +162,6 @@ class App extends React.Component {
   }
 
   componentDidUpdate(){
-    console.log('STATE', this.state);
 
   }
 

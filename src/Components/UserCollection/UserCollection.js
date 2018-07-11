@@ -12,9 +12,17 @@ class UserCollection extends React.Component{
     buildAllyList(){
         return this.props.allies.map((ally, i) => {
             return (
-                <Ally key={i} name={ally.name} dna={ally.dna} />
+                <Ally key={i} name={ally.name} dna={ally.dna} toggleModal={this.toggleModal.bind(this)} />
             );
         });
+    }
+
+    toggleModal(){
+        this.child.toggleModal();
+    }
+
+    allyActions(){
+
     }
 
     componentDidMount(){
@@ -44,7 +52,8 @@ class UserCollection extends React.Component{
                                 <button type="submit">Build Ally</button>
                             </div>
                             <div>
-                                <button type="button" onClick={this.props.transferAlly}>Transfer Ally</button>
+                            <button type="button" onClick={this.toggleModal.bind(this)}>Transfer Ally</button>
+                                {/* <button type="button" onClick={this.props.transferAlly}>Transfer Ally</button> */}
                             </div>
                         </form>
                     </div>
@@ -57,7 +66,7 @@ class UserCollection extends React.Component{
                 </section>
                 <section className="bottom-section">
                 </section>
-                <TransferModal />
+                <TransferModal onRef={ref => (this.child = ref)} toggleModal={this.toggleModal.bind(this)} transferAlly={this.props.transferAlly} />
             </div>
         );
     }

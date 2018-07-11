@@ -51,11 +51,15 @@ div.page-wrapper.user-collection-page{
                 grid-template-columns: repeat(3, auto);
                 grid-template-rows: auto auto auto;
                 grid-auto-flow: row;
-
+                
                 aside.ally{
                     grid-column: auto / auto;
                     grid-row: auto / auto;
-
+                    .ally-actions{
+                        .ally-action-menu{
+                            text-align:right;
+                        }
+                    }
                     .ally-image{
                         img{
                             max-width:100%;

@@ -1,36 +1,54 @@
 import React from 'react';
+import AllyMenu from './AllyMenu';
 import { determineAlly, determineSkills, determineImage } from '~/common/crackDna';
 
 
-const Ally = (props) => {
-    const ally = determineAlly(props.dna);
-    const allySkills = determineSkills(props.dna, ally.character);
-    const allyImage = determineImage(props.dna, ally);
+export default class Ally extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            ally : '',
+            allySkills : [],
+            allyImage : ''
+        }
+    }
 
-    return(
-        <aside className="ally">
-            <div className="ally-title">
-                <h3>{props.name}</h3>
-                <h4>{ ally.character }</h4>
-            </div>
-            <div className="ally-image">
-                <img src={ allyImage } />
-            </div>
-            <div className="ally-skills">
-                <ul>
-                    { allySkills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
-                </ul>
-            </div>
-            <div className="ally-mods">
-                <ul>
-                    <li>Alignment</li>
-                    <li>Sign</li>
-                    <li>Color Adjustment</li>
-                    <li>Novelty</li>
-                </ul>
-            </div>
-        </aside>
-    );
+    componentDidMount(){
+        const ally = determineAlly(this.props.dna);
+        const allySkills = determineSkills(this.props.dna, ally.character);
+        const allyImage = determineImage(this.props.dna, ally);
+
+        this.setState(() =>({ally,allySkills,allyImage}));
+    }
+    
+    render(){
+        const { anchorEl } = this.state;
+        return(
+            <aside className="ally">
+                <div className="ally-title">
+                    <h3>{this.props.name}</h3>
+                    <h4>{ this.state.ally.character }</h4>
+                </div>
+                <div className="ally-actions">
+                    <AllyMenu anchorEl={this.state.anchorEl} toggleModal={this.props.toggleModal} />
+                </div>
+                <div className="ally-image">
+                    <img src={ this.state.allyImage } />
+                </div>
+                <div className="ally-skills">
+                    <ul>
+                        { this.state.allySkills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
+                    </ul>
+                </div>
+                <div className="ally-mods">
+                    <ul>
+                        <li>Alignment</li>
+                        <li>Sign</li>
+                        <li>Color Adjustment</li>
+                        <li>Novelty</li>
+                    </ul>
+                </div>
+            </aside>
+        );
+    }
 }
-
-export default Ally;
