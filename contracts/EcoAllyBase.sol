@@ -19,7 +19,6 @@ contract EcoAllyBase is EcoAllyAccessControl {
     struct EcoAlly{
         // This is supposed to be the secret part
         uint256 dna;
-        string name;
     }
     
 
@@ -62,9 +61,9 @@ contract EcoAllyBase is EcoAllyAccessControl {
     /// @dev an internal method that creates a new eco ally and stores it
     /// Doesn't do any checking, and should only be called when the input data is known to be accurate.
     /// Will Generate both the birth and transfer events
-    function _createEcoAlly(string _name, uint _seed) internal returns (address owner) {
+    function _createEcoAlly(uint _seed) internal returns (address owner) {
         uint _dna = _generateRandomDna(_seed);
-        uint256 newEcoAllyId = ecoAllies.push(EcoAlly(_dna, _name)) -1;
+        uint256 newEcoAllyId = ecoAllies.push(EcoAlly(_dna)) -1;
 
         /// @dev emit the creation event
         emit Creation(msg.sender, newEcoAllyId, _dna);

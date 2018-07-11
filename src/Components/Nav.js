@@ -1,11 +1,12 @@
 import React from 'react';
-import Logo from '../assets/images/logo.png';
+import Logo2 from '../assets/images/logo2.png';
 import { Link } from 'react-router-dom';
 
 const Nav = () => (
+    
     <nav className="nav-wrapper">
         <a href ="/" className="brand-logo left">
-            <img src={Logo} className="logo" />
+            <img src={Logo2} className="logo" />
         </a>
         <ul id="nav-mobile" className="right hide-on-small-only">
             <li><Link to="/about">About</Link></li>

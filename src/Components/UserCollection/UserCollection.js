@@ -1,7 +1,10 @@
 import React from 'react';
 import Ally from './Ally';
 import TransferModal from './TransferModal';
+import AddModal from './AddModal';
 import './userCollection.scss';
+
+
 
 class UserCollection extends React.Component{
     constructor(props){
@@ -12,13 +15,12 @@ class UserCollection extends React.Component{
     buildAllyList(){
         return this.props.allies.map((ally, i) => {
             return (
-                <Ally key={i} name={ally.name} dna={ally.dna} id={ally.id} toggleModal={this.toggleModal.bind(this)} />
+                <Ally key={i} dna={ally.dna} id={ally.id} toggleModal={this.toggleModal.bind(this)} />
             );
         });
     }
 
     toggleModal(id){
-        console.log('ID!', id);
         this.child.toggleModal(id);
     }
 
@@ -27,7 +29,11 @@ class UserCollection extends React.Component{
         setInterval(() => {
             this.props.getAlliesOfUser();
         }, 1000);
+        
+        
     }
+
+    
 
     render(){
         return(
@@ -38,21 +44,8 @@ class UserCollection extends React.Component{
                         <p>Defenders of Gaia</p>
                     </div>
                 </section>
-                <section className="input-section">
-                    <h2>Create New Ally</h2>
-                    <div className="subsection">
-                        <form onSubmit={(e) =>{this.buildAlly(e, this.refs.name.value)}}>
-                            <div>
-                                <input ref="name" type="text" placeholder="Enter Name" maxLength="20" />
-                            </div>
-                            <div>
-                                <button type="submit">Build Ally</button>
-                            </div>
-                        </form>
-                    </div>
-                </section>
                 <section className="ally-section">
-                    <h2>Your Ally List</h2>
+                    <h2>Your Team</h2>
                     <div className="subsection">
                         {this.buildAllyList()}
                     </div>
@@ -60,6 +53,7 @@ class UserCollection extends React.Component{
                 <section className="bottom-section">
                 </section>
                 <TransferModal onRef={ref => (this.child = ref)} toggleModal={this.toggleModal.bind(this)} transferAlly={this.props.transferAlly} />
+                <AddModal buildAlly={this.buildAlly.bind(this)} />
             </div>
         );
     }

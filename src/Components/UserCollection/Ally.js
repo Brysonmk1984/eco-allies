@@ -26,7 +26,7 @@ export default class Ally extends React.Component{
         return(
             <aside className="ally">
                 <div className="ally-title">
-                    <h3>{this.props.name}</h3>
+                    <h3>{this.state.ally.character}</h3>
                     <h4>{ this.state.ally.character }</h4>
                 </div>
                 <div className="ally-actions">

@@ -7,6 +7,8 @@ import generateSeed from './common/generateNum';
 import TruffleContract from 'truffle-contract';
 // for testing only
 import contractJson from '../build/contracts/EcoAllyCore.json';
+
+
 import './assets/scss/styles.scss';
 import 'materialize-css/dist/css/materialize.css'
 import './assets/scss/materialExtended.scss';
@@ -62,6 +64,8 @@ class App extends React.Component {
       
     });
 
+    
+
   }
   
 
@@ -77,8 +81,8 @@ class App extends React.Component {
     tokenCount = tokenCount;
     function getAllies(){
       cachedThis.instance.getEcoAlly.call(tokenCount).then((ally) =>{
-        //console.log('ally',ally[1], ally[0].toNumber());
-        allies.push({name : ally[1], dna : ally[0].toNumber()});
+        console.log('ally',ally);
+        allies.push({dna : ally[0].toNumber()});
         tokenCount --;
         if(tokenCount > 0){
           getAllies(tokenCount);
@@ -94,7 +98,7 @@ class App extends React.Component {
     this.instance.getEcoAlly.call(tokenPosition).then((ally) =>{
       //console.log('ally',ally[1], ally[0].toNumber());
       this.setState((prevState)=>({
-        allies : [{name : ally[1], dna : ally[0].toNumber()}, ...prevState.allies]
+        allies : [{dna : ally[0].toNumber()}, ...prevState.allies]
       }));
     });
   }
@@ -116,8 +120,8 @@ class App extends React.Component {
 
       Promise.all(tokenPromises).then((values) =>{
           values.forEach((ally,i)=>{
-            console.log('ally', ally[2].toNumber());
-            allies.push({name : ally[1], dna : ally[0].toNumber(), id : ally[2].toNumber()});
+            //console.log('ally', ally[2].toNumber());
+            allies.push({dna : ally[0].toNumber(), id : ally[1].toNumber()});
           });
         
           this.setState((()=>({allies})));
@@ -153,10 +157,11 @@ class App extends React.Component {
 
   // }
 
-  buildAlly(e, name){
-    e.preventDefault();
+
+
+  buildAlly(){
     const num = generateSeed();
-    this.instance.addAlly(name, num, {from : this.state.account});
+    this.instance.addAlly(num, {from : this.state.account});
   }
 
   transferAlly(to, allyIndex = 0){

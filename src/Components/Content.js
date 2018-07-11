@@ -16,7 +16,7 @@ class Content extends React.Component{
                 <Route exact path="/" component={() => (<Gallery   /> )}  />
                 <Route path="/about" component={About} />
                 <Route path="/gallery" component={() => (<Gallery allies ={this.props.allies}  /> )} />
-                <Route path="/user-collection" component={() => (<UserCollection allies ={this.props.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} getAlliesOfUser={this.props.getAlliesOfUser} /> )}  />
+                <Route path="/user-collection"  render={(props) => <UserCollection allies ={this.props.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} getAlliesOfUser={this.props.getAlliesOfUser} />}   />
                 {/* <Route path="faq" component={Faq} />
                 <Route path="gettingStarted" component={GettingStarted} /> */}
             </div>

@@ -3,7 +3,7 @@
 div.page-wrapper.user-collection-page{
     display:grid;
     grid-template-columns: auto;
-    grid-template-rows: 220px 150px auto 220px;
+    grid-template-rows: 220px auto 220px;
     min-height:100vh;
     place-items: stretch;
 
@@ -15,23 +15,6 @@ div.page-wrapper.user-collection-page{
             }
             p{
                 color:$mediumText;
-            }
-        }
-        &.input-section{
-            
-            .subsection{
-                
-                form{
-                    display:grid;
-                    grid-template-columns: auto 200px;
-                    grid-template-rows: auto;
-                    width:auto;
-                    justify-content: center;
-                    text-align:center;
-                    div:first-child{
-                        min-width:300px;
-                    }
-                }
             }
         }
         &.ally-section{

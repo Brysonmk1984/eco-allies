@@ -30,6 +30,7 @@ export default class TransferModal extends React.Component{
     componentDidMount() {
         this.props.onRef(this);
     }
+    
 
     render(){
 
@@ -48,7 +49,7 @@ export default class TransferModal extends React.Component{
                     <DialogContentText id="alert-dialog-description">
                         Enter the Ethereum address you would like to transfer this ally to
                     </DialogContentText>
-                    <form onSubmit={(e) =>{this.transferAlly(e, this.state.address, this.state.allyId)}}>
+                    <form>
                         <div className="address-input-container">
                             <input value={this.state.address} onChange={this.handleChange.bind(this)} type="text" placeholder="Address" maxLength="42" />
                         </div>
