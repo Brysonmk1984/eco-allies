@@ -54,7 +54,7 @@ class App extends React.Component {
           
           this.getAlliesOfUser();
           // Watch for when new Allies are created
-          this.watchForCreation();
+          //this.watchForCreation();
   
         });
 
@@ -113,9 +113,11 @@ class App extends React.Component {
         return this.instance.getEcoAlly(tp);
       });
 
+
       Promise.all(tokenPromises).then((values) =>{
           values.forEach((ally,i)=>{
-            allies.push({name : ally[1], dna : ally[0].toNumber()});
+            console.log('ally', ally[2].toNumber());
+            allies.push({name : ally[1], dna : ally[0].toNumber(), id : ally[2].toNumber()});
           });
         
           this.setState((()=>({allies})));
@@ -132,24 +134,24 @@ class App extends React.Component {
     }
   }
 
-  watchForCreation(){
-    const creationEvent = this.instance.Creation();
+  // watchForCreation(){
+  //   const creationEvent = this.instance.Creation();
         
-    creationEvent.watch((error, result) =>{
-      if(error){
-        console.log('ERROR', error);
-      }else{
+  //   creationEvent.watch((error, result) =>{
+  //     if(error){
+  //       console.log('ERROR', error);
+  //     }else{
 
-        if(result.args.owner === this.state.account){
-          // Get new token count and fetch latest token
-          this.getTokenCount().then((tokenCount)=>{
-            this.getLatestAlly(tokenCount);
-          });
-        }
-      }
-    });
+  //       if(result.args.owner === this.state.account){
+  //         // Get new token count and fetch latest token
+  //         this.getTokenCount().then((tokenCount)=>{
+  //           this.getLatestAlly(tokenCount);
+  //         });
+  //       }
+  //     }
+  //   });
 
-  }
+  // }
 
   buildAlly(e, name){
     e.preventDefault();
@@ -157,8 +159,15 @@ class App extends React.Component {
     this.instance.addAlly(name, num, {from : this.state.account});
   }
 
-  transferAlly(e, from = this.state.account1, to = this.state.account2, allyIndex = 0){
-    this.instance.transferEcoAlly(from, to, allyIndex, {from : this.state.account});
+  transferAlly(to, allyIndex = 0){
+    const from = this.state.account1;
+    if(to !== this.state.account){
+      console.log('going', to, allyIndex);
+      this.instance.transferEcoAlly(from, to, allyIndex, {from : this.state.account});
+    }else{
+      alert('please enter an account that\'s not your own');
+    }
+    
   }
 
   componentDidUpdate(){

@@ -9,7 +9,8 @@ export default class Ally extends React.Component{
         this.state = {
             ally : '',
             allySkills : [],
-            allyImage : ''
+            allyImage : '',
+            allyId : null
         }
     }
 
@@ -17,12 +18,11 @@ export default class Ally extends React.Component{
         const ally = determineAlly(this.props.dna);
         const allySkills = determineSkills(this.props.dna, ally.character);
         const allyImage = determineImage(this.props.dna, ally);
-
-        this.setState(() =>({ally,allySkills,allyImage}));
+        const allyId = this.props.id;
+        this.setState(() =>({ally,allySkills,allyImage,allyId}));
     }
     
     render(){
-        const { anchorEl } = this.state;
         return(
             <aside className="ally">
                 <div className="ally-title">
@@ -30,7 +30,7 @@ export default class Ally extends React.Component{
                     <h4>{ this.state.ally.character }</h4>
                 </div>
                 <div className="ally-actions">
-                    <AllyMenu anchorEl={this.state.anchorEl} toggleModal={this.props.toggleModal} />
+                    <AllyMenu anchorEl={this.state.anchorEl} toggleModal={() =>{ this.props.toggleModal(this.state.allyId); }} />
                 </div>
                 <div className="ally-image">
                     <img src={ this.state.allyImage } />

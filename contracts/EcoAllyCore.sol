@@ -49,9 +49,9 @@ contract EcoAllyCore is EcoAllyOwnership {
     // }
 
     /// @notice Returns all the relevant information about a specific EcoAlly.
-    function getEcoAlly(uint256 _id) external view returns(uint256 dna, string name ) {
+    function getEcoAlly(uint256 _id) external view returns(uint256 dna, string name, uint256 id ) {
         EcoAlly storage ally = ecoAllies[_id];
-        return (dna = ally.dna, name = ally.name);
+        return (dna = ally.dna, name = ally.name, id = _id);
     }
 
     function getEcoAllyDnaOnly(uint256 _id) external view returns(uint256) {
