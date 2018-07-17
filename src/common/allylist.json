@@ -8,7 +8,7 @@
 {
     "character" : "Compost Creature",
     "skills" : ["Rapid Decay","Mulch Munch","Regenerate Land","Summon Creepy Crawlers","Potent Stench"],
-    "image" : "fred.png",
+    "image" : "compost_creature.png",
     "description" : "Animated Bio Decay",
     "history" : "my background story"
 },

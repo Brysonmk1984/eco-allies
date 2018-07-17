@@ -6,6 +6,7 @@ import Xin from '../assets/images/ninja.png';
 import filterborg from '../assets/images/filterborg.png';
 import solar_sprite from '../assets/images/solar_sprite.png';
 import geothermal_golem from '../assets/images/geothermal_golem.png';
+import compost_creature from '../assets/images/compost_creature.png';
 import chrono_guy from '../assets/images/chrono_guy.png';
 import wild_speaker from '../assets/images/wild_speaker.png';
 
@@ -19,14 +20,13 @@ function imageRandomizer(){
 
 
 function determineAlly(dna){
-    const dnaString = dna.toString();
-    const substr = parseInt(dnaString.substring(0,3));
-
+    const substr = parseInt(dna.substring(0,3));
+    //console.log('DNA - ', dna, substr);
 
 
     switch(true){
         // JavaScript removes first zero, so this is needed for first 100 possibilities
-        case (dnaString.length === 15):
+        case (0 <= substr && substr <= 99):
             return allyList[0];
         case (100 <= substr && substr <= 199):
             return allyList[1];
@@ -54,7 +54,7 @@ function determineImage(dna, character){
 }
 
 function determineSkills(dna, character){
-    const skill = parseInt(dna.toString().substring(3,6));
+    const skill = parseInt(dna.substring(3,6));
     
     const a = allyList.find((a)=>{
         return a.character === character;
@@ -172,4 +172,51 @@ function determineSkills(dna, character){
 
 }
 
-export { determineAlly, determineSkills, determineImage };
+function determineSign(dna){
+    const substr = parseInt(dna.substring(6,8));
+    console.log(dna, substr);
+
+    switch(true){
+        // JavaScript removes first zero, so this is needed for first 100 possibilities
+        // Aries = 9
+        case (0 <= substr && substr <= 8):
+            return 'Aries';
+        // Taurus = 9
+        case (9 <= substr && substr <= 18):
+            return 'Taurus';
+        // Gemini = 8
+        case (19 <= substr && substr <= 26):
+            return 'Gemini';
+        // Cancer = 7
+        case (27 <= substr && substr <= 33):
+            return 'Cancer';
+        // Leo = 8
+        case (34 <= substr && substr <= 41):
+            return 'Leo';
+        // Virgo = 10
+        case (42 <= substr && substr <= 52):
+            return 'Virgo';
+        // Libra = 8
+        case (53 <= substr && substr <= 60):
+            return 'Libra';
+        // Scorpio = 9
+        case (61 <= substr && substr <= 70):
+            return 'Scorpio';
+        // Sagittarius = 8
+        case (71 <= substr && substr <= 78):
+            return 'Sagittarius';
+        // Capricorn = 7
+        case(79 <= substr && substr <= 85):
+            return 'Capricorn';
+        // Aquarius = 6
+        case(86 <= substr && substr <= 91):
+            return 'Aquarius';
+        // Pisces = 8
+        case(92 <= substr && substr <= 99):
+            return 'Pisces';
+    }
+
+
+}
+
+export { determineAlly, determineSkills, determineImage, determineSign };

@@ -1,6 +1,6 @@
 import React from 'react';
 import AllyMenu from './AllyMenu';
-import { determineAlly, determineSkills, determineImage } from '~/common/crackDna';
+import { determineAlly, determineSkills, determineImage, determineSign } from '~/common/crackDna';
 
 
 export default class Ally extends React.Component{
@@ -10,7 +10,8 @@ export default class Ally extends React.Component{
             ally : '',
             allySkills : [],
             allyImage : '',
-            allyId : null
+            allyId : null,
+            allySign : ''
         }
     }
 
@@ -19,7 +20,8 @@ export default class Ally extends React.Component{
         const allySkills = determineSkills(this.props.dna, ally.character);
         const allyImage = determineImage(this.props.dna, ally);
         const allyId = this.props.id;
-        this.setState(() =>({ally,allySkills,allyImage,allyId}));
+        const allySign = determineSign(this.props.dna);
+        this.setState(() =>({ally,allySkills,allyImage,allyId, allySign}));
     }
     
     render(){
@@ -43,7 +45,7 @@ export default class Ally extends React.Component{
                 <div className="ally-mods">
                     <ul>
                         <li>Alignment</li>
-                        <li>Sign</li>
+                        <li>{ this.state.allySign }</li>
                         <li>Color Adjustment</li>
                         <li>Novelty</li>
                     </ul>

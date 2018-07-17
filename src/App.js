@@ -120,8 +120,12 @@ class App extends React.Component {
 
       Promise.all(tokenPromises).then((values) =>{
           values.forEach((ally,i)=>{
-            //console.log('ally', ally[2].toNumber());
-            allies.push({dna : ally[0].toNumber(), id : ally[1].toNumber()});
+            let allyDnaString = ally[0].toString();
+            if(allyDnaString.length === 15){
+              allyDnaString = '0' + allyDnaString;
+            }
+            console.log(allyDnaString);
+            allies.push({dna : allyDnaString, id : ally[1].toNumber()});
           });
         
           this.setState((()=>({allies})));

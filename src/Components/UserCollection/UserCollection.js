@@ -15,7 +15,7 @@ class UserCollection extends React.Component{
     buildAllyList(){
         return this.props.allies.map((ally, i) => {
             return (
-                <Ally key={i} dna={ally.dna} id={ally.id} toggleModal={this.toggleModal.bind(this)} />
+                <Ally key={i} dna={ally.dna} id={ally.id} sign={ally.sign} toggleModal={this.toggleModal.bind(this)} />
             );
         });
     }
