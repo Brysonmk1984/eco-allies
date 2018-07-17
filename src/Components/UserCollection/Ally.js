@@ -14,7 +14,8 @@ export default class Ally extends React.Component{
             allyId : null,
             allySign : '',
             allyAlignment : '',
-            allyColor : null
+            allyColor : null,
+            allyPower : 0
         }
     }
     getAllyColor(){
@@ -27,7 +28,7 @@ export default class Ally extends React.Component{
         const ally = decodeAlly(this.props.dna);
         console.log('ALLY',ally);
 
-        this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image,id : this.props.id, allySign:ally.sign, allyAllignment:ally.alignment, allyColor:ally.color}));
+        this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image,id : this.props.id, allySign:ally.sign, allyAlignment:ally.alignment, allyColor:ally.color, allyPower:ally.power}));
     }
     
     render(){
@@ -53,7 +54,7 @@ export default class Ally extends React.Component{
                         <li>{ this.state.allyAlignment }</li>
                         <li>{ this.state.allySign }</li>
                         { this.getAllyColor() }
-                        {/* <li>Novelty</li> */}
+                        <li>Power: {this.state.allyPower} </li>
                     </ul>
                 </div>
             </aside>

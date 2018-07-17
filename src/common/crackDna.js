@@ -158,7 +158,7 @@ function determineSkills(dna, character){
             break;
         default:
     }
-
+    
     return crackedSkills;
 
 }
@@ -172,40 +172,40 @@ function determineSign(dna){
         // JavaScript removes first zero, so this is needed for first 100 possibilities
         // Aries = 9
         case (0 <= substr && substr <= 8):
-            return 'Aries';
+            return {value : 'Aries', modifier : 3};
         // Taurus = 9
         case (9 <= substr && substr <= 18):
-            return 'Taurus';
+            return {value : 'Taurus', modifier : 3};
         // Gemini = 8
         case (19 <= substr && substr <= 26):
-            return 'Gemini';
+            return {value : 'Gemini', modifier : 5};
         // Cancer = 7
         case (27 <= substr && substr <= 33):
-            return 'Cancer';
+            return {value : 'Cancer', modifier : 7};
         // Leo = 8
         case (34 <= substr && substr <= 41):
-            return 'Leo';
+            return {value : 'Leo', modifier : 5};
         // Virgo = 10
         case (42 <= substr && substr <= 52):
-            return 'Virgo';
+            return {value : 'Virgo', modifier : 1};
         // Libra = 8
         case (53 <= substr && substr <= 60):
-            return 'Libra';
+            return {value : 'Libra', modifier : 5};
         // Scorpio = 9
         case (61 <= substr && substr <= 70):
-            return 'Scorpio';
+            return {value : 'Scorpio', modifier : 3};
         // Sagittarius = 8
         case (71 <= substr && substr <= 78):
-            return 'Sagittarius';
+            return {value : 'Sagittarius', modifier : 5};
         // Capricorn = 7
         case(79 <= substr && substr <= 85):
-            return 'Capricorn';
+            return {value : 'Capricorn', modifier : 7};
         // Aquarius = 6
         case(86 <= substr && substr <= 91):
-            return 'Aquarius';
+            return {value : 'Aquarius', modifier : 10};
         // Pisces = 8
         case(92 <= substr && substr <= 99):
-            return 'Pisces';
+            return {value : 'Pisces', modifier : 6};
     }
 
 
@@ -219,31 +219,31 @@ function determineAlignment(dna){
     switch(true){
         // Lawful Good
         case (0 === substr):
-            return 'Lawful Good';
+            return {value : 'Lawful Good', modifier : 10};
         // Neutral Good
         case (1 === substr):
-            return 'Neutral Good';
+            return {value : 'Neutral Good', modifier : 5};
         // Chaotic Good
         case (2 === substr):
-            return 'Chaotic Good';
+            return {value : 'Chaotic Good', modifier : 10};
         // Lawful Neutral
         case (3 === substr):
-            return 'Lawful Neutral';
+            return {value : 'Lawful Neutral', modifier : 5};
         // True Neutral
         case (4 === substr || 5 === substr):
-            return 'True Neutral';
+            return {value : 'True Neutral', modifier : 1};
         // Chaotic Neutral
         case (6 === substr):
-            return 'Chaotic Neutral';
+            return {value : 'Chaotic Neutral', modifier : 5};
         // Lawful Evil
         case (7 === substr):
-            return 'Lawful Evil';
+            return {value : 'Lawful Evil', modifier : 10};
         // Neutral Evil
         case (8 === substr):
-            return 'Neutral Evil';
+            return {value : 'Neutral Evil', modifier : 5};
         // Chaotic Evil
         case (9 === substr):
-            return 'Chaotic Evil';
+            return {value : 'Chaotic Evil', modifier : 10};
     }
 }
 // 10, 11 Digits
@@ -255,48 +255,65 @@ function determineColor(dna){
         // JavaScript removes first zero, so this is needed for first 100 possibilities
         // Diamond = 1
         case(0 === substr):
-            return 'Diamond';
+            return {value : 'Diamond', modifier : 10};
         // Amethyst 7
         case (1 <= substr && substr <= 7):
-            return 'Amethyst';
+            return {value : 'Amethyst', modifier : 5};
         // Citrine = 7
         case (8 <= substr && substr <= 14):
-            return 'Citrine';
+            return {value : 'Citrine', modifier : 5};
         // Topaz = 7
         case (15 <= substr && substr <= 21):
-            return 'Topaz';
+            return {value : 'Topaz', modifier : 5};
         // Sapphire = 7
         case (22 <= substr && substr <= 28):
-            return 'Sapphire';
+            return {value : 'Sapphire', modifier : 5};
         // Garnet = 7
         case (29 <= substr && substr <= 35):
-            return 'Garnet';
+            return {value : 'Garnet', modifier : 5};
         // Emerald = 7
         case (36 <= substr && substr <= 42):
-            return 'Emerald';
+            return {value : 'Emerald', modifier : 5};
         // Ruby = 4
         case (43 <= substr && substr <= 46):
-            return 'Ruby';
+            return {value : 'Ruby', modifier : 7};
         // Onyx = 3
         case (47 <= substr && substr <= 49):
-            return 'Onyx';
+            return {value : 'Onyx', modifier : 8};
         // Default Scheme = 50
         default:
-            return null
+            return { value : null, modifier : 2 }
     }
 
 }
 
+function determinePower(skillCount, sign, alignment, color){
+    console.log(skillCount, color);
+    let powerDecimal = (skillCount * .4) + (sign * .1) + (alignment * .2) + (color * .3) ;
+    let power = Math.floor(powerDecimal * 100);
+    return power;
+    
+}
+
 function decodeAlly(dna){
     const basics =  determineAlly(dna);
-    return {
+    const color = determineColor(dna);
+    const skills = determineSkills(dna, basics.character);
+    const sign = determineSign(dna);
+    const alignment = determineAlignment(dna);
+    
+    const ally = {
         basics,
         image : `assets/images/${basics.image}`,
-        skills : determineSkills(dna, basics.character),
-        sign : determineSign(dna),
-        alignment : determineAlignment(dna),
-        color : determineColor(dna)
+        skills : skills,
+        sign : sign.value,
+        alignment : alignment.value,
+        color : color.value,
+        power : determinePower(skills.length, sign.modifier, alignment.modifier, color.modifier)
     };
+
+    console.log('POWER',ally.power);
+    return ally;
 
 }
 export { decodeAlly };
