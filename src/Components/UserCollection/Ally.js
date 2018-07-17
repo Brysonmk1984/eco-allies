@@ -1,35 +1,41 @@
 import React from 'react';
 import AllyMenu from './AllyMenu';
-import { determineAlly, determineSkills, determineImage, determineSign } from '~/common/crackDna';
+import { decodeAlly } from '~/common/crackDna';
 
 
 export default class Ally extends React.Component{
     constructor(){
         super();
         this.state = {
-            ally : '',
+            allyName : '',
+            allyDescription : '',
             allySkills : [],
             allyImage : '',
             allyId : null,
-            allySign : ''
+            allySign : '',
+            allyAlignment : '',
+            allyColor : null
+        }
+    }
+    getAllyColor(){
+        if(this.state.allyColor){
+            return <li> {this.state.allyColor} Variant </li> 
         }
     }
 
     componentDidMount(){
-        const ally = determineAlly(this.props.dna);
-        const allySkills = determineSkills(this.props.dna, ally.character);
-        const allyImage = determineImage(this.props.dna, ally);
-        const allyId = this.props.id;
-        const allySign = determineSign(this.props.dna);
-        this.setState(() =>({ally,allySkills,allyImage,allyId, allySign}));
+        const ally = decodeAlly(this.props.dna);
+        console.log('ALLY',ally);
+
+        this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image,id : this.props.id, allySign:ally.sign, allyAllignment:ally.alignment, allyColor:ally.color}));
     }
     
     render(){
         return(
             <aside className="ally">
                 <div className="ally-title">
-                    <h3>{this.state.ally.character}</h3>
-                    <h4>{ this.state.ally.character }</h4>
+                    <h3>{this.state.allyName}</h3>
+                    <h4>{ this.state.allyColor ? this.state.allyColor + ' Variant' : this.state.allyDescription }</h4>
                 </div>
                 <div className="ally-actions">
                     <AllyMenu anchorEl={this.state.anchorEl} toggleModal={() =>{ this.props.toggleModal(this.state.allyId); }} />
@@ -44,10 +50,10 @@ export default class Ally extends React.Component{
                 </div>
                 <div className="ally-mods">
                     <ul>
-                        <li>Alignment</li>
+                        <li>{ this.state.allyAlignment }</li>
                         <li>{ this.state.allySign }</li>
-                        <li>Color Adjustment</li>
-                        <li>Novelty</li>
+                        { this.getAllyColor() }
+                        {/* <li>Novelty</li> */}
                     </ul>
                 </div>
             </aside>

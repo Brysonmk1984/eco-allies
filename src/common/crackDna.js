@@ -12,13 +12,7 @@ import wild_speaker from '../assets/images/wild_speaker.png';
 
 import allyList from './allyList.json';
 
-// Remove later when pulling in correct image
-function imageRandomizer(){
-    const arr = [Fred, Dave, Xin];
-    return arr[Math.floor(Math.random() * 3) + 0];
-}
-
-
+// First 3 Digits
 function determineAlly(dna){
     const substr = parseInt(dna.substring(0,3));
     //console.log('DNA - ', dna, substr);
@@ -49,10 +43,7 @@ function determineAlly(dna){
     }
 }
 
-function determineImage(dna, character){
-    return character.image ? `assets/images/${character.image}` : imageRandomizer();
-}
-
+// 4, 5, 6 Digits
 function determineSkills(dna, character){
     const skill = parseInt(dna.substring(3,6));
     
@@ -172,9 +163,10 @@ function determineSkills(dna, character){
 
 }
 
+// 7, 8 Digits
 function determineSign(dna){
     const substr = parseInt(dna.substring(6,8));
-    console.log(dna, substr);
+    //console.log(dna, substr);
 
     switch(true){
         // JavaScript removes first zero, so this is needed for first 100 possibilities
@@ -219,4 +211,92 @@ function determineSign(dna){
 
 }
 
-export { determineAlly, determineSkills, determineImage, determineSign };
+// 9th Digit
+function determineAlignment(dna){
+    const substr = parseInt(dna.substring(8,9));
+    //console.log(dna, substr);
+
+    switch(true){
+        // Lawful Good
+        case (0 === substr):
+            return 'Lawful Good';
+        // Neutral Good
+        case (1 === substr):
+            return 'Neutral Good';
+        // Chaotic Good
+        case (2 === substr):
+            return 'Chaotic Good';
+        // Lawful Neutral
+        case (3 === substr):
+            return 'Lawful Neutral';
+        // True Neutral
+        case (4 === substr || 5 === substr):
+            return 'True Neutral';
+        // Chaotic Neutral
+        case (6 === substr):
+            return 'Chaotic Neutral';
+        // Lawful Evil
+        case (7 === substr):
+            return 'Lawful Evil';
+        // Neutral Evil
+        case (8 === substr):
+            return 'Neutral Evil';
+        // Chaotic Evil
+        case (9 === substr):
+            return 'Chaotic Evil';
+    }
+}
+// 10, 11 Digits
+function determineColor(dna){
+    const substr = parseInt(dna.substring(8,10));
+    console.log('!',dna, substr);
+
+    switch(true){
+        // JavaScript removes first zero, so this is needed for first 100 possibilities
+        // Diamond = 1
+        case(0 === substr):
+            return 'Diamond';
+        // Amethyst 7
+        case (1 <= substr && substr <= 7):
+            return 'Amethyst';
+        // Citrine = 7
+        case (8 <= substr && substr <= 14):
+            return 'Citrine';
+        // Topaz = 7
+        case (15 <= substr && substr <= 21):
+            return 'Topaz';
+        // Sapphire = 7
+        case (22 <= substr && substr <= 28):
+            return 'Sapphire';
+        // Garnet = 7
+        case (29 <= substr && substr <= 35):
+            return 'Garnet';
+        // Emerald = 7
+        case (36 <= substr && substr <= 42):
+            return 'Emerald';
+        // Ruby = 4
+        case (43 <= substr && substr <= 46):
+            return 'Ruby';
+        // Onyx = 3
+        case (47 <= substr && substr <= 49):
+            return 'Onyx';
+        // Default Scheme = 50
+        default:
+            return null
+    }
+
+}
+
+function decodeAlly(dna){
+    const basics =  determineAlly(dna);
+    return {
+        basics,
+        image : `assets/images/${basics.image}`,
+        skills : determineSkills(dna, basics.character),
+        sign : determineSign(dna),
+        alignment : determineAlignment(dna),
+        color : determineColor(dna)
+    };
+
+}
+export { decodeAlly };
