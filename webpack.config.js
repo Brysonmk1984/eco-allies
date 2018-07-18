@@ -56,7 +56,8 @@ module.exports = env => {
         {
           test: /\.(png|gif|jpg)$/,
           exclude: /node_modules/,
-          use : ['file-loader?name=[name].[ext]&outputPath=assets/images/']
+          use : ['file-loader?name=[name].[ext]&outputPath=assets/images/'],
+          include: path.join(__dirname, 'src')
         },
         {
           test: /\.json$/,

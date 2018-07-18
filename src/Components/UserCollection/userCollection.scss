@@ -38,6 +38,7 @@ div.page-wrapper.user-collection-page{
                 aside.ally{
                     grid-column: auto / auto;
                     grid-row: auto / auto;
+                    position:relative;
                     .ally-actions{
                         .ally-action-menu{
                             text-align:right;
@@ -68,6 +69,15 @@ div.page-wrapper.user-collection-page{
                     .ally-mods{
                         color: $mediumText;
                     }
+
+                    .ally-power{
+                        font-size:30px;
+                        font-family:impact;
+                        img.fist{
+                            width:30px;
+                        }
+                    }
+                    
                     
                 }
             }
@@ -82,5 +92,26 @@ div.page-wrapper.user-collection-page{
             text-align:center;
         }
         
+        .variant_bar{
+            position:absolute;
+            left:0px;
+            top:150px;
+            .variant{
+                width:40px;
+                height:40px;
+                border:solid 1px #4A4A4A;
+                border-radius:6px;
+                margin-bottom: 10px;
+                &:last-child{
+                    margin-bottom: 0px;
+                }
+                img{
+                    width:36px;
+                    height:36px;
+                    padding:2px;
+                }
+            }
+        }
+
     }
 }

@@ -1,7 +1,9 @@
 import React from 'react';
 import AllyMenu from './AllyMenu';
+import VariantBar from './VariantBar';
 import { decodeAlly } from '~/common/crackDna';
 
+import fist from '~/assets/images/fist.png';
 
 export default class Ally extends React.Component{
     constructor(){
@@ -36,11 +38,12 @@ export default class Ally extends React.Component{
             <aside className="ally">
                 <div className="ally-title">
                     <h3>{this.state.allyName}</h3>
-                    <h4>{ this.state.allyColor ? this.state.allyColor + ' Variant' : this.state.allyDescription }</h4>
+                    <h4>{ this.state.allyDescription }</h4>
                 </div>
                 <div className="ally-actions">
                     <AllyMenu anchorEl={this.state.anchorEl} toggleModal={() =>{ this.props.toggleModal(this.state.allyId); }} />
                 </div>
+                <VariantBar />
                 <div className="ally-image">
                     <img src={ this.state.allyImage } />
                 </div>
@@ -54,8 +57,10 @@ export default class Ally extends React.Component{
                         <li>{ this.state.allyAlignment }</li>
                         <li>{ this.state.allySign }</li>
                         { this.getAllyColor() }
-                        <li>Power: {this.state.allyPower} </li>
                     </ul>
+                </div>
+                <div className="ally-power">
+                    <img className="fist" src={fist} /> <strong>{this.state.allyPower}</strong>
                 </div>
             </aside>
         );
