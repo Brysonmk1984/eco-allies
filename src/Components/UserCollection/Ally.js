@@ -28,7 +28,7 @@ export default class Ally extends React.Component{
 
     componentDidMount(){
         const ally = decodeAlly(this.props.dna);
-        console.log('ALLY',ally);
+        //console.log('ALLY',ally.color);
 
         this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image,id : this.props.id, allySign:ally.sign, allyAlignment:ally.alignment, allyColor:ally.color, allyPower:ally.power}));
     }
@@ -43,7 +43,7 @@ export default class Ally extends React.Component{
                     <h3>{this.state.allyName}</h3>
                     <h4>{ this.state.allyDescription }</h4>
                 </div>
-                <VariantBar />
+                <VariantBar color={this.state.allyColor} />
                 <div className="ally-image">
                     <img src={ this.state.allyImage } />
                 </div>

@@ -124,7 +124,7 @@ class App extends React.Component {
             if(allyDnaString.length === 15){
               allyDnaString = '0' + allyDnaString;
             }
-            console.log(allyDnaString);
+            //console.log(allyDnaString);
             allies.push({dna : allyDnaString, id : ally[1].toNumber()});
           });
         
@@ -171,7 +171,7 @@ class App extends React.Component {
   transferAlly(to, allyIndex = 0){
     const from = this.state.account1;
     if(to !== this.state.account){
-      console.log('going', to, allyIndex);
+      //console.log('going', to, allyIndex);
       this.instance.transferEcoAlly(from, to, allyIndex, {from : this.state.account});
     }else{
       alert('please enter an account that\'s not your own');

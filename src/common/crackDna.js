@@ -249,7 +249,7 @@ function determineAlignment(dna){
 // 10, 11 Digits
 function determineColor(dna){
     const substr = parseInt(dna.substring(8,10));
-    console.log('!',dna, substr);
+    //console.log('!',dna, substr);
 
     switch(true){
         // JavaScript removes first zero, so this is needed for first 100 possibilities
@@ -274,9 +274,9 @@ function determineColor(dna){
         // Emerald = 7
         case (36 <= substr && substr <= 42):
             return {value : 'Emerald', modifier : 5};
-        // Ruby = 4
+        // Fire Opal = 4
         case (43 <= substr && substr <= 46):
-            return {value : 'Ruby', modifier : 7};
+            return {value : 'Fire Opal', modifier : 7};
         // Onyx = 3
         case (47 <= substr && substr <= 49):
             return {value : 'Onyx', modifier : 8};
@@ -288,7 +288,7 @@ function determineColor(dna){
 }
 
 function determinePower(skillCount, sign, alignment, color){
-    console.log(skillCount, color);
+    //console.log(skillCount, color);
     let powerDecimal = (skillCount * .4) + (sign * .1) + (alignment * .2) + (color * .3) ;
     let power = Math.floor(powerDecimal * 100);
     return power;
@@ -301,7 +301,7 @@ function decodeAlly(dna){
     const skills = determineSkills(dna, basics.character);
     const sign = determineSign(dna);
     const alignment = determineAlignment(dna);
-    
+
     const ally = {
         basics,
         image : `assets/images/${basics.image}`,
@@ -312,7 +312,7 @@ function decodeAlly(dna){
         power : determinePower(skills.length, sign.modifier, alignment.modifier, color.modifier)
     };
 
-    console.log('POWER',ally.power);
+
     return ally;
 
 }
