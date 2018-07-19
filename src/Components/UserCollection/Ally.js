@@ -36,12 +36,12 @@ export default class Ally extends React.Component{
     render(){
         return(
             <aside className="ally">
+                <div className="ally-actions">
+                    <AllyMenu anchorEl={this.state.anchorEl} toggleModal={() =>{ this.props.toggleModal(this.state.allyId); }} />
+                </div>
                 <div className="ally-title">
                     <h3>{this.state.allyName}</h3>
                     <h4>{ this.state.allyDescription }</h4>
-                </div>
-                <div className="ally-actions">
-                    <AllyMenu anchorEl={this.state.anchorEl} toggleModal={() =>{ this.props.toggleModal(this.state.allyId); }} />
                 </div>
                 <VariantBar />
                 <div className="ally-image">
@@ -52,13 +52,14 @@ export default class Ally extends React.Component{
                         { this.state.allySkills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
                     </ul>
                 </div>
-                <div className="ally-mods">
+                {/* <div className="ally-mods">
                     <ul>
                         <li>{ this.state.allyAlignment }</li>
                         <li>{ this.state.allySign }</li>
                         { this.getAllyColor() }
                     </ul>
-                </div>
+                </div> */}
+                
                 <div className="ally-power">
                     <img className="fist" src={fist} /> <strong>{this.state.allyPower}</strong>
                 </div>
