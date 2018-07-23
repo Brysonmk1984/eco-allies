@@ -7,7 +7,7 @@
     "test": "test",
     "build": "webpack --env.development",
     "build:prod": "webpack --env.production",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "author": "Bryson Kruk",
   "license": "ISC",
