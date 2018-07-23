@@ -9,6 +9,7 @@ import geothermal_golem from '../assets/images/geothermal_golem.png';
 import compost_creature from '../assets/images/compost_creature.png';
 import chrono_guy from '../assets/images/chrono_guy.png';
 import wild_speaker from '../assets/images/wild_speaker.png';
+import empath from '../assets/images/empath.png';
 
 import allyList from './allyList.json';
 

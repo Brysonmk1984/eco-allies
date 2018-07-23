@@ -15,7 +15,7 @@
 {
     "character" : "Empath",
     "skills" : ["Enlightenment","Psychic Messaging","Lift Allied Spirits","Mindful Powerup","Entrance"],
-    "image" : "fred.png",
+    "image" : "empath.png",
     "description" : "Psychic of Emotions",
     "history" : "my background story"
 },
