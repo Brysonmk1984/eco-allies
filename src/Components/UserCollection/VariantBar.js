@@ -9,9 +9,12 @@ import FireOpal from '../../assets/images/color/fire_opal.png';
 import Ruby from '../../assets/images/color/ruby.png';
 import Citrine from '../../assets/images/color/citrine.png';
 import Aquarius from '../../assets/images/sign/aquarius.png';
+import Aries from '../../assets/images/sign/aries.png';
+import Cancer from '../../assets/images/sign/cancer.png';
 import Capricorn from '../../assets/images/sign/capricorn.png';
 import Gemini from '../../assets/images/sign/gemini.png';
 import Libra from '../../assets/images/sign/libra.png';
+import Pisces from '../../assets/images/sign/pisces.png';
 import Scorpio from '../../assets/images/sign/scorpio.png';
 import Taurus from '../../assets/images/sign/taurus.png';
 import Virgo from '../../assets/images/sign/Virgo.png';
@@ -33,6 +36,12 @@ export default class VariantBar extends React.Component{
             case (sign === 'Aquarius'):
                 signImage = Aquarius;
                 break;
+            case (sign === 'Aries'):
+                signImage = Aries;
+                break;
+            case (sign === 'Cancer'):
+                signImage = Cancer;
+                break;
             case (sign === 'Capricorn'):
                 signImage = Capricorn;
                 break;
@@ -41,6 +50,9 @@ export default class VariantBar extends React.Component{
                 break;
             case (sign === 'Libra'):
                 signImage = Libra;
+                break;
+            case (sign === 'Pisces'):
+                signImage = Pisces;
                 break;
             case (sign === 'Scorpio'):
                 signImage = Scorpio;

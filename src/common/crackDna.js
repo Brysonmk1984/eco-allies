@@ -269,9 +269,9 @@ function determineColor(dna){
         // Sapphire = 7
         case (22 <= substr && substr <= 28):
             return {value : 'Sapphire', modifier : 5};
-        // Garnet = 7
+        // Ruby = 7
         case (29 <= substr && substr <= 35):
-            return {value : 'Garnet', modifier : 5};
+            return {value : 'Ruby', modifier : 5};
         // Emerald = 7
         case (36 <= substr && substr <= 42):
             return {value : 'Emerald', modifier : 5};
