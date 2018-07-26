@@ -8,10 +8,14 @@
     }
     &.btn-primary{
         background-color: $primaryButton;
+        color: $lightText;
         &:hover{
             background-color: $tertiaryBackground;
             color:$darkText;
         }
+    }
+    &.btn-block{
+        width:100%;
     }
 }
 .ally-action-menu{

@@ -20,10 +20,14 @@ header{
                 }
             }
         }
-        
-        img{
-            height:50px;
-            margin-top:.5rem;
+        a{
+            &.brand-logo{
+                line-height:25px;
+                img{
+                    height:50px;
+                    margin-top:.5rem;
+                }
+            }
         }
     }
 }
