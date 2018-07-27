@@ -18,7 +18,7 @@ export default class Register extends React.Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    handleChange(e){console.log(e.target.name);
+    handleChange(e){
         const newState = {};
         newState[e.target.name] = e.target.value;
         this.setState(() => (newState));
@@ -26,14 +26,16 @@ export default class Register extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         if(this.state.password === this.state.passwordConfirm){
-            this.setState(()=>({errors : []}));
+            if(this.state.errors.length){
+                this.setState(()=>({errors : []}));
+            }
+            
             register(this.state)
             .then((data) =>{console.log('in then hs', data);
                 if(data.error){
                     const errors = data.error.map((e) =>{
                         return {type:e.error.type, message:e.error.message}
                     });
-                    console.log(errors);
                     this.handleErrors(errors);
                 }else{
                     this.setState(()=>({successfulAccountCreation: true}), () => {
@@ -43,7 +45,6 @@ export default class Register extends React.Component{
                 
             })
             .catch((error) =>{
-                console.log('in then hs error', error);
                 if(error){
                     this.handleErrors([{type:error.type, message:error.message}])
                 }
