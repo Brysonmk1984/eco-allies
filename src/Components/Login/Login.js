@@ -6,12 +6,12 @@ export default class Login extends React.Component{
     render(){
         return(
             <div className="page-wrapper form-page login-page">
-                <section class="title-section">
+                <section className="title-section">
                     <div className="subsection">
                         <h1>Login</h1>
                     </div>
                 </section>
-                <section class="form-section">
+                <section className="form-section">
                     <form id="registrationForm">
                         <div className="input_container">
                             <label>

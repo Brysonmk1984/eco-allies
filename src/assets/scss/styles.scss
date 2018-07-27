@@ -44,5 +44,25 @@ div.route-wrapper {
     p{
         font-size:1.0em;
     }
+    .notification{
+        color : #856404;
+        background-color: #fff3cd;
+        border-color:#ffeeba;
+        border-radius:.25rem;
+        padding:.75rem 1.25rem;
+        margin: 20px;
+        &.notification-error{
+            color : #721c24;
+            background-color: #f8d7da;
+            border-color:#f5c6cb;
+            
+        }
+        &.notification-success{
+            color : #004085;
+            background-color: #cce5ff;
+            border-color:#b8daff;
+            
+        }
+    }
 }
 

@@ -3,7 +3,7 @@
 div.page-wrapper.form-page{
     display:grid;
     grid-template-columns: auto;
-    grid-template-rows: auto auto 220px;
+    grid-template-rows: auto auto auto 220px;
     min-height:95vh;
     place-items: stretch;
     
