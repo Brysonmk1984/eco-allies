@@ -17,10 +17,10 @@ class Content extends React.Component{
                 {/* <Route exact path="/" component={() => (<UserCollection allies={this.props.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} /> )}  /> */}
                 <Route exact path="/" component={() => (<Gallery   /> )}  />
                 <Route path="/about" component={About} />
-                <Route path="/gallery" component={() => (<Gallery allies ={this.props.allies}  /> )} />
-                <Route path="/user-collection"  render={(props) => <UserCollection allies ={this.props.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} getAlliesOfUser={this.props.getAlliesOfUser} />}   />
+                <Route path="/gallery" component={() => (<Gallery  /> )} />
+                <Route path="/user-collection"  render={(props) => <UserCollection handleLogin={this.props.handleLogin} loggedIn={this.props.loggedIn} allies ={this.props.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} getAlliesOfUser={this.props.getAlliesOfUser} />}   />
                 <Route path="/register" component={() => (<Register   /> )} />
-                <Route path="/login" component={() => (<Login   /> )} /> 
+                <Route path="/login" component={() => (<Login handleLogin={this.props.handleLogin} loggedIn={this.props.loggedIn}   /> )} /> 
                 {/* <Route path="faq" component={Faq} />*/}
             </div>
         );

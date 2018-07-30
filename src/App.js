@@ -5,6 +5,7 @@ import Content from './Components/Content';
 import Footer from './Components/Footer';
 import generateSeed from './common/generateNum';
 import TruffleContract from 'truffle-contract';
+import { login, logout } from '~/common/loginService';
 // for testing only
 import contractJson from '../build/contracts/EcoAllyCore.json';
 
@@ -22,10 +23,30 @@ class App extends React.Component {
       allies : [],
       account : '',
       account1 : '0x8626cc10af4ae48e97926bbcf3c4f32aadfd5c7d',
-      account2 : '0xcc1A64c458ba381C593aD92CA651Fb276092A1D3'
+      account2 : '0xcc1A64c458ba381C593aD92CA651Fb276092A1D3',
+      loggedIn : true,
     };
     this.web3;
   }
+  handleLogin(logIn){
+    if(logIn){
+      
+    }else if(logIn === false){
+      return logout()
+      .then((data)=>{
+        console.log('D', data);
+        if(data.error){
+
+          return;
+        }
+        this.setState(()=>({loggedIn:false}), ()=>{ alert('You\'ve successfully Logged out!');});
+      })
+      .catch((error)=>{
+        console.log('log out failure', error);
+      });
+    }
+  }
+
 
   componentDidMount(){
     // Check if Web 3 has been injected by the browser
@@ -186,8 +207,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
-        <Content allies={this.state.allies} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)} getAlliesOfUser={this.checkForAccountMatch.bind(this)} />
+        <Header handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} />
+        <Content handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} allies={this.state.allies} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)} getAlliesOfUser={this.checkForAccountMatch.bind(this)} />
         <Footer />
       </div>
     );

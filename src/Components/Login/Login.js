@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
-import { login } from '~/common/loginService';
+import { login, logout, loggedIn } from '~/common/loginService';
 import '~/assets/scss/forms.scss';
 
 
@@ -16,6 +16,13 @@ export default class Login extends React.Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+    checkLoggedIn(){
+        const li = loggedIn();
+        console.log('LI', li);
+    }
+    handleLogout(){
+        logout();
+    }
 
     handleChange(e){
         const newState = {};
@@ -30,13 +37,16 @@ export default class Login extends React.Component{
         }
 
         login({email : this.state.email, password : this.state.password})
-        .then((data) =>{console.log('in then hs', data);
+        .then((data) =>{
+            console.log('in then hs', data);
+            //document.cookie.sid = data.sessionId;
+            //console.log('COOK',document.cookie.sessionId);
             if(data.error){
                 const errors = data.error.map((e) =>{
                     return {type:e.type, message:e.message}
                 });
                 this.handleErrors(errors);
-            }else{console.log(2);
+            }else{
                 this.setState(()=>({successfulLogin: true}), () => {
                     //setTimeout(()=>(window.location = "/user-collection"),1500);
                 });
@@ -109,6 +119,8 @@ export default class Login extends React.Component{
                             <Button type="submit" className="btn btn-primary btn-block">
                                 Login
                             </Button>
+                            <strong onClick={this.handleLogout}>logout</strong>
+                            <strong onClick={this.checkLoggedIn}>logged In?</strong>
                         </div>
                     </form>
                 </section>

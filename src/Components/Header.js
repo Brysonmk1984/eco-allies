@@ -2,9 +2,9 @@ import React from 'react';
 import Nav from './Nav';
 import '../assets/scss/header.scss';
 
-const Header = () => (
+const Header = (props) => (
     <header>
-        <Nav />
+        <Nav handleLogin={props.handleLogin}  loggedIn={props.loggedIn} />
     </header>
 );
 
