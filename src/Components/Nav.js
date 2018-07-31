@@ -8,6 +8,8 @@ export default class Nav extends React.Component{
         this.props.handleLogin(false);
     }
    
+    
+
     render(){
         
         return(

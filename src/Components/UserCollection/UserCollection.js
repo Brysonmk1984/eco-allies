@@ -25,6 +25,8 @@ class UserCollection extends React.Component{
     }
 
     componentDidMount(){
+        // Needed because settings state after AJAX call was causing problems, so doing it on this page load instead
+        this.props.toggleLogInStatus();
         // Check to see if user changed metamask account, if they did, get allies
         setInterval(() => {
             this.props.getAlliesOfUser();

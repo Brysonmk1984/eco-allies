@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { login, logout, loggedIn } from '~/common/loginService';
 import '~/assets/scss/forms.scss';
@@ -36,20 +37,20 @@ export default class Login extends React.Component{
             this.setState(()=>({errors : []}));
         }
 
-        login({email : this.state.email, password : this.state.password})
+        this.props.handleLogin(true, this.state.email, this.state.password)
         .then((data) =>{
             console.log('in then hs', data);
-            //document.cookie.sid = data.sessionId;
-            //console.log('COOK',document.cookie.sessionId);
             if(data.error){
                 const errors = data.error.map((e) =>{
                     return {type:e.type, message:e.message}
                 });
                 this.handleErrors(errors);
             }else{
-                this.setState(()=>({successfulLogin: true}), () => {
-                    //setTimeout(()=>(window.location = "/user-collection"),1500);
-                });
+                // this.setState(()=>({successfulLogin: true}), () => {
+                setTimeout(()=>(window.location = "/user-collection"),1000);
+                // });
+
+             
             }
             
         })
@@ -58,8 +59,6 @@ export default class Login extends React.Component{
                 this.handleErrors([{type:error.type, message:error.message}])
             }
         });
-        
-        
     }
 
     handleErrors(errors){
@@ -117,10 +116,12 @@ export default class Login extends React.Component{
                         </div>
                         <div className="input_container register_button_container">
                             <Button type="submit" className="btn btn-primary btn-block">
-                                Login
+                                Sign in
                             </Button>
-                            <strong onClick={this.handleLogout}>logout</strong>
-                            <strong onClick={this.checkLoggedIn}>logged In?</strong>
+                            <div className="register_account">
+                                <strong>OR</strong><br />
+                                <Link to="/register">Create a new account</Link>
+                            </div>
                         </div>
                     </form>
                 </section>

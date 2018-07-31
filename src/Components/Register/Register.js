@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-import { register, login } from '~/common/loginService';
+import { register } from '~/common/loginService';
 import '~/assets/scss/forms.scss';
 
 export default class Register extends React.Component{
@@ -137,6 +138,9 @@ export default class Register extends React.Component{
                             <Button type="submit" className="btn btn-primary btn-block">
                                 Create Account
                             </Button>
+                            <div className="sign_in">
+                                Already have an Account? <Link to="/login">Sign in</Link>
+                            </div>
                         </div>
                     </form>
                 </section>

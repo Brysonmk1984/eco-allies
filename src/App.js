@@ -24,22 +24,42 @@ class App extends React.Component {
       account : '',
       account1 : '0x8626cc10af4ae48e97926bbcf3c4f32aadfd5c7d',
       account2 : '0xcc1A64c458ba381C593aD92CA651Fb276092A1D3',
-      loggedIn : true,
+      loggedIn : false,
     };
     this.web3;
   }
-  handleLogin(logIn){
-    if(logIn){
-      
-    }else if(logIn === false){
-      return logout()
-      .then((data)=>{
-        console.log('D', data);
-        if(data.error){
+  toggleLogInStatus(){
+    this.setState(() => ({
+      loggedIn : this.state.loggedIn ? false : true
+    }));
+  }
 
+  handleLogin(doLogin, email, password){
+    console.log(email, password);
+    if(doLogin){
+      return login({ email, password })
+      .then((data)=>{
+        if(data.error){
+          console.log('ERROR - ', data.error);
           return;
         }
-        this.setState(()=>({loggedIn:false}), ()=>{ alert('You\'ve successfully Logged out!');});
+        
+        return data;
+        
+      })
+      .catch((error)=>{
+        console.log('log out failure', error);
+      });
+      
+    }else if(doLogin === false){
+      return logout()
+      .then((data)=>{
+        console.log('Data', data);
+        if(data.error){
+          console.log('ERROR - ', data.error);
+          return;
+        }
+        this.setState(()=>({loggedIn:false}), ()=>{ setTimeout(()=>(window.location = "/login"),1000);});
       })
       .catch((error)=>{
         console.log('log out failure', error);
@@ -203,12 +223,13 @@ class App extends React.Component {
   componentDidUpdate(){
 
   }
+  
 
   render() {
     return (
       <div>
         <Header handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} />
-        <Content handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} allies={this.state.allies} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)} getAlliesOfUser={this.checkForAccountMatch.bind(this)} />
+        <Content toggleLogInStatus={this.toggleLogInStatus.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} allies={this.state.allies} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)} getAlliesOfUser={this.checkForAccountMatch.bind(this)} />
         <Footer />
       </div>
     );
