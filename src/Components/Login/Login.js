@@ -11,8 +11,7 @@ export default class Login extends React.Component{
         this.state = {
             email : '',
             password : '',
-            errors : [],
-            successfulLogin : false
+            errors : []
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,12 +45,17 @@ export default class Login extends React.Component{
                 });
                 this.handleErrors(errors);
             }else{
-                // this.setState(()=>({successfulLogin: true}), () => {
-                setTimeout(()=>(window.location = "/user-collection"),1000);
-                // });
-
-             
-            }
+               
+                    
+                this.props.modifyAppState({
+                    loggedIn : true, 
+                    account1 : data.publicEthKey
+                }, function(){
+                    setTimeout(()=>{
+                        window.location = "/user-collection";
+                    },1000);
+                });
+            } 
             
         })
         .catch((error) =>{
@@ -77,7 +81,7 @@ export default class Login extends React.Component{
         }
     }
     renderSuccessSection(){
-        if(this.state.successfulLogin){
+        if(this.props.loggedIn){
             return(
                 <div className="notification notification-success">
                     <strong>Success! : </strong> <span>You've been logged in.</span>
@@ -86,6 +90,7 @@ export default class Login extends React.Component{
         }
         
     }
+
 
 
     render(){

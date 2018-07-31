@@ -22,26 +22,12 @@ class App extends React.Component {
     this.state = {
       allies : [],
       account : '',
-      account1 : '0x8626cc10af4ae48e97926bbcf3c4f32aadfd5c7d',
+      //account1 : '0x8626cc10af4ae48e97926bbcf3c4f32aadfd5c7d',
+      account1 : '',
       account2 : '0xcc1A64c458ba381C593aD92CA651Fb276092A1D3',
       loggedIn : false,
     };
     this.web3;
-  }
-  toggleLogInStatus(enable){
-    if(enable){
-      this.setState(() => ({
-        loggedIn : true
-      }));
-    }else if(!enable){
-      this.setState(() => ({
-        loggedIn : false
-      }));
-    }else{
-      this.setState(() => ({
-        loggedIn : this.state.loggedIn ? false : true
-      }));
-    }
   }
 
   handleLogin(doLogin, email, password){
@@ -53,9 +39,8 @@ class App extends React.Component {
           console.log('ERROR - ', data.error);
           return;
         }
-        
+        //console.log('THE DATA', data);
         return data;
-        
       })
       .catch((error)=>{
         console.log('log out failure', error);
@@ -75,6 +60,12 @@ class App extends React.Component {
         console.log('log out failure', error);
       });
     }
+  }
+
+  modifyAppState(state, cb){
+    this.setState(()=>(state), ()=>{
+      if(cb) cb();
+    });
   }
 
 
@@ -239,7 +230,7 @@ class App extends React.Component {
     return (
       <div>
         <Header handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} />
-        <Content toggleLogInStatus={this.toggleLogInStatus.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} allies={this.state.allies} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)} getAlliesOfUser={this.checkForAccountMatch.bind(this)} />
+        <Content modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} allies={this.state.allies} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)} getAlliesOfUser={this.checkForAccountMatch.bind(this)} />
         <Footer />
       </div>
     );
