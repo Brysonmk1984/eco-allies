@@ -12,10 +12,16 @@ header{
                 a{
                     color: $darkText;
                     &:hover{
-                        background-color:$tertiaryBackground;
+                        
+                        background-color: $secondaryBackground;
+                        color: $darkText;
                     }
                     &.btn-reverse{
                         
+                    }
+                    &.active{
+                        background-color: $tertiaryBackground;
+                        color: $darkText;
                     }
                 }
             }

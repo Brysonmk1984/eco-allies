@@ -14,7 +14,7 @@ const About = () => (
                 <p>A crypto collectable game to save our global envirionment</p>
             </div>
             <div className="subsection">
-                <Link to="/gettingsStarted">
+                <Link to="/register">
                     <button className="btn btn-primary">Get Started</button>
                 </Link>
             </div>

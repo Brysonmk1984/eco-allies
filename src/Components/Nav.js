@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo2 from '../assets/images/logo2.png';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default class Nav extends React.Component{
     handleLogout(e){
@@ -8,6 +8,21 @@ export default class Nav extends React.Component{
         this.props.handleLogin(false);
     }
    
+    renderUserCollection(){
+        if(this.props.loggedIn){
+            return (
+                <li><NavLink to="/user-collection" activeClassName="active">Collection</NavLink></li>
+            );
+        }
+    }
+
+    renderGettingStarted(){
+        if(this.props.loggedIn){
+            return <a onClick={this.handleLogout.bind(this)}>Sign Out</a>;
+        }else{
+            return <NavLink to="/register" activeClassName="active" className="btn-small">Get Started</NavLink>;
+        }
+    }
     
 
     render(){
@@ -18,15 +33,12 @@ export default class Nav extends React.Component{
                     <img src={Logo2} className="logo" />
                 </a>
                 <ul id="nav-mobile" className="right hide-on-small-only">
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to="/gallery">Gallery</Link></li>
-                    <li><Link to="/user-collection">Collection</Link></li>
-                    <li><Link to="/faq">FAQ</Link></li>
+                    <li><NavLink to="/about" activeClassName="active">About</NavLink></li>
+                    <li><NavLink to="/gallery" activeClassName="active">Gallery</NavLink></li>
+                    { this.renderUserCollection() }
+                    <li><NavLink to="/faq" activeClassName="active">FAQ</NavLink></li>
                     <li>
-                        {
-                            this.props.loggedIn ? <a onClick={this.handleLogout.bind(this)}>Sign Out</a>
-                            : <Link to="/register" className="btn-small">Get Started</Link>
-                        }
+                        { this.renderGettingStarted() }
                     </li>
                 </ul>
             </nav>

@@ -28,10 +28,20 @@ class App extends React.Component {
     };
     this.web3;
   }
-  toggleLogInStatus(){
-    this.setState(() => ({
-      loggedIn : this.state.loggedIn ? false : true
-    }));
+  toggleLogInStatus(enable){
+    if(enable){
+      this.setState(() => ({
+        loggedIn : true
+      }));
+    }else if(!enable){
+      this.setState(() => ({
+        loggedIn : false
+      }));
+    }else{
+      this.setState(() => ({
+        loggedIn : this.state.loggedIn ? false : true
+      }));
+    }
   }
 
   handleLogin(doLogin, email, password){
