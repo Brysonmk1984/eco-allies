@@ -25,12 +25,11 @@ class UserCollection extends React.Component{
     }
 
     componentDidMount(){
-        // Check to see if user changed metamask account, if they did, get allies
-        setInterval(() => {
-            this.props.getAlliesOfUser();
-        }, 1000);
-        
-        
+        if(this.props.loggedIn){
+            // Check to see if user changed metamask account, if they did, get allies
+            this.props.initWeb3();
+        }
+
     }
 
     

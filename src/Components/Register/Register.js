@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { register } from '~/common/loginService';
+import history from '~/common/history';
 import '~/assets/scss/forms.scss';
 
 export default class Register extends React.Component{
@@ -40,7 +41,7 @@ export default class Register extends React.Component{
                     this.handleErrors(errors);
                 }else{
                     this.setState(()=>({successfulAccountCreation: true}), () => {
-                        setTimeout(()=>(window.location = "/user-collection"),1500);
+                        setTimeout(()=>(history.push('/user-collection')),1500);
                     });
                 }
                 

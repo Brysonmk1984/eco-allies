@@ -26,7 +26,6 @@ export default class Nav extends React.Component{
     
 
     render(){
-        
         return(
             <nav className="nav-wrapper">
                 <a href ="/" className="brand-logo left">

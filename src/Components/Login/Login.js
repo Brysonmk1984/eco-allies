@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { login, logout, loggedIn } from '~/common/loginService';
+import history from '~/common/history';
 import '~/assets/scss/forms.scss';
 
 
@@ -50,9 +51,9 @@ export default class Login extends React.Component{
                 this.props.modifyAppState({
                     loggedIn : true, 
                     account1 : data.publicEthKey
-                }, function(){
+                }, () =>{
                     setTimeout(()=>{
-                        window.location = "/user-collection";
+                        history.push('/user-collection');
                     },1000);
                 });
             } 
