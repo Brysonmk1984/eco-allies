@@ -50,7 +50,7 @@ export default class Login extends React.Component{
                     
                 this.props.modifyAppState({
                     loggedIn : true, 
-                    account1 : data.publicEthKey
+                    account : data.publicEthKey
                 }, () =>{
                     setTimeout(()=>{
                         history.push('/user-collection');

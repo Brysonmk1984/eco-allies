@@ -23,8 +23,8 @@ class App extends React.Component {
     this.state = {
       allies : [],
       account : '',
-      //account1 : '0x8626cc10af4ae48e97926bbcf3c4f32aadfd5c7d',
-      account1 : '',
+
+      account1 : '0x8626cc10af4ae48e97926bbcf3c4f32aadfd5c7d',
       account2 : '0xcc1A64c458ba381C593aD92CA651Fb276092A1D3',
       loggedIn : false,
     };
@@ -55,7 +55,7 @@ class App extends React.Component {
           console.log('ERROR - ', data.error);
           return;
         }
-        this.setState(()=>({loggedIn:false, account1: ''}), ()=>{ setTimeout(()=>(history.push('/login')),1000);});
+        this.setState(()=>({loggedIn:false, account: ''}), ()=>{ setTimeout(()=>(history.push('/login')),1000);});
       })
       .catch((error)=>{
         console.log('log out failure', error);
@@ -70,7 +70,7 @@ class App extends React.Component {
   }
 
 
-  initWeb3(){
+  initWeb3(){console.log('THE ACC', this.state.account);
     // Check if Web 3 has been injected by the browser
     if(typeof web3 !== 'undefined'){
       // Use Browser/metamask version
@@ -89,22 +89,21 @@ class App extends React.Component {
 
     // Get specific Eth Account
     this.web3.eth.getCoinbase((err, account) => {
-      this.setState(() => ({account : account}), ()=>{
-        this.tContract.deployed().then((instance) => {
-          this.instance = instance;
-          // let tokenCount = 0;
-          // this.getTokenCount().then((tokenCount)=>{  
-            //this.getAllAllies(tokenCount -1);
-          // });
-          
-          this.getAlliesOfUser();
-          // Watch for when new Allies are created
-          //this.watchForCreation();
-  
-        });
 
-      })
-      
+      this.tContract.deployed().then((instance) => {
+        this.instance = instance;
+        // let tokenCount = 0;
+        // this.getTokenCount().then((tokenCount)=>{  
+          //this.getAllAllies(tokenCount -1);
+        // });
+        
+        this.checkForAccountMatch();
+        // Watch for when new Allies are created
+        //this.watchForCreation();
+
+      });
+
+
     });
 
     
@@ -146,12 +145,12 @@ class App extends React.Component {
     });
   }
 
-  getAlliesOfUser(){
-    
+  getAlliesOfUser(){console.log('INGET ALLIES');
+ 
     this.instance.tokensOfOwner.call(this.state.account).then((tokens)=>{
       
       const tokenPositions = tokens.map((token) =>{
-        //console.log('TOKENS',token.toNumber());
+        console.log('TOKENS',token.toNumber());
         return token.toNumber();
       });
       
@@ -159,7 +158,7 @@ class App extends React.Component {
       const tokenPromises = tokenPositions.map((tp) => {
         return this.instance.getEcoAlly(tp);
       });
-
+      
 
       Promise.all(tokenPromises).then((values) =>{
           values.forEach((ally,i)=>{
@@ -167,21 +166,32 @@ class App extends React.Component {
             if(allyDnaString.length === 15){
               allyDnaString = '0' + allyDnaString;
             }
-            //console.log(allyDnaString);
+            console.log(allyDnaString);
             allies.push({dna : allyDnaString, id : ally[1].toNumber()});
           });
-        
-          this.setState((()=>({allies})));
+          console.log('As',allies);
+          this.setState({allies});
+   
       });
 
     });
   }
 
-  checkForAccountMatch(){
-    if (web3.eth.accounts[0] && web3.eth.accounts[0] !== this.state.account) {
-      this.setState(() =>({account : web3.eth.accounts[0]}), () => {
-          this.getAlliesOfUser();
-      });
+  checkForAccountMatch(){console.log('AS',web3.eth.accounts);
+    let index;
+    const matchingEthAccount = web3.eth.accounts.find((acc, i)=>{
+      if(acc === this.state.account){
+        index = i;
+        return acc === this.state.account;
+      }
+    });
+    console.log('stuff', index, matchingEthAccount);
+
+    // User is logged into correct meta mask account
+    if(matchingEthAccount){
+      this.getAlliesOfUser();
+    }else{
+      alert(`Please sign into account ${this.state.account} in metamask!`);
     }
   }
 
@@ -212,7 +222,7 @@ class App extends React.Component {
   }
 
   transferAlly(to, allyIndex = 0){
-    const from = this.state.account1;
+    const from = this.state.account;
     if(to !== this.state.account){
       //console.log('going', to, allyIndex);
       this.instance.transferEcoAlly(from, to, allyIndex, {from : this.state.account});
@@ -220,6 +230,11 @@ class App extends React.Component {
       alert('please enter an account that\'s not your own');
     }
     
+  }
+
+  readAllies(){
+    console.log('STATE', this.state);
+    this.checkForAccountMatch();
   }
 
   componentDidUpdate(){
@@ -230,8 +245,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <button onClick={this.readAllies.bind(this)}>read allies</button>
         <Header handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} />
-        <Content initWeb3={this.initWeb3.bind(this)} modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} allies={this.state.allies} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)} getAlliesOfUser={this.checkForAccountMatch.bind(this)} />
+        <Content initWeb3={this.initWeb3.bind(this)} modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} allies={this.state.allies} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)}  />
         <Footer />
       </div>
     );
