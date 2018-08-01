@@ -39,7 +39,7 @@ export default class Login extends React.Component{
 
         this.props.handleLogin(true, this.state.email, this.state.password)
         .then((data) =>{
-            console.log('in then hs', data);
+            //console.log('in then hs', data);
             if(data.error){
                 const errors = data.error.map((e) =>{
                     return {type:e.type, message:e.message}

@@ -42,20 +42,18 @@ export default class Nav extends React.Component{
     renderGettingStarted(){
         if(this.props.loggedIn){
             return (
-                <li className="account">
-                    <a onClick={this.handleToggle.bind(this)}>
-                        <FaUser/>
+                <span className="account">
+                    <a onClick={this.handleToggle.bind(this)} title="Account">
+                    <FaUser/>
                     </a>
                     <div className={`account_dropdown ${this.state.open ? ' dropdown_open' : ' dropdown_closed' }`}>
-                        <ul>
-                            <li>
-                                <a onClick={this.handleLogout.bind(this)}>Logout</a>
-                            </li>
-                        </ul>
+                        <div>
+                            <a onClick={this.handleLogout.bind(this)}>Logout</a>
+                        </div>
                         <div className="arrow_up"></div>
                     </div>
-                </li>
-            )
+                </span>
+            );
         }else{
             return <NavLink to="/register" activeClassName="active" className="btn-small">Get Started</NavLink>;
         }

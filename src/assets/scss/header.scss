@@ -9,7 +9,7 @@ header{
         background-color:transparent;
         ul{
             li{
-                &.account{
+                span.account{
                     position:relative;
                     > a{
                         position:relative;
@@ -34,20 +34,18 @@ header{
                     div.account_dropdown{
                         position:absolute;
                         right:-10px;
-                        top:64px;
+                        top:42px;
                         background-color: $darkBackground;
                         &.dropdown_closed{
                             display:none;
                         }
-                        ul{
-                            li{
-                                a{
-                                    line-height:32px;
-                                    color:$lightText;
-                                    &:hover{
-                                        background-color: $darkBackground;
-                                        color:white;
-                                    }
+                        > div{
+                            a{
+                                line-height:32px;
+                                color:$lightText;
+                                &:hover{
+                                    background-color: $darkBackground;
+                                    color:white;
                                 }
                             }
                         }

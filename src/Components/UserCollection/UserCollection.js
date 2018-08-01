@@ -24,7 +24,7 @@ class UserCollection extends React.Component{
         this.child.toggleModal(id);
     }
 
-    componentDidMount(){
+    componentDidMount(){console.log('UC');
         if(this.props.loggedIn){
             // Check to see if user changed metamask account, if they did, get allies
             this.props.initWeb3();

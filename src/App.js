@@ -1,11 +1,11 @@
 import React from 'react';
-import axios from 'axios';
 import Header from './Components/Header';
 import Content from './Components/Content';
 import Footer from './Components/Footer';
 import generateSeed from './common/generateNum';
-import { login, logout } from '~/common/loginService';
+import { login, logout, loggedIn } from '~/common/loginService';
 import history from '~/common/history';
+import getCookie from '~/common/cookie';
 import TruffleContract from 'truffle-contract';
 // for testing only
 import contractJson from '../build/contracts/EcoAllyCore.json';
@@ -23,7 +23,6 @@ class App extends React.Component {
     this.state = {
       allies : [],
       account : '',
-
       account1 : '0x8626cc10af4ae48e97926bbcf3c4f32aadfd5c7d',
       account2 : '0xcc1A64c458ba381C593aD92CA651Fb276092A1D3',
       loggedIn : false,
@@ -70,7 +69,7 @@ class App extends React.Component {
   }
 
 
-  initWeb3(){console.log('THE ACC', this.state.account);
+  initWeb3(){
     // Check if Web 3 has been injected by the browser
     if(typeof web3 !== 'undefined'){
       // Use Browser/metamask version
@@ -177,7 +176,7 @@ class App extends React.Component {
     });
   }
 
-  checkForAccountMatch(){console.log('AS',web3.eth.accounts);
+  checkForAccountMatch(){
     let index;
     const matchingEthAccount = web3.eth.accounts.find((acc, i)=>{
       if(acc === this.state.account){
@@ -185,7 +184,6 @@ class App extends React.Component {
         return acc === this.state.account;
       }
     });
-    console.log('stuff', index, matchingEthAccount);
 
     // User is logged into correct meta mask account
     if(matchingEthAccount){
@@ -237,15 +235,23 @@ class App extends React.Component {
     this.checkForAccountMatch();
   }
 
-  componentDidUpdate(){
+  componentDidMount(){
+    const cookie = getCookie('sid');
 
+    if(!this.state.loggedIn && cookie){
+      loggedIn()
+      .then((data)=>{
+        this.setState(() => ({account : data.data.publicEthKey, loggedIn : true}), ()=>{
+          this.initWeb3();
+        })
+      });
+    }
   }
   
 
   render() {
     return (
       <div>
-        <button onClick={this.readAllies.bind(this)}>read allies</button>
         <Header handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} />
         <Content initWeb3={this.initWeb3.bind(this)} modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} allies={this.state.allies} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)}  />
         <Footer />
