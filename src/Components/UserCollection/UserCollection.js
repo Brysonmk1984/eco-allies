@@ -39,7 +39,7 @@ class UserCollection extends React.Component{
             <div className="page-wrapper user-collection-page">
                 <section className="title-section">
                     <div className="subsection">
-                        <h1>Eco Alliess</h1>
+                        <h1>Eco Allies</h1>
                         <p>Defenders of Gaia</p>
                     </div>
                 </section>
