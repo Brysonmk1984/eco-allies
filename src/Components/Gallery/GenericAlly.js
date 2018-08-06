@@ -10,15 +10,16 @@ const Ally = (props) => {
             <div className="ally-image">
                 <img src={ `/assets/images/${props.ally.image}` } />
             </div>
-            <div className="ally-history">
-                <p>
-                    { props.ally.history }
-                </p>
-            </div>
+            
             <div className="ally-skills">
                  <ul>
                     { props.ally.skills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
                 </ul>
+            </div>
+            <div className="ally-history">
+                <p>
+                    { props.ally.history }
+                </p>
             </div>
             
         </aside>

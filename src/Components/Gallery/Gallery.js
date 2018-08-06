@@ -9,10 +9,12 @@ class Gallery extends React.Component{
         super(props);
     }
     buildAllyList(){
-        return allyList.map((ally, i) => {
-            return (
-                <GenericAlly key={i} ally={ally}  />
-            );
+        return allyList.map((ally, i) => {console.log('ally', ally.active);
+            if(ally.active){
+                return (
+                    <GenericAlly key={i} ally={ally}  />
+                );
+            }
         });
     }
 

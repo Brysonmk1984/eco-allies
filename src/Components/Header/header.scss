@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@import "~/assets/scss/variables.scss";
 
 header{
     background-color: $primaryBackground;
@@ -39,13 +39,15 @@ header{
                         &.dropdown_closed{
                             display:none;
                         }
-                        > div{
-                            a{
-                                line-height:32px;
-                                color:$lightText;
-                                &:hover{
-                                    background-color: $darkBackground;
-                                    color:white;
+                        ul{
+                            > li{
+                                a{
+                                    line-height:32px;
+                                    color:$lightText;
+                                    &:hover{
+                                        background-color: $darkBackground;
+                                        color:white;
+                                    }
                                 }
                             }
                         }

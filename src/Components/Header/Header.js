@@ -1,6 +1,6 @@
 import React from 'react';
 import Nav from './Nav';
-import '../assets/scss/header.scss';
+import './header.scss';
 
 const Header = (props) => (
     <header>

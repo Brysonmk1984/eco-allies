@@ -5,6 +5,7 @@ import Gallery from './Gallery/Gallery';
 import UserCollection from './UserCollection/UserCollection';
 import Register from './Register/Register';
 import Login from './Login/Login';
+import Account from './Account/Account';
 
 class Content extends React.Component{
     constructor(props){
@@ -22,6 +23,7 @@ class Content extends React.Component{
                     <Route path="/user-collection"  render={(props) => <UserCollection initWeb3={this.props.initWeb3} handleLogin={this.props.handleLogin} loggedIn={this.props.loggedIn} allies ={this.props.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} />}   />
                     <Route path="/register" component={() => (<Register   /> )} />
                     <Route path="/login" component={() => (<Login modifyAppState={this.props.modifyAppState} handleLogin={this.props.handleLogin} loggedIn={this.props.loggedIn}   /> )} /> 
+                    <Route path="/account" component={() =>( <Account initWeb3={this.props.initWeb3} /> )}  />
                     {/* <Route path="faq" component={Faq} />*/}
                 </Switch>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo2 from '../assets/images/logo2.png';
+import Logo2 from '~/assets/images/logo2.png';
 import { NavLink } from 'react-router-dom';
 import { FaUser } from 'react-icons/lib/fa';
 
@@ -47,9 +47,14 @@ export default class Nav extends React.Component{
                     <FaUser/>
                     </a>
                     <div className={`account_dropdown ${this.state.open ? ' dropdown_open' : ' dropdown_closed' }`}>
-                        <div>
-                            <a onClick={this.handleLogout.bind(this)}>Logout</a>
-                        </div>
+                        <ul>
+                            <li>
+                                <NavLink to="/account" activeClassName="active">Account</NavLink>
+                            </li>
+                            <li>
+                                <a onClick={this.handleLogout.bind(this)}>Logout</a>
+                            </li>
+                        </ul>
                         <div className="arrow_up"></div>
                     </div>
                 </span>

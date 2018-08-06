@@ -1,4 +1,5 @@
 [{
+    "active" : true,
     "character" : "Chrono Guy",
     "skills" : ["Time Freeze", "Blink Out", "Warp Out Enemy", "Entropy Ray", "Slow Speed Field"],
     "image" : "chrono_guy.png",
@@ -6,6 +7,7 @@
     "history" : "my background story"
 },
 {
+    "active" : true,
     "character" : "Compost Creature",
     "skills" : ["Rapid Decay","Mulch Munch","Regenerate Land","Summon Creepy Crawlers","Potent Stench"],
     "image" : "compost_creature.png",
@@ -13,6 +15,7 @@
     "history" : "my background story"
 },
 {
+    "active" : true,
     "character" : "Empath",
     "skills" : ["Enlightenment","Psychic Messaging","Lift Allied Spirits","Mindful Powerup","Entrance"],
     "image" : "empath.png",
@@ -20,6 +23,7 @@
     "history" : "my background story"
 },
 {
+    "active" : true,
     "character" : "Filterborg",
     "skills" : ["Convert Water","Toxin Feedback Spray","Pollution Feedback Gust","Harmonize with Water","Harmonize with Air"],
     "image" : "filterborg.png",
@@ -27,6 +31,7 @@
     "history" : "my background story"
 },
 {
+    "active" : true,
     "character" : "Geothermal Golem",
     "skills" : ["Heat Breath","Vaporize","Geothermal Vents","Sauna Recovery","Hot Rock Punch"],
     "image" : "geothermal_golem.png",
@@ -34,6 +39,15 @@
     "history" : "my background story"
 },
 {
+    "active" : true,
+    "character" : "Natural Ninja",
+    "skills" : ["Bamboo Blade","Hemp Net Trap","Sneak in Solidarity","Fermented Stealth Elixer","Obsidian Shuriken"],
+    "image" : "natural_ninja.png",
+    "description" : "Silent Sentinal",
+    "history" : "The Natural Ninja's history is unknown, but his first believed appearance was in a Tokyo street market performing an act of vigilante environmentalism. Dashing in and out of alley ways, confiscating all non biodegradable shopping bags, the Natural Ninja left only a note hanging from a shiruken stuck in the wall reading 'NO MORE'."
+},
+{
+    "active" : true,
     "character" : "Reuse Bot",
     "skills" : ["Repurpose Trash","Assemble Drones","Revert to Supplies","Trash Cannon","Reduce, Reuse, Recycle Foe"],
     "image" : "fred.png",
@@ -41,13 +55,15 @@
     "history" : "my background story"
 },
 {
+    "active" : true,
     "character" : "Root Elemental",
     "skills" : ["Entangling Roots","Subterranean Translocate","Subterranean Regeneration","Root Spikes","Shift Terrain"],
-    "image" : "fred.png",
+    "image" : "root_elemental.png",
     "description" : "Underground Horror",
     "history" : "my background story"
 },
 {
+    "active" : true,
     "character" : "Solar Sprite",
     "skills" : ["Concentrated Solar Beam","Solar Shield","Photon Speed","Blinding Flash","EMP Flare"],
     "image" : "solar_sprite.png",
@@ -55,6 +71,7 @@
     "history" : "my background story"
 },
 {
+    "active" : true,
     "character" : "Wild Speaker",
     "skills" : ["Summon Birds","Summon Forest Critters","Commune with Animals","Spirit of the Bear","Spirit of the Tiger"],
     "image" : "wild_speaker.png",
@@ -62,6 +79,7 @@
     "history" : "my background story"
 },
 {
+    "active" : false,
     "character" : "Wind Machine",
     "skills" : ["Blowback","Undercurrent","Whirling Blades","Turbine Hypnosis","Wyoming Wind Strength"],
     "image" : "fred.png",

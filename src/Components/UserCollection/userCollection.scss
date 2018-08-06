@@ -8,15 +8,6 @@ div.page-wrapper.user-collection-page{
     place-items: stretch;
 
     section{
-        &.title-section{
-            background-color: $secondaryBackground;
-            h1{
-                margin-bottom:0px;
-            }
-            p{
-                color:$mediumText;
-            }
-        }
         &.ally-section{
             h3{
                 font-size:1.5em;
@@ -95,14 +86,6 @@ div.page-wrapper.user-collection-page{
                 }
             }
             
-        }
-
-        &.bottom-section{
-            background-color: $secondaryBackground;
-        }
-
-        .subsection{
-            text-align:center;
         }
         
         .variant_bar{

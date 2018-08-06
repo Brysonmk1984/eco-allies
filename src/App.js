@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './Components/Header';
+import Header from './Components/Header/Header';
 import Content from './Components/Content';
-import Footer from './Components/Footer';
+import Footer from './Components/Footer/Footer';
 import generateSeed from './common/generateNum';
 import { login, logout, loggedIn } from '~/common/loginService';
 import history from '~/common/history';
@@ -149,7 +149,7 @@ class App extends React.Component {
     this.instance.tokensOfOwner.call(this.state.account).then((tokens)=>{
       
       const tokenPositions = tokens.map((token) =>{
-        console.log('TOKENS',token.toNumber());
+        //console.log('TOKENS',token.toNumber());
         return token.toNumber();
       });
       
@@ -241,10 +241,16 @@ class App extends React.Component {
     if(!this.state.loggedIn && cookie){
       loggedIn()
       .then((data)=>{
-        this.setState(() => ({account : data.data.publicEthKey, loggedIn : true}), ()=>{
-          this.initWeb3();
-        })
-      });
+
+        if(data){console.log('DData', data);
+          this.setState(() => ({account : data.data.publicEthKey, loggedIn : true}), ()=>{
+            this.initWeb3();
+          })
+        }
+      })
+      .catch((err) =>{
+        console.log('EEERR', err);
+      })
     }
   }
   

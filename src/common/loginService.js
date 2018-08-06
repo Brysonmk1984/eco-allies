@@ -83,4 +83,15 @@ const loggedIn = function(){
     });
 };
 
-export { login, register, logout, loggedIn }
+const accountDetails = function(){
+    return axios.get('http://localhost:3001/account-details', {withCredentials:true})
+    .then((data) => {
+        console.log('AD data', data);
+        return data;
+    })
+    .catch((error)=>{
+        console.log('AD error', error);
+    });
+};
+
+export { login, register, logout, loggedIn, accountDetails }

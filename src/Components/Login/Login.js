@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-import { login, logout, loggedIn } from '~/common/loginService';
+import { login, logout } from '~/common/loginService';
 import history from '~/common/history';
 import '~/assets/scss/forms.scss';
 
@@ -17,10 +17,7 @@ export default class Login extends React.Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    checkLoggedIn(){
-        const li = loggedIn();
-        console.log('LI', li);
-    }
+
     handleLogout(){
         logout();
     }

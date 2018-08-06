@@ -44,6 +44,26 @@ div.route-wrapper {
     p{
         font-size:1.0em;
     }
+    section{
+        &.title-section{
+            background-color: $secondaryBackground;
+            h1{
+                margin-bottom:0px;
+                margin-top:0px;
+                padding-top: 20px;
+            }
+            p{
+                color:$mediumText;
+            }
+        }
+        &.bottom-section{
+            background-color: $secondaryBackground;
+        }
+
+        .subsection{
+            text-align:center;
+        }
+    }
     .notification{
         color : #856404;
         background-color: #fff3cd;
