@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import AllyMenu from './AllyMenu';
 import VariantBar from './VariantBar';
+
 import { decodeAlly } from '~/common/crackDna';
 
 import fist from '~/assets/images/fist.png';
@@ -30,7 +32,7 @@ export default class Ally extends React.Component{
         const ally = decodeAlly(this.props.dna);
         //console.log('ALLY',ally.color);
 
-        this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image,id : this.props.id, allySign:ally.sign, allyAlignment:ally.alignment, allyColor:ally.color, allyPower:ally.power}));
+        this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image,allyId : this.props.id, allySign:ally.sign, allyAlignment:ally.alignment, allyColor:ally.color, allyPower:ally.power}));
     }
     
     render(){
@@ -45,7 +47,9 @@ export default class Ally extends React.Component{
                 </div>
                 <VariantBar color={this.state.allyColor} alignment={this.state.allyAlignment} sign={this.state.allySign} />
                 <div className="ally-image">
-                    <img src={ this.state.allyImage } />
+                    <Link to={ `/user-collection/${this.state.allyId}` }>
+                        <img src={ this.state.allyImage } />
+                    </Link>
                 </div>
                 <div className="ally-skills">
                     <ul>
@@ -61,7 +65,7 @@ export default class Ally extends React.Component{
                 </div> */}
                 
                 <div className="ally-power">
-                    <img className="fist" src={fist} /> <strong>{this.state.allyPower}</strong>
+                        <img className="fist" src={fist} /> <strong>{this.state.allyPower}</strong>
                 </div>
             </aside>
         );

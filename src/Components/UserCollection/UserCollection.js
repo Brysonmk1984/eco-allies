@@ -1,62 +1,20 @@
 import React from 'react';
-import Ally from './Ally';
-import TransferModal from './TransferModal';
-import AddModal from './AddModal';
+import { Route, withRouter } from 'react-router';
+import AllyListPage from './AllyListPage/AllyListPage';
+import AllyPage from './AllyPage/AllyPage';
 import './userCollection.scss';
 
 
-
-class UserCollection extends React.Component{
-    constructor(props){
-        super(props);
-        this.buildAlly = this.props.buildAlly.bind(this);
-        this.transferAlly = this.props.transferAlly.bind(this);
-    }
-    buildAllyList(){
-        return this.props.allies.map((ally, i) => {
-            return (
-                <Ally key={i} dna={ally.dna} id={ally.id} sign={ally.sign} toggleModal={this.toggleModal.bind(this)} />
-            );
-        });
-    }
-
-    toggleModal(id){
-        this.child.toggleModal(id);
-    }
-
-    componentDidMount(){
-        // if(this.props.loggedIn){
-        //     // Check to see if user changed metamask account, if they did, get allies
-        //     this.props.initWeb3();
-        // }
-
-    }
-
-    
-
+export default class UserCollection extends React.Component{
     render(){
+        console.log('MATCH', this.props.match);
         return(
             <div className="page-wrapper user-collection-page">
-                <section className="title-section">
-                    <div className="subsection">
-                        <h1>Eco Allies</h1>
-                        <p>Defenders of Gaia</p>
-                    </div>
-                </section>
-                <section className="ally-section">
-                    <h2>Your Team</h2>
-                    <div className="subsection">
-                        {this.buildAllyList()}
-                    </div>
-                </section>
-                <section className="bottom-section">
-                </section>
-                <TransferModal onRef={ref => (this.child = ref)} toggleModal={this.toggleModal.bind(this)} transferAlly={this.props.transferAlly} />
-                <AddModal buildAlly={this.buildAlly.bind(this)} />
+                <Route exact path="/user-collection/"  render={() => (<AllyListPage handleLogin={this.props.handleLogin} loggedIn={this.props.loggedIn} allies ={this.props.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} />)}   />
+                <Route path="/user-collection/:allyId"  render={() => (<AllyPage />)}   />
             </div>
         );
     }
-   
-};
-
-export default UserCollection;
+}
+    
+  
