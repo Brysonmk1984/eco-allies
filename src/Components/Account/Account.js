@@ -1,37 +1,76 @@
 import React from 'react';
-import { accountDetails } from '~/common/loginService';
+import { MdFace } from 'react-icons/lib/md';
+
 import './account.scss';
 
 export default class Account extends React.Component{
     constructor(){
         super();
-        console.log('!!',super.readAllies);
+        this.state = {
+            account : {}
+        }
     }
+
+    renderAllyData(){
+        return this.props.appState.allies.map((ally, i)=>{
+            return <li className="ally-data" key={i}>
+                <strong className="ally-label">ID: </strong>
+                <span className="ally-value">{ ally.id }</span>
+                <strong className="ally-label">DNA: </strong>
+                <span className="ally-value">{ ally.dna }</span>
+            </li>
+        });
+    }
+
     componentDidMount(){
-       accountDetails()
+       this.props.getAccountDetails()
        .then((data) =>{
-            console.log('ACCOUNT DATA', data);
+            if(data.data){
+                const { email, publicEthKey, username } = data.data;
+                this.setState(()=>({ email, publicEthKey, username}));
+            }
        });
 
-       //this.props.initWeb3();
+
     }
 
     render(){
+        //console.log('APPSTATE', this.props.appState);
+        //console.log('COMPSTATE', this.state.account);
         return(
             <div className="page-wrapper account-page">
                 <section className="title-section">
                     <div className="subsection">
-                        <h1>Account</h1>
-                        <p>insert email here</p>
+                        <h1><MdFace /></h1>
+                        <p>{this.state.username}</p>
                     </div>
                 </section>
                 <section className="details-section">
                     <div className="subsection">
                         <h2>Account Details</h2>
                     </div>
-                    <div className="subsection">
-                        <p>An Eco Ally is a unique collectable that cannot be replicated, taken away, or destroyed. They fight for our real life environment through actions you take, such as using a reusable grocery bag. It’s through this collective effort that we will help out Eco Allies defend our home, Gaea.</p>
+                    <div className="subsection subsection-account">
+                        <div>
+                            <span>Email: </span>
+                            <strong>{ this.state.email }</strong>
+                        </div>
+                        <div>
+                            <span>Public Key: </span>
+                            <strong>{ this.state.publicEthKey }</strong>
+                        </div>
                     </div>
+                    <div className="subsection">
+                        <h2>Your Allies</h2>
+                    </div>
+                    <div className="subsection subsection-allies">
+                        <ul>
+                            { this.renderAllyData() }
+                        </ul>
+                    </div>
+                    {/* <div className="subsection">
+                        <h2>Account Actions</h2>
+                    </div> */}
+          
                 </section>
                 <section className="bottom-section">
                 </section>

@@ -75,7 +75,7 @@ const logout = function(){
 const loggedIn = function(){
     return axios.get('http://localhost:3001/logged-in', {withCredentials:true})
     .then((data) => {
-        console.log('LI data', data);
+        //console.log('LI data', data);
         return data;
     })
     .catch((error)=>{
@@ -86,7 +86,7 @@ const loggedIn = function(){
 const accountDetails = function(){
     return axios.get('http://localhost:3001/account-details', {withCredentials:true})
     .then((data) => {
-        console.log('AD data', data);
+        //console.log('AD data', data);
         return data;
     })
     .catch((error)=>{

@@ -3,7 +3,7 @@ import Header from './Components/Header/Header';
 import Content from './Components/Content';
 import Footer from './Components/Footer/Footer';
 import generateSeed from './common/generateNum';
-import { login, logout, loggedIn } from '~/common/loginService';
+import { login, logout, loggedIn, accountDetails } from '~/common/loginService';
 import history from '~/common/history';
 import getCookie from '~/common/cookie';
 import TruffleContract from 'truffle-contract';
@@ -31,7 +31,7 @@ class App extends React.Component {
   }
 
   handleLogin(doLogin, email, password){
-    console.log(email, password);
+    //console.log(email, password);
     if(doLogin){
       return login({ email, password })
       .then((data)=>{
@@ -49,7 +49,7 @@ class App extends React.Component {
     }else if(doLogin === false){
       return logout()
       .then((data)=>{
-        console.log('Data', data);
+        //console.log('Data', data);
         if(data.error){
           console.log('ERROR - ', data.error);
           return;
@@ -60,6 +60,9 @@ class App extends React.Component {
         console.log('log out failure', error);
       });
     }
+  }
+  getAccountDetails(){
+      return accountDetails();
   }
 
   modifyAppState(state, cb){
@@ -122,7 +125,7 @@ class App extends React.Component {
     tokenCount = tokenCount;
     function getAllies(){
       cachedThis.instance.getEcoAlly.call(tokenCount).then((ally) =>{
-        console.log('ally',ally);
+        //console.log('ally',ally);
         allies.push({dna : ally[0].toNumber()});
         tokenCount --;
         if(tokenCount > 0){
@@ -165,10 +168,9 @@ class App extends React.Component {
             if(allyDnaString.length === 15){
               allyDnaString = '0' + allyDnaString;
             }
-            console.log(allyDnaString);
             allies.push({dna : allyDnaString, id : ally[1].toNumber()});
           });
-          console.log('As',allies);
+          //console.log('As',allies);
           this.setState({allies});
    
       });
@@ -231,7 +233,6 @@ class App extends React.Component {
   }
 
   readAllies(){
-    console.log('STATE', this.state);
     this.checkForAccountMatch();
   }
 
@@ -242,7 +243,7 @@ class App extends React.Component {
       loggedIn()
       .then((data)=>{
 
-        if(data){console.log('DData', data);
+        if(data){
           this.setState(() => ({account : data.data.publicEthKey, loggedIn : true}), ()=>{
             this.initWeb3();
           })
@@ -259,7 +260,7 @@ class App extends React.Component {
     return (
       <div>
         <Header handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} />
-        <Content initWeb3={this.initWeb3.bind(this)} modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} allies={this.state.allies} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)}  />
+        <Content appState={this.state} getAccountDetails={this.getAccountDetails.bind(this)} initWeb3={this.initWeb3.bind(this)} modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} allies={this.state.allies} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)}  />
         <Footer />
       </div>
     );

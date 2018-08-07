@@ -58,6 +58,7 @@ div.route-wrapper {
         }
         &.bottom-section{
             background-color: $secondaryBackground;
+            min-height: 200px;
         }
 
         .subsection{
