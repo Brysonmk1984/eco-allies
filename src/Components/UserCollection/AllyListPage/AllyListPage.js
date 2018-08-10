@@ -1,5 +1,5 @@
 import React from 'react';
-import Ally from '../Ally';
+import AllyTile from '../AllyTile';
 import TransferModal from '../TransferModal';
 import AddModal from '../AddModal';
 import '../userCollection.scss';
@@ -15,7 +15,7 @@ class UserCollection extends React.Component{
     buildAllyList(){
         return this.props.allies.map((ally, i) => {
             return (
-                <Ally key={i} dna={ally.dna} id={ally.id} sign={ally.sign} toggleModal={this.toggleModal.bind(this)} />
+                <AllyTile key={i} dna={ally.dna} id={ally.id} sign={ally.sign} toggleModal={this.toggleModal.bind(this)} />
             );
         });
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import GenericAlly from './GenericAlly';
+import AllyTileGallery from './AllyTileGallery';
 import './gallery.scss';
 import allyList from '~/common/allyList.json';
 
@@ -12,7 +12,7 @@ class Gallery extends React.Component{
         return allyList.map((ally, i) => {console.log('ally', ally.active);
             if(ally.active){
                 return (
-                    <GenericAlly key={i} ally={ally}  />
+                    <AllyTileGallery key={i} ally={ally}  />
                 );
             }
         });

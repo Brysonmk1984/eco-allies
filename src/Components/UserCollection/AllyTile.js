@@ -7,7 +7,7 @@ import { decodeAlly } from '~/common/crackDna';
 
 import fist from '~/assets/images/fist.png';
 
-export default class Ally extends React.Component{
+export default class AllyTile extends React.Component{
     constructor(){
         super();
         this.state = {
