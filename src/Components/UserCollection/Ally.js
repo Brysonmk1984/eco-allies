@@ -47,7 +47,7 @@ export default class Ally extends React.Component{
                 </div>
                 <VariantBar color={this.state.allyColor} alignment={this.state.allyAlignment} sign={this.state.allySign} />
                 <div className="ally-image">
-                    <Link to={ `/user-collection/${this.state.allyId}` }>
+                    <Link to={ `/user-collection/${this.props.dna}` }>
                         <img src={ this.state.allyImage } />
                     </Link>
                 </div>
