@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AllyMenu from '../AllyMenu';
 import VariantBar from '../VariantBar';
+import TransferModal from '../TransferModal';
 import { decodeAlly } from '~/common/crackDna';
 import fist from '~/assets/images/fist.png';
 
@@ -20,6 +21,9 @@ export default class AllyPage extends React.Component{
             allyPower : 0
         }
     }
+    toggleModal(id){console.log('id', id);
+        this.child.toggleModal(id);
+    }
     getAllyColor(){
         if(this.state.allyColor){
             return <li> {this.state.allyColor} Variant </li> 
@@ -28,17 +32,15 @@ export default class AllyPage extends React.Component{
 
     componentDidMount(){
         const ally = decodeAlly(this.props.match.params.allyDna);
-        //console.log('ALLY',ally.color);
 
-        this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image,allyId : this.props.id, allySign:ally.sign, allyAlignment:ally.alignment, allyColor:ally.color, allyPower:ally.power}));
+        this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image,allyId : this.props.location.state.allyId, allySign:ally.sign, allyAlignment:ally.alignment, allyColor:ally.color, allyPower:ally.power}));
     }
 
     render(){
-        console.log('PROPS', this.props.match.params);
         return(
-            <div>
+            <div className="ally-page">
                 <div className="ally-actions">
-                    <AllyMenu anchorEl={this.state.anchorEl} toggleModal={() =>{ this.props.toggleModal(this.state.allyId); }} />
+                    <AllyMenu anchorEl={this.state.anchorEl} toggleModal={() => {this.toggleModal(this.state.allyId)}} />
                 </div>
                 <div className="ally-title">
                     <h3>{this.state.allyName}</h3>
@@ -55,17 +57,11 @@ export default class AllyPage extends React.Component{
                         { this.state.allySkills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
                     </ul>
                 </div>
-                {/* <div className="ally-mods">
-                    <ul>
-                        <li>{ this.state.allyAlignment }</li>
-                        <li>{ this.state.allySign }</li>
-                        { this.getAllyColor() }
-                    </ul>
-                </div> */}
                 
                 <div className="ally-power">
                         <img className="fist" src={fist} /> <strong>{this.state.allyPower}</strong>
                 </div>
+                <TransferModal onRef={ref => (this.child = ref)} toggleModal={this.toggleModal.bind(this)} transferAlly={this.props.transferAlly} />
             </div>
         );
     }

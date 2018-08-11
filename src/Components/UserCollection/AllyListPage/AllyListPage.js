@@ -1,8 +1,8 @@
 import React from 'react';
 import AllyTile from '../AllyTile';
-import TransferModal from '../TransferModal';
+
 import AddModal from '../AddModal';
-import '../userCollection.scss';
+import './allyListPage.scss';
 
 
 
@@ -15,21 +15,19 @@ class UserCollection extends React.Component{
     buildAllyList(){
         return this.props.allies.map((ally, i) => {
             return (
-                <AllyTile key={i} dna={ally.dna} id={ally.id} sign={ally.sign} toggleModal={this.toggleModal.bind(this)} />
+                <AllyTile key={i} dna={ally.dna} id={ally.id} sign={ally.sign} />
             );
         });
     }
 
-    toggleModal(id){
-        this.child.toggleModal(id);
-    }
+    
 
 
     
 
     render(){
         return(
-            <div className="page-wrapper user-collection-page">
+            <div className="page-wrapper ally-list-page">
                 <section className="title-section">
                     <div className="subsection">
                         <h1>Eco Allies</h1>
@@ -44,7 +42,7 @@ class UserCollection extends React.Component{
                 </section>
                 <section className="bottom-section">
                 </section>
-                <TransferModal onRef={ref => (this.child = ref)} toggleModal={this.toggleModal.bind(this)} transferAlly={this.props.transferAlly} />
+
                 <AddModal buildAlly={this.buildAlly.bind(this)} />
             </div>
         );

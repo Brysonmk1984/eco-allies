@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AllyMenu from './AllyMenu';
 import VariantBar from './VariantBar';
-
+import history from '~/common/history';
 import { decodeAlly } from '~/common/crackDna';
 
 import fist from '~/assets/images/fist.png';
@@ -27,6 +26,14 @@ export default class AllyTile extends React.Component{
             return <li> {this.state.allyColor} Variant </li> 
         }
     }
+    navigateToAlly(){
+        history.push({
+            pathname: `/user-collection/${this.props.dna}`,
+            state: {
+                allyId : this.props.id
+            }
+        });
+    }
 
     componentDidMount(){
         const ally = decodeAlly(this.props.dna);
@@ -38,31 +45,19 @@ export default class AllyTile extends React.Component{
     render(){
         return(
             <aside className="ally">
-                <div className="ally-actions">
-                    <AllyMenu anchorEl={this.state.anchorEl} toggleModal={() =>{ this.props.toggleModal(this.state.allyId); }} />
-                </div>
                 <div className="ally-title">
                     <h3>{this.state.allyName}</h3>
                     <h4>{ this.state.allyDescription }</h4>
                 </div>
                 <VariantBar color={this.state.allyColor} alignment={this.state.allyAlignment} sign={this.state.allySign} />
                 <div className="ally-image">
-                    <Link to={ `/user-collection/${this.props.dna}` }>
-                        <img src={ this.state.allyImage } />
-                    </Link>
+                    <img src={ this.state.allyImage } onClick={this.navigateToAlly.bind(this)} />
                 </div>
                 <div className="ally-skills">
                     <ul>
                         { this.state.allySkills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
                     </ul>
                 </div>
-                {/* <div className="ally-mods">
-                    <ul>
-                        <li>{ this.state.allyAlignment }</li>
-                        <li>{ this.state.allySign }</li>
-                        { this.getAllyColor() }
-                    </ul>
-                </div> */}
                 
                 <div className="ally-power">
                         <img className="fist" src={fist} /> <strong>{this.state.allyPower}</strong>

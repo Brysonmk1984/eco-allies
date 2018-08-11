@@ -9,7 +9,7 @@ export default class AllyMenu extends React.Component{
                 <Button
                  variant="fab"
                  mini
-                    onClick={this.props.toggleModal.bind(this)}
+                    onClick={this.props.toggleModal}
                     >
                     <FaBars size={14} />
                 </Button>

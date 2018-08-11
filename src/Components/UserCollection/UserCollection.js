@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import AllyListPage from './AllyListPage/AllyListPage';
 import AllyPage from './AllyPage/AllyPage';
-import './userCollection.scss';
+
 
 
 export default class UserCollection extends React.Component{

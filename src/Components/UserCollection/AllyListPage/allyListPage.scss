@@ -3,10 +3,10 @@
 div.page-wrapper.user-collection-page{
     display:grid;
     grid-template-columns: auto;
-    grid-template-rows: 220px auto 220px;
+    grid-template-rows: 220px auto auto;
     min-height:100vh;
     place-items: stretch;
-
+    
     section{
         &.ally-section{
             h3{
@@ -30,18 +30,11 @@ div.page-wrapper.user-collection-page{
                     grid-column: auto / auto;
                     grid-row: auto / auto;
                     position:relative;
-                    .ally-actions{
-                        position:absolute;
-                        right: 10px;
-                        top: 110px;
-                        .ally-action-menu{
-                            text-align:right;
-                        }
-                    }
                     .ally-image{
                         img{
                             max-width:100%;
                             max-height:180px;
+                            cursor: pointer;
                         }
                     }
                     .ally-skills{
