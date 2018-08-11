@@ -1,11 +1,16 @@
+// REACT
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+// COMPONENTS
 import AllyMenu from '../AllyMenu';
 import VariantBar from '../VariantBar';
 import TransferModal from '../TransferModal';
+// SHARED
 import { decodeAlly } from '~/common/crackDna';
+// ASSETS
 import fist from '~/assets/images/fist.png';
 
+// COMPONENT
 export default class AllyPage extends React.Component{
     constructor(){
         super();
@@ -21,18 +26,16 @@ export default class AllyPage extends React.Component{
             allyPower : 0
         }
     }
-    toggleModal(id){console.log('id', id);
+
+    // Opens Transfer modal
+    toggleModal(id){
         this.child.toggleModal(id);
     }
-    getAllyColor(){
-        if(this.state.allyColor){
-            return <li> {this.state.allyColor} Variant </li> 
-        }
-    }
 
+    // On component mount, decode the ally dna from the param passed 
+    // and update the state with the new info 
     componentDidMount(){
         const ally = decodeAlly(this.props.match.params.allyDna);
-
         this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image,allyId : this.props.location.state.allyId, allySign:ally.sign, allyAlignment:ally.alignment, allyColor:ally.color, allyPower:ally.power}));
     }
 
@@ -48,16 +51,13 @@ export default class AllyPage extends React.Component{
                 </div>
                 <VariantBar color={this.state.allyColor} alignment={this.state.allyAlignment} sign={this.state.allySign} />
                 <div className="ally-image">
-                    <Link to={ `/user-collection/${this.props.dna}` }>
-                        <img src={ `/${this.state.allyImage}` } />
-                    </Link>
+                    <img src={ `/${this.state.allyImage}` } />
                 </div>
                 <div className="ally-skills">
                     <ul>
                         { this.state.allySkills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
                     </ul>
                 </div>
-                
                 <div className="ally-power">
                         <img className="fist" src={fist} /> <strong>{this.state.allyPower}</strong>
                 </div>
@@ -66,3 +66,28 @@ export default class AllyPage extends React.Component{
         );
     }
 }
+
+// PROP-TYPES
+AllyPage.propTypes = {
+    transferAlly : PropTypes.func.isRequired,
+    // history api
+    history : PropTypes.object.isRequired,
+    location : PropTypes.shape({
+        hash : PropTypes.string,
+        key : PropTypes.string,
+        search : PropTypes.string,
+        pathname : PropTypes.string.isRequired,
+        state : PropTypes.shape({
+            allyId : PropTypes.number.isRequired
+        })
+    }),
+    match : PropTypes.shape({
+        isExact : PropTypes.bool.isRequired,
+        params : PropTypes.shape({
+            allyDna : PropTypes.string.isRequired
+        }),
+        path : PropTypes.string.isRequired,
+        url : PropTypes.string.isRequired
+    }),
+    staticContext : PropTypes.object
+};

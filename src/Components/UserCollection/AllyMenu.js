@@ -1,7 +1,11 @@
+// REACT
 import React from 'react';
+import PropTypes from 'prop-types';
+//UI
 import { Button } from '@material-ui/core';
 import { FaBars } from 'react-icons/lib/fa';
 
+// COMPONENT
 export default class AllyMenu extends React.Component{
     render(){
         return(
@@ -16,4 +20,9 @@ export default class AllyMenu extends React.Component{
             </div>
         );
     }
+}
+
+// PROP-TYPES
+AllyMenu.propTypes = {
+    toggleModal: PropTypes.func.isRequired
 }

@@ -1,11 +1,15 @@
+// REACT
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+// COMPONENTS
 import VariantBar from './VariantBar';
+// COMMON
 import history from '~/common/history';
 import { decodeAlly } from '~/common/crackDna';
-
+// ASSETS
 import fist from '~/assets/images/fist.png';
 
+// COMPONENT
 export default class AllyTile extends React.Component{
     constructor(){
         super();
@@ -21,11 +25,8 @@ export default class AllyTile extends React.Component{
             allyPower : 0
         }
     }
-    getAllyColor(){
-        if(this.state.allyColor){
-            return <li> {this.state.allyColor} Variant </li> 
-        }
-    }
+
+    // Navigate user to specific ally page on click, passing the allyId as an additional variable
     navigateToAlly(){
         history.push({
             pathname: `/user-collection/${this.props.dna}`,
@@ -35,10 +36,10 @@ export default class AllyTile extends React.Component{
         });
     }
 
+    // When component mounts, decode ally information from the specific DNA passed in as a prop
+    // Then set state to fully decoded ally data
     componentDidMount(){
         const ally = decodeAlly(this.props.dna);
-        //console.log('ALLY',ally.color);
-
         this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image,allyId : this.props.id, allySign:ally.sign, allyAlignment:ally.alignment, allyColor:ally.color, allyPower:ally.power}));
     }
     
@@ -58,11 +59,16 @@ export default class AllyTile extends React.Component{
                         { this.state.allySkills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
                     </ul>
                 </div>
-                
                 <div className="ally-power">
-                        <img className="fist" src={fist} /> <strong>{this.state.allyPower}</strong>
+                    <img className="fist" src={fist} /> <strong>{this.state.allyPower}</strong>
                 </div>
             </aside>
         );
     }
 }
+
+// PROP-TYPES
+AllyTile.propTypes = {
+    dna : PropTypes.string.isRequired,
+    id : PropTypes.number.isRequired,
+};

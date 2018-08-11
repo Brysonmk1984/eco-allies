@@ -1,31 +1,27 @@
+// REACT
 import React from 'react';
+import PropTypes from 'prop-types';
+// COMPONENTS
 import AllyTile from '../AllyTile';
-
 import AddModal from '../AddModal';
+// ASSETS
 import './allyListPage.scss';
 
 
+// COMPONENT
+export default class UserCollection extends React.Component{
 
-class UserCollection extends React.Component{
-    constructor(props){
-        super(props);
-        this.buildAlly = this.props.buildAlly.bind(this);
-        this.transferAlly = this.props.transferAlly.bind(this);
-    }
+    // Map all ally data belonging to this owner to individual ally components
     buildAllyList(){
         return this.props.allies.map((ally, i) => {
             return (
-                <AllyTile key={i} dna={ally.dna} id={ally.id} sign={ally.sign} />
+                <AllyTile key={i} dna={ally.dna} id={ally.id} />
             );
         });
     }
 
-    
-
-
-    
-
     render(){
+        console.log('allies', this.props.allies);
         return(
             <div className="page-wrapper ally-list-page">
                 <section className="title-section">
@@ -42,12 +38,16 @@ class UserCollection extends React.Component{
                 </section>
                 <section className="bottom-section">
                 </section>
-
-                <AddModal buildAlly={this.buildAlly.bind(this)} />
+                <AddModal buildAlly={this.props.buildAlly.bind(this)} />
             </div>
         );
     }
-   
 };
 
-export default UserCollection;
+// PROP-TYPES
+UserCollection.propTypes = {
+    loggedIn : PropTypes.bool.isRequired,
+    allies : PropTypes.array.isRequired,
+    handleLogin: PropTypes.func.isRequired,
+    buildAlly : PropTypes.func.isRequired
+};
