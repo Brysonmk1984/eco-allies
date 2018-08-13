@@ -1,8 +1,11 @@
+// REACT
 import React from 'react';
 import { Link } from 'react-router-dom';
+// ASSETS
 import Watermark from '../../assets/images/watermark.png';
 import './about.scss';
 
+// COMPONENT
 const About = () => (
     <div className="page-wrapper about-page">
         <section className="title-section">

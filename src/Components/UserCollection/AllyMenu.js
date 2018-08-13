@@ -1,7 +1,7 @@
 // REACT
 import React from 'react';
+// LIBRARIES
 import PropTypes from 'prop-types';
-//UI
 import { Button } from '@material-ui/core';
 import { FaBars } from 'react-icons/lib/fa';
 

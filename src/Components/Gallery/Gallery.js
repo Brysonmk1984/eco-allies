@@ -1,15 +1,19 @@
+// REACT
 import React from 'react';
+// COMPONENTS
 import AllyTileGallery from './AllyTileGallery';
-import './gallery.scss';
+// COMMON
 import allyList from '~/common/allyList.json';
+// ASSETS
+import './gallery.scss';
 
-
-class Gallery extends React.Component{
+// COMPONENT
+export default class Gallery extends React.Component{
     constructor(props){
         super(props);
     }
     buildAllyList(){
-        return allyList.map((ally, i) => {console.log('ally', ally.active);
+        return allyList.map((ally, i) => {
             if(ally.active){
                 return (
                     <AllyTileGallery key={i} ally={ally}  />
@@ -40,5 +44,3 @@ class Gallery extends React.Component{
     }
    
 };
-
-export default Gallery;

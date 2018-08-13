@@ -1,36 +1,34 @@
+// REACT
 import React from 'react';
-import Logo2 from '~/assets/images/logo2.png';
 import { NavLink } from 'react-router-dom';
+// LIBRARIES
+import PropTypes from 'prop-types';
 import { FaUser } from 'react-icons/lib/fa';
+// ASSETS
+import Logo from '~/assets/images/logo2.png';
 
+// COMPONENT
 export default class Nav extends React.Component{
     constructor(){
         super();
-            this.state = {
+        this.state = {
             open: false,
         };
     }
     
+    // Sets state that toggles the open / close of the account subnav
     handleToggle() {
         return this.setState(state => ({ open: !this.state.open }));
     };
 
-    handleClose(event) {
-        if (this.target1.contains(event.target) || this.target2.contains(event.target)) {
-            return;
-        }
-
-        this.setState({ open: false });
-    };
-
-
+    // Handles logging out and navigating to account page
     handleLogout(e){
         e.preventDefault();
         this.handleToggle();
         this.props.handleLogin(false);
-    
     }
    
+    // If logged in, render Collection link
     renderUserCollection(){
         if(this.props.loggedIn){
             return (
@@ -39,6 +37,7 @@ export default class Nav extends React.Component{
         }
     }
 
+    // If logged in, render account button, otherwise render getting started button
     renderGettingStarted(){
         if(this.props.loggedIn){
             return (
@@ -46,7 +45,7 @@ export default class Nav extends React.Component{
                     <a onClick={this.handleToggle.bind(this)} title="Account">
                     <FaUser/>
                     </a>
-                    <div className={`account_dropdown ${this.state.open ? ' dropdown_open' : ' dropdown_closed' }`}>
+                    <div onClick={this.handleToggle.bind(this)} className={`account_dropdown ${this.state.open ? ' dropdown_open' : ' dropdown_closed' }`}>
                         <ul>
                             <li>
                                 <NavLink to="/account" activeClassName="active">Account</NavLink>
@@ -63,13 +62,13 @@ export default class Nav extends React.Component{
             return <NavLink to="/register" activeClassName="active" className="btn-small">Get Started</NavLink>;
         }
     }
-    
 
     render(){
         return(
             <nav className="nav-wrapper">
+                <div onClick={this.handleToggle.bind(this)} className={`opaque-backdrop ${this.state.open ? 'backdrop-visible' : 'backdrop-hidden'}`}></div>
                 <a href ="/" className="brand-logo left">
-                    <img src={Logo2} className="logo" />
+                    <img src={Logo} className="logo" />
                 </a>
                 <ul id="nav-mobile" className="right hide-on-small-only">
                     <li><NavLink to="/about" activeClassName="active">About</NavLink></li>
@@ -81,6 +80,12 @@ export default class Nav extends React.Component{
                     </li>
                 </ul>
             </nav>
-        )
+        );
     }
 }
+
+// PROP-TYPES
+Nav.propTypes = {
+    loggedIn : PropTypes.bool.isRequired,
+    handleLogin : PropTypes.func.isRequired
+};

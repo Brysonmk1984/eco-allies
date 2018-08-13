@@ -1,23 +1,26 @@
+// REACT
 import React from 'react';
+// COMPONENTS
 import Header from './Components/Header/Header';
 import Content from './Components/Content';
 import Footer from './Components/Footer/Footer';
+// COMMON
 import generateSeed from './common/generateNum';
 import { login, logout, loggedIn, accountDetails } from '~/common/loginService';
 import history from '~/common/history';
 import getCookie from '~/common/cookie';
+// BLOCK CHAIN
 import TruffleContract from 'truffle-contract';
-// for testing only
+  // for testing only
 import contractJson from '../build/contracts/EcoAllyCore.json';
-
-
+// ASSETS
 import './assets/scss/styles.scss';
 import 'materialize-css/dist/css/materialize.css'
 import './assets/scss/materialExtended.scss';
 import 'materialize-css/dist/js/materialize.js'
 
-class App extends React.Component {
- 
+// COMPONENT
+export default class App extends React.Component {
   constructor(){
     super();
     this.state = {
@@ -30,6 +33,7 @@ class App extends React.Component {
     this.web3;
   }
 
+  // Handle login to node backend on heroku
   handleLogin(doLogin, email, password){
     //console.log(email, password);
     if(doLogin){
@@ -61,17 +65,21 @@ class App extends React.Component {
       });
     }
   }
+
+  // Get account details from node backend, returns a promise
   getAccountDetails(){
       return accountDetails();
   }
 
+  // Helper method to set state and call a callback function if it exists
+  // Used for some child components to update the state without throwing a react memory leak error
   modifyAppState(state, cb){
     this.setState(()=>(state), ()=>{
       if(cb) cb();
     });
   }
 
-
+  // Initialize Web 3
   initWeb3(){
     // Check if Web 3 has been injected by the browser
     if(typeof web3 !== 'undefined'){
@@ -112,42 +120,45 @@ class App extends React.Component {
 
   }
   
-
+  // Get the token count of a particular account on the block chain, returns a promise
   getTokenCount(){
     return this.instance.totalSupply.call().then((count) =>{
       return count.toNumber();
     })
   }
 
-  getAllAllies(tokenCount){
-    const cachedThis = this;
-    const allies = [];
-    tokenCount = tokenCount;
-    function getAllies(){
-      cachedThis.instance.getEcoAlly.call(tokenCount).then((ally) =>{
-        //console.log('ally',ally);
-        allies.push({dna : ally[0].toNumber()});
-        tokenCount --;
-        if(tokenCount > 0){
-          getAllies(tokenCount);
-        }else{
-          cachedThis.setState((()=>({allies})));
-        }
-      });
-    }
-    getAllies(tokenCount);
-  }
+  // Gets all allies on the blockchain (not currently used)
+  // getAllAllies(tokenCount){
+  //   const cachedThis = this;
+  //   const allies = [];
+  //   tokenCount = tokenCount;
+  //   function getAllies(){
+  //     cachedThis.instance.getEcoAlly.call(tokenCount).then((ally) =>{
+  //       //console.log('ally',ally);
+  //       allies.push({dna : ally[0].toNumber()});
+  //       tokenCount --;
+  //       if(tokenCount > 0){
+  //         getAllies(tokenCount);
+  //       }else{
+  //         cachedThis.setState((()=>({allies})));
+  //       }
+  //     });
+  //   }
+  //   getAllies(tokenCount);
+  // }
 
-  getLatestAlly(tokenPosition){
-    this.instance.getEcoAlly.call(tokenPosition).then((ally) =>{
-      //console.log('ally',ally[1], ally[0].toNumber());
-      this.setState((prevState)=>({
-        allies : [{dna : ally[0].toNumber()}, ...prevState.allies]
-      }));
-    });
-  }
+  // Get latest ally added (not currently being used)
+  // getLatestAlly(tokenPosition){
+  //   this.instance.getEcoAlly.call(tokenPosition).then((ally) =>{
+  //     //console.log('ally',ally[1], ally[0].toNumber());
+  //     this.setState((prevState)=>({
+  //       allies : [{dna : ally[0].toNumber()}, ...prevState.allies]
+  //     }));
+  //   });
+  // }
 
-  getAlliesOfUser(){console.log('INGET ALLIES');
+  // Get the Allies of a particular user from the blockchain
+  getAlliesOfUser(){
  
     this.instance.tokensOfOwner.call(this.state.account).then((tokens)=>{
       
@@ -178,6 +189,8 @@ class App extends React.Component {
     });
   }
 
+  // Check if a web3 account of the user matches the account saved in our DB
+  // Might need to modify this in case user is using multiple web3 accounts on metamask
   checkForAccountMatch(){
     let index;
     const matchingEthAccount = web3.eth.accounts.find((acc, i)=>{
@@ -187,7 +200,7 @@ class App extends React.Component {
       }
     });
 
-    // User is logged into correct meta mask account
+    // user is logged into correct meta mask account
     if(matchingEthAccount){
       this.getAlliesOfUser();
     }else{
@@ -195,6 +208,7 @@ class App extends React.Component {
     }
   }
 
+  // Watch for creation of new allies and update the UI
   // watchForCreation(){
   //   const creationEvent = this.instance.Creation();
         
@@ -214,13 +228,13 @@ class App extends React.Component {
 
   // }
 
-
-
+  // Build a new ally on the blockchain
   buildAlly(){
     const num = generateSeed();
     this.instance.addAlly(num, {from : this.state.account});
   }
 
+  // Transfer ally from one address to another
   transferAlly(to, allyIndex = 0){
     const from = this.state.account;
     if(to !== this.state.account){
@@ -232,10 +246,8 @@ class App extends React.Component {
     
   }
 
-  readAllies(){
-    this.checkForAccountMatch();
-  }
-
+  // On component mount, if there is a cookie called 'sid' and the user is not logged in,
+  // log the user in and initialize web3.
   componentDidMount(){
     const cookie = getCookie('sid');
 
@@ -255,16 +267,13 @@ class App extends React.Component {
     }
   }
   
-
   render() {
     return (
       <div>
         <Header handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} />
-        <Content appState={this.state} getAccountDetails={this.getAccountDetails.bind(this)} initWeb3={this.initWeb3.bind(this)} modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} allies={this.state.allies} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)}  />
+        <Content appState={this.state} getAccountDetails={this.getAccountDetails.bind(this)} modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)} loggedIn={this.state.loggedIn}  />
         <Footer />
       </div>
     );
   }
 }
-
-export default App;

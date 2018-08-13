@@ -1,11 +1,12 @@
 // REACT
 import React from 'react';
+// LIBRARIES
 import PropTypes from 'prop-types';
 // COMPONENTS
 import AllyMenu from '../AllyMenu';
 import VariantBar from '../VariantBar';
 import TransferModal from '../TransferModal';
-// SHARED
+// COMMON
 import { decodeAlly } from '~/common/crackDna';
 // ASSETS
 import fist from '~/assets/images/fist.png';

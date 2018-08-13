@@ -1,5 +1,6 @@
 // REACT
 import React from 'react';
+// LIBRARIES
 import PropTypes from 'prop-types';
 // COMPONENTS
 import VariantBar from './VariantBar';

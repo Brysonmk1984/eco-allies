@@ -1,7 +1,12 @@
+// REACT
 import React from 'react';
+// LIBRARIES
+import PropTypes from 'prop-types';
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button  } from '@material-ui/core';
+// COMMON
 import { bindAddModalCombo } from '~/common/customKeyBindings';
 
+// COMPONENT
 export default class AddModal extends React.Component{
     constructor(){
         super();
@@ -11,16 +16,20 @@ export default class AddModal extends React.Component{
         this.toggleAddModal = this.toggleAddModal.bind(this);
     }
 
+    // Calls the buildAlly method from App.js, which creates a new ally on the block chain
     addAlly(){
         this.props.buildAlly();
     }
 
+    // Toggle state of add modal
     toggleAddModal(){
         this.setState((prevState) =>({
             modalOpen : !prevState.modalOpen
         }));
     }
 
+    // On component mount, set key binding for adding an ally
+    // remove this before release 
     componentDidMount() {
         bindAddModalCombo(this.toggleAddModal);
     }
@@ -52,3 +61,8 @@ export default class AddModal extends React.Component{
         );
     }
 }
+
+// PROP-TYPES
+AddModal.propTypes = {
+    buildAlly : PropTypes.func.isRequired
+};

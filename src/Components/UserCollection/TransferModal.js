@@ -1,7 +1,7 @@
 // REACT
 import React from 'react';
+// LIBRARIES
 import PropTypes from 'prop-types';
-// UI
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button  } from '@material-ui/core';
 
 

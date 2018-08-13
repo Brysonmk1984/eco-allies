@@ -1,5 +1,9 @@
+// REACT
 import React from 'react';
 import { Route, Switch } from 'react-router';
+// LIBRARIES
+import PropTypes from 'prop-types';
+// COMPONENTS
 import About from './About/About';
 import Gallery from './Gallery/Gallery';
 import UserCollection from './UserCollection/UserCollection';
@@ -7,23 +11,21 @@ import Register from './Register/Register';
 import Login from './Login/Login';
 import Account from './Account/Account';
 
-class Content extends React.Component{
-    constructor(props){
-        super(props);
-    }
+// COMPONENT
+// Displays app content between header and footer depending on the route
+export default class Content extends React.Component{
 
     render(){
         return(
             <div className="route-wrapper">
                 <Switch>
-                    {/* <Route exact path="/" component={() => (<UserCollection allies={this.props.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} /> )}  /> */}
                     <Route exact path="/" component={() => (<Gallery   /> )}  />
                     <Route path="/about" component={About} />
                     <Route path="/gallery" component={() => (<Gallery  /> )} />
-                    <Route path="/user-collection"  render={() => <UserCollection handleLogin={this.props.handleLogin} loggedIn={this.props.loggedIn} allies ={this.props.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} />}   />
+                    <Route path="/user-collection"  render={() => <UserCollection loggedIn={this.props.appState.loggedIn} allies ={this.props.appState.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} />}   />
                     <Route path="/register" component={() => (<Register   /> )} />
                     <Route path="/login" component={() => (<Login modifyAppState={this.props.modifyAppState} handleLogin={this.props.handleLogin} loggedIn={this.props.loggedIn}   /> )} /> 
-                    <Route path="/account" component={() =>( <Account appState={this.props.appState} getAccountDetails={this.props.getAccountDetails} /> )}  />
+                    <Route path="/account" component={() =>( <Account allies={this.props.appState.allies} getAccountDetails={this.props.getAccountDetails} /> )}  />
                     {/* <Route path="faq" component={Faq} />*/}
                 </Switch>
             </div>
@@ -31,4 +33,16 @@ class Content extends React.Component{
     }
 }
 
-export default Content;
+// PROP-TYPES
+Content.propTypes = {
+    appState : PropTypes.shape({
+        account : PropTypes.string.isRequired,
+        allies : PropTypes.array.isRequired,
+        loggedIn : PropTypes.bool.isRequired
+    }),
+    buildAlly : PropTypes.func.isRequired,
+    getAccountDetails : PropTypes.func.isRequired,
+    handleLogin : PropTypes.func.isRequired,
+    modifyAppState : PropTypes.func.isRequired,
+    transferAlly : PropTypes.func.isRequired
+};

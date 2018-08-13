@@ -1,5 +1,6 @@
 // REACT
 import React from 'react';
+// LIBRARIES
 import PropTypes from 'prop-types';
 // COMPONENTS
 import AllyTile from '../AllyTile';
@@ -21,7 +22,6 @@ export default class UserCollection extends React.Component{
     }
 
     render(){
-        console.log('allies', this.props.allies);
         return(
             <div className="page-wrapper ally-list-page">
                 <section className="title-section">
@@ -48,6 +48,5 @@ export default class UserCollection extends React.Component{
 UserCollection.propTypes = {
     loggedIn : PropTypes.bool.isRequired,
     allies : PropTypes.array.isRequired,
-    handleLogin: PropTypes.func.isRequired,
     buildAlly : PropTypes.func.isRequired
 };

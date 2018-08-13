@@ -1,8 +1,12 @@
+// REACT
 import React from 'react';
+// LIBRARIES
+import PropTypes from 'prop-types';
 import { MdFace } from 'react-icons/lib/md';
-
+// ASSETS
 import './account.scss';
 
+// COMPONENT
 export default class Account extends React.Component{
     constructor(){
         super();
@@ -11,8 +15,21 @@ export default class Account extends React.Component{
         }
     }
 
+    // When component mounts, retrieve details about the account from the database
+    // Does NOT include blockchain data
+    componentDidMount(){
+        this.props.getAccountDetails()
+        .then((data) =>{
+             if(data.data){
+                 const { email, publicEthKey, username } = data.data;
+                 this.setState(()=>({ email, publicEthKey, username}));
+             }
+        });
+     }
+
+    // Generates list items for each ally passed in from App State via props
     renderAllyData(){
-        return this.props.appState.allies.map((ally, i)=>{
+        return this.props.allies.map((ally, i)=>{
             return <li className="ally-data" key={i}>
                 <strong className="ally-label">ID: </strong>
                 <span className="ally-value">{ ally.id }</span>
@@ -22,21 +39,7 @@ export default class Account extends React.Component{
         });
     }
 
-    componentDidMount(){
-       this.props.getAccountDetails()
-       .then((data) =>{
-            if(data.data){
-                const { email, publicEthKey, username } = data.data;
-                this.setState(()=>({ email, publicEthKey, username}));
-            }
-       });
-
-
-    }
-
     render(){
-        //console.log('APPSTATE', this.props.appState);
-        //console.log('COMPSTATE', this.state.account);
         return(
             <div className="page-wrapper account-page">
                 <section className="title-section">
@@ -78,3 +81,9 @@ export default class Account extends React.Component{
         );
     }
 }
+
+// PROP-TYPES
+Account.propTypes = {
+    allies : PropTypes.array.isRequired,
+    getAccountDetails : PropTypes.func.isRequired
+};

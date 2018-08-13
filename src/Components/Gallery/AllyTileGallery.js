@@ -1,5 +1,9 @@
+// REACT
 import React from 'react';
+// LIBRARIES
+import PropTypes from 'prop-types';
 
+// COMPONENT
 const Ally = (props) => {
     return(
         <aside className="ally">
@@ -25,5 +29,17 @@ const Ally = (props) => {
         </aside>
     );
 }
+
+// PROP-TYPES
+Ally.propTypes = {
+    ally : PropTypes.shape({
+        active : PropTypes.bool.isRequired,
+        character : PropTypes.string.isRequired,
+        skills : PropTypes.array.isRequired,
+        image : PropTypes.string.isRequired,
+        history : PropTypes.string.isRequired,
+        description : PropTypes.string.isRequired
+    })
+};
 
 export default Ally;

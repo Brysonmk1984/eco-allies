@@ -1,4 +1,8 @@
+// REACT
 import React from 'react';
+// LIBRARIES
+import PropTypes from 'prop-types';
+// ASSETS
 import Diamond from '../../assets/images/color/diamond.png';
 import Topaz from '../../assets/images/color/topaz.png';
 import Emerald from '../../assets/images/color/emerald.png';
@@ -30,7 +34,9 @@ import ChaoticGood from '../../assets/images/alignment/chaotic_good.png';
 import ChaoticNeutral from '../../assets/images/alignment/chaotic_evil.png';
 import ChaoticEvil from '../../assets/images/alignment/chaotic_evil.png';
 
+// COMPONENT
 export default class VariantBar extends React.Component{
+    // Render the correct astrology sign depending on the sign prop
     renderSignVariant(){
         const sign = this.props.sign;
         let signImage;
@@ -85,6 +91,7 @@ export default class VariantBar extends React.Component{
         }
     }
     
+    // Render the correct stone depending on the color prop
     renderStoneVariant(){
         const stone = this.props.color;
         let stoneImage;
@@ -127,6 +134,7 @@ export default class VariantBar extends React.Component{
         }
     }
 
+    // Render the correct hero alignment depending on the alignment prop
     renderAlignmentVariant(){
         const alignment = this.props.alignment;
         let alignmentImage;
@@ -169,7 +177,6 @@ export default class VariantBar extends React.Component{
         }
     }
   
-
     render(){
         return(
             <div className="variant_bar">
@@ -180,3 +187,10 @@ export default class VariantBar extends React.Component{
         );
     }
 }
+
+// PROP-TYPES
+VariantBar.propTypes = {
+    color : PropTypes.string,
+    alignment : PropTypes.string.isRequired,
+    sign : PropTypes.string.isRequired
+};

@@ -1,6 +1,9 @@
+// REACT
 import React from 'react';
+// ASSETS
 import './footer.scss';
 
+// COMPONENT
 const Footer = () => (
     <footer className="center-align">
         <div>
