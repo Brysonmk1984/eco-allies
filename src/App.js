@@ -26,8 +26,6 @@ export default class App extends React.Component {
     this.state = {
       allies : [],
       account : '',
-      account1 : '0x8626cc10af4ae48e97926bbcf3c4f32aadfd5c7d',
-      account2 : '0xcc1A64c458ba381C593aD92CA651Fb276092A1D3',
       loggedIn : false,
     };
     this.web3;
@@ -79,20 +77,20 @@ export default class App extends React.Component {
     });
   }
 
-  // Initialize Web 3
+  // Initialize Web 3 to communicate with the blockchain
   initWeb3(){
     // Check if Web 3 has been injected by the browser
     if(typeof web3 !== 'undefined'){
       // Use Browser/metamask version
       this.web3Provider = web3.currentProvider;
-      
+     
     }else{
       //console.log('Sorry, you need metamask to use this application.');
       this.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
     }
 
     this.web3 = new Web3(this.web3Provider);
-
+    console.log('!',this.web3.eth.accounts);
     // instantiate a new truffle contract
     this.tContract = TruffleContract(contractJson);
     this.tContract.setProvider(this.web3Provider);
