@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "build": "webpack --env.development",
-    "build:prod": "webpack --env.production",
+    "build:dev": "webpack --env development",
+    "build:prod": "webpack --env production",
+    "dev": "webpack-dev-server --inline --hot --env development",
     "start": "node server.js"
   },
   "author": "Bryson Kruk",
@@ -44,9 +45,10 @@
     "openzeppelin-solidity": "^1.10.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
-    "webpack": "^4.12.0",
+    "webpack": "^4.16.5",
     "webpack-cli": "^3.0.8",
     "webpack-dev-middleware": "^3.1.3",
+    "webpack-dev-server": "^3.1.5",
     "webpack-hot-middleware": "^2.22.2"
   }
 }
