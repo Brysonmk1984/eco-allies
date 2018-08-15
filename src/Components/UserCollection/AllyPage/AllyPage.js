@@ -8,6 +8,8 @@ import VariantBar from '../VariantBar';
 import TransferModal from '../TransferModal';
 // COMMON
 import { decodeAlly } from '~/common/crackDna';
+import * as AllyImages from '~/common/includedImages';
+import { lowercaseUnderscore } from '~/common/helperFunctions';
 // ASSETS
 import fist from '~/assets/images/fist.png';
 
@@ -37,7 +39,7 @@ export default class AllyPage extends React.Component{
     // and update the state with the new info 
     componentDidMount(){
         const ally = decodeAlly(this.props.match.params.allyDna);
-        this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image,allyId : this.props.location.state.allyId, allySign:ally.sign, allyAlignment:ally.alignment, allyColor:ally.color, allyPower:ally.power}));
+        this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:AllyImages[lowercaseUnderscore(ally.basics.character)],allyId : this.props.location.state.allyId, allySign:ally.sign, allyAlignment:ally.alignment, allyColor:ally.color, allyPower:ally.power}));
     }
 
     render(){
@@ -52,7 +54,7 @@ export default class AllyPage extends React.Component{
                 </div>
                 <VariantBar color={this.state.allyColor} alignment={this.state.allyAlignment} sign={this.state.allySign} />
                 <div className="ally-image">
-                    <img src={ `/${this.state.allyImage}` } />
+                    <img src={ `${this.state.allyImage}` } />
                 </div>
                 <div className="ally-skills">
                     <ul>

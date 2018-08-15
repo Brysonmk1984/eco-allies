@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const   plugins = [
   new HtmlWebpackPlugin({filename:'index.html', template: 'index.html'}),
-  new webpack.HotModuleReplacementPlugin()
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.DefinePlugin({APP_ROOT : "'/'"})
 ];
 
 module.exports = {
@@ -17,6 +18,11 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     publicPath : '/',
     filename: 'bundle.js',
+  },
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './',
+    hot: true
   },
   module: {
     rules: [

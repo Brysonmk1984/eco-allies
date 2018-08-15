@@ -2,6 +2,9 @@
 import React from 'react';
 // LIBRARIES
 import PropTypes from 'prop-types';
+// COMMON
+import * as AllyImages from '~/common/includedImages';
+import { lowercaseUnderscore } from '~/common/helperFunctions';
 
 // COMPONENT
 const Ally = (props) => {
@@ -12,7 +15,7 @@ const Ally = (props) => {
                 <h4>{ props.ally.description }</h4>
             </div>
             <div className="ally-image">
-                <img src={ `/assets/images/${props.ally.image}` } />
+                <img src={ AllyImages[lowercaseUnderscore(props.ally.character)] } />
             </div>
             
             <div className="ally-skills">

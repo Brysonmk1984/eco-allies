@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -6,7 +7,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const plugins = [
   new CleanWebpackPlugin(['dist']),
   new HtmlWebpackPlugin({filename:'index.html', template: 'index.html'}),
-  new MiniCssExtractPlugin({filename: 'assets/css/[name].[hash].css'})
+  new MiniCssExtractPlugin({filename: 'assets/css/[name].[hash].css'}),
+  new webpack.DefinePlugin({APP_ROOT : "'/eco-allies/'"})
 ];
 
 
@@ -18,7 +20,7 @@ module.exports = {
     ],
     output: {
       path: path.join(__dirname, 'dist'),
-      publicPath : '/',
+      //publicPath : '/eco-allies/',
       filename: 'bundle.js',
     },
     module: {
@@ -41,7 +43,7 @@ module.exports = {
         {
           test: /\.(png|gif|jpg)$/,
           exclude: /node_modules/,
-          use : ['file-loader?name=[name].[ext]&outputPath=assets/images/'],
+          use : ['file-loader?name=[name].[ext]&publicPath=/eco-allies/assets/images/&outputPath=assets/images/'],
           include: path.join(__dirname, 'src')
         },
         {
@@ -50,7 +52,7 @@ module.exports = {
           use : ['json-loader']
           
         },
-        { test: /\.(woff)(\?[a-z0-9]+)?$/, loader: 'file-loader?name=[name].[ext]&publicPath=../../&outputPath=assets/font/' },
+        { test: /\.(woff)(\?[a-z0-9]+)?$/, loader: 'file-loader?name=[name].[ext]&publicPath=/eco-allies/&outputPath=assets/font/' },
       ],
     },
     plugins,

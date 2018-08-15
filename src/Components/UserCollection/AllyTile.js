@@ -7,6 +7,8 @@ import VariantBar from './VariantBar';
 // COMMON
 import history from '~/common/history';
 import { decodeAlly } from '~/common/crackDna';
+import * as AllyImages from '~/common/includedImages';
+import { lowercaseUnderscore } from '~/common/helperFunctions';
 // ASSETS
 import fist from '~/assets/images/fist.png';
 
@@ -30,7 +32,7 @@ export default class AllyTile extends React.Component{
     // Navigate user to specific ally page on click, passing the allyId as an additional variable
     navigateToAlly(){
         history.push({
-            pathname: `/user-collection/${this.props.dna}`,
+            pathname: `${APP_ROOT}user-collection/${this.props.dna}`,
             state: {
                 allyId : this.props.id
             }
@@ -41,7 +43,7 @@ export default class AllyTile extends React.Component{
     // Then set state to fully decoded ally data
     componentDidMount(){
         const ally = decodeAlly(this.props.dna);
-        this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image,allyId : this.props.id, allySign:ally.sign, allyAlignment:ally.alignment, allyColor:ally.color, allyPower:ally.power}));
+        this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image, allyId : this.props.id, allySign:ally.sign, allyAlignment:ally.alignment, allyColor:ally.color, allyPower:ally.power}));
     }
     
     render(){

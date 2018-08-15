@@ -50,7 +50,7 @@
     "active" : true,
     "character" : "Reuse Bot",
     "skills" : ["Repurpose Trash","Assemble Drones","Revert to Supplies","Trash Cannon","Reduce, Reuse, Recycle Foe"],
-    "image" : "fred.png",
+    "image" : "reuse_bot.png",
     "description" : "Reduce, Reuse, Recycle",
     "history" : "my background story"
 },

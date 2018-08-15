@@ -19,13 +19,13 @@ export default class Content extends React.Component{
         return(
             <div className="route-wrapper">
                 <Switch>
-                    <Route exact path="/" component={() => (<Gallery   /> )}  />
-                    <Route path="/about" component={About} />
-                    <Route path="/gallery" component={() => (<Gallery  /> )} />
-                    <Route path="/user-collection"  render={() => <UserCollection loggedIn={this.props.appState.loggedIn} allies ={this.props.appState.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} />}   />
-                    <Route path="/register" component={() => (<Register   /> )} />
-                    <Route path="/login" component={() => (<Login modifyAppState={this.props.modifyAppState} handleLogin={this.props.handleLogin} loggedIn={this.props.loggedIn}   /> )} /> 
-                    <Route path="/account" component={() =>( <Account allies={this.props.appState.allies} getAccountDetails={this.props.getAccountDetails} /> )}  />
+                    <Route exact path={`${APP_ROOT}`} component={() => (<Gallery   /> )}  />
+                    <Route path={`${APP_ROOT}about`} component={About} />
+                    <Route path={`${APP_ROOT}gallery`} component={() => (<Gallery  /> )} />
+                    <Route path={`${APP_ROOT}user-collection`}  render={() => <UserCollection loggedIn={this.props.appState.loggedIn} allies ={this.props.appState.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} />}   />
+                    <Route path={`${APP_ROOT}register`} component={() => (<Register   /> )} />
+                    <Route path={`${APP_ROOT}login`} component={() => (<Login modifyAppState={this.props.modifyAppState} handleLogin={this.props.handleLogin} loggedIn={this.props.loggedIn}   /> )} /> 
+                    <Route path={`${APP_ROOT}account`} component={() =>( <Account allies={this.props.appState.allies} getAccountDetails={this.props.getAccountDetails} /> )}  />
                     {/* <Route path="faq" component={Faq} />*/}
                 </Switch>
             </div>

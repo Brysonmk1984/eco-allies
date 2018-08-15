@@ -32,7 +32,7 @@ export default class Nav extends React.Component{
     renderUserCollection(){
         if(this.props.loggedIn){
             return (
-                <li><NavLink to="/user-collection" activeClassName="active">Collection</NavLink></li>
+                <li><NavLink to={`${APP_ROOT}user-collection`} activeClassName="active">Collection</NavLink></li>
             );
         }
     }
@@ -48,7 +48,7 @@ export default class Nav extends React.Component{
                     <div onClick={this.handleToggle.bind(this)} className={`account_dropdown ${this.state.open ? ' dropdown_open' : ' dropdown_closed' }`}>
                         <ul>
                             <li>
-                                <NavLink to="/account" activeClassName="active">Account</NavLink>
+                                <NavLink to={`${APP_ROOT}account`} activeClassName="active">Account</NavLink>
                             </li>
                             <li>
                                 <a onClick={this.handleLogout.bind(this)}>Logout</a>
@@ -59,7 +59,7 @@ export default class Nav extends React.Component{
                 </span>
             );
         }else{
-            return <NavLink to="/register" activeClassName="active" className="btn-small">Get Started</NavLink>;
+            return <NavLink to={`${APP_ROOT}register`} activeClassName="active" className="btn-small">Get Started</NavLink>;
         }
     }
 
@@ -71,10 +71,10 @@ export default class Nav extends React.Component{
                     <img src={Logo} className="logo" />
                 </a>
                 <ul id="nav-mobile" className="right hide-on-small-only">
-                    <li><NavLink to="/about" activeClassName="active">About</NavLink></li>
-                    <li><NavLink to="/gallery" activeClassName="active">Gallery</NavLink></li>
+                    <li><NavLink to={`${APP_ROOT}about`} activeClassName="active">About</NavLink></li>
+                    <li><NavLink to={`${APP_ROOT}gallery`} activeClassName="active">Gallery</NavLink></li>
                     { this.renderUserCollection() }
-                    <li><NavLink to="/faq" activeClassName="active">FAQ</NavLink></li>
+                    <li><NavLink to={`${APP_ROOT}faq`} activeClassName="active">FAQ</NavLink></li>
                     <li>
                         { this.renderGettingStarted() }
                     </li>

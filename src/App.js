@@ -9,6 +9,7 @@ import generateSeed from './common/generateNum';
 import { login, logout, loggedIn, accountDetails } from '~/common/loginService';
 import history from '~/common/history';
 import getCookie from '~/common/cookie';
+
 // BLOCK CHAIN
 import TruffleContract from 'truffle-contract';
   // for testing only
