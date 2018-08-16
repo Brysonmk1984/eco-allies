@@ -84,8 +84,8 @@ export default class App extends React.Component {
     if(typeof web3 !== 'undefined'){
       // Use Browser/metamask version
       this.web3Provider = web3.currentProvider;
-     
-    }else{
+      console.log('CURRENT WEB 3', this.web3Provider);
+    }else{console.log('NO WEB 3');
       //console.log('Sorry, you need metamask to use this application.');
       this.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
     }
