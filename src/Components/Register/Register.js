@@ -40,7 +40,7 @@ export default class Register extends React.Component{
             }
             
             register(this.state)
-            .then((data) =>{console.log('in then hs', data);
+            .then((data) =>{//console.log('in then hs', data);
                 if(data.error){
                     const errors = data.error.map((e) =>{
                         return {type:e.error.type, message:e.error.message}
@@ -48,7 +48,7 @@ export default class Register extends React.Component{
                     this.handleErrors(errors);
                 }else{
                     this.setState(()=>({successfulAccountCreation: true}), () => {
-                        setTimeout(()=>(history.push('/user-collection')),1500);
+                        setTimeout(()=>(history.push(`${APP_ROOT}/user-collection`)),1500);
                     });
                 }
                 
@@ -153,7 +153,7 @@ export default class Register extends React.Component{
                                 Create Account
                             </Button>
                             <div className="sign_in">
-                                Already have an Account? <Link to="/login">Sign in</Link>
+                                Already have an Account? <Link to={`${APP_ROOT}login`}>Sign in</Link>
                             </div>
                         </div>
                     </form>

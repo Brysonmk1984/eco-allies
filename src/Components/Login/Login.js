@@ -52,13 +52,12 @@ export default class Login extends React.Component{
                 this.handleErrors(errors);
             }else{
                
-                    
                 this.props.modifyAppState({
                     loggedIn : true, 
                     account : data.publicEthKey
                 }, () =>{
                     setTimeout(()=>{
-                        history.push('/user-collection');
+                        history.push(`${APP_ROOT}/user-collection`);
                     },1000);
                 });
             } 
@@ -133,7 +132,7 @@ export default class Login extends React.Component{
                             </Button>
                             <div className="register_account">
                                 <strong>OR</strong><br />
-                                <Link to="/register">Create a new account</Link>
+                                <Link  to={`${APP_ROOT}register`} >Create a new account</Link>
                             </div>
                         </div>
                     </form>

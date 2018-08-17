@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // ASSETS
-import Watermark from '../../assets/images/watermark.png';
+import Watermark from '~/assets/images/watermark.png';
 import './about.scss';
 
 // COMPONENT
@@ -17,7 +17,7 @@ const About = () => (
                 <p>A crypto collectable game to save our global envirionment</p>
             </div>
             <div className="subsection">
-                <Link to="/register">
+                <Link to={`${APP_ROOT}register`}>
                     <button className="btn btn-primary">Get Started</button>
                 </Link>
             </div>
