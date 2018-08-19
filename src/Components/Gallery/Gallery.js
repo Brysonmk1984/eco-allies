@@ -1,46 +1,32 @@
 // REACT
 import React from 'react';
+import { Route, withRouter } from 'react-router-dom';
+// LIBRARIES
+import PropTypes from 'prop-types';
 // COMPONENTS
-import AllyTileGallery from './AllyTileGallery';
-// COMMON
-import allyList from '~/common/allyList.json';
-// ASSETS
-import './gallery.scss';
+import GalleryListPage from './GalleryListPage/GalleryListPage';
+import GalleryAllyPage from './GalleryAllyPage/GalleryAllyPage';
 
 // COMPONENT
-export default class Gallery extends React.Component{
-    constructor(props){
-        super(props);
-    }
-    buildAllyList(){
-        return allyList.map((ally, i) => {
-            if(ally.active){
-                return (
-                    <AllyTileGallery key={i} ally={ally}  />
-                );
-            }
-        });
-    }
-
+export default class UserCollection extends React.Component{
+    
+    // One of two different views is rendered depending on if a user navigates
+    // to /gallery or /gallery/{{allyCharacter}} (allyCharacter will only reference the allylist.json file)
+    // withRouter(component) grants browser history functionality
     render(){
         return(
             <div className="page-wrapper gallery-page">
-                <section className="title-section">
-                    <div className="subsection">
-                        <h1>ECO ALLIES</h1>
-                        <p>Defenders of Gaia</p>
-                        
-                    </div>
-                </section>
-                <section className="ally-section">
-                    <div className="subsection">
-                        {this.buildAllyList()}
-                    </div>
-                </section>
-                <section className="bottom-section">
-                </section>
+                <Route exact path={`${APP_ROOT}gallery/`}  render={() => (
+                    <GalleryListPage  />
+                )} />
+                <Route path={`${APP_ROOT}gallery/:allyCharacter`}  render={
+                    withRouter((props) => ( <GalleryAllyPage {...props} /> ))
+                } />
             </div>
         );
     }
-   
+}
+
+// PROP-TYPES
+UserCollection.propTypes = {
 };

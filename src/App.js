@@ -57,7 +57,7 @@ export default class App extends React.Component {
           console.log('ERROR - ', data.error);
           return;
         }
-        this.setState(()=>({loggedIn:false, account: ''}), ()=>{ setTimeout(()=>(history.push('/login')),1000);});
+        this.setState(()=>({loggedIn:false, account: ''}), ()=>{ setTimeout(()=>(history.push(`${APP_ROOT}login`)),1000);});
       })
       .catch((error)=>{
         console.log('log out failure', error);
@@ -79,7 +79,7 @@ export default class App extends React.Component {
   }
 
   // Initialize Web 3 to communicate with the blockchain
-  initWeb3(){
+  initWeb3(){console.log('called');
     // Check if Web 3 has been injected by the browser
     if(typeof web3 !== 'undefined'){
       // Use Browser/metamask version
@@ -249,11 +249,10 @@ export default class App extends React.Component {
   // log the user in and initialize web3.
   componentDidMount(){
     const cookie = getCookie('sid');
-
-    if(!this.state.loggedIn && cookie){
+    if(!this.state.loggedIn /*&& cookie*/){
       loggedIn()
       .then((data)=>{
-
+        //console.log('D', data);
         if(data){
           this.setState(() => ({account : data.data.publicEthKey, loggedIn : true}), ()=>{
             this.initWeb3();
@@ -265,8 +264,14 @@ export default class App extends React.Component {
       })
     }
   }
+
+  componentDidUpdate(pp,ps){
+    if(ps.loggedIn === false && this.state.loggedIn){
+      this.initWeb3();
+    }
+  }
   
-  render() {
+  render() {console.log('STATE', this.state);
     return (
       <div>
         <Header handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} />

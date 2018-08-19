@@ -48,7 +48,7 @@ export default class Register extends React.Component{
                     this.handleErrors(errors);
                 }else{
                     this.setState(()=>({successfulAccountCreation: true}), () => {
-                        setTimeout(()=>(history.push(`${APP_ROOT}/user-collection`)),1500);
+                        setTimeout(()=>(history.push(`${APP_ROOT}user-collection`)),1500);
                     });
                 }
                 

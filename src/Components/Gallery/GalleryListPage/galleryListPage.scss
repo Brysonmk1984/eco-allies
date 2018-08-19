@@ -1,6 +1,6 @@
-@import "../../assets/scss/variables.scss";
+@import "~/assets/scss/variables.scss";
 
-div.page-wrapper.gallery-page{
+div.page-wrapper.gallery-list-page{
     display:grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto 220px;

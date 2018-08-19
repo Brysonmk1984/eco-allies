@@ -57,7 +57,7 @@ export default class Login extends React.Component{
                     account : data.publicEthKey
                 }, () =>{
                     setTimeout(()=>{
-                        history.push(`${APP_ROOT}/user-collection`);
+                        history.push(`${APP_ROOT}user-collection`);
                     },1000);
                 });
             } 

@@ -6,7 +6,7 @@ import history from '~/common/history';
 
 document.addEventListener('DOMContentLoaded', function() {
   ReactDOM.render(
-    <Router history={history} basename={`${APP_ROOT}`}>
+    <Router history={history}>
       <App />
     </Router>,
     document.getElementById('mount')
