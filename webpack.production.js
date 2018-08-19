@@ -20,7 +20,7 @@ module.exports = {
     ],
     output: {
       path: path.join(__dirname, 'dist'),
-      //publicPath : '/eco-allies/',
+      publicPath : '/eco-allies/',
       filename: 'bundle.js',
     },
     module: {

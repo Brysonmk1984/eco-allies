@@ -2,8 +2,6 @@
 import React from 'react';
 // LIBRARIES
 import PropTypes from 'prop-types';
-// COMPONENTS
-import GalleryAllyTile from '../GalleryAllyTile';
 // COMMON
 import allyList from '~/common/allyList.json';
 import * as AllyImages from '~/common/includedImages';
@@ -29,7 +27,7 @@ export default class GalleryAllyPage extends React.Component{
         const ally = allyList.find((a)=>{
             return a.character === this.props.location.state.allyCharacter;
         });
-        this.setState(() =>({allyName : ally.character, allySkills : ally.skills, allyHistory : ally.history, allyDescription : ally.description, allyImage:`${APP_ROOT}${AllyImages[lowercaseUnderscore(ally.character)]}`}));
+        this.setState(() =>({allyName : ally.character, allySkills : ally.skills, allyHistory : ally.history, allyDescription : ally.description, allyImage:`${AllyImages[lowercaseUnderscore(ally.character)]}`}));
     }
 
     render(){

@@ -62,7 +62,7 @@ export default class AllyPage extends React.Component{
                     </ul>
                 </div>
                 <div className="ally-power">
-                        <img className="fist" src={fist} /> <strong>{this.state.allyPower}</strong>
+                        <img className="fist" src={`${fist}`} /> <strong>{this.state.allyPower}</strong>
                 </div>
                 <TransferModal onRef={ref => (this.child = ref)} toggleModal={this.toggleModal.bind(this)} transferAlly={this.props.transferAlly} />
             </div>

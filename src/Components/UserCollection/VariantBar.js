@@ -85,7 +85,7 @@ export default class VariantBar extends React.Component{
         if(this.props.sign){
             return (
                 <div className="variant sign_variant">
-                    <img src={signImage} title={this.props.sign} />
+                    <img src={`${signImage}`} title={this.props.sign} />
                 </div>
             )
         }
@@ -128,7 +128,7 @@ export default class VariantBar extends React.Component{
         if(this.props.color){
             return (
                 <div className="variant color_variant">
-                    <img src={stoneImage} title={this.props.color} />
+                    <img src={`${stoneImage}`} title={this.props.color} />
                 </div>
             )
         }
@@ -171,7 +171,7 @@ export default class VariantBar extends React.Component{
         if(this.props.alignment){
             return (
                 <div className="variant color_variant">
-                    <img src={alignmentImage} title={this.props.alignment} />
+                    <img src={`${alignmentImage}`} title={this.props.alignment} />
                 </div>
             )
         }

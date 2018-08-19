@@ -16,7 +16,7 @@ export default class UserCollection extends React.Component{
     render(){
         return(
             <div className="page-wrapper user-collection-page">
-                <Route exact path={`${APP_ROOT}user-collection/`}  render={() => (
+                <Route exact path={`${APP_ROOT}user-collection`}  render={() => (
                     <AllyListPage loggedIn={this.props.loggedIn} allies ={this.props.allies}  buildAlly={this.props.buildAlly} />
                 )} />
                 <Route path={`${APP_ROOT}user-collection/:allyDna`}  render={
