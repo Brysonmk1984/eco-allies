@@ -3,8 +3,8 @@ const express = require('express');
 const cors = require('cors')
 // sequelize
 const Sequelize = require('sequelize');
-//console.log('NE', process.env.NODE_ENV);
 const dbUrl = process.env.NODE_ENV === 'production' ? process.env.DATABASE_URL : "postgres://admin:admin@localhost/ecoAlliesLogin";
+
 const sequelizeSettings = {
     dialect: 'postgres',
     protocol: 'postgres',
@@ -57,7 +57,7 @@ module.exports = function(app){
         checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
         expiration: 864000000, // 10 Days in miliseconds
     });
-
+    app.set('trust proxy', 1);
     app.use(session({
         key: 'sid',
         secret: '1123ddsgfdrtrthsds',
@@ -131,8 +131,8 @@ module.exports = function(app){
         checkBody('username', 'Username can only contain letters, numbers, or underscores.').matches(/^[A-Za-z0-9_-]+$/, 'i'),
     ], function(req, res){
         const errors = validationResult(req);
-
-        if(!errors.isEmpty()){console.log('no errors for val');
+        console.log('ERRORS!!', errors.array());
+        if(!errors.isEmpty()){
             res.json({ requestType : 'POST', success : false, error : errors.array() });
             return;
         }
@@ -142,7 +142,7 @@ module.exports = function(app){
             password : req.body.password,
             publicEthKey : req.body.publicEthKey,
         })
-        .then((user)=>{
+        .then((user)=>{console.log('u2', user);
             req.login(user.id, function(err){
                 if(err){
                     res.json({ requestType : 'POST', success : false, error : err });
@@ -150,7 +150,7 @@ module.exports = function(app){
                 res.json({ requestType : 'POST', success : true, user });
             });
         })
-        .catch((err) =>{
+        .catch((err) =>{console.log('CAUGHT ERR', err);
             res.json({ requestType : 'POST', success : false, error : err });
         });
     });

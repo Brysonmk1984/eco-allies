@@ -193,6 +193,7 @@ export default class App extends React.Component {
   checkForAccountMatch(){
     let index;
     const matchingEthAccount = web3.eth.accounts.find((acc, i)=>{
+      console.log('ACCOUNT - ', acc, this.state.account);
       if(acc === this.state.account){
         index = i;
         return acc === this.state.account;
