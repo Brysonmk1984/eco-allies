@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 // COMMON
 import history from '~/common/history';
 import * as AllyImages from '~/common/includedImages';
+import * as AllyTags from '~/common/includedImageTags';
 import { lowercaseUnderscore , lowercaseDash} from '~/common/helperFunctions';
    
 
@@ -22,12 +23,23 @@ export default class GalleryAllyTile extends React.Component{
         });
     }
 
+    renderTag(){
+       
+            if(lowercaseUnderscore(this.props.ally.character) === 'filterborg'){ 
+                console.log('IN', AllyTags);
+                return <img src={ AllyTags['filterbot_tag'] } />;
+            }else{
+                return <h3>{this.props.ally.character}</h3>;
+            }
+        
+    }
+
 
     render(){
         return(
             <aside className="ally">
                 <div className="ally-title">
-                    <h3>{this.props.ally.character}</h3>
+                    {this.renderTag()}
                     <h4>{ this.props.ally.description }</h4>
                 </div>
                 <div className="ally-image">
