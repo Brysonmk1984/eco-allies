@@ -249,7 +249,8 @@ export default class App extends React.Component {
   // On component mount, if there is a cookie called 'sid' and the user is not logged in,
   // log the user in and initialize web3.
   componentDidMount(){
-    const cookie = getCookie('sid');
+    const cookie = APP_ROOT === '/' ? getCookie('sid') : getCookie('__cfduid');
+    console.log('COOKIE', cookie, APP_ROOT);
     if(!this.state.loggedIn /*&& cookie*/){
       loggedIn()
       .then((data)=>{
