@@ -24,9 +24,9 @@
 },
 {
     "active" : true,
-    "character" : "Filterborg",
+    "character" : "Filter Bot",
     "skills" : ["Convert Water","Toxin Feedback Spray","Pollution Feedback Gust","Harmonize with Water","Harmonize with Air"],
-    "image" : "filterborg.png",
+    "image" : "filter_bot.png",
     "description" : "Master of Filtration",
     "history" : "my background story"
 },
