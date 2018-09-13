@@ -11,7 +11,7 @@ import chrono_guy from '~/assets/images/chrono_guy.png';
 import natural_ninja from '~/assets/images/natural_ninja.png';
 import root_elemental from '~/assets/images/root_elemental.png';
 import wild_speaker from '~/assets/images/wild_speaker.png';
-import empath from '~/assets/images/empath.png';
+import the_empath from '~/assets/images/the_empath.png';
 import reuse_bot from '~/assets/images/reuse_bot.png';
 
 import allyList from './allyList.json';
