@@ -1,0 +1,13 @@
+admin
+admin.addPeer("enode://eaabaf96a0951ff0daecae84565ad90dba059887b0ecb2e9e694fab92ffc3d26ed10a6ac255fe82d907431816c737a9f786c730b261dd6e3e9b9a540f7a80330@35.227.52.90:30303")
+eth.getBlock(0).hash
+eth.getTransaction("0xedede32ba4faf0637bbc24e0a788e16a80d42b455662329470239009ce8495b6");
+eth.getTransaction(0xedede32ba4faf0637bbc24e0a788e16a80d42b455662329470239009ce8495b6);
+eth.getBalance("0xe6680987f8893F130aa2313acacb2A5eDaa9CC2B");
+quit
+\quit
+admin
+admin.getPeers
+admin.getPeers()
+admin.removePeer("enode://eaabaf96a0951ff0daecae84565ad90dba059887b0ecb2e9e694fab92ffc3d26ed10a6ac255fe82d907431816c737a9f786c730b261dd6e3e9b9a540f7a80330@35.227.52.90:30303")
+admin.addPeer("enode://eaabaf96a0951ff0daecae84565ad90dba059887b0ecb2e9e694fab92ffc3d26ed10a6ac255fe82d907431816c737a9f786c730b261dd6e3e9b9a540f7a80330@35.227.52.90:30303")
