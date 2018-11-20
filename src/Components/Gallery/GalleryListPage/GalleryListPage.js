@@ -4,6 +4,7 @@ import React from 'react';
 import GalleryAllyTile from '../GalleryAllyTile';
 // COMMON
 import allyList from '~/common/allyList.json';
+import {shuffleArray} from '~/common/helperFunctions';
 // ASSETS
 import './galleryListPage.scss';
 
@@ -13,7 +14,9 @@ export default class Gallery extends React.Component{
         super(props);
     }
     buildAllyList(){
-        return allyList.map((ally, i) => {
+        const randomizedAllies = shuffleArray(allyList);
+
+        return randomizedAllies.map((ally, i) => {
             if(ally.active){
                 return (
                     <GalleryAllyTile key={i} ally={ally}  />

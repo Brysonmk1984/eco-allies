@@ -25,12 +25,12 @@ export default class GalleryAllyTile extends React.Component{
 
     renderTag(){
        
-            if(lowercaseUnderscore(this.props.ally.character) === 'filter_bot'){ 
-                console.log('IN', AllyTags);
-                return <img src={ AllyTags['filterbot_tag'] } />;
-            }else{
+            // if(lowercaseUnderscore(this.props.ally.character) === 'filter_bot'){ 
+            //     console.log('IN', AllyTags);
+            //     return <img src={ AllyTags['filterbot_tag'] } />;
+            // }else{
                 return <h3>{this.props.ally.character}</h3>;
-            }
+            // }
         
     }
 

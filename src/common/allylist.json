@@ -56,11 +56,11 @@
 },
 {
     "active" : true,
-    "character" : "Root Elemental",
-    "skills" : ["Entangling Roots","Subterranean Translocate","Subterranean Regeneration","Root Spikes","Shift Terrain"],
-    "image" : "root_elemental.png",
-    "description" : "Underground Horror",
-    "history" : "Rarely seen in person, the root elemental is now believed to have been manifested from the underground roots remaining after the California Fires in 2018. It’s speculated that the forest, in a last ditch effort to escape the devastation of the fires combined it’s life energy into the still alive underground roots. It seems to be actively sabotaging oil and gas development sites."
+    "character" : "Timber Terror",
+    "skills" : ["Spawn Saprolings", "Ten Ton Stomp", "Purify by Chlorophyll", "Outgrow and Overpower", "Recursive Regeneration"],
+    "image" : "timber_terror.png",
+    "description" : "Forest Striding Avenger",
+    "history" : "The Timber Terror awakened during after the California Fires of 2018. It's believed the energy of the forest manifested itself as the massive treant. Systematically, the wooded walker seems to be taking revenge for the destruction of its homeland by targeting oil and gas executives, factory farms, the military, and other heavy polluters."
 },
 {
     "active" : true,
@@ -77,6 +77,14 @@
     "image" : "wild_speaker.png",
     "description" : "Summoner of Beasts",
     "history" : "Dirk Mullaney never fit in with society and often prefered the solitude of nature and felt a kinship with animals. During the crisis of 08, in frustration with the misguided priorities of society, Dirk became a hermit living completely in the woods. It is speculated that during this time he developed the remarkable ability to communicate with animals and some even believe he can mirror their spirit."
+},
+{
+    "active" : false,
+    "character" : "Root Elemental",
+    "skills" : ["Entangling Roots","Subterranean Translocate","Subterranean Regeneration","Root Spikes","Shift Terrain"],
+    "image" : "root_elemental.png",
+    "description" : "Underground Horror",
+    "history" : "Rarely seen in person, the root elemental is now believed to have been manifested from the underground roots remaining after the California Fires in 2018. It’s speculated that the forest, in a last ditch effort to escape the devastation of the fires combined it’s life energy into the still alive underground roots. It seems to be actively sabotaging oil and gas development sites."
 },
 {
     "active" : false,
