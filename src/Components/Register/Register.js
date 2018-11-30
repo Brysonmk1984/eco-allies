@@ -38,9 +38,8 @@ export default class Register extends React.Component{
             if(this.state.errors.length){
                 this.setState(()=>({errors : []}));
             }
-            
             register(this.state)
-            .then((data) =>{//console.log('in then hs', data);
+            .then((data) =>{console.log('in then hs', data);
                 if(data.error){
                     const errors = data.error.map((e) =>{
                         return {type:e.error.type, message:e.error.message}

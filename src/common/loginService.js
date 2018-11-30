@@ -2,7 +2,8 @@ import axios from 'axios';
 const endpoint = process.env.NODE_ENV === 'production' ?  'https://eco-allies.herokuapp.com/' : 'http://localhost:3001/';
 //const endpoint = process.env.NODE_ENV === 'production' ?  'https://eco-allies.herokuapp.com/' : 'https://eco-allies.herokuapp.com/';
 const login = function(formData){
-    return axios.post(`${endpoint}login`,{email: formData.email, password: formData.password}, {withCredentials:true})
+
+    return axios.post(`${endpoint}users/login`,{email: formData.email, password: formData.password}, {withCredentials:true})
     .then((data) => {console.log('data', data);
         if(data.status === 200){
             const errorObj = data.data.error;
@@ -23,7 +24,7 @@ const login = function(formData){
 };
 
 const register = function(formData){
-    return axios.post(`${endpoint}register`,formData)
+    return axios.post(`${endpoint}users/register`,formData)
     .then((data) => {console.log('data!', data);
         if(data.status === 200){
             const errorObj = data.data.error;
@@ -52,7 +53,7 @@ const logout = function(){
     //   }
 
 
-    return axios.get(`${endpoint}logout`, {withCredentials:true})
+    return axios.get(`${endpoint}users/logout`, {withCredentials:true})
     .then((data) => {console.log('in lo');
         if(data.status === 200){
             //console.log(data,'cookie-', getCookie('brysonsession'));
@@ -74,7 +75,7 @@ const logout = function(){
 };
 
 const loggedIn = function(){
-    return axios.get(`${endpoint}logged-in`, {withCredentials:true})
+    return axios.get(`${endpoint}users/logged-in`, {withCredentials:true})
     .then((data) => {
         console.log('LI data', data);
         return data;
@@ -85,7 +86,7 @@ const loggedIn = function(){
 };
 
 const accountDetails = function(){
-    return axios.get(`${endpoint}account-details`, {withCredentials:true})
+    return axios.get(`${endpoint}users/account-details`, {withCredentials:true})
     .then((data) => {
         //console.log('AD data', data);
         return data;

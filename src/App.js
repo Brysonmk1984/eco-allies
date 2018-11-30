@@ -42,7 +42,7 @@ export default class App extends React.Component {
           console.log('ERROR - ', data.error);
           return;
         }
-        //console.log('THE DATA', data);
+        console.log('THE DATA', data);
         return data;
       })
       .catch((error)=>{
@@ -84,10 +84,11 @@ export default class App extends React.Component {
     if(typeof web3 !== 'undefined'){
       // Use Browser/metamask version
       this.web3Provider = web3.currentProvider;
-      console.log('CURRENT WEB 3', this.web3Provider);
+      this.web3Provider.enable();
+      console.log('CURRENT WEB 3 is metamask');
     }else{console.log('NO WEB 3');
-      //console.log('Sorry, you need metamask to use this application.');
-      this.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+      //console.log('Sorry, you need metamask to use this applhttp://ication.');
+      this.web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
     }
 
     this.web3 = new Web3(this.web3Provider);
@@ -97,14 +98,16 @@ export default class App extends React.Component {
     this.tContract.setProvider(this.web3Provider);
 
     // Get specific Eth Account
-    this.web3.eth.getCoinbase((err, account) => {
-
+    //this.web3.eth.getCoinbase((err, account) => {
+        //console.log('AACCC', account);
       this.tContract.deployed().then((instance) => {
         this.instance = instance;
-        // let tokenCount = 0;
-        // this.getTokenCount().then((tokenCount)=>{  
+        console.log('I', this.instance);
+        //let tokenCount = 0;
+        this.getTokenCount().then((tokenCount)=>{  
+          console.log('TC', tokenCount);
           //this.getAllAllies(tokenCount -1);
-        // });
+        });
         
         this.checkForAccountMatch();
         // Watch for when new Allies are created
@@ -113,7 +116,7 @@ export default class App extends React.Component {
       });
 
 
-    });
+//});
 
     
 
@@ -158,11 +161,11 @@ export default class App extends React.Component {
 
   // Get the Allies of a particular user from the blockchain
   getAlliesOfUser(){
- 
+ console.log(this.state.account.length);
     this.instance.tokensOfOwner.call(this.state.account).then((tokens)=>{
-      
+      console.log('tokens',tokens);
       const tokenPositions = tokens.map((token) =>{
-        //console.log('TOKENS',token.toNumber());
+        console.log('TOKEN num',token.toNumber());
         return token.toNumber();
       });
       
@@ -192,7 +195,8 @@ export default class App extends React.Component {
   // Might need to modify this in case user is using multiple web3 accounts on metamask
   checkForAccountMatch(){
     let index;
-    const matchingEthAccount = web3.eth.accounts.find((acc, i)=>{
+    console.log('DD', this.web3.eth.accounts);
+    const matchingEthAccount = this.web3.eth.accounts.find((acc, i)=>{
       console.log('ACCOUNT - ', acc, this.state.account);
       if(acc === this.state.account){
         index = i;
@@ -204,8 +208,9 @@ export default class App extends React.Component {
     if(matchingEthAccount){
       this.getAlliesOfUser();
     }else{
-      alert(`Please sign into account ${this.state.account} in metamask!`);
+      console.log(`Please sign into account ${this.state.account} in metamask!`);
     }
+    this.getAlliesOfUser();
   }
 
   // Watch for creation of new allies and update the UI
@@ -230,7 +235,7 @@ export default class App extends React.Component {
 
   // Build a new ally on the blockchain
   buildAlly(){
-    const num = generateSeed();
+    const num = generateSeed();console.log('FROM', this.state.account);
     this.instance.addAlly(num, {from : this.state.account});
   }
 
@@ -254,7 +259,7 @@ export default class App extends React.Component {
     if(!this.state.loggedIn /*&& cookie*/){
       loggedIn()
       .then((data)=>{
-        //console.log('D', data);
+        console.log('D', data);
         if(data){
           this.setState(() => ({account : data.data.publicEthKey, loggedIn : true}), ()=>{
             this.initWeb3();
