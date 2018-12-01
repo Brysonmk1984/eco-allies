@@ -3,7 +3,7 @@ import React from 'react';
 // LIBRARIES
 import PropTypes from 'prop-types';
 // COMPONENTS
-import AllyTile from '../AllyTile';
+import AllyTile from '../AllyTile/AllyTile';
 import AddModal from '../AddModal';
 // ASSETS
 import './allyListPage.scss';

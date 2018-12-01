@@ -1,8 +1,12 @@
 const lowercaseUnderscore = function(ally){
-    return ally.replace(/\s+/g, '_').toLowerCase();
+    if(ally !== null){
+        return ally.replace(/\s+/g, '_').toLowerCase();
+    }
 };
 const lowercaseDash = function(ally){
-    return ally.replace(/\s+/g, '-').toLowerCase();
+    if(ally !== null){
+        return ally.replace(/\s+/g, '-').toLowerCase();
+    }
 };
 
 const shuffleArray = function(array) {

@@ -1,15 +1,17 @@
 [{
     "active" : true,
     "character" : "Chrono Guy",
-    "skills" : ["Time Freeze", "Blink Out", "Warp Out Enemy", "Entropy Ray", "Slow Speed Field"],
+    "skills" : ["Time Freeze", "Quantum Teleportation", "Warp Out Foe", "Entropy Ray", "Slow Speed Field"],
+    "ultimate" : "Timeline Shift",
     "image" : "chrono_guy.png",
     "description" : "Time Traveling Renegade",
-    "history" : "The mysterious time traveller known as Chrono Guy is as interesting as he is terrifying. While he himself has explained publically that he’s from a few hundred years in the future and here to ‘maintain the timeline of order’, it’s unclear what his exact motives are, who he works for and what the implications are of his very existence."
+    "history" : "The mysterious time traveller known as Chrono Guy is as powerful as he is enigmatic. While he himself has explained publically that he’s from a few hundred years in the future and here to ‘maintain the timeline of order’, it’s unclear what his exact motives are, who he works for and what the implications are of his very existence."
 },
 {
     "active" : true,
     "character" : "Compost Creature",
-    "skills" : ["Rapid Decay","Mulch Munch","Regenerate Land","Summon Creepy Crawlers","Potent Stench"],
+    "skills" : ["Rapid Decay","Mulch Munch","Regenerate Land","Spawn Creepy Crawlers","Potent Stench"],
+    "ultimate" : "Purge, Plant & Propagate",
     "image" : "compost_creature.png",
     "description" : "Animated Bio Decay",
     "history" : "Compost Creature was initially a bioengineering experiment gone wrong, but gone right for humanity. While it appears quite terrifying and has a scent that can literally cause nerve damage, it seems to maintain convictions of preserving of the environment and improving soil health. Interestingly, it becomes incredibly hostile around plastics."
@@ -17,7 +19,8 @@
 {
     "active" : true,
     "character" : "The Empath",
-    "skills" : ["Enlightenment","Psychic Messaging","Lift Allied Spirits","Mindful Powerup","Entrance"],
+    "skills" : ["Telepathic Teamwork","Electromagnetic Shield","Mindful Powerup","Entrance with Love", "Synchronistic Wave"],
+    "ultimate" : "Manifest Utopia",
     "image" : "the_empath.png",
     "description" : "Abundance Bringer",
     "history" : "Nora Kinsmen, aka The Empath lived a hard life of abuse growing up, yet always seemed to have room in her heart for others. She took their burdens and emotionally made them her own. While nobel, this also left her in a state of being continuously drained of energy. It hasn’t been until recently that she was able to remain fully present for any experience while maintaining her inner balance."
@@ -25,7 +28,8 @@
 {
     "active" : true,
     "character" : "Filter Bot",
-    "skills" : ["Convert Water","Toxin Feedback Spray","Pollution Feedback Gust","Harmonize with Water","Harmonize with Air"],
+    "skills" : ["Alkalize Water","Corrosive Feedback Spray","Toxic Feedback Gust","pH Paralysis","Forgotten Chemistry"],
+    "ultimate" : "Purification Nova",
     "image" : "filter_bot.png",
     "description" : "Master of Filtration",
     "history" : "The humanitarian possibilities could change the world, they speculated... The roboticists at Dynamo Labs needed a field robot that could be deployed anywhere with the capability of providing pure filtration of both water and air. Something eerily human strikes people who interacts with the bot, undoubtedly related to the AI used to develop it which is is still classified."
@@ -34,6 +38,7 @@
     "active" : true,
     "character" : "Geothermal Golem",
     "skills" : ["Heat Breath","Vaporize","Geothermal Vents","Sauna Recovery","Hot Rock Punch"],
+    "ultimate" : "Tectonic Turmoil",
     "image" : "geothermal_golem.png",
     "description" : "Creature of the Crust",
     "history" : "Believed to have originated in yellowstone national park, the Geothermal Golem is a force of nature with the spirit of a grizzly bear defending its cubs: planet earth and its inhabitants. By combining extreme pressure with the earth elements and water, it’s a dangerous force with abilities that strike fear in enemies of the environment."
@@ -42,6 +47,7 @@
     "active" : true,
     "character" : "Natural Ninja",
     "skills" : ["Bamboo Blade","Hemp Net Trap","Sneak in Solidarity","Fermented Stealth Elixer","Obsidian Shuriken"],
+    "ultimate" : "Fermentation Frenzy",
     "image" : "natural_ninja.png",
     "description" : "Silent Sentinal",
     "history" : "The Natural Ninja's history is unknown, but his first believed appearance was in a Tokyo street market performing an act of vigilante environmentalism. Dashing in and out of alley ways, confiscating all non biodegradable shopping bags, the Natural Ninja left only a note hanging from a shuriken stuck in the wall reading 'NO MORE'."
@@ -49,7 +55,8 @@
 {
     "active" : true,
     "character" : "Reuse Bot",
-    "skills" : ["Repurpose Trash","Assemble Drones","Revert to Supplies","Trash Cannon","Reduce, Reuse, Recycle Foe"],
+    "skills" : ["Repurpose Trash","Assemble Drones","Revert to Supplies","Trash Cannon","Uncanny Decoy"],
+    "ultimate" : "Reduce, Reuse, Recycle Foe",
     "image" : "reuse_bot.png",
     "description" : "Reduce, Reuse, Recycle",
     "history" : "The Reuse-bot is the product of a genius kid inventory in New Delhi. He says the concept and blueprints continuously come to him in his dreams from a past life version of himself. The robot is completely autonomous and will actively scavenge and improve it’s form from junk in dumpster and litter on the streets. If it doesn’t need the trash,, a built-in recycling process converts it to something useful."
@@ -57,7 +64,8 @@
 {
     "active" : true,
     "character" : "Timber Terror",
-    "skills" : ["Spawn Saprolings", "Ten Ton Stomp", "Purify by Chlorophyll", "Outgrow and Overpower", "Recursive Regeneration"],
+    "skills" : ["Spawn Saprolings", "Ten Ton Stomp","Outgrow and Overpower", "Rabid Squirrels", "Recursive Regeneration"],
+    "ultimate" : "Purify by Chlorophyll",
     "image" : "timber_terror.png",
     "description" : "Forest Striding Avenger",
     "history" : "The Timber Terror awakened during after the California Fires of 2018. It's believed the energy of the forest manifested itself as the massive treant. Systematically, the wooded walker seems to be taking revenge for the destruction of its homeland by targeting oil and gas executives, factory farms, the military, and other heavy polluters."
@@ -66,6 +74,7 @@
     "active" : true,
     "character" : "Solar Sprite",
     "skills" : ["Concentrated Solar Beam","Solar Shield","Photon Speed","Blinding Flash","EMP Flare"],
+    "ultimate" : "Avatar of the Sun",
     "image" : "solar_sprite.png",
     "description" : "Extra Terrestrial Spirit",
     "history" : "The 4th dimensional Solar Sprite is a complete mystery to the scientific community and much of Earth. She is in the form of a human female sometimes and pure white light others. Her motives seem to be to provide desperate areas on earth with unlimited free solar energy, while actively delaying progress in fracking and coal explorations by temporarily blinding the workers."
@@ -73,7 +82,8 @@
 {
     "active" : true,
     "character" : "Wild Speaker",
-    "skills" : ["Summon Birds","Summon Forest Critters","Commune with Animals","Spirit of the Bear","Spirit of the Tiger"],
+    "skills" : ["Call of the Crows","Assemble the Pack","Commune with the Wilds","Axecution","Resourceful Preparation"],
+    "ultimate" : "Neverending Stampede",
     "image" : "wild_speaker.png",
     "description" : "Summoner of Beasts",
     "history" : "Dirk Mullaney never fit in with society and often prefered the solitude of nature and felt a kinship with animals. During the crisis of 08, in frustration with the misguided priorities of society, Dirk became a hermit living completely in the woods. It is speculated that during this time he developed the remarkable ability to communicate with animals and some even believe he can mirror their spirit."

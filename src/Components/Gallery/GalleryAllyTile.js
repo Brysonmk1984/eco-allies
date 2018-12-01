@@ -35,7 +35,7 @@ export default class GalleryAllyTile extends React.Component{
     }
 
 
-    render(){
+    render(){console.log('!!', this.props.ally);
         return(
             <aside className="ally">
                 <div className="ally-title">

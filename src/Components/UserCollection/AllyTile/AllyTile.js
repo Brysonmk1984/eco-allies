@@ -3,14 +3,24 @@ import React from 'react';
 // LIBRARIES
 import PropTypes from 'prop-types';
 // COMPONENTS
-import VariantBar from './VariantBar';
+import VariantBar from '../VariantBar';
 // COMMON
 import history from '~/common/history';
 import { decodeAlly } from '~/common/crackDna';
 import * as AllyImages from '~/common/includedImages';
-import { lowercaseUnderscore } from '~/common/helperFunctions';
+import { lowercaseDash } from '~/common/helperFunctions';
 // ASSETS
+import './allyTile.scss';
 import fist from '~/assets/images/fist.png';
+import bgAmethyst from '~/assets/images/backgrounds/amethyst_bg.png';
+import bgCitrine from '~/assets/images/backgrounds/citrine_bg.png';
+import bgDiamond from '~/assets/images/backgrounds/diamond_bg.png';
+import bgEmerald from '~/assets/images/backgrounds/emerald_bg.png';
+import bg_fire_opal from '~/assets/images/backgrounds/fire_opal_bg.png';
+import bgOnyx from '~/assets/images/backgrounds/onyx_bg.png';
+import bgRuby from '~/assets/images/backgrounds/ruby_bg.png';
+import bgSapphire from '~/assets/images/backgrounds/sapphire_bg.png';
+import bgTopaz from '~/assets/images/backgrounds/topaz_bg.png';
 
 // COMPONENT
 export default class AllyTile extends React.Component{
@@ -39,6 +49,13 @@ export default class AllyTile extends React.Component{
         });
     }
 
+    determineBackground(color){
+        if(color !== null){
+            return `bg bg-${lowercaseDash(color)}`;
+        }
+        return ''; 
+    }
+
     // When component mounts, decode ally information from the specific DNA passed in as a prop
     // Then set state to fully decoded ally data
     componentDidMount(){
@@ -54,8 +71,8 @@ export default class AllyTile extends React.Component{
                     <h4>{ this.state.allyDescription }</h4>
                 </div>
                 <VariantBar color={this.state.allyColor} alignment={this.state.allyAlignment} sign={this.state.allySign} />
-                <div className="ally-image">
-                    <img src={ this.state.allyImage } onClick={this.navigateToAlly.bind(this)} />
+                <div className={`ally-image`}>
+                    <img className={`${this.determineBackground(this.state.allyColor)}`} src={ this.state.allyImage } onClick={this.navigateToAlly.bind(this)} />
                 </div>
                 <div className="ally-skills">
                     <ul>
