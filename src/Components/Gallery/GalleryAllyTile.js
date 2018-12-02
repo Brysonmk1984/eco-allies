@@ -35,7 +35,7 @@ export default class GalleryAllyTile extends React.Component{
     }
 
 
-    render(){console.log('!!', this.props.ally);
+    render(){
         return(
             <aside className="ally">
                 <div className="ally-title">
@@ -49,6 +49,9 @@ export default class GalleryAllyTile extends React.Component{
                 <div className="ally-skills">
                      <ul>
                         { this.props.ally.skills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
+                        {
+                            <li className="ultimate_ability"><strong>{this.props.ally.ultimate}</strong></li>
+                        }
                     </ul>
                 </div>
                 <div className="ally-history">

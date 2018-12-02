@@ -1,3 +1,4 @@
+@import "../../../assets/scss/variables.scss";
 .bg{
   background-size: 180px 180px;
 }
@@ -27,4 +28,8 @@
 }
 .bg-topaz{
   background-image: url('../../../assets/images/backgrounds/topaz_bg.png');
+}
+.ultimate_ability{
+  color: $emphasisText;
+  text-transform: uppercase;
 }

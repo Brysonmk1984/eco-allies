@@ -252,6 +252,7 @@ function determineAlignment(dna){
             return {value : 'Chaotic Evil', modifier : 10};
     }
 }
+
 // 10, 11 Digits
 function determineColor(dna){
     const substr = parseInt(dna.substring(8,10));
@@ -293,10 +294,88 @@ function determineColor(dna){
 
 }
 
-function determinePower(skillCount, sign, alignment, color){
-    //console.log(skillCount, color);
-    let powerDecimal = (skillCount * .4) + (sign * .1) + (alignment * .2) + (color * .3) ;
-    let power = Math.floor(powerDecimal * 100);
+function determineStoneSignMatch(stone, sign){
+    switch(sign){
+        case ("Aries"):
+            if(stone === 'Diamond'){
+                return true;
+                break;
+            }
+            return false;
+        case ("Taurus"):
+            if(stone === 'Emerald'){
+                return true;
+                break;
+            }
+            return false;
+        case ("Gemini"):
+            if(stone === 'Ruby'){
+                return true;
+                break;
+            }
+            return false;
+        case ("Cancer"):
+            if("Emerald"){
+                return true;
+                break;
+            }
+            return false;
+        case ("Leo"):
+            if(stone === 'Onyx'){
+                return true;
+                break;
+            }
+            return false;
+        case ("Virgo"):
+            if(stone === 'Sapphire'){
+                return true;
+                break;
+            }
+            return false;
+        case ("Libra"):
+            if(stone === 'Fire Opal'){
+                return true;
+                break;
+            }
+            return false;
+        case ("Scorpio"):
+            if(stone === 'Topaz'){
+                return true;
+                break;
+            }
+            return false;
+        case ("Sagittarius"):
+            if(stone === 'Citrine'){
+                return true;
+                break;
+            }
+            return false;
+        case ("Capricorn"):
+            if(stone === 'Ruby'){
+                return true;
+                break;
+            }
+            return false;
+        case ("Aquarius"):
+            if(stone === 'Amethyst'){
+                return true;
+                break;
+            }
+            return false;
+        case ("Pisces"):
+            if(stone === 'Amethyst'){
+                return true;
+                break;
+            }
+            return false;
+        default:
+            return false
+    }
+}
+
+function determinePower(skillCount, sign, alignment, color, hasUltimate, matchingStone){
+    let powerDecimal = (skillCount * .4) + (sign * .1) + (alignment * .2) + (color * .3);
+    let power = Math.floor(powerDecimal * 100) + (hasUltimate ? 100 : 0) + (matchingStone ? 150 : 0);
     return power;
     
 }
@@ -307,7 +386,8 @@ function decodeAlly(dna){
     const skills = determineSkills(dna, basics.character);
     const sign = determineSign(dna);
     const alignment = determineAlignment(dna);
-
+    const matchingStone = determineStoneSignMatch(color.value, sign.value);
+    const hasUltimate = basics.alignment === alignment.value;
     const ally = {
         basics,
         image : `${AllyImages[lowercaseUnderscore(basics.character)]}`,
@@ -315,7 +395,8 @@ function decodeAlly(dna){
         sign : sign.value,
         alignment : alignment.value,
         color : color.value,
-        power : determinePower(skills.length, sign.modifier, alignment.modifier, color.modifier)
+        ultimate : hasUltimate ? basics.ultimate : null,
+        power : determinePower(skills.length, sign.modifier, alignment.modifier, color.modifier, hasUltimate, matchingStone)
     };
 
 

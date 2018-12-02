@@ -35,7 +35,8 @@ export default class AllyTile extends React.Component{
             allySign : '',
             allyAlignment : '',
             allyColor : null,
-            allyPower : 0
+            allyPower : 0,
+            allyUltimate : ''
         }
     }
 
@@ -60,7 +61,7 @@ export default class AllyTile extends React.Component{
     // Then set state to fully decoded ally data
     componentDidMount(){
         const ally = decodeAlly(this.props.dna);
-        this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image, allyId : this.props.id, allySign:ally.sign, allyAlignment:ally.alignment, allyColor:ally.color, allyPower:ally.power}));
+        this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image, allyId : this.props.id, allySign:ally.sign, allyAlignment:ally.alignment, allyColor:ally.color, allyPower:ally.power, allyUltimate: ally.ultimate}));
     }
     
     render(){
@@ -77,6 +78,9 @@ export default class AllyTile extends React.Component{
                 <div className="ally-skills">
                     <ul>
                         { this.state.allySkills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
+                        {
+                            this.state.allyUltimate ? <li className="ultimate_ability"><strong>{this.state.allyUltimate}</strong></li> : null
+                        }
                     </ul>
                 </div>
                 <div className="ally-power">
