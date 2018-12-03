@@ -34,8 +34,6 @@ export default class Gallery extends React.Component{
                         {this.buildAllyList()}
                     </div>
                 </section>
-                <section className="bottom-section">
-                </section>
             </div>
         );
     }

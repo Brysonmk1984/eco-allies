@@ -38,27 +38,27 @@ export default class GalleryAllyTile extends React.Component{
     render(){
         return(
             <aside className="ally">
-                <div className="ally-title">
+                {/* <div className="ally-title">
                     {this.renderTag()}
                     <h4>{ this.props.ally.description }</h4>
-                </div>
+                </div> */}
                 <div className="ally-image">
                     <img src={ AllyImages[lowercaseUnderscore(this.props.ally.character)] }  onClick={this.navigateToAlly.bind(this)} />
                 </div>
                 
-                <div className="ally-skills">
+                {/* <div className="ally-skills">
                      <ul>
                         { this.props.ally.skills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
                         {
                             <li className="ultimate_ability"><strong>{this.props.ally.ultimate}</strong></li>
                         }
                     </ul>
-                </div>
-                <div className="ally-history">
+                </div> */}
+                {/* <div className="ally-history">
                     <p>
                         { this.props.ally.history }
                     </p>
-                </div>
+                </div> */}
                 
             </aside>
         );

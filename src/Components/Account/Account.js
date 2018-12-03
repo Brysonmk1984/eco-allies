@@ -75,8 +75,6 @@ export default class Account extends React.Component{
                     </div> */}
           
                 </section>
-                <section className="bottom-section">
-                </section>
             </div>
         );
     }

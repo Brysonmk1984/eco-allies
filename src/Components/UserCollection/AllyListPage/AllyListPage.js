@@ -36,8 +36,6 @@ export default class UserCollection extends React.Component{
                         {this.buildAllyList()}
                     </div>
                 </section>
-                <section className="bottom-section">
-                </section>
                 <AddModal buildAlly={this.props.buildAlly.bind(this)} />
             </div>
         );

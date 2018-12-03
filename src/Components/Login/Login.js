@@ -137,8 +137,6 @@ export default class Login extends React.Component{
                         </div>
                     </form>
                 </section>
-                <section className="bottom-section">
-                </section>
             </div>
         );
     }

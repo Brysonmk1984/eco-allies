@@ -157,8 +157,6 @@ export default class Register extends React.Component{
                         </div>
                     </form>
                 </section>
-                <section className="bottom-section">
-                </section>
             </div>
         );
     }

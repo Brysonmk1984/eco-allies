@@ -67,15 +67,15 @@ export default class AllyTile extends React.Component{
     render(){
         return(
             <aside className="ally">
-                <div className="ally-title">
+                {/* <div className="ally-title">
                     <h3>{this.state.allyName}</h3>
                     <h4>{ this.state.allyDescription }</h4>
                 </div>
-                <VariantBar color={this.state.allyColor} alignment={this.state.allyAlignment} sign={this.state.allySign} />
+                <VariantBar color={this.state.allyColor} alignment={this.state.allyAlignment} sign={this.state.allySign} /> */}
                 <div className={`ally-image`}>
                     <img className={`${this.determineBackground(this.state.allyColor)}`} src={ this.state.allyImage } onClick={this.navigateToAlly.bind(this)} />
                 </div>
-                <div className="ally-skills">
+                {/* <div className="ally-skills">
                     <ul>
                         { this.state.allySkills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
                         {
@@ -85,7 +85,7 @@ export default class AllyTile extends React.Component{
                 </div>
                 <div className="ally-power">
                     <img className="fist" src={fist} /> <strong>{this.state.allyPower}</strong>
-                </div>
+                </div> */}
             </aside>
         );
     }
