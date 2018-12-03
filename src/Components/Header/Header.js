@@ -11,6 +11,10 @@ import './header.scss';
 const Header = (props) => (
     <header>
         <Nav handleLogin={props.handleLogin}  loggedIn={props.loggedIn} />
+        <div className="brand">
+            <h1>ECO ALLIES</h1>
+            <p>Defenders of Gaia</p>
+        </div>
     </header>
 );
 

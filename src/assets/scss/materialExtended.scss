@@ -1,7 +1,7 @@
 @import "./variables.scss";
 
 .btn, .btn-large, .btn-small{
-    background-color: $secondaryBackground;
+    background-color: transparent;
     &.btn-reverse{
         background-color: $primaryBackground;
         border:solid 1px $tertiaryBackground;

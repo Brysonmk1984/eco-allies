@@ -6,7 +6,7 @@ import './footer.scss';
 // COMPONENT
 const Footer = () => (
     <footer className="center-align">
-        <div>
+        <div className="footer_content">
             <strong>&copy; Bryson Kruk Design & Development</strong><br />
             <a href="htttp://brysonkruk.com" >www.brysonkruk.com</a>
         </div>

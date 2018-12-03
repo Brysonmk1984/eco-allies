@@ -28,13 +28,7 @@ export default class Gallery extends React.Component{
     render(){
         return(
             <div className="page-wrapper gallery-list-page">
-                <section className="title-section">
-                    <div className="subsection">
-                        <h1>ECO ALLIES</h1>
-                        <p>Defenders of Gaia</p>
-                        
-                    </div>
-                </section>
+                
                 <section className="ally-section">
                     <div className="subsection">
                         {this.buildAllyList()}

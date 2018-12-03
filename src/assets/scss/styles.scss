@@ -1,11 +1,21 @@
 @import "./variables.scss";
 
 @font-face {
-    font-family: 'Avenir';
-    src : url('/assets/fonts/Avenir.woff') format('woff');
+    font-family: 'Avenir-Medium';
+    src : url('../fonts/Avenir-Medium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-  }
+}
+@font-face {
+    font-family: 'Futura-Medium';
+    src : url('../fonts/Futura-Medium.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Futura-Bold';
+    src : url('../fonts/Futura-Bold.ttf') format('ttf');
+}
 
 body, html{
     margin:0px;
@@ -16,11 +26,7 @@ body, html{
 
 
 div.route-wrapper {
-    h1{
-        text-transform:uppercase;
-        font-size:8em;
-        color: $mediumText;
-    }
+    background-image: url("../images/layout/grunge.jpg");
     h2{
         font-size:2em;
         text-transform:uppercase;
@@ -46,7 +52,7 @@ div.route-wrapper {
     }
     section{
         &.title-section{
-            background-color: $secondaryBackground;
+            
             h1{
                 margin-bottom:0px;
                 margin-top:0px;
