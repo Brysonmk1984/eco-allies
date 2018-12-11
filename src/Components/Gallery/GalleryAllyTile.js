@@ -23,6 +23,10 @@ export default class GalleryAllyTile extends React.Component{
         });
     }
 
+    toggleActiveAlly(){
+        this.props.toggleActiveAlly(this.props.ally);
+    }
+
     renderTag(){
        
             // if(lowercaseUnderscore(this.props.ally.character) === 'filter_bot'){ 
@@ -43,7 +47,7 @@ export default class GalleryAllyTile extends React.Component{
                     <h4>{ this.props.ally.description }</h4>
                 </div> */}
                 <div className="ally-image">
-                    <img src={ AllyImages[lowercaseUnderscore(this.props.ally.character)] }  onClick={this.navigateToAlly.bind(this)} />
+                    <img src={ AllyImages[lowercaseUnderscore(this.props.ally.character)] }  onClick={this.toggleActiveAlly.bind(this)} />
                 </div>
                 
                 {/* <div className="ally-skills">

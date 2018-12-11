@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Nav from './Nav';
 // ASSETS
 import './header.scss';
+import beltBuckle from '~/assets/images/layout/belt_buckle.png';
 
 // COMPONENT
 const Header = (props) => (
@@ -14,6 +15,9 @@ const Header = (props) => (
         <div className="brand">
             <h1>ECO ALLIES</h1>
             <p>Defenders of Gaia</p>
+        </div>
+        <div className="belt">
+            {/* <img className="belt_buckle" src={beltBuckle} /> */}
         </div>
     </header>
 );
