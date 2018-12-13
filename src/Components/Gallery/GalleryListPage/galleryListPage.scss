@@ -93,10 +93,18 @@ div.page-wrapper.gallery-list-page{
                 z-index: -1;
                 filter: blur(20px);
             }
+            img{
+                cursor: pointer;
+            }
         }
         #featureModalContent{
             flex: 1;
-            background-color: green;
+            background-color:black;
+            overflow-y: visible;
+            &.timber_terror{
+                background-image: url('../../../assets/images/layout/modal/timber_terror_bg.png');
+                background-size: 100%;
+            }
         }
     }
     #openModalButton{

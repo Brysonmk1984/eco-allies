@@ -24,7 +24,7 @@ export default class GalleryAllyTile extends React.Component{
     }
 
     toggleActiveAlly(){
-        this.props.toggleActiveAlly(this.props.ally);
+        this.props.openModal(this.props.ally);
     }
 
     renderTag(){

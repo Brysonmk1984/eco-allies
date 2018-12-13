@@ -21,6 +21,9 @@ body, html{
     margin:0px;
     padding:0px;
     font-family: 'Avenir', Helvetica, sans-serif;
+    .jw-modal-open{
+        overflow: hidden;
+    }
 }
 
 
