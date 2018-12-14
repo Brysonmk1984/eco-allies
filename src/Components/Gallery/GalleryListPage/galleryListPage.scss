@@ -80,10 +80,10 @@ div.page-wrapper.gallery-list-page{
             
             background-color:transparent;
             text-align:center;
-            z-index: 10;
+            z-index: 0;
             height: 50vh;
             #allyHighlight{
-                display:none;
+                //display:none;
                 position: absolute;
                 top:50px;
                 left: 50%;
@@ -106,6 +106,7 @@ div.page-wrapper.gallery-list-page{
             background-color:$veryDarkBackground;
             overflow-y: visible;
             position: relative;
+            background-size:100%;
             h2{
                 font-size: 4em;
                 font-family: 'Futura', 'Avenir', 'Helvetica', serif;
@@ -142,9 +143,6 @@ div.page-wrapper.gallery-list-page{
                     content: "\263A ";
                     font-size: 1.2em;
                 }
-            }
-            &.timber_terror{
-                background: url('../../../assets/images/layout/modal/timber_terror_bg.jpg');
             }
             #contentBody{
                 display:flex;

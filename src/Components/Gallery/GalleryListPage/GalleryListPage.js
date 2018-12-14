@@ -9,6 +9,7 @@ import history from '~/common/history';
 import allyList from '~/common/allyList.json';
 import {shuffleArray} from '~/common/helperFunctions';
 import * as AllyImages from '~/common/includedImages';
+import * as AllyBackgrounds from '~/common/includedBackgrounds';
 import { lowercaseUnderscore, lowercaseDash } from '~/common/helperFunctions';
 // ASSETS
 import './galleryListPage.scss';
@@ -63,7 +64,7 @@ export default class Gallery extends React.Component{
                     <img src={ AllyImages[lowercaseUnderscore(a.character)] } onClick={this.navigateToAllyPage.bind(this)}  />
                     <div id="allyHighlight"></div>
                 </div>
-                <div id="featureModalContent" className="timber_terror">
+                <div id="featureModalContent" style={ {backgroundImage: `url(${AllyBackgrounds[lowercaseUnderscore(a.character)]})`} }>
                     <h2 style={ {backgroundColor : a.colors[0], color : a.colors[1] } }>{a.character}</h2>
                     <h3 style={ {backgroundColor : a.colors[2], color : a.colors[3] } }>{ a.description }</h3>
                     <div id="contentBody">

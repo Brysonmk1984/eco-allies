@@ -6,7 +6,8 @@
     "alignment" : "Chaotic Neutral",
     "image" : "chrono_guy.png",
     "description" : "Time Traveling Renegade",
-    "history" : "The mysterious time traveller known as Chrono Guy is as powerful as he is enigmatic. While he himself has explained publically that he’s from a few hundred years in the future and here to ‘maintain the timeline of order’, it’s unclear what his exact motives are, who he works for and what the implications are of his very existence."
+    "history" : "The mysterious time traveller known as Chrono Guy is as powerful as he is enigmatic. While he himself has explained publically that he’s from a few hundred years in the future and here to ‘maintain the timeline of order’, it’s unclear what his exact motives are, who he works for and what the implications are of his very existence.",
+    "colors" : ["#000000", "#FFFFFF", "#B09953", "#D9CB9F", "#999017"]
 },
 {
     "active" : true,
