@@ -56,26 +56,36 @@ export default class Gallery extends React.Component{
 
 
     renderAllyModal(){
-        if(this.state.activeAlly){
+        const a = this.state.activeAlly;
+        if(a){
             return <JwModal id="jw-modal-1">
                 <div id="featureModalAlly" onClick={this.closeModal.bind(this)}>
-                    <img src={ AllyImages[lowercaseUnderscore(this.state.activeAlly.character)] } onClick={this.navigateToAllyPage.bind(this)}  />
+                    <img src={ AllyImages[lowercaseUnderscore(a.character)] } onClick={this.navigateToAllyPage.bind(this)}  />
                     <div id="allyHighlight"></div>
                 </div>
                 <div id="featureModalContent" className="timber_terror">
-                    <h2>{this.state.activeAlly.character}</h2>
-                    <h3>{ this.state.activeAlly.description }</h3>
-                    <h4>Abilities</h4>
-                    <ul>
-                        <li>{ this.state.activeAlly.ultimate }</li>
-                        { this.state.activeAlly.skills.map((s, i) =>{
-                            return <li key={i}>{ s }</li>
-                        }) }
-                    </ul>
-                    <h4>Natural Alignment</h4>
-                    <p>
-                        { this.state.activeAlly.history }
-                    </p>
+                    <h2 style={ {backgroundColor : a.colors[0], color : a.colors[1] } }>{a.character}</h2>
+                    <h3 style={ {backgroundColor : a.colors[2], color : a.colors[3] } }>{ a.description }</h3>
+                    <div id="contentBody">
+                        <div id="attributes">
+                            <h4 style={ {color : a.colors[3], borderBottom: `solid 2px ${a.colors[3]}`  } }>Abilities</h4>
+                            <ul id="abilities">
+                                <li id="ultimateAbility"  style={ {color : a.colors[4], fontWeight : 'bold'} }><span>{ a.ultimate }</span></li>
+                                { a.skills.map((s, i) =>{
+                                    return <li className="regular_ability" key={i}  style={ {color : a.colors[1] } }><span style={{paddingLeft : '4px'}}>{ s }</span></li>
+                                }) }
+                            </ul>
+                            <h4 style={ {color : a.colors[3],  borderBottom: `solid 2px ${a.colors[3]}`  } }>Natural Alignment</h4>
+                            <ul id="naturalAlignment" >
+                                <li style={ {color : a.colors[1]} }>{ a.alignment }</li>
+                            </ul>
+                        </div>
+                        <p id="history" style={ {color : a.colors[4] } }>
+                            { a.history }
+                        </p>
+                        <img id="allyKO" src={ AllyImages[`${lowercaseUnderscore(a.character)}_ko`] } />
+                    </div>
+                    
                 </div>
                 <button id="closeModalButton" onClick={JwModal.close('jw-modal-1')}>Close</button>
                 <button id="openModalButton" onClick={JwModal.open('jw-modal-1')}>Open JW Modal 1</button>

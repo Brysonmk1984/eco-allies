@@ -76,7 +76,8 @@
     "alignment" : "Chaotic Good",
     "image" : "timber_terror.png",
     "description" : "Forest Striding Avenger",
-    "history" : "The Timber Terror awakened during after the California Fires of 2018. It's believed the energy of the forest manifested itself as the massive treant. Systematically, the wooded walker seems to be taking revenge for the destruction of its homeland by targeting oil and gas executives, factory farms, the military, and other heavy polluters."
+    "history" : "The Timber Terror awakened during after the California Fires of 2018. It's believed the energy of the forest manifested itself as the massive treant. Systematically, the wooded walker seems to be taking revenge for the destruction of its homeland by targeting oil and gas executives, factory farms, the military, and other heavy polluters.",
+    "colors" : ["#000000", "#FFFFFF", "#B09953", "#D9CB9F", "#999017"]
 },
 {
     "active" : true,

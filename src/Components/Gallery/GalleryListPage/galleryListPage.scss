@@ -77,11 +77,13 @@ div.page-wrapper.gallery-list-page{
         flex-direction: column;
         background-color: transparent !important;
         #featureModalAlly{
-            flex: 1.5;
+            
             background-color:transparent;
             text-align:center;
             z-index: 10;
+            height: 50vh;
             #allyHighlight{
+                display:none;
                 position: absolute;
                 top:50px;
                 left: 50%;
@@ -89,25 +91,91 @@ div.page-wrapper.gallery-list-page{
                 border-radius: 50%;
                 width:400px;
                 height:400px;
+                max-height: 70%;
                 background-image: radial-gradient( white, transparent);
                 z-index: -1;
                 filter: blur(20px);
             }
             img{
+                max-height: 100%;
                 cursor: pointer;
             }
         }
         #featureModalContent{
-            flex: 1;
-            background-color:black;
+            flex: 1.5;
+            background-color:$veryDarkBackground;
             overflow-y: visible;
-            &.timber_terror{
-                background-image: url('../../../assets/images/layout/modal/timber_terror_bg.png');
-                background-size: 100%;
+            position: relative;
+            h2{
+                font-size: 4em;
+                font-family: 'Futura', 'Avenir', 'Helvetica', serif;
+                text-transform: uppercase;
+                padding: 10px 20px;
+                margin: 0px;
+                text-align:right;
+                clip-path: polygon(0% 0%, 100% 0%, 100% 100%,  20% 100%, 0% 0%);
             }
+            h3{
+                font-size: 3em;
+                font-family: 'Futura', 'Avenir', 'Helvetica', serif;
+                padding: 5px 20px 60px;
+                margin: 0px;
+                float:right;
+                text-align:right;
+                clip-path: polygon(0% 0%, 100% 0%, 100% 50%,  0% 100%, 0% 0%); 
+            }
+            ul#abilities{
+                margin-left: 20px;
+                li#ultimateAbility:before {
+                    content: "\2605 ";
+                }
+                li.regular_ability:before {
+                    content: "\25CF ";
+                    font-size: 1.2em;
+                }
+                
+              
+            }
+            ul#naturalAlignment{
+                margin-left: 20px;
+                li:before {
+                    content: "\263A ";
+                    font-size: 1.2em;
+                }
+            }
+            &.timber_terror{
+                background: url('../../../assets/images/layout/modal/timber_terror_bg.jpg');
+            }
+            #contentBody{
+                display:flex;
+                width:100%;
+                margin-top: -100px;
+                float:left;
+                padding:20px;
+                position: relative;
+                z-index: 0;
+                #attributes{
+                    flex: 1;
+                    padding-right:200px;
+                }
+                #history{
+                    margin-top:100px;
+                    padding: 20px 0px 20px 100px;
+                    text-align:justify;
+                    flex: 1;
+                    font-size: 1.2 rem;
+                }
+                #allyKO{
+                   position:absolute;
+                   height:95%;
+                   left:20%;
+                   z-index: -1;
+                }
+            }
+            
         }
     }
-    #openModalButton{
+    #openModalButton, #closeModalButton{
         display:none;
     }
 }

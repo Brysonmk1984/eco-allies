@@ -14,4 +14,6 @@ import wild_speaker from '~/assets/images/wild_speaker.png';
 import the_empath from '~/assets/images/the_empath.png';
 import reuse_bot from '~/assets/images/reuse_bot.png';
 
-export {filter_bot,solar_sprite,geothermal_golem,compost_creature,chrono_guy,natural_ninja,timber_terror,wild_speaker,the_empath,reuse_bot};
+import timber_terror_ko from '~/assets/images/allies/timber_terror_ko.png';
+
+export {filter_bot,solar_sprite,geothermal_golem,compost_creature,chrono_guy,natural_ninja,timber_terror,wild_speaker,the_empath,reuse_bot, timber_terror_ko};
