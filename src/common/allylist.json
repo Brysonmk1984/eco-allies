@@ -7,7 +7,7 @@
     "image" : "chrono_guy.png",
     "description" : "Time Traveling Renegade",
     "history" : "The mysterious time traveller known as Chrono Guy is as powerful as he is enigmatic. While he himself has explained publically that he’s from a few hundred years in the future and here to ‘maintain the timeline of order’, it’s unclear what his exact motives are, who he works for and what the implications are of his very existence.",
-    "colors" : ["#000000", "#FFFFFF", "#B09953", "#D9CB9F", "#999017"]
+    "colors" : ["#000000", "#FFFFFF", "#2E2B29", "#7E7E82", "#E25926"]
 },
 {
     "active" : true,
@@ -47,7 +47,8 @@
     "alignment" : "True Neutral",
     "image" : "geothermal_golem.png",
     "description" : "Creature of the Crust",
-    "history" : "Believed to have originated in yellowstone national park, the Geothermal Golem is a force of nature with the spirit of a grizzly bear defending its cubs: planet earth and its inhabitants. By combining extreme pressure with the earth elements and water, it’s a dangerous force with abilities that strike fear in enemies of the environment."
+    "history" : "Believed to have originated in yellowstone national park, the Geothermal Golem is a force of nature with the spirit of a grizzly bear defending its cubs: planet earth and its inhabitants. By combining extreme pressure with the earth elements and water, it’s a dangerous force with abilities that strike fear in enemies of the environment.",
+    "colors" : ["#000000", "#FFFFFF", "#6E4520","#986435", "#F8E71C"]
 },
 {
     "active" : true,
@@ -67,7 +68,8 @@
     "alignment" : "Lawful Good",
     "image" : "reuse_bot.png",
     "description" : "Reduce, Reuse, Recycle",
-    "history" : "The Reuse-bot is the product of a genius kid inventory in New Delhi. He says the concept and blueprints continuously come to him in his dreams from a past life version of himself. The robot is completely autonomous and will actively scavenge and improve it’s form from junk in dumpster and litter on the streets. If it doesn’t need the trash,, a built-in recycling process converts it to something useful."
+    "history" : "The Reuse-bot is the product of a genius kid inventory in New Delhi. He says the concept and blueprints continuously come to him in his dreams from a past life version of himself. The robot is completely autonomous and will actively scavenge and improve it’s form from junk in dumpster and litter on the streets. If it doesn’t need the trash,, a built-in recycling process converts it to something useful.",
+    "colors" : ["#000000", "#FFFFFF", "#5B5B5B","#D3E070", "#D3E070"]
 },
 {
     "active" : true,
