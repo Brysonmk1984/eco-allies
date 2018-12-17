@@ -17,7 +17,8 @@
     "alignment" : "True Neutral",
     "image" : "compost_creature.png",
     "description" : "Animated Bio Decay",
-    "history" : "Compost Creature was initially a bioengineering experiment gone wrong, but gone right for humanity. While it appears quite terrifying and has a scent that can literally cause nerve damage, it seems to maintain convictions of preserving of the environment and improving soil health. Interestingly, it becomes incredibly hostile around plastics."
+    "history" : "Compost Creature was initially a bioengineering experiment gone wrong, but gone right for humanity. While it appears quite terrifying and has a scent that can literally cause nerve damage, it seems to maintain convictions of preserving of the environment and improving soil health. Interestingly, it becomes incredibly hostile around plastics.",
+    "colors" : ["#000000", "#FFFFFF", "#253A33", "#786C1C", "#F2EC99"]
 },
 {
     "active" : true,
@@ -27,7 +28,8 @@
     "alignment" : "Chaotic Good",
     "image" : "the_empath.png",
     "description" : "Abundance Bringer",
-    "history" : "Nora Kinsmen, aka The Empath lived a hard life of abuse growing up, yet always seemed to have room in her heart for others. She took their burdens and emotionally made them her own. While nobel, this also left her in a state of being continuously drained of energy. It hasn’t been until recently that she was able to remain fully present for any experience while maintaining her inner balance."
+    "history" : "Nora Kinsmen, aka The Empath lived a hard life of abuse growing up, yet always seemed to have room in her heart for others. She took their burdens and emotionally made them her own. While nobel, this also left her in a state of being continuously drained of energy. It hasn’t been until recently that she was able to remain fully present for any experience while maintaining her inner balance.",
+    "colors" : ["#000000", "#FFFFFF", "#7D0110", "#F97888", "#F9F18E"]
 },
 {
     "active" : true,
@@ -37,7 +39,8 @@
     "alignment" : "Neutral Good",
     "image" : "filter_bot.png",
     "description" : "Master of Filtration",
-    "history" : "The humanitarian possibilities could change the world, they speculated... The roboticists at Dynamo Labs needed a field robot that could be deployed anywhere with the capability of providing pure filtration of both water and air. Something eerily human strikes people who interacts with the bot, undoubtedly related to the AI used to develop it which is is still classified."
+    "history" : "The humanitarian possibilities could change the world, they speculated... The roboticists at Dynamo Labs needed a field robot that could be deployed anywhere with the capability of providing pure filtration of both water and air. Something eerily human strikes people who interacts with the bot, undoubtedly related to the AI used to develop it which is is still classified.",
+    "colors" : ["#000000", "#FFFFFF", "#606061", "#D8D8D8", "#FF0000"]
 },
 {
     "active" : true,
@@ -58,7 +61,8 @@
     "alignment" : "Chaotic Neutral",
     "image" : "natural_ninja.png",
     "description" : "Silent Sentinal",
-    "history" : "The Natural Ninja's history is unknown, but his first believed appearance was in a Tokyo street market performing an act of vigilante environmentalism. Dashing in and out of alley ways, confiscating all non biodegradable shopping bags, the Natural Ninja left only a note hanging from a shuriken stuck in the wall reading 'NO MORE'."
+    "history" : "The Natural Ninja's history is unknown, but his first believed appearance was in a Tokyo street market performing an act of vigilante environmentalism. Dashing in and out of alley ways, confiscating all non biodegradable shopping bags, the Natural Ninja left only a note hanging from a shuriken stuck in the wall reading 'NO MORE'.",
+    "colors" : ["#000000", "#FFFFFF", "#989E91","#787D72", "#B5BDAD"]
 },
 {
     "active" : true,
@@ -90,7 +94,8 @@
     "alignment" : "Lawful Neutral",
     "image" : "solar_sprite.png",
     "description" : "Extra Terrestrial Spirit",
-    "history" : "The 4th dimensional Solar Sprite is a complete mystery to the scientific community and much of Earth. She is in the form of a human female sometimes and pure white light others. Her motives seem to be to provide desperate areas on earth with unlimited free solar energy, while actively delaying progress in fracking and coal explorations by temporarily blinding the workers."
+    "history" : "The 4th dimensional Solar Sprite is a complete mystery to the scientific community and much of Earth. She is in the form of a human female sometimes and pure white light others. Her motives seem to be to provide desperate areas on earth with unlimited free solar energy, while actively delaying progress in fracking and coal explorations by temporarily blinding the workers.",
+    "colors" : ["#000000", "#FFFFFF", "#F7CF8D", "#FFF685", "#F8E71C"]
 },
 {
     "active" : true,
@@ -100,7 +105,8 @@
     "alignment" : "Lawful Good",
     "image" : "wild_speaker.png",
     "description" : "Summoner of Beasts",
-    "history" : "Dirk Mullaney never fit in with society and often prefered the solitude of nature and felt a kinship with animals. During the crisis of 08, in frustration with the misguided priorities of society, Dirk became a hermit living completely in the woods. It is speculated that during this time he developed the remarkable ability to communicate with animals and some even believe he can mirror their spirit."
+    "history" : "Dirk Mullaney never fit in with society and often prefered the solitude of nature and felt a kinship with animals. During the crisis of 08, in frustration with the misguided priorities of society, Dirk became a hermit living completely in the woods. It is speculated that during this time he developed the remarkable ability to communicate with animals and some even believe he can mirror their spirit.",
+    "colors" : ["#000000", "#FFFFFF", "#523B26", "#A3A59B", "#9A6247"]
 },
 {
     "active" : false,
