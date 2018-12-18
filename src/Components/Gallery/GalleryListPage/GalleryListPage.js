@@ -65,8 +65,10 @@ export default class Gallery extends React.Component{
                     <div id="allyHighlight"></div>
                 </div>
                 <div id="featureModalContent" style={ {backgroundImage: `url(${AllyBackgrounds[lowercaseUnderscore(a.character)]})`} }>
-                    <h2 style={ {backgroundColor : a.colors[0], color : a.colors[1] } }>{a.character}</h2>
-                    <h3 style={ {backgroundColor : a.colors[2], color : a.colors[3] } }>{ a.description }</h3>
+                    <div id="contentTitle">
+                        <h2 style={ {backgroundColor : a.colors[0], color : a.colors[1] } }>{a.character}</h2>
+                        <h3 style={ {backgroundColor : a.colors[2], color : a.colors[3] } }>{ a.description }</h3>
+                    </div>
                     <div id="contentBody">
                         <div id="attributes">
                             <h4 style={ {color : a.colors[3], borderBottom: `solid 2px ${a.colors[3]}`  } }>Abilities</h4>

@@ -27,7 +27,6 @@ body, html{
 }
 
 
-
 div.route-wrapper {
     background-image: url("../images/layout/grunge.jpg");
     h2{
@@ -91,4 +90,241 @@ div.route-wrapper {
         }
     }
 }
+// MODAL
+.jw-modal{
+    position: relative;
+    .jw-modal-body{
+        margin:0px !important;
+        padding: 0px !important;
+        position:absolute;
+        bottom:0px;
+        width:100%;
+        height:100%;
+        display: flex;
+        flex-direction: column;
+        background-color: transparent !important;
+        #featureModalAlly{
+            
+            background-color:transparent;
+            text-align:center;
+            z-index: 0;
+            height: 50vh;
+            #allyHighlight{
+                position: absolute;
+                top:50px;
+                left: 50%;
+                margin-left: -200px;
+                border-radius: 50%;
+                width:400px;
+                height:400px;
+                max-height: 70%;
+                background-image: radial-gradient( white, transparent);
+                z-index: -1;
+                filter: blur(20px);
+            }
+            img{
+                max-height: 100%;
+                max-width:100%;
+                cursor: pointer;
+            }
+        }
+        #featureModalContent{
+            flex: 1.5;
+            background-color:$veryDarkBackground;
+            overflow-y: visible;
+            position: relative;
+            background-size:auto;
+            background-repeat:no-repeat;
+            background-position-y:0%;
+            #contentTitle{
+                display:block;
+                text-align:right;
+                h2{
+                    font-size: 4em;
+                    font-family: 'Futura', 'Avenir', 'Helvetica', serif;
+                    text-transform: uppercase;
+                    padding: 10px 20px;
+                    margin: 0px;
+                    clip-path: polygon(0% 0%, 100% 0%, 100% 100%,  20% 100%, 0% 0%);
+                }
+                h3{
+                    display:inline-block;
+                    font-size: 3em;
+                    font-family: 'Futura', 'Avenir', 'Helvetica', serif;
+                    padding: 5px 20px 60px;
+                    margin: 0px;
+                    clip-path: polygon(0% 0%, 100% 0%, 100% 50%,  0% 100%, 0% 0%); 
+                }
+            }
+            ul#abilities{
+                margin-left: 20px;
+                li#ultimateAbility:before {
+                    content: "\2605 ";
+                }
+                li.regular_ability:before {
+                    content: "\25CF ";
+                    font-size: 1.2em;
+                }
+                
+              
+            }
+            ul#naturalAlignment{
+                margin-left: 20px;
+                li:before {
+                    content: "\263A ";
+                    font-size: 1.2em;
+                }
+            }
+            #contentBody{
+                display:flex;
+                flex-direction: column-reverse;
+                justify-content: space-between;
+                width:100%;
+                max-width:1024px;
+                margin:-100px auto 0px;
+                padding:20px;
+                position: relative;
+                z-index: 0;
+                #attributes{
+                   
+                }
+                #history{
+                    margin-top:100px;
+                    text-align:justify;
+                    font-size: 1.2 rem;
+                }
+                #allyKO{
+                   position:absolute;
+                   left:0px;
+                   z-index: -1;
+                   width:100%;
+                }
+            }
+            
+        }
+    }
+    #openModalButton, #closeModalButton{
+        display:none;
+    }
+}
 
+
+  
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+    .jw-modal .jw-modal-body #featureModalContent {
+    
+        #contentBody {
+            #attributes{
+                text-align:center;
+            }
+            #allyKO{
+                width: 70%;
+                left: 35%;
+                margin-left: -117px;
+            }
+        }
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+    .jw-modal{
+        .jw-modal-body{
+            #featureModalAlly{
+                #allyHighlight{
+                }
+                img{
+
+                }
+            }
+            #featureModalContent{
+                background-size:100%;
+                #contentTitle{
+                    h2{
+
+                    }
+                    h3{
+
+                    }
+                }
+                #contentBody{
+                    flex-direction: row;
+                    justify-content: space-between;
+                    width:100%;
+                    max-width:1024px;
+                    #attributes{
+                        text-align:left;
+                        width:40%;
+                    }
+                    #history{
+                        width:40%;
+                    }
+                    #allyKO{
+                       height:95%;
+                       width:auto;
+                    }
+                }
+                
+            }
+        }
+        #openModalButton, #closeModalButton{
+            display:none;
+        }
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+    
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+
+}
+
+// Laptop size (low height)
+@media (max-height: 800px) { 
+    .jw-modal{
+
+        .jw-modal-body{
+            #featureModalAlly{
+                height: 30vh;
+                #allyHighlight{
+                    top:0%;
+                    left: 50%;
+                    margin-left: -100px;
+                    border-radius: 50%;
+                    width:200px;
+                    height:200px;
+                    max-height: 70%;
+                    background-image: radial-gradient( white, transparent);
+                    z-index: -1;
+                    filter: blur(20px);
+                }
+                img{
+                }
+            }
+            #featureModalContent{
+                #contentTitle{
+                   
+                }
+                ul#abilities{
+                }
+                ul#naturalAlignment{
+                }
+                #contentBody{
+                    #attributes{
+                       
+                    }
+                    #history{
+                    }
+                    #allyKO{
+                    }
+                }
+                
+            }
+        }
+    }
+}
