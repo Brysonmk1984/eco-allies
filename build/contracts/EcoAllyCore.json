@@ -503,10 +503,10 @@
           }
         ],
         "contractDependencies": [
-          299,
-          804,
+          60,
           144,
-          60
+          299,
+          804
         ],
         "contractKind": "contract",
         "documentation": "@title EcoAllies: Collectable Environmental super heroes  on the Ethereum blockchain.\n @author Bryson Kruk Design and Development\n @dev The main EcoAllies Contract, keeps track of all allies.",
@@ -2221,10 +2221,10 @@
           }
         ],
         "contractDependencies": [
-          299,
-          804,
+          60,
           144,
-          60
+          299,
+          804
         ],
         "contractKind": "contract",
         "documentation": "@title EcoAllies: Collectable Environmental super heroes  on the Ethereum blockchain.\n @author Bryson Kruk Design and Development\n @dev The main EcoAllies Contract, keeps track of all allies.",
@@ -3899,10 +3899,10 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x60a90d036fa774008b4ba2eb917307d4a72d875d",
-      "transactionHash": "0x4ee02c29592e4403ee0beb8738f7db9066e39cdbac4fd34b453c0d1441dd5d78"
+      "address": "0x0d0ea2e7b2cdb019aa959ae7a91443df503a1aa9",
+      "transactionHash": "0xbe0e78c04effe6744d2eb95959431ee1b04945f9aef85f1d38a81ba12d933184"
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-12-01T21:04:01.263Z"
+  "updatedAt": "2018-12-19T00:25:12.067Z"
 }

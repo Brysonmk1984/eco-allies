@@ -5,8 +5,6 @@
 div.page-wrapper.about-page{
     display:grid;
     grid-template-columns: auto;
-    grid-template-rows: 2fr 1fr 1fr;
-    height:200vh;
     justify-items:stretch;
     
     // Children of the Div above
@@ -14,11 +12,10 @@ div.page-wrapper.about-page{
         // But also it's own grid
         display:grid;
         place-items:center;
-
+        padding:40px 0px;
         &.title-section{
             background-color:$secondaryBackground;
             grid-template-rows: 1.5fr 1fr 1fr;
-            height:100vh;
             place-items:center;
         p{
             color:$mediumText;
@@ -39,19 +36,13 @@ div.page-wrapper.about-page{
             background-color:$primaryBackground;
         }
         &.about-section{
-
             background-color:$secondaryBackground;
         }
 
         > div.subsection{
             width:80%;
             text-align:center;
-            &:first-child{
-                align-self:flex-end;
-            }
-            &:last-child{
-                align-self:flex-start;
-            }
+     
         }
     }
 

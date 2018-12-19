@@ -26,7 +26,7 @@ const About = () => (
         <section className="ally-section">
             <div className="subsection">
                 <h2>Eco Ally</h2>
-                <h3>A Defender of Gaea</h3>
+                <h3>A Defender of Gaia</h3>
             </div>
             <div className="subsection">
                 <p>An Eco Ally is a unique collectable that cannot be replicated, taken away, or destroyed. They fight for our real life environment through actions you take, such as using a reusable grocery bag. It’s through this collective effort that we will help out Eco Allies defend our home, Gaea.</p>

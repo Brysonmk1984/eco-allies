@@ -30,18 +30,21 @@ body, html{
 div.route-wrapper {
     background-image: url("../images/layout/grunge.jpg");
     h2{
-        font-size:2em;
+        font-family: 'Futura','Avenir', Helvetica, sans-serif;
+        font-size:3em;
+        padding:0px 0px 20px;
         text-transform:uppercase;
         color: $mediumText;
         text-align:center;
         border-bottom:solid 1px $primaryBorder;
     }
     h3{
+        font-family: 'Avenir', Helvetica, sans-serif;
         text-transform:uppercase;
-        font-size:3em;
+        font-size:1.5em;
         color: $darkText;
-        border-bottom:solid 1px $primaryBorder;
-        padding-bottom:10px;
+        padding:0px;
+  
     }
     h4{
         text-transform:uppercase;
@@ -51,6 +54,7 @@ div.route-wrapper {
     }
     p{
         font-size:1.0em;
+        margin-bottom:40px;
     }
     section{
         &.title-section{

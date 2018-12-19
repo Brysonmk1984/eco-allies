@@ -6,11 +6,12 @@ div.page-wrapper.form-page{
     grid-template-rows: auto auto auto 220px;
     min-height:95vh;
     place-items: stretch;
-    
+    background: $secondaryBackground;
     section{
         &.title-section{
             background-color: $secondaryBackground;
             text-align: center;
+            margin-top:40px;
             h1{
                 margin-bottom:0px;
                 font-size:4em;
@@ -26,6 +27,7 @@ div.page-wrapper.form-page{
             justify-self:center;
             border: solid 1px $primaryBorder;
             padding:20px;
+            background-color:$primaryBackground;
             .input_container{
                 margin-bottom:15px;
 

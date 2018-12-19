@@ -86,7 +86,7 @@ const loggedIn = function(){
 };
 
 const accountDetails = function(){
-    return axios.get(`${endpoint}users/account-details`, {withCredentials:true})
+    return axios.get(`${endpoint}users/logged-in`, {withCredentials:true})
     .then((data) => {
         //console.log('AD data', data);
         return data;

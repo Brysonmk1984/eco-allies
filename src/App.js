@@ -160,8 +160,7 @@ export default class App extends React.Component {
   // }
 
   // Get the Allies of a particular user from the blockchain
-  getAlliesOfUser(){
- console.log(this.state.account.length);
+  getAlliesOfUser(){console.log('INST', this.instance);
     this.instance.tokensOfOwner.call(this.state.account).then((tokens)=>{
       console.log('tokens',tokens);
       const tokenPositions = tokens.map((token) =>{
@@ -198,9 +197,9 @@ export default class App extends React.Component {
     console.log('DD', this.web3.eth.accounts);
     const matchingEthAccount = this.web3.eth.accounts.find((acc, i)=>{
       console.log('ACCOUNT - ', acc, this.state.account);
-      if(acc === this.state.account){
+      if(acc === this.state.account.toLowerCase()){
         index = i;
-        return acc === this.state.account;
+        return true;
       }
     });
 
