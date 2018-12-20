@@ -19,23 +19,13 @@ export default class Gallery extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            activeAlly : null
+            activeAlly : null,
+            loading : true
         }
-    }
-    buildAllyList(){
-        const randomizedAllies = shuffleArray(allyList);
-
-        return randomizedAllies.map((ally, i) => {
-            if(ally.active){
-                return (
-                    <GalleryAllyTile key={i} ally={ally} openModal={this.openModal.bind(this)}  />
-                );
-            }
-        });
+        this.allyList = shuffleArray(allyList);
     }
 
     openModal(activeAlly){
-        
         this.setState(() =>({activeAlly}), ()=>{
             document.getElementById("openModalButton").click();
         });
@@ -97,15 +87,39 @@ export default class Gallery extends React.Component{
         return false;
     }
 
+    componentDidMount(){
+        setTimeout(()=>{this.setState({loading:false})},250);
+    }
+
+
     render(){
         return(
             <div className="page-wrapper gallery-list-page">
                 
-                <section className="ally-section">
-                    <div className="subsection">
-                        {this.buildAllyList()}
+                {
+                    this.state.loading ?
+                    <section className="ally-section">
+                    <div className={`subsection subsection-loading`}>
+                        <strong>Loading...</strong>
                     </div>
                 </section>
+                :
+                <section className="ally-section">
+                    <div className={`subsection`}>
+                        {
+                            
+                            this.allyList.map((ally, i) => {
+                                if(ally.active){
+                                    return (
+                                        <GalleryAllyTile key={i} ally={ally} openModal={this.openModal.bind(this)}  />
+                                    );
+                                }
+                            })
+                         
+                        }
+                    </div>
+                </section>
+                }
                 
                 { this.renderAllyModal() }
             </div>

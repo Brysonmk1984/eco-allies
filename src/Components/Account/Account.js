@@ -3,8 +3,11 @@ import React from 'react';
 // LIBRARIES
 import PropTypes from 'prop-types';
 import { MdFace } from 'react-icons/lib/md';
+// COMMON
+import { decodeAlly } from '~/common/crackDna';
 // ASSETS
 import './account.scss';
+
 
 // COMPONENT
 export default class Account extends React.Component{
@@ -30,11 +33,17 @@ export default class Account extends React.Component{
     // Generates list items for each ally passed in from App State via props
     renderAllyData(){
         return this.props.allies.map((ally, i)=>{
+            const decodedAlly = decodeAlly(ally.dna);
+            const variant =  decodedAlly.color ? ` (${decodedAlly.color} Variant)` : null;
+            
             return <li className="ally-data" key={i}>
                 <strong className="ally-label">ID: </strong>
                 <span className="ally-value">{ ally.id }</span>
                 <strong className="ally-label">DNA: </strong>
                 <span className="ally-value">{ ally.dna }</span>
+                <strong>Ally:</strong>
+                <span>{decodedAlly.basics.character} {variant}</span>
+                
             </li>
         });
     }

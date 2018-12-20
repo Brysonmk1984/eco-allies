@@ -1,6 +1,6 @@
 @import "../../../assets/scss/variables.scss";
 .bg{
-  background-size: 180px 180px;
+  background-size: 100%;
 }
 .bg-amethyst{
   background-image: url('../../../assets/images/backgrounds/amethyst_bg.png');
@@ -32,4 +32,11 @@
 .ultimate_ability{
   color: $emphasisText;
   text-transform: uppercase;
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+  .bg{
+    background-size: 180px 180px;
+  }
 }
