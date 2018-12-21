@@ -5,8 +5,6 @@ import { lowercaseUnderscore } from '~/common/helperFunctions';
 // First 3 Digits
 function determineAlly(dna){
     const substr = parseInt(dna.substring(0,3));
-    //console.log('DNA - ', dna, substr);
-
 
     switch(true){
         // JavaScript removes first zero, so this is needed for first 100 possibilities
@@ -382,7 +380,6 @@ function decodeAlly(dna){
         ultimate : hasUltimate ? basics.ultimate : null,
         power : determinePower(skills.length, sign.modifier, alignment.modifier, color.modifier, hasUltimate, matchingStone)
     };
-
 
     return ally;
 

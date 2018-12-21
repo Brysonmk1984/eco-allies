@@ -107,21 +107,5 @@
     "description" : "Summoner of Beasts",
     "history" : "Dirk Mullaney never fit in with society and often prefered the solitude of nature and felt a kinship with animals. During the crisis of 08, in frustration with the misguided priorities of society, Dirk became a hermit living completely in the woods. It is speculated that during this time he developed the remarkable ability to communicate with animals and some even believe he can mirror their spirit.",
     "colors" : ["#000000", "#FFFFFF", "#523B26", "#A3A59B", "#9A6247"]
-},
-{
-    "active" : false,
-    "character" : "Root Elemental",
-    "skills" : ["Entangling Roots","Subterranean Translocate","Subterranean Regeneration","Root Spikes","Shift Terrain"],
-    "image" : "root_elemental.png",
-    "description" : "Underground Horror",
-    "history" : "Rarely seen in person, the root elemental is now believed to have been manifested from the underground roots remaining after the California Fires in 2018. It’s speculated that the forest, in a last ditch effort to escape the devastation of the fires combined it’s life energy into the still alive underground roots. It seems to be actively sabotaging oil and gas development sites."
-},
-{
-    "active" : false,
-    "character" : "Wind Machine",
-    "skills" : ["Blowback","Undercurrent","Whirling Blades","Turbine Hypnosis","Wyoming Wind Strength"],
-    "image" : "fred.png",
-    "description" : "Wind Powered Drone",
-    "history" : "my background story"
 }]
 

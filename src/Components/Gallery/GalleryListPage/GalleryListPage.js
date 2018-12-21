@@ -22,7 +22,9 @@ export default class Gallery extends React.Component{
             activeAlly : null,
             loading : true
         }
-        this.allyList = shuffleArray(allyList);
+        const listCopy = JSON.parse(JSON.stringify(allyList));
+        
+        this.allyList = shuffleArray(listCopy);
     }
 
     openModal(activeAlly){

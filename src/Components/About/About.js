@@ -23,7 +23,7 @@ const About = () => (
             </div>
             
         </section>
-        <section className="ally-section">
+        <section className="collectable-section">
             <div className="subsection">
                 <h2>Eco Ally</h2>
                 <h3>A Defender of Gaia</h3>
