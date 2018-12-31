@@ -71,10 +71,11 @@ export default class Nav extends React.Component{
                     <img src={Logo} className="logo" />
                 </a>
                 <ul id="nav-mobile" className="right hide-on-small-only">
-                    <li><NavLink to={`${APP_ROOT}about`} activeClassName="active">About</NavLink></li>
                     <li><NavLink to={`${APP_ROOT}gallery`} activeClassName="active">Gallery</NavLink></li>
                     { this.renderUserCollection() }
                     <li><NavLink to={`${APP_ROOT}faq`} activeClassName="active">FAQ</NavLink></li>
+                    <li><NavLink to={`${APP_ROOT}about`} activeClassName="active">About</NavLink></li>
+                    <li><NavLink to={`${APP_ROOT}redeem`} activeClassName="active">Redeem Ally</NavLink></li>
                     <li>
                         { this.renderGettingStarted() }
                     </li>

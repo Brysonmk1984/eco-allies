@@ -12,6 +12,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 // COMMON
 const userRoutes = require('./routes/users');
+const tokenRoutes = require('./routes/tokens');
 const sessionStore = require('./store').sessionStore;
 
 
@@ -37,6 +38,7 @@ app.listen( process.env.PORT || 3001, function () {
   app.options('*', cors())
   // HTTP Routes
   app.use('/users', userRoutes);
+  app.use('/tokens', tokenRoutes);
 });
 
 

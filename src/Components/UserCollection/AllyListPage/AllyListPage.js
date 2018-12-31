@@ -24,14 +24,8 @@ export default class UserCollection extends React.Component{
     render(){
         return(
             <div className="page-wrapper ally-list-page">
-                <section className="title-section">
-                    <div className="subsection">
-                        <h1>Eco Allies</h1>
-                        <p>Defenders of Gaia</p>
-                    </div>
-                </section>
                 <section className="ally-section">
-                    <h2>Your Team</h2>
+                    <h2>Your Collection</h2>
                     <div className="subsection">
                         {this.buildAllyList()}
                     </div>

@@ -7,6 +7,7 @@ import Footer from './Components/Footer/Footer';
 // COMMON
 import generateSeed from './common/generateNum';
 import { login, logout, loggedIn, accountDetails } from '~/common/loginService';
+import { redeem } from '~/common/redeemService';
 import history from '~/common/history';
 import getCookie from '~/common/cookie';
 
@@ -63,6 +64,16 @@ export default class App extends React.Component {
         console.log('log out failure', error);
       });
     }
+  }
+
+  // Handle redeem
+  handleRedeem(code, email){
+    return redeem({code, email})
+    .then((data)=>{
+      if(data.error){
+        return data.error;
+      }
+    });
   }
 
   // Get account details from node backend, returns a promise
@@ -281,7 +292,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Header handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} />
-        <Content appState={this.state} getAccountDetails={this.getAccountDetails.bind(this)} modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)} loggedIn={this.state.loggedIn}  />
+        <Content appState={this.state} getAccountDetails={this.getAccountDetails.bind(this)} modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} handleRedeem={this.handleRedeem.bind(this)} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)} loggedIn={this.state.loggedIn}  />
         <Footer />
       </div>
     );

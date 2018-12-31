@@ -52,7 +52,7 @@ module.exports = {
           use : ['json-loader']
           
         },
-        { test: /\.(woff)(\?[a-z0-9]+)?$/, loader: 'file-loader?name=[name].[ext]&publicPath=/eco-allies/&outputPath=assets/font/' },
+        { test: /\.(woff|ttf)(\?[a-z0-9]+)?$/, loader: 'file-loader?name=[name].[ext]&publicPath=../../&outputPath=assets/font/' },
       ],
     },
     plugins,
