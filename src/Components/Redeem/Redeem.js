@@ -1,8 +1,12 @@
 // REACT
 import React from 'react';
+// COMMON
+import history from '~/common/history';
 // LIBRARIES
 import PropTypes from 'prop-types';
 import { Button } from '@material-ui/core';
+
+
 // ASSETS
 import './redeem.scss';
 
@@ -16,7 +20,7 @@ export default class Redeem extends React.Component{
           confirmed : false,
           errors : [],
           email : '',
-          publicEthKey : ''
+          tokenCreated : false
       };
   }
 
@@ -27,9 +31,8 @@ export default class Redeem extends React.Component{
     this.setState(() => (newState));
   }
   handleCheckboxToggle(e){
-    const newState = {};
-    newState.confirmed = e.target.checked;
-    this.setState(() => (newState));
+    e.persist();
+    this.setState(() => ({confirmed : e.target.checked}));
   }
 
     // Handle submit of form: send form data to back end, which handles app login logic
@@ -41,24 +44,18 @@ export default class Redeem extends React.Component{
           this.setState(()=>({errors : []}));
       }
 
-      this.props.handleRedeem(true, this.state.code)
+      this.props.handleRedeem(this.state.code, this.state.email)
       .then((data) =>{
           console.log('in then handleRedeem', data);
           if(data.error){
-              const errors = data.error.map((e) =>{
-                  return {type:e.type, message:e.message}
-              });
-              this.handleErrors(errors);
+              this.handleErrors([data.error]);
           }else{
-              
-              this.props.modifyAppState({
-                  loggedIn : true, 
-                  account : data.publicEthKey
-              }, () =>{
-                  setTimeout(()=>{
-                      //history.push(`${APP_ROOT}user-collection`);
-                  },1000);
-              });
+            this.props.buildAlly();
+            // this.setState(()=>({tokenCreated : true}));
+            // setTimeout(()=>{
+            //     history.push(`${APP_ROOT}user-collection`);
+            // },1000);
+
           } 
           
       })
@@ -71,7 +68,7 @@ export default class Redeem extends React.Component{
   }
 
   // Handle errors from server
-  handleErrors(errors){alert(1);
+  handleErrors(errors){console.log('ERRORS', errors);
     this.setState(()=>({errors : [...this.state.errors, ...errors]}));
   }
 
@@ -90,14 +87,13 @@ export default class Redeem extends React.Component{
 
   // Render success alert message
   renderSuccessSection(){
-    if(this.props.loggedIn){
-        return(
-            <div className="notification notification-success">
-                <strong>Success! : </strong> <span>You've been logged in.</span>
-            </div>
-        )
+    if(this.state.tokenCreated){
+      return(
+        <div className="notification notification-success">
+            <strong>Success! : </strong> <span>And your new Ally is...</span>
+        </div>
+      )
     }
-    
   }
 
   // When component mounts, retrieve details about the account from the database
@@ -106,8 +102,8 @@ export default class Redeem extends React.Component{
     this.props.getAccountDetails()
     .then((data) =>{
           if(data.data){
-              const { email, publicEthKey } = data.data;
-              this.setState(()=>({ email, publicEthKey }));
+              const { email } = data.data;
+              this.setState(()=>({ email }));
           }
     });
   }
@@ -126,9 +122,9 @@ export default class Redeem extends React.Component{
                   </div>
                   <form id="redeemForm" onSubmit={this.handleSubmit.bind(this)}>
                       <div className="input_container">
-                        <label>
+                        <label id="codeLabel">
                             <strong>Code:</strong>
-                            <input name="code" type="text" value={this.state.code} onChange={this.handleChange.bind(this)} placeholder="Enter Nine-Digit Code" minLength="9" maxLength="9" required />
+                            <input id="codeInput" name="code" type="text" value={this.state.code} onChange={this.handleChange.bind(this)} placeholder="Nine-Digit Code" minLength="9" maxLength="9" required />
                         </label>
                       </div>
                       <div className="input_container">
@@ -150,5 +146,6 @@ export default class Redeem extends React.Component{
 
 // PROP-TYPES
 Redeem.propTypes = {
-  handleRedeem : PropTypes.func.isRequired
+  handleRedeem : PropTypes.func.isRequired,
+  buildAlly : PropTypes.func.isRequired
 };

@@ -22,7 +22,7 @@ export default class Content extends React.Component{
                 <Switch>
                     <Route exact path={`${APP_ROOT}`} component={About}  />
                     <Route path={`${APP_ROOT}about`} component={About} />
-                    <Route path={`${APP_ROOT}redeem`} component={() => (<Redeem handleRedeem={this.props.handleRedeem} getAccountDetails={this.props.getAccountDetails} /> )} /> 
+                    <Route path={`${APP_ROOT}redeem`} component={() => (<Redeem handleRedeem={this.props.handleRedeem} getAccountDetails={this.props.getAccountDetails}  buildAlly={this.props.buildAlly} /> )} /> 
                     <Route path={`${APP_ROOT}gallery`} component={() => (<Gallery  /> )} />
                     <Route path={`${APP_ROOT}user-collection`}  render={() => <UserCollection loggedIn={this.props.appState.loggedIn} allies ={this.props.appState.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} />}   />
                     <Route path={`${APP_ROOT}register`} component={() => (<Register   /> )} />

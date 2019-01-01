@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const UserModel = require('./models/user.js');
+const RetrievalCodeModel = require('./models/retrievalCode.js');
 
 let db;
 // PRODUCTION or Locally running backend through PROXY
@@ -42,6 +43,6 @@ db.sync();
 
 
 const User = UserModel(db, Sequelize);
+const RetrievalCode = RetrievalCodeModel(db, Sequelize);
 
-
-module.exports = { User, db }
+module.exports = { User, RetrievalCode, db }

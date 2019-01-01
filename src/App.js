@@ -70,9 +70,7 @@ export default class App extends React.Component {
   handleRedeem(code, email){
     return redeem({code, email})
     .then((data)=>{
-      if(data.error){
-        return data.error;
-      }
+      return data;
     });
   }
 
