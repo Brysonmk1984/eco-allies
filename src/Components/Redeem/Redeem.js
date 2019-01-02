@@ -1,5 +1,6 @@
 // REACT
 import React from 'react';
+import { Link } from 'react-router-dom';
 // COMMON
 import history from '~/common/history';
 // LIBRARIES
@@ -118,7 +119,7 @@ export default class Redeem extends React.Component{
               <section className="form-section">
                   <div className="subsection">
                       <h2>Unlock your Ally</h2>
-                      <p>Codes are aquired by sending proof of your own positive impact</p>
+                      <p>Codes are aquired by <Link  to={`${APP_ROOT}proof`} >sending proof</Link> of your own positive impact</p>
                   </div>
                   <form id="redeemForm" onSubmit={this.handleSubmit.bind(this)}>
                       <div className="input_container">

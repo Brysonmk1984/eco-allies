@@ -1,0 +1,17 @@
+form{
+  width: 75%;
+  margin: 0px auto;
+  label#codeLabel{
+    strong{
+      display: inline-block;
+      margin-right: 20px;
+    }
+  }
+  input#codeInput{
+    width: 120px;
+  }
+  input#confirmCheck{
+    opacity: 1;
+    position: relative;
+  }
+}
