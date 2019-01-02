@@ -47,11 +47,31 @@ footer{
     }
     .group_shot{
         position:absolute;
-        bottom:0px;
-        left:50%;
-        margin-left:-512px;
-        width:1024px;
-        max-width:1500px;
+        bottom:64px;
+        left:0px;
+        width:100%;
         z-index: 0;
+    }
+}
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    footer{
+        .group_shot{
+            bottom:0px;
+        }
+    }
+}
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+    footer{
+        .group_shot{
+            position:absolute;
+            bottom:0px;
+            left:50%;
+            margin-left:-512px;
+            width:1024px;
+            max-width:100%;
+            z-index: 0;
+        }
     }
 }
