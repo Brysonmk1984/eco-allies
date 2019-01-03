@@ -13,6 +13,8 @@ export default class Proof extends React.Component{
     this.state = {
       uploaded : false,
       confirmed : false,
+      file : null,
+      message : '',
       errors : [],
     };
     this.fileInput = React.createRef();
@@ -21,10 +23,9 @@ export default class Proof extends React.Component{
   // Handle change of form elements and update states
   handleChange(e){
     e.persist();
-    // const newState = {};
-    // newState[e.target.name] = e.target.value;
-    // this.setState(() => (newState));
-    console.log(e.target);
+    const newState = {};
+    newState[e.target.name] = e.target.name === 'file' ? this.fileInput.current.files[0] : e.target.value;
+    this.setState(() => (newState));
   }
 
   handleCheckboxToggle(e){
@@ -40,7 +41,13 @@ export default class Proof extends React.Component{
     if(this.state.errors.length){
         this.setState(()=>({errors : []}));
     }
+
     console.log('submit', this.fileInput.current.files[0]);
+    this.props.handleProof({file : this.state.file, message : this.state.message})
+    .then((data) =>{
+      console.log('PROOF DATA', data);
+    })
+    
 
   }
 
@@ -91,6 +98,12 @@ export default class Proof extends React.Component{
                     <label id="codeLabel">
                         <strong>Proof:</strong>
                         <input id="fileInput" name="file" type="file" ref={this.fileInput} onChange={this.handleChange.bind(this)} required />
+                    </label>
+                  </div>
+                  <div className="input_container">
+                    <label id="messageLabel">
+                        <strong>Message (optional):</strong>
+                        <textarea value={this.state.message} name="message"  onChange={this.handleChange.bind(this)} placeholder="Anything else we should know?"></textarea>
                     </label>
                   </div>
                   <div className="input_container">

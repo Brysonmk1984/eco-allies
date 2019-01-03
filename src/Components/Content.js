@@ -23,7 +23,7 @@ export default class Content extends React.Component{
                 <Switch>
                     <Route exact path={`${APP_ROOT}`} component={About}  />
                     <Route path={`${APP_ROOT}about`} component={About} />
-                    <Route path={`${APP_ROOT}proof`} component={Proof} />
+                    <Route path={`${APP_ROOT}proof`} component={() => (<Proof handleProof={this.props.handleProof} />)} />
                     <Route path={`${APP_ROOT}redeem`} component={() => (<Redeem handleRedeem={this.props.handleRedeem} getAccountDetails={this.props.getAccountDetails}  buildAlly={this.props.buildAlly} /> )} /> 
                     <Route path={`${APP_ROOT}gallery`} component={() => (<Gallery  /> )} />
                     <Route path={`${APP_ROOT}user-collection`}  render={() => <UserCollection loggedIn={this.props.appState.loggedIn} allies ={this.props.appState.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} />}   />
@@ -48,5 +48,7 @@ Content.propTypes = {
     getAccountDetails : PropTypes.func.isRequired,
     handleLogin : PropTypes.func.isRequired,
     modifyAppState : PropTypes.func.isRequired,
-    transferAlly : PropTypes.func.isRequired
+    transferAlly : PropTypes.func.isRequired,
+    handleRedeem : PropTypes.func.isRequired,
+    handleProof : PropTypes.func.isRequired
 };
