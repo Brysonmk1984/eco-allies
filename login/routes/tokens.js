@@ -41,4 +41,25 @@ router.post('/retrieval-code', function(req, res, next){
   });
 });
 
+router.post('/proof', function(req, res, next){
+
+  console.log(req.body, req.files);
+  console.log('FILES - ', req.files);
+  //  let imageFile = req.files;
+
+  //  // Display the key/value pairs
+  //  for (var pair of imageFile.entries()) {
+  //   console.log('first ', pair[0]+ ', ' + pair[1]); 
+  // }
+
+  //  // Display the key/value pairs
+  //  for (var pair of req.body.entries()) {
+  //   console.log('second ',pair[0]+ ', ' + pair[1]); 
+  // }
+  res.json({
+    success : true,
+    requestType : 'POST'
+  });
+});
+
 module.exports = router;

@@ -20,15 +20,18 @@ const sendRedeemCode = function(formData){console.log('FD', formData);
         return { error }
     })
 };
-
-const sendProof = function(formData){
-    return axios.post(`${endpoint}tokens/proof`, {file: formData.file, message: formData.message}, {withCredentials:true})
+const sendProof = function(formData){console.log('FD', formData);
+    return axios.post(`${endpoint}tokens/proof`, formData, {
+        method: 'POST',
+        withCredentials:true,
+        headers: {'Content-Type': 'multipart/form-data' }
+      })
     .then((data) => {
         if(data.status === 200){
             const error = data.data.error;
             if(error){
               return {error : {type : 'User Error', message : `File is not of supported type (.pdf, .jpg, .png, .docx)`}}
-            }
+            }console.log('DATA', data.data);
             return data.data;
         }else{
             return {type : 'Server Error', message : `There was a server error with a status code of ${data.status}`}

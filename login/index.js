@@ -10,6 +10,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const fileUpload = require('express-fileupload');
 // COMMON
 const userRoutes = require('./routes/users');
 const tokenRoutes = require('./routes/tokens');
@@ -33,6 +34,7 @@ app.listen( process.env.PORT || 3001, function () {
   app.use(sessionStore);
   app.use(passport.initialize());
   app.use(passport.session());
+  app.use(fileUpload());
   require('./auth.js')(passport, LocalStrategy);
   
   app.options('*', cors())

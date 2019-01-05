@@ -75,8 +75,8 @@ export default class App extends React.Component {
   }
 
   // Handle redeem
-  handleProof(file, message){
-    return sendProof({file, message})
+  handleProof(formData){
+    return sendProof(formData)
     .then((data)=>{
       return data;
     });

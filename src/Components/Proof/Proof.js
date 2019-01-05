@@ -6,25 +6,26 @@ import PropTypes from 'prop-types';
 import { Button } from '@material-ui/core';
 // STYLES
 import './proof.scss';
-
+import axios from 'axios';
 export default class Proof extends React.Component{
   constructor(){
     super();
     this.state = {
       uploaded : false,
       confirmed : false,
-      file : null,
       message : '',
       errors : [],
     };
-    this.fileInput = React.createRef();
+
   }
 
   // Handle change of form elements and update states
   handleChange(e){
     e.persist();
     const newState = {};
-    newState[e.target.name] = e.target.name === 'file' ? this.fileInput.current.files[0] : e.target.value;
+    //console.log('target',e.target, this.fileInput.current.files[0]);
+
+    newState[e.target.name] = e.target.value;
     this.setState(() => (newState));
   }
 
@@ -42,8 +43,12 @@ export default class Proof extends React.Component{
         this.setState(()=>({errors : []}));
     }
 
-    console.log('submit', this.fileInput.current.files[0]);
-    this.props.handleProof({file : this.state.file, message : this.state.message})
+    const formData = new FormData();
+    formData.append('file', this.uploadInput.files[0]);
+    formData.append('filename', this.fileName.value);
+    formData.append('message', this.state.message);
+
+    this.props.handleProof(formData)
     .then((data) =>{
       console.log('PROOF DATA', data);
     })
@@ -94,10 +99,11 @@ export default class Proof extends React.Component{
                   <p>Proof can be a billing statement, a letter of verification, or a screenshot indicating you made a lifestyle change that benefits you, your community, or the planet.</p>
               </div>
               <form id="redeemForm" onSubmit={this.handleSubmit.bind(this)}>
+                <input ref={(ref) => { this.fileName = ref; }} value="myfilename" type="hidden" />
                   <div className="input_container">
                     <label id="codeLabel">
                         <strong>Proof:</strong>
-                        <input id="fileInput" name="file" type="file" ref={this.fileInput} onChange={this.handleChange.bind(this)} required />
+                        <input id="fileInput" name="file" type="file" ref={(ref) => { this.uploadInput = ref; }} required />
                     </label>
                   </div>
                   <div className="input_container">
