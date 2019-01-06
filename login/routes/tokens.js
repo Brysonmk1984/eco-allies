@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router(); 
 const RetrievalCode = require('../db').RetrievalCode;
+const sendMail = require('../mail.js');
 
 // LOGIN TO EXISTING ACCOUNT
 router.post('/retrieval-code', function(req, res, next){
@@ -42,24 +43,22 @@ router.post('/retrieval-code', function(req, res, next){
 });
 
 router.post('/proof', function(req, res, next){
-
-  console.log(req.body, req.files);
+  console.log('body - ', req.body);
   console.log('FILES - ', req.files);
-  //  let imageFile = req.files;
-
-  //  // Display the key/value pairs
-  //  for (var pair of imageFile.entries()) {
-  //   console.log('first ', pair[0]+ ', ' + pair[1]); 
-  // }
-
-  //  // Display the key/value pairs
-  //  for (var pair of req.body.entries()) {
-  //   console.log('second ',pair[0]+ ', ' + pair[1]); 
-  // }
-  res.json({
-    success : true,
-    requestType : 'POST'
+  
+  new Promise((resolve, reject) =>{
+    sendMail({filename : req.files.file.name, message : req.body.message, file : req.files.file.data}, resolve, reject);
+  }).then((data) =>{
+    //console.log('INFO', data);
+    res.json({
+      success : true,
+      requestType : 'POST',
+      info : data
+    });
   });
+
+    
+  
 });
 
 module.exports = router;
