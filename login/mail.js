@@ -12,9 +12,19 @@ const sendEmail = function(formData, resolve, reject){
     }
   });
 
+  // let transporter = nodemailer.createTransport({
+  //   host: 'mail.brysonkruk.com',
+  //   port: 465,
+  //   secure: true,
+  //   auth: {
+  //       user: 'info.ecoallies@brysonkruk.com',
+  //       pass: '***thebhpass***'
+  //   }
+  // });
+
   // setup email data with unicode symbols
   let mailOptions = {
-      from: 'brysonmk1984@gmail.com',
+      from: 'info.ecoallies@brysonkruk.com',
       to: 'bryson.kruk@protonmail.com',
       subject: 'Eco Allies Proof Has been Submitted', 
       text: `This is an automated email indicating someone submitted Eco Ally Proof, there should be an attachment and there may be an included optional message from the user below: \n ${formData.message}`,
