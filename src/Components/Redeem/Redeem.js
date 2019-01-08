@@ -100,13 +100,31 @@ export default class Redeem extends React.Component{
   // When component mounts, retrieve details about the account from the database
   // Does NOT include blockchain data
   componentDidMount(){
-    this.props.getAccountDetails()
-    .then((data) =>{
-          if(data.data){
-              const { email } = data.data;
-              this.setState(()=>({ email }));
-          }
+    const defaultState = {};
+    const promises = [];
+
+    const p1 = this.props.getAccountDetails()
+    promises.push(p1);
+
+    if(this.props.match && this.props.match.params.qr){
+        const p2 = this.props.checkParamAgainstCode(this.props.match.params.qr)
+        promises.push(p2);
+    }
+
+    Promise.all(promises)
+    .then((values) =>{
+        console.log('VALs', values);
+        defaultState.email = values[0].data.email;
+        
+        // If there was a qr code url param
+        if(values[1]){
+            defaultState.code = values[1].code;
+        }
+
+        this.setState(()=>(defaultState));
     });
+
+
   }
 
   render(){

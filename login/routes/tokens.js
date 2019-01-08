@@ -42,6 +42,47 @@ router.post('/retrieval-code', function(req, res, next){
   });
 });
 
+router.post('/check-param', function(req, res, next){
+  console.log('RRR',req.body);
+  // Manually establish the session...
+  RetrievalCode.find({
+    where : {
+      qrParam : req.body.param
+    },
+    attributes:['code', 'claimed', 'claimedBy']
+  }).then((codeData, err) => {
+    console.log('!!! getting ready to send code data', err);
+    if(codeData){
+      if(codeData.claimed){
+        res.json({
+          error: 'Invalid Code',
+          claimedBy : codeData.claimedBy,
+          requestType : 'POST',
+          success : false
+        });
+      }else{
+        res.json({
+          code : codeData.code,
+          claimed : codeData.claimed,
+          claimedBy : codeData.claimedBy,
+          qrParam : codeData.qrParam,
+          requestType : 'POST',
+          success : true
+        });
+      }
+    }else{
+      res.json({
+        error: 'Invalid Code',
+        requestType : 'POST',
+        success : false
+      });
+    }
+    next();
+  });
+});
+
+
+
 router.post('/proof', function(req, res, next){
   console.log('body - ', req.body);
   console.log('FILES - ', req.files);
@@ -57,8 +98,6 @@ router.post('/proof', function(req, res, next){
     });
   });
 
-    
-  
 });
 
 module.exports = router;

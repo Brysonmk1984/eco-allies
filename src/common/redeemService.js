@@ -20,6 +20,27 @@ const sendRedeemCode = function(formData){console.log('FD', formData);
         return { error }
     })
 };
+
+const checkParamAgainstCode = function(param){
+    return axios.post(`${endpoint}tokens/check-param`,{param}, {withCredentials:true})
+    .then((data) => {console.log('data', data);
+        if(data.status === 200){
+            const error = data.data.error;
+            if(error){    
+              if(data.data.claimedBy){
+                return {error : {type : 'Conflict Error', message : `Code already in use.`}}
+              }
+              return {error : {type : 'User Error', message : `Invalid Code`}}
+            }
+            return data.data;
+        }else{
+            return {type : 'Server Error', message : `There was a server error with a status code of ${data.status}`}
+        }
+    }).catch((error) => {
+        return { error }
+    })
+};
+
 const sendProof = function(formData){console.log('FD', formData);
     return axios.post(`${endpoint}tokens/proof`, formData, {
         method: 'POST',
@@ -39,4 +60,4 @@ const sendProof = function(formData){console.log('FD', formData);
     });
 };
 
-export { sendRedeemCode, sendProof }
+export { sendRedeemCode, sendProof, checkParamAgainstCode }
