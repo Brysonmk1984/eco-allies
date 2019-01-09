@@ -78,5 +78,6 @@ GalleryAllyTile.propTypes = {
         image : PropTypes.string.isRequired,
         history : PropTypes.string.isRequired,
         description : PropTypes.string.isRequired
-    })
+    }),
+    openModal : PropTypes.func.isRequired
 };

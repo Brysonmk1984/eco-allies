@@ -10,7 +10,7 @@ import allyList from '~/common/allyList.json';
 import {shuffleArray} from '~/common/helperFunctions';
 import * as AllyImages from '~/common/includedImages';
 import * as AllyBackgrounds from '~/common/includedBackgrounds';
-import { lowercaseUnderscore, lowercaseDash } from '~/common/helperFunctions';
+import { lowercaseUnderscore } from '~/common/helperFunctions';
 // ASSETS
 import './galleryListPage.scss';
 
@@ -82,8 +82,8 @@ export default class Gallery extends React.Component{
                     </div>
                     
                 </div>
-                <button id="closeModalButton" onClick={JwModal.close('jw-modal-1')}>Close</button>
-                <button id="openModalButton" onClick={JwModal.open('jw-modal-1')}>Open JW Modal 1</button>
+                <button id="closeModalButton" className="hide" onClick={JwModal.close('jw-modal-1')}>Close</button>
+                <button id="openModalButton" className="hide" onClick={JwModal.open('jw-modal-1')}>Open JW Modal 1</button>
             </JwModal>
         }
         return false;

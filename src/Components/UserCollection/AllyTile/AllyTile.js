@@ -36,19 +36,23 @@ export default class AllyTile extends React.Component{
             allyAlignment : '',
             allyColor : null,
             allyPower : 0,
-            allyUltimate : ''
+            allyUltimate : '',
+            // Only Used for Modal
+            allyDna : null,
+            allyColors : [],
+            allyHistory : ''
         }
     }
 
     // Navigate user to specific ally page on click, passing the allyId as an additional variable
-    navigateToAlly(){
-        history.push({
-            pathname: `${APP_ROOT}user-collection/${this.props.dna}`,
-            state: {
-                allyId : this.props.id
-            }
-        });
-    }
+    // navigateToAlly(){
+    //     history.push({
+    //         pathname: `${APP_ROOT}user-collection/${this.props.dna}`,
+    //         state: {
+    //             allyId : this.props.id
+    //         }
+    //     });
+    // }
 
     determineBackground(color){
         if(color !== null){
@@ -61,7 +65,7 @@ export default class AllyTile extends React.Component{
     // Then set state to fully decoded ally data
     componentDidMount(){
         const ally = decodeAlly(this.props.dna);
-        this.setState(() =>({allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image, allyId : this.props.id, allySign:ally.sign, allyAlignment:ally.alignment, allyColor:ally.color, allyPower:ally.power, allyUltimate: ally.ultimate}));
+        this.setState(() =>({allyDna : this.props.dna, allyHistory : ally.basics.history, allyColors : ally.basics.colors, allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image, allyId : this.props.id, allySign : ally.sign, allyAlignment : ally.alignment, allyColor:ally.color, allyPower:ally.power, allyUltimate: ally.ultimate}));
     }
     
     render(){
@@ -72,8 +76,8 @@ export default class AllyTile extends React.Component{
                     <h4>{ this.state.allyDescription }</h4>
                 </div>
                 <VariantBar color={this.state.allyColor} alignment={this.state.allyAlignment} sign={this.state.allySign} /> */}
-                <div className={`ally-image`}>
-                    <img className={`${this.determineBackground(this.state.allyColor)}`} src={ this.state.allyImage } onClick={this.navigateToAlly.bind(this)} />
+                <div className={`ally-image`} onClick={this.props.openModal.bind(this, this.state )}>
+                    <img className={`${this.determineBackground(this.state.allyColor)}`} src={ this.state.allyImage } />
                 </div>
                 {/* <div className="ally-skills">
                     <ul>
@@ -95,4 +99,5 @@ export default class AllyTile extends React.Component{
 AllyTile.propTypes = {
     dna : PropTypes.string.isRequired,
     id : PropTypes.number.isRequired,
+    openModal : PropTypes.func.isRequired
 };

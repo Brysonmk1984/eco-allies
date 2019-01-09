@@ -1,10 +1,10 @@
 const lowercaseUnderscore = function(ally){
-    if(ally !== null){
+    if(ally !== null && typeof ally !== 'undefined'){
         return ally.replace(/\s+/g, '_').toLowerCase();
     }
 };
 const lowercaseDash = function(ally){
-    if(ally !== null){
+    if(ally !== null && typeof ally !== 'undefined'){
         return ally.replace(/\s+/g, '-').toLowerCase();
     }
 };

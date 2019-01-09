@@ -98,7 +98,7 @@ export default class Redeem extends React.Component{
   }
 
   // When component mounts, retrieve details about the account from the database
-  // Does NOT include blockchain data
+  // And if there's a qrCode param, use it to retrieve the 9 digit code to retrieve ally
   componentDidMount(){
     const defaultState = {};
     const promises = [];
@@ -166,5 +166,8 @@ export default class Redeem extends React.Component{
 // PROP-TYPES
 Redeem.propTypes = {
   handleRedeem : PropTypes.func.isRequired,
-  buildAlly : PropTypes.func.isRequired
+  checkParamAgainstCode : PropTypes.func.isRequired,
+  getAccountDetails : PropTypes.func.isRequired,
+  buildAlly : PropTypes.func.isRequired,
+  match : PropTypes.object.isRequired
 };
