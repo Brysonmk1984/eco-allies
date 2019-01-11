@@ -32,9 +32,24 @@ div.page-wrapper.form-page{
                 margin-bottom:15px;
 
                 label{
+                    p{
+                        margin-bottom: 20px;
+                    }
                     strong{
                         font-size: 1.6em;
                         color: $mediumText;
+                    }
+                    input[type="radio"]{
+                        opacity: 1;
+                        position: relative;
+                        margin: 0px 10px 0px 20px;
+                        padding:10px;
+                        &:first-child{
+                            margin: 0px 10px 0px 0px;
+                        }
+                    }
+                    .radio_label{
+                        font-size: 1rem;
                     }
                 }
             }

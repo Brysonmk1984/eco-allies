@@ -19,6 +19,7 @@ export default class Register extends React.Component{
             password : '',
             passwordConfirm : '',
             publicEthKey : '',
+            accountType : 'simple',
             errors : [],
             successfulAccountCreation : false
         };
@@ -61,6 +62,11 @@ export default class Register extends React.Component{
             this.handleErrors([{type:'password',message:'Passwords do Not Match'}]);
         }
         
+    }
+    handleOptionChange(e){
+        this.setState({
+            accountType : e.target.value
+        });
     }
 
     // Handle errors in the state
@@ -117,6 +123,19 @@ export default class Register extends React.Component{
                 </section>
                 <section className="form-section">
                     <form id="registrationForm" onSubmit={this.handleSubmit.bind(this)}>
+                        <div className="input_container">
+                            <label>
+                                <strong>Account Type:</strong>
+                                <p><b>Full accounts</b> require an Ethereum Wallet and Ether to pay for the cost of collecting, trading, and using tokens. <br /> <b>Simple Accounts</b> are not connected to the blockchain, don't require Ethereum Wallets and are free of transaction costs, however tokens cannot be traded.</p>
+                                
+                                <div>
+                                    <input type="radio" id="simpleAccount" className="account_type" name="accounttype" value="simple" checked={ this.state.accountType === 'simple' ? true : false } onChange={this.handleOptionChange.bind(this)}  />
+                                    <label htmlFor="simpleAccount" className="radio_label">Simple Account</label>
+                                    <input type="radio" id="fullAccount" className="account_type" name="accounttype" value="full" checked={ this.state.accountType === 'full' ? true : false } onChange={this.handleOptionChange.bind(this)}  />
+                                    <label htmlFor="fullAccount" className="radio_label">Full Account</label>  
+                                </div>                         
+                            </label>
+                        </div>
                         <div className="input_container">
                             <label>
                                 <strong>Username:</strong>

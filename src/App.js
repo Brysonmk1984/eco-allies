@@ -236,26 +236,6 @@ export default class App extends React.Component {
     this.getAlliesOfUser();
   }
 
-  // Watch for creation of new allies and update the UI
-  // watchForCreation(){
-  //   const creationEvent = this.instance.Creation();
-        
-  //   creationEvent.watch((error, result) =>{
-  //     if(error){
-  //       console.log('ERROR', error);
-  //     }else{
-
-  //       if(result.args.owner === this.state.account){
-  //         // Get new token count and fetch latest token
-  //         this.getTokenCount().then((tokenCount)=>{
-  //           this.getLatestAlly(tokenCount);
-  //         });
-  //       }
-  //     }
-  //   });
-
-  // }
-
   // Build a new ally on the blockchain
   buildAlly(){
     const num = generateSeed();console.log('FROM', this.state.account);
