@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // LIBRARIES
+import PropTypes from 'prop-types';
 import { Button } from '@material-ui/core';
 // COMMON
 import { register } from '~/common/loginService';
@@ -48,7 +49,8 @@ export default class Register extends React.Component{
                     this.handleErrors(errors);
                 }else{
                     this.setState(()=>({successfulAccountCreation: true}), () => {
-                        setTimeout(()=>(history.push(`${APP_ROOT}user-collection`)),1500);
+                        var top = document.getElementById("registerPageAlert").offsetTop;
+                        window.scrollTo(0, top);
                     });
                 }
                 
@@ -90,8 +92,12 @@ export default class Register extends React.Component{
     // Render success alert section
     renderSuccessSection(){
         if(this.state.successfulAccountCreation){
+            setTimeout(()=>{
+                this.props.modifyAppState({loggedIn : true});
+                history.push(`${APP_ROOT}user-collection`);
+            },1500);
             return(
-                <div className="notification notification-success">
+                <div id="registerPageAlert" className="notification notification-success">
                     <strong>Success! : </strong> <span>Your Account has been created!</span>
                 </div>
             )
@@ -99,16 +105,32 @@ export default class Register extends React.Component{
         
     }
 
+    renderAddress(){
+        if(this.state.accountType === 'full'){
+            return (
+                <div className="input_container">
+                    <label>
+                        <strong>Public Key (Required for Full Accounts):</strong>
+                        <input name="publicEthKey" type="text" value={this.state.publicEthKey} onChange={this.handleChange.bind(this)} placeholder="Enter Ethereum Wallet Public Key" minLength="42" maxLength="42" required />
+                    </label>
+                </div>
+            );
+        }
+        return false;
+    }
+
     // If there are new errors, rerender the alert section
     componentDidUpdate(prevProps, prevState){
         if(prevState.errors.length !== this.state.errors.length){
             this.renderAlertSection();
         }
+      
     }
 
 
-    render(){
 
+
+    render(){
         return(
             <div className="page-wrapper form-page register-page">
                 <section className="title-section">
@@ -127,14 +149,18 @@ export default class Register extends React.Component{
                             <label>
                                 <strong>Account Type:</strong>
                                 <p><b>Full accounts</b> require an Ethereum Wallet and Ether to pay for the cost of collecting, trading, and using tokens. <br /> <b>Simple Accounts</b> are not connected to the blockchain, don't require Ethereum Wallets and are free of transaction costs, however tokens cannot be traded.</p>
-                                
-                                <div>
-                                    <input type="radio" id="simpleAccount" className="account_type" name="accounttype" value="simple" checked={ this.state.accountType === 'simple' ? true : false } onChange={this.handleOptionChange.bind(this)}  />
-                                    <label htmlFor="simpleAccount" className="radio_label">Simple Account</label>
-                                    <input type="radio" id="fullAccount" className="account_type" name="accounttype" value="full" checked={ this.state.accountType === 'full' ? true : false } onChange={this.handleOptionChange.bind(this)}  />
-                                    <label htmlFor="fullAccount" className="radio_label">Full Account</label>  
-                                </div>                         
+                            
+                         
+                           
+                            <input type="radio" id="simpleAccount" className="account_type" name="accounttype" value="simple" checked={this.state.accountType === 'simple' ? true : false} onChange={this.handleOptionChange.bind(this)}  />
+                            <label htmlFor="simpleAccount" className="radio_label">Simple Account</label>
+                        
+                        
+                            <input type="radio" id="fullAccount" className="account_type" name="accounttype" value="full" checked={this.state.accountType === 'full' ? true : false} onChange={this.handleOptionChange.bind(this)}  />
+                            <label htmlFor="fullAccount" className="radio_label">Full Account</label>  
                             </label>
+                                                  
+                            
                         </div>
                         <div className="input_container">
                             <label>
@@ -160,12 +186,7 @@ export default class Register extends React.Component{
                                 <input name="passwordConfirm" type="password" value={this.state.passwordConfirm} onChange={this.handleChange.bind(this)} placeholder="Confirm Your Password" minLength="8" maxLength="100" required />
                             </label>
                         </div>
-                        <div className="input_container">
-                            <label>
-                                <strong>Public Key (optional):</strong>
-                                <input name="publicEthKey" type="text" value={this.state.publicEthKey} onChange={this.handleChange.bind(this)} placeholder="Enter Ethereum Wallet Public Key" minLength="42" maxLength="42" />
-                            </label>
-                        </div>
+                        { this.renderAddress() }
                         <div className="input_container register_button_container">
                             <Button type="submit" className="btn btn-primary btn-block">
                                 Create Account
@@ -180,3 +201,9 @@ export default class Register extends React.Component{
         );
     }
 }
+
+// PROP-TYPES
+Register.propTypes = {
+    modifyAppState : PropTypes.func.isRequired,
+    loggedIn : PropTypes.bool.isRequired
+};

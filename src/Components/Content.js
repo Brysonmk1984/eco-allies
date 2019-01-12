@@ -28,7 +28,7 @@ export default class Content extends React.Component{
                     <Route path={`${APP_ROOT}redeem/:qr`} component={(props) => (<Redeem {...props}  handleRedeem={this.props.handleRedeem} checkParamAgainstCode={this.props.checkParamAgainstCode} getAccountDetails={this.props.getAccountDetails}  buildAlly={this.props.buildAlly} /> )} /> 
                     <Route path={`${APP_ROOT}gallery`} component={() => (<Gallery  /> )} />
                     <Route path={`${APP_ROOT}user-collection`}  render={() => <UserCollection loggedIn={this.props.appState.loggedIn} allies ={this.props.appState.allies}  buildAlly={this.props.buildAlly}  transferAlly={this.props.transferAlly} />}   />
-                    <Route path={`${APP_ROOT}register`} component={() => (<Register   /> )} />
+                    <Route path={`${APP_ROOT}register`} component={() => (<Register  modifyAppState={this.props.modifyAppState} loggedIn={this.props.loggedIn}  /> )} />
                     <Route path={`${APP_ROOT}login`} component={() => (<Login modifyAppState={this.props.modifyAppState} handleLogin={this.props.handleLogin} loggedIn={this.props.loggedIn}   /> )} /> 
                     <Route path={`${APP_ROOT}account`} component={() =>( <Account allies={this.props.appState.allies} getAccountDetails={this.props.getAccountDetails} /> )}  />
                     {/* <Route path="faq" component={Faq} />*/}
