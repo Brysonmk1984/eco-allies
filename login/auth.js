@@ -6,7 +6,6 @@ const auth = function(passport, LocalStrategy){
     usernameField:'email', passwordField:'password'
     },
     function(email, password, done) {
-      console.log('email', email, 'password', password);
       User.find({
         where : {
           email

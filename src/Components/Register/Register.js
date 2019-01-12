@@ -20,7 +20,7 @@ export default class Register extends React.Component{
             password : '',
             passwordConfirm : '',
             publicEthKey : '',
-            accountType : 'simple',
+            fullAccount : false,
             errors : [],
             successfulAccountCreation : false
         };
@@ -40,7 +40,14 @@ export default class Register extends React.Component{
             if(this.state.errors.length){
                 this.setState(()=>({errors : []}));
             }
-            register(this.state)
+            register({
+                username : this.state.username,
+                email : this.state.email,
+                password : this.state.password,
+                passwordConfirm : this.state.passwordConfirm,
+                publicEthKey : this.state.publicEthKey,
+                accountType : this.state.accountType,
+            })
             .then((data) =>{console.log('in then hs', data);
                 if(data.error){
                     const errors = data.error.map((e) =>{
@@ -93,7 +100,7 @@ export default class Register extends React.Component{
     renderSuccessSection(){
         if(this.state.successfulAccountCreation){
             setTimeout(()=>{
-                this.props.modifyAppState({loggedIn : true});
+                this.props.modifyAppState({loggedIn : true, fullAccount : this.state.fullAccount });
                 history.push(`${APP_ROOT}user-collection`);
             },1500);
             return(
@@ -149,18 +156,13 @@ export default class Register extends React.Component{
                             <label>
                                 <strong>Account Type:</strong>
                                 <p><b>Full accounts</b> require an Ethereum Wallet and Ether to pay for the cost of collecting, trading, and using tokens. <br /> <b>Simple Accounts</b> are not connected to the blockchain, don't require Ethereum Wallets and are free of transaction costs, however tokens cannot be traded.</p>
-                            
-                         
-                           
-                            <input type="radio" id="simpleAccount" className="account_type" name="accounttype" value="simple" checked={this.state.accountType === 'simple' ? true : false} onChange={this.handleOptionChange.bind(this)}  />
-                            <label htmlFor="simpleAccount" className="radio_label">Simple Account</label>
-                        
-                        
-                            <input type="radio" id="fullAccount" className="account_type" name="accounttype" value="full" checked={this.state.accountType === 'full' ? true : false} onChange={this.handleOptionChange.bind(this)}  />
-                            <label htmlFor="fullAccount" className="radio_label">Full Account</label>  
+                                
+                                <input type="radio" id="simpleAccount" className="account_type" name="accounttype" value="simple" checked={this.state.fullAccount === false ? true : false} onChange={this.handleOptionChange.bind(this)}  />
+                                <label htmlFor="simpleAccount" className="radio_label">Simple Account</label>
+
+                                <input type="radio" id="fullAccount" className="account_type" name="accounttype" value="full" checked={this.state.fullAccount === true ? true : false} onChange={this.handleOptionChange.bind(this)}  />
+                                <label htmlFor="fullAccount" className="radio_label">Full Account</label>  
                             </label>
-                                                  
-                            
                         </div>
                         <div className="input_container">
                             <label>

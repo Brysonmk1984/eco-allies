@@ -46,8 +46,14 @@ const UserModel = function(db, DataTypes){
     },
     publicEthKey : {
       type : DataTypes.STRING(42),
-      //validate : { notEmpty :true }
+      allowNull: true
     },
+    fullAccount : {
+      type : DataTypes.BOOLEAN,
+      validate : {
+        notEmpty : true
+      }
+    }
     // validPassword : function(password, passwd, done, user){
     //   bcrypt.compare(password, passwd, function(err, isMatch){
     //     if(err){console.log(err);}

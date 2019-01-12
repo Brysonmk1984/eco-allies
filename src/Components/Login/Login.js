@@ -53,7 +53,8 @@ export default class Login extends React.Component{
             }else{
                
                 this.props.modifyAppState({
-                    loggedIn : true, 
+                    loggedIn : true,
+                    fullAccount : data.fullAccount,
                     account : data.publicEthKey
                 }, () =>{
                     setTimeout(()=>{

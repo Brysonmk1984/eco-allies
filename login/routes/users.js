@@ -21,11 +21,19 @@ router.post('/register', [
     res.json({ requestType : 'POST', success : false, error : errors.array() });
     return;
   }
-  User.create({
+  console.log('REQBODY', req.body);
+  const userObj = {
     email : req.body.email,
-    password : req.body.password,
-    publicEthKey : req.body.publicEthKey,
-  })
+    username : req.body.username,
+    password : req.body.password
+  };
+
+  if(req.body.fullAccount){
+    userObj.fullAccount = true;
+    userObj.publicEthKey = req.body.publicEthKey;
+  }
+  console.log('UO', userObj, req.body.password.length);
+  User.create(userObj)
   .then((user)=>{console.log('u2', user);
     req.login(user.id, function(err){
       if(err){
@@ -69,14 +77,15 @@ router.post('/login', function(req, res, next){
       if (err) return next(err);
       User.find({
         where : {
-        email : u.email
+          email : u.email
         },
-        attributes:['publicEthKey']
+        attributes:['publicEthKey', 'fullAccount']
       }).then((user, err) => {
         res.json({
         sessionId : req.sessionID,
         email : u.email,
         publicEthKey : user.dataValues.publicEthKey,
+        fullAccount : user.dataValues.fullAccount,
         isAuthenticated : true,
         requestType : 'POST',
         success : true
@@ -134,6 +143,7 @@ router.get('/logged-in', function(req, res, next){
       message: `You are logged in as ${req.user}`,
       email: req.user,
       publicEthKey: user.dataValues.publicEthKey,
+      fullAccount : user.dataValues.fullAccount,
       requestType : 'GET'
     });
     next();

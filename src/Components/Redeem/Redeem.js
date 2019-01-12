@@ -47,7 +47,6 @@ export default class Redeem extends React.Component{
 
       this.props.handleRedeem(this.state.code, this.state.email)
       .then((data) =>{
-          console.log('in then handleRedeem', data);
           if(data.error){
               this.handleErrors([data.error]);
           }else{
@@ -121,7 +120,7 @@ export default class Redeem extends React.Component{
             defaultState.code = values[1].code;
         }
 
-        this.setState(()=>(defaultState));
+        this.setState(defaultState);
     });
 
 
@@ -166,8 +165,8 @@ export default class Redeem extends React.Component{
 // PROP-TYPES
 Redeem.propTypes = {
   handleRedeem : PropTypes.func.isRequired,
-  checkParamAgainstCode : PropTypes.func.isRequired,
+  checkParamAgainstCode : PropTypes.func,
   getAccountDetails : PropTypes.func.isRequired,
   buildAlly : PropTypes.func.isRequired,
-  match : PropTypes.object.isRequired
+  match : PropTypes.object
 };

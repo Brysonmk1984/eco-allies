@@ -28,6 +28,7 @@ export default class App extends React.Component {
     this.state = {
       allies : [],
       account : '',
+      fullAccount : false,
       loggedIn : false,
     };
     this.web3;
@@ -264,7 +265,7 @@ export default class App extends React.Component {
       .then((data)=>{
         console.log('D', data);
         if(data){
-          this.setState(() => ({account : data.data.publicEthKey, loggedIn : true}), ()=>{
+          this.setState(() => ({ loggedIn : true, fullAccount : data.data.fullAccount, publicEthKey : data.data.publicEthKey ? data.data.publicEthKey : null }), ()=>{
             this.initWeb3();
           })
         }
