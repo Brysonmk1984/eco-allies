@@ -8,6 +8,7 @@ import Footer from './Components/Footer/Footer';
 import generateSeed from './common/generateNum';
 import { login, logout, loggedIn, accountDetails } from '~/common/loginService';
 import { sendRedeemCode, sendProof, checkParamAgainstCode } from '~/common/redeemService';
+import { fetchSimpleTokens, insertSimpleToken } from '~/common/tokenService';
 import history from '~/common/history';
 import getCookie from '~/common/cookie';
 
@@ -27,7 +28,8 @@ export default class App extends React.Component {
     super();
     this.state = {
       allies : [],
-      account : '',
+      publicEthKey : '',
+      email : '',
       fullAccount : false,
       loggedIn : false,
     };
@@ -59,7 +61,7 @@ export default class App extends React.Component {
           console.log('ERROR - ', data.error);
           return;
         }
-        this.setState(()=>({loggedIn:false, account: ''}), ()=>{ setTimeout(()=>(history.push(`${APP_ROOT}login`)),1000);});
+        this.setState(()=>({loggedIn:false, publicEthKey: ''}), ()=>{ setTimeout(()=>(history.push(`${APP_ROOT}login`)),1000);});
       })
       .catch((error)=>{
         console.log('log out failure', error);
@@ -104,125 +106,74 @@ export default class App extends React.Component {
   }
 
   // Initialize Web 3 to communicate with the blockchain
-  initWeb3(){console.log('called');
+  initWeb3(){
     // Check if Web 3 has been injected by the browser
     if(typeof web3 !== 'undefined'){
       // Use Browser/metamask version
       this.web3Provider = web3.currentProvider;
       this.web3Provider.enable();
-      console.log('CURRENT WEB 3 is metamask');
-    }else{console.log('NO WEB 3');
-      //console.log('Sorry, you need metamask to use this applhttp://ication.');
+    }else{
       this.web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
     }
 
     this.web3 = new Web3(this.web3Provider);
-    console.log('!',this.web3.eth.accounts);
     // instantiate a new truffle contract
     this.tContract = TruffleContract(contractJson);
     this.tContract.setProvider(this.web3Provider);
 
-    // Get specific Eth Account
-    //this.web3.eth.getCoinbase((err, account) => {
-        //console.log('AACCC', account);
-      this.tContract.deployed().then((instance) => {
-        this.instance = instance;
-        console.log('I', this.instance);
-        //let tokenCount = 0;
-        this.getTokenCount().then((tokenCount)=>{  
-          console.log('TC', tokenCount);
-          //this.getAllAllies(tokenCount -1);
-        });
-        
-        this.checkForAccountMatch();
-        // Watch for when new Allies are created
-        //this.watchForCreation();
+    // Deploy smart Contract
+    this.tContract.deployed().then((instance) => {
+      this.instance = instance;
+      this.checkForAccountMatch();
+    });
 
-      });
+  }
 
-
-//});
-
+  initSimpleMode(){
+    this.getAlliesOfUser(this.state.fullAccount);
     
-
   }
-  
-  // Get the token count of a particular account on the block chain, returns a promise
-  getTokenCount(){
-    return this.instance.totalSupply.call().then((count) =>{
-      return count.toNumber();
-    })
-  }
-
-  // Gets all allies on the blockchain (not currently used)
-  // getAllAllies(tokenCount){
-  //   const cachedThis = this;
-  //   const allies = [];
-  //   tokenCount = tokenCount;
-  //   function getAllies(){
-  //     cachedThis.instance.getEcoAlly.call(tokenCount).then((ally) =>{
-  //       //console.log('ally',ally);
-  //       allies.push({dna : ally[0].toNumber()});
-  //       tokenCount --;
-  //       if(tokenCount > 0){
-  //         getAllies(tokenCount);
-  //       }else{
-  //         cachedThis.setState((()=>({allies})));
-  //       }
-  //     });
-  //   }
-  //   getAllies(tokenCount);
-  // }
-
-  // Get latest ally added (not currently being used)
-  // getLatestAlly(tokenPosition){
-  //   this.instance.getEcoAlly.call(tokenPosition).then((ally) =>{
-  //     //console.log('ally',ally[1], ally[0].toNumber());
-  //     this.setState((prevState)=>({
-  //       allies : [{dna : ally[0].toNumber()}, ...prevState.allies]
-  //     }));
-  //   });
-  // }
 
   // Get the Allies of a particular user from the blockchain
-  getAlliesOfUser(){console.log('INST', this.instance);
-    this.instance.tokensOfOwner.call(this.state.account).then((tokens)=>{
-      console.log('tokens',tokens);
-      const tokenPositions = tokens.map((token) =>{
-        console.log('TOKEN num',token.toNumber());
-        return token.toNumber();
-      });
+  getAlliesOfUser(fullAccount){
+    if(fullAccount){
+      this.instance.tokensOfOwner.call(this.state.publicEthKey).then((tokens)=>{
+        const tokenPositions = tokens.map((token) =>{
+          return token.toNumber();
+        });
+        
+        const allies = [];
+        const tokenPromises = tokenPositions.map((tp) => {
+          return this.instance.getEcoAlly(tp);
+        });
       
-      const allies = [];
-      const tokenPromises = tokenPositions.map((tp) => {
-        return this.instance.getEcoAlly(tp);
-      });
-      
+        Promise.all(tokenPromises).then((values) =>{
+            values.forEach((ally,i)=>{
+              let allyDnaString = ally[0].toString();
+              if(allyDnaString.length === 15){
+                allyDnaString = '0' + allyDnaString;
+              }
+              allies.push({dna : allyDnaString, id : ally[1].toNumber()});
+            });
+            this.setState({allies});
+        });
 
-      Promise.all(tokenPromises).then((values) =>{
-          values.forEach((ally,i)=>{
-            let allyDnaString = ally[0].toString();
-            if(allyDnaString.length === 15){
-              allyDnaString = '0' + allyDnaString;
-            }
-            allies.push({dna : allyDnaString, id : ally[1].toNumber()});
-          });
-          //console.log('As',allies);
-          this.setState({allies});
-   
       });
-
-    });
+    }else{
+      fetchSimpleTokens(this.state.email)
+      .then((data) =>{
+        console.log('DATA', data);
+        this.setState({allies : data.tokenArray});
+      });
+    }
   }
 
   // Check if a web3 account of the user matches the account saved in our DB
   // Might need to modify this in case user is using multiple web3 accounts on metamask
   checkForAccountMatch(){
     let index;
-    console.log('DD', this.web3.eth.accounts);
     const matchingEthAccount = this.web3.eth.accounts.find((acc, i)=>{
-      console.log('ACCOUNT - ', acc, this.state.account);
-      if(acc === this.state.account.toLowerCase()){
+      if(acc === this.state.publicEthKey.toLowerCase()){
         index = i;
         return true;
       }
@@ -230,25 +181,35 @@ export default class App extends React.Component {
 
     // user is logged into correct meta mask account
     if(matchingEthAccount){
-      this.getAlliesOfUser();
+      this.getAlliesOfUser(this.state.fullAccount);
     }else{
-      console.log(`Please sign into account ${this.state.account} in metamask!`);
+      alert(`Please sign into account ${this.state.publicEthKey} in metamask!`);
     }
-    this.getAlliesOfUser();
   }
 
   // Build a new ally on the blockchain
   buildAlly(){
-    const num = generateSeed();console.log('FROM', this.state.account);
-    this.instance.addAlly(num, {from : this.state.account});
+    const num = generateSeed();
+    if(this.state.fullAccount){
+      this.instance.addAlly(num, {from : this.state.publicEthKey});
+    }else{
+      insertSimpleToken(num, this.state.email)
+      .then((data)=>{
+        console.log('new inserted token', data);
+      })
+      .catch((err) =>{
+        console.log('EEERR', err);
+      })
+    }
+
   }
 
   // Transfer ally from one address to another
   transferAlly(to, allyIndex = 0){
-    const from = this.state.account;
-    if(to !== this.state.account){
+    const from = this.state.publicEthKey;
+    if(to !== this.state.publicEthKey){
       //console.log('going', to, allyIndex);
-      this.instance.transferEcoAlly(from, to, allyIndex, {from : this.state.account});
+      this.instance.transferEcoAlly(from, to, allyIndex, {from : this.state.publicEthKey});
     }else{
       alert('please enter an account that\'s not your own');
     }
@@ -264,9 +225,13 @@ export default class App extends React.Component {
       loggedIn()
       .then((data)=>{
         console.log('D', data);
-        if(data){
-          this.setState(() => ({ loggedIn : true, fullAccount : data.data.fullAccount, publicEthKey : data.data.publicEthKey ? data.data.publicEthKey : null }), ()=>{
+        if(data && data.data.fullAccount){
+          this.setState(() => ({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, publicEthKey : data.data.publicEthKey }), ()=>{
             this.initWeb3();
+          })
+        }else{
+          this.setState(() => ({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email }), ()=>{
+            this.initSimpleMode();
           })
         }
       })
@@ -276,11 +241,11 @@ export default class App extends React.Component {
     }
   }
 
-  componentDidUpdate(pp,ps){
-    if(ps.loggedIn === false && this.state.loggedIn){
-      this.initWeb3();
-    }
-  }
+  // componentDidUpdate(pp,ps){
+  //   if(ps.loggedIn === false && this.state.loggedIn){
+  //     this.initWeb3();
+  //   }
+  // }
   
   render() {console.log('STATE', this.state);
     return (

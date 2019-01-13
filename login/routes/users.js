@@ -133,7 +133,7 @@ router.get('/logged-in', function(req, res, next){
     where : {
     email : req.user
   },
-  attributes:['publicEthKey']
+  attributes:['publicEthKey', 'fullAccount']
   })
   .then((user, err)=>{
     if (err) return next(err);

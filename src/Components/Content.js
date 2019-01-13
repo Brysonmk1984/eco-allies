@@ -41,9 +41,10 @@ export default class Content extends React.Component{
 // PROP-TYPES
 Content.propTypes = {
     appState : PropTypes.shape({
-        account : PropTypes.string.isRequired,
+        publicEthKey : PropTypes.string.isRequired,
         allies : PropTypes.array.isRequired,
-        loggedIn : PropTypes.bool.isRequired
+        loggedIn : PropTypes.bool.isRequired,
+        email : PropTypes.string.isRequired
     }),
     buildAlly : PropTypes.func.isRequired,
     getAccountDetails : PropTypes.func.isRequired,

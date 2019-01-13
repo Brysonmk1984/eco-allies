@@ -98,6 +98,6 @@ export default class AllyTile extends React.Component{
 // PROP-TYPES
 AllyTile.propTypes = {
     dna : PropTypes.string.isRequired,
-    id : PropTypes.number.isRequired,
+    id : PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     openModal : PropTypes.func.isRequired
 };

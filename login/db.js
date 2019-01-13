@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const UserModel = require('./models/user.js');
 const RetrievalCodeModel = require('./models/retrievalCode.js');
+const SimpleTokenModel = require('./models/simpleToken.js');
 
 let db;
 // PRODUCTION or Locally running backend through PROXY
@@ -44,5 +45,6 @@ db.sync();
 
 const User = UserModel(db, Sequelize);
 const RetrievalCode = RetrievalCodeModel(db, Sequelize);
+const SimpleToken = SimpleTokenModel(db, Sequelize);
 
-module.exports = { User, RetrievalCode, db }
+module.exports = { User, RetrievalCode, SimpleToken, db }
