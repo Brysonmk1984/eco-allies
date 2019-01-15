@@ -1,8 +1,17 @@
 // REACT
 import React from 'react';
+import { Route, Switch } from 'react-router';
 // COMPONENTS
 import Header from './Components/Header/Header';
 import Content from './Components/Content';
+import About from './Components/About/About';
+import Gallery from './Components/Gallery/Gallery';
+import UserCollection from './Components/UserCollection/UserCollection';
+import Register from './Components/Register/Register';
+import Login from './Components/Login/Login';
+import Account from './Components/Account/Account';
+import Redeem from './Components/Redeem/Redeem';
+import Proof from './Components/Proof/Proof';
 import Footer from './Components/Footer/Footer';
 // COMMON
 import generateSeed from './common/generateNum';
@@ -247,13 +256,29 @@ export default class App extends React.Component {
   //   }
   // }
   
+  
   render() {console.log('STATE', this.state);
     return (
       <div>
         <Header handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} />
-        <Content appState={this.state} getAccountDetails={this.getAccountDetails.bind(this)} modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} handleRedeem={this.handleRedeem.bind(this)} handleProof={this.handleProof.bind(this)} checkParamAgainstCode={this.checkParamAgainstCode.bind(this)} buildAlly={this.buildAlly.bind(this)} transferAlly={this.transferAlly.bind(this)} loggedIn={this.state.loggedIn}  />
+
+        <Content>
+          <Switch>
+            {/* <Route path={(`${APP_ROOT}`|`${APP_ROOT}about`)} component={About}  /> */}
+            <Route path={`${APP_ROOT}proof`} component={() => (<Proof handleProof={this.handleProof.bind(this)} />)} />
+            <Route exact path={`${APP_ROOT}redeem`} component={() => (<Redeem handleRedeem={this.handleRedeem.bind(this)} getAccountDetails={this.getAccountDetails.bind(this)}  buildAlly={this.buildAlly.bind(this)} /> )} /> 
+            <Route path={`${APP_ROOT}redeem/:qr`} component={(props) => (<Redeem {...props}  handleRedeem={this.handleRedeem.bind(this)} checkParamAgainstCode={this.checkParamAgainstCode.bind(this)} getAccountDetails={this.getAccountDetails.bind(this)}  buildAlly={this.buildAlly.bind(this)} /> )} /> 
+            <Route path={`${APP_ROOT}gallery`} component={() => (<Gallery  /> )} />
+            <Route path={`${APP_ROOT}user-collection`}  render={() => <UserCollection loggedIn={this.state.loggedIn} allies ={this.state.allies}  buildAlly={this.buildAlly.bind(this)}  transferAlly={this.transferAlly.bind(this)} />}   />
+            <Route path={`${APP_ROOT}register`} component={() => (<Register  modifyAppState={this.modifyAppState.bind(this)} loggedIn={this.state.loggedIn}  /> )} />
+            <Route path={`${APP_ROOT}login`} component={() => (<Login modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.loggedIn}   /> )} /> 
+            <Route path={`${APP_ROOT}account`} component={() =>( <Account allies={this.state.allies} getAccountDetails={this.getAccountDetails.bind(this)} /> )}  />
+            {/* <Route path="faq" component={Faq} />*/}
+          </Switch>
+        </Content>
         <Footer />
       </div>
     );
   }
 }
+
