@@ -3,6 +3,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 // COMPONENTS
 import Header from './Components/Header/Header';
+import Nav from './Components/Header/Nav';
 import Content from './Components/Content';
 import About from './Components/About/About';
 import Gallery from './Components/Gallery/Gallery';
@@ -260,8 +261,14 @@ export default class App extends React.Component {
   render() {console.log('STATE', this.state);
     return (
       <div>
-        <Header handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} />
-
+        <Header>
+            <Nav handleLogin={this.handleLogin}  loggedIn={this.state.loggedIn} />
+            <div className="brand">
+                <h1>ECO ALLIES</h1>
+                <p>Defenders of Gaia</p>
+            </div>
+            <div className="belt"></div>
+        </Header>
         <Content>
           <Switch>
             {/* <Route path={(`${APP_ROOT}`|`${APP_ROOT}about`)} component={About}  /> */}
