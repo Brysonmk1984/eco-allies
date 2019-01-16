@@ -1,5 +1,5 @@
 // REACT
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 // LIBRARIES
 import PropTypes from 'prop-types';
@@ -8,82 +8,50 @@ import { FaUser } from 'react-icons/lib/fa';
 import Logo from '~/assets/images/logo2.png';
 
 // COMPONENT
-export default class Nav extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            open: false,
-        };
-    }
-    
-    // Sets state that toggles the open / close of the account subnav
-    handleToggle() {
-        return this.setState(state => ({ open: !this.state.open }));
-    };
+const Nav = function(props){
+  const [open, setOpen] = useState(false);
 
-    // Handles logging out and navigating to account page
-    handleLogout(e){
-        e.preventDefault();
-        this.handleToggle();
-        this.props.handleLogin(false);
-    }
-   
-    // If logged in, render Collection link
-    renderUserCollection(){
-        if(this.props.loggedIn){
-            return (
-                <li><NavLink to={`${APP_ROOT}user-collection`} activeClassName="active">Collection</NavLink></li>
-            );
-        }
-    }
-
-    // If logged in, render account button, otherwise render getting started button
-    renderGettingStarted(){
-        if(this.props.loggedIn){
-            return (
-                <span className="account">
-                    <a onClick={this.handleToggle.bind(this)} title="Account">
-                    <FaUser/>
-                    </a>
-                    <div onClick={this.handleToggle.bind(this)} className={`account_dropdown ${this.state.open ? ' dropdown_open' : ' dropdown_closed' }`}>
-                        <ul>
-                            <li>
-                                <NavLink to={`${APP_ROOT}account`} activeClassName="active">Account</NavLink>
-                            </li>
-                            <li>
-                                <a onClick={this.handleLogout.bind(this)}>Logout</a>
-                            </li>
-                        </ul>
-                        <div className="arrow_up"></div>
-                    </div>
-                </span>
-            );
-        }else{
-            return <NavLink to={`${APP_ROOT}register`} activeClassName="active" className="btn-small">Get Started</NavLink>;
-        }
-    }
-
-    render(){
-        return(
-            <nav className="nav-wrapper">
-                <div onClick={this.handleToggle.bind(this)} className={`opaque-backdrop ${this.state.open ? 'backdrop-visible' : 'backdrop-hidden'}`}></div>
-                <a href ="/" className="brand-logo left">
-                    <img src={Logo} className="logo" />
-                </a>
-                <ul id="nav-mobile" className="right hide-on-small-only">
-                    <li><NavLink to={`${APP_ROOT}gallery`} activeClassName="active">Gallery</NavLink></li>
-                    { this.renderUserCollection() }
-                    <li><NavLink to={`${APP_ROOT}faq`} activeClassName="active">FAQ</NavLink></li>
-                    <li><NavLink to={`${APP_ROOT}about`} activeClassName="active">About</NavLink></li>
-                    <li><NavLink to={`${APP_ROOT}redeem`} activeClassName="active">Redeem Ally</NavLink></li>
-                    <li>
-                        { this.renderGettingStarted() }
-                    </li>
-                </ul>
-            </nav>
-        );
-    }
+  return (
+    <nav className="nav-wrapper">
+        <div onClick={() => setOpen(!open)} className={`opaque-backdrop ${open ? 'backdrop-visible' : 'backdrop-hidden'}`}></div>
+        <a href ="/" className="brand-logo left">
+            <img src={Logo} className="logo" />
+        </a>
+        <ul id="nav-mobile" className="right hide-on-small-only">
+            <li><NavLink to={`${APP_ROOT}gallery`} activeClassName="active">Gallery</NavLink></li>
+              { props.loggedIn ? <li><NavLink to={`${APP_ROOT}user-collection`} activeClassName="active">Collection</NavLink></li> : null }
+            <li><NavLink to={`${APP_ROOT}faq`} activeClassName="active">FAQ</NavLink></li>
+            <li><NavLink to={`${APP_ROOT}about`} activeClassName="active">About</NavLink></li>
+            <li><NavLink to={`${APP_ROOT}redeem`} activeClassName="active">Redeem Ally</NavLink></li>
+            <li>
+                {
+                  props.loggedIn ?
+                   <span className="account">
+                      <a onClick={() => setOpen(!open)} title="Account">
+                        <FaUser/>
+                      </a>
+                      <div onClick={() => setOpen(!open)} className={`account_dropdown ${open ? ' dropdown_open' : ' dropdown_closed' }`}>
+                          <ul>
+                              <li>
+                                  <NavLink to={`${APP_ROOT}account`} activeClassName="active">Account</NavLink>
+                              </li>
+                              <li>
+                                  <a onClick={(e) => {e.preventDefault(); setOpen(!open); props.handleLogin(false); }}>Logout</a>
+                              </li>
+                          </ul>
+                          <div className="arrow_up"></div>
+                      </div>
+                    </span>
+                  :
+                  <NavLink to={`${APP_ROOT}register`} activeClassName="active" className="btn-small">Get Started</NavLink>
+                }
+            </li>
+        </ul>
+    </nav>
+  )
 }
+
+export default Nav;
 
 // PROP-TYPES
 Nav.propTypes = {
