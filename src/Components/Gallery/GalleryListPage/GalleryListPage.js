@@ -47,7 +47,6 @@ export default class Gallery extends React.Component{
     }
 
 
-
     renderAllyModal(){
         const a = this.state.activeAlly;
         if(a){

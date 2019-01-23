@@ -7,6 +7,7 @@ import JwModal from 'jw-react-modal';
 import AllyTile from '../AllyTile/AllyTile';
 import AddModal from '../AddModal';
 // COMMON
+import { decodeAlly } from '~/common/crackDna';
 import * as AllyImages from '~/common/includedImages';
 import * as AllyBackgrounds from '~/common/includedBackgrounds';
 import { lowercaseUnderscore } from '~/common/helperFunctions';
@@ -37,9 +38,12 @@ export default class UserCollection extends React.Component{
 
     // Map all ally data belonging to this owner to individual ally components
     buildAllyList(){
+        
+        //console.log(ally);
         return this.props.allies.map((ally, i) => {
+            const decodedAlly = decodeAlly(ally.dna);
             return (
-                <AllyTile key={i} dna={ally.dna} id={ally.id} openModal={this.openModal.bind(this)}  />
+                <AllyTile {...decodedAlly}  key={i} dna={ally.dna} id={ally.id} openModal={this.openModal.bind(this)}  />
             );
         });
     }
@@ -58,32 +62,32 @@ export default class UserCollection extends React.Component{
         if(a){
             return <JwModal id="jw-modal-2">
                 <div id="featureModalAlly" onClick={this.closeModal.bind(this)}>
-                    <img src={ AllyImages[lowercaseUnderscore(a.allyName)] } onClick={this.navigateToAllyPage.bind(this)}  />
+                    <img src={ AllyImages[lowercaseUnderscore(a.basics.character)] } onClick={this.navigateToAllyPage.bind(this)}  />
                     <div id="allyHighlight"></div>
                 </div>
-                <div id="featureModalContent" style={ {backgroundImage: `url(${AllyBackgrounds[lowercaseUnderscore(a.allyName)]})`} }>
+                <div id="featureModalContent" style={ {backgroundImage: `url(${AllyBackgrounds[lowercaseUnderscore(a.basics.character)]})`} }>
                     <div id="contentTitle">
-                        <h2 style={ {backgroundColor : a.allyColors[0], color : a.allyColors[1] } }>{a.allyName}</h2>
-                        <h3 style={ {backgroundColor : a.allyColors[2], color : a.allyColors[3] } }>{ a.allyDescription }</h3>
+                        <h2 style={ {backgroundColor : a.basics.colors[0], color : a.basics.colors[1] } }>{a.basics.character}</h2>
+                        <h3 style={ {backgroundColor : a.basics.colors[2], color : a.basics.colors[3] } }>{ a.basics.description }</h3>
                     </div>
                     <div id="contentBody">
                         <div id="attributes">
-                            <h4 style={ {color : a.allyColors[3], borderBottom: `solid 2px ${a.allyColors[3]}`  } }>Abilities</h4>
+                            <h4 style={ {color : a.basics.colors[3], borderBottom: `solid 2px ${a.basics.colors[3]}`  } }>Abilities</h4>
                             <ul id="abilities">
-                                { this.state.allyUltimate ? <li id="ultimateAbility"  style={ {color : a.allyColors[4], fontWeight : 'bold'} }><span>{ a.allyUltimate }</span></li> : '' }
-                                { a.allySkills.map((s, i) =>{
-                                    return <li className="regular_ability" key={i}  style={ {color : a.allyColors[1] } }><span style={{paddingLeft : '4px'}}>{ s }</span></li>
+                                { a.ultimate ? <li id="ultimateAbility"  style={ {color : a.basics.colors[4], fontWeight : 'bold'} }><span>{ a.ultimate }</span></li> : '' }
+                                { a.skills.map((s, i) =>{
+                                    return <li className="regular_ability" key={i}  style={ {color : a.basics.colors[1] } }><span style={{paddingLeft : '4px'}}>{ s }</span></li>
                                 }) }
                             </ul>
-                            <h4 style={ {color : a.allyColors[3],  borderBottom: `solid 2px ${a.allyColors[3]}`  } }>Heroic Alignment</h4>
+                            <h4 style={ {color : a.basics.colors[3],  borderBottom: `solid 2px ${a.basics.colors[3]}`  } }>Heroic Alignment</h4>
                             <ul id="naturalAlignment" >
-                                <li style={ {color : a.allyColors[1]} }>{ a.allyAlignment }</li>
+                                <li style={ {color : a.basics.colors[1]} }>{ a.alignment }</li>
                             </ul>
                         </div>
-                        <p id="history" style={ {color : a.allyColors[4] } }>
-                            { a.allyHistory }
+                        <p id="history" style={ {color : a.basics.colors[4] } }>
+                            { a.history }
                         </p>
-                        <img id="allyKO" src={ AllyImages[`${lowercaseUnderscore(a.allyName)}_ko`] } />
+                        <img id="allyKO" src={ AllyImages[`${lowercaseUnderscore(a.basics.character)}_ko`] } />
                     </div>
                     
                 </div>

@@ -2,102 +2,43 @@
 import React from 'react';
 // LIBRARIES
 import PropTypes from 'prop-types';
-// COMPONENTS
-import VariantBar from '../VariantBar';
 // COMMON
-import history from '~/common/history';
-import { decodeAlly } from '~/common/crackDna';
-import * as AllyImages from '~/common/includedImages';
 import { lowercaseDash } from '~/common/helperFunctions';
 // ASSETS
 import './allyTile.scss';
-import fist from '~/assets/images/fist.png';
-import bgAmethyst from '~/assets/images/backgrounds/amethyst_bg.png';
-import bgCitrine from '~/assets/images/backgrounds/citrine_bg.png';
-import bgDiamond from '~/assets/images/backgrounds/diamond_bg.png';
-import bgEmerald from '~/assets/images/backgrounds/emerald_bg.png';
-import bg_fire_opal from '~/assets/images/backgrounds/fire_opal_bg.png';
-import bgOnyx from '~/assets/images/backgrounds/onyx_bg.png';
-import bgRuby from '~/assets/images/backgrounds/ruby_bg.png';
-import bgSapphire from '~/assets/images/backgrounds/sapphire_bg.png';
-import bgTopaz from '~/assets/images/backgrounds/topaz_bg.png';
 
 // COMPONENT
-export default class AllyTile extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            allyName : '',
-            allyDescription : '',
-            allySkills : [],
-            allyImage : '',
-            allyId : null,
-            allySign : '',
-            allyAlignment : '',
-            allyColor : null,
-            allyPower : 0,
-            allyUltimate : '',
-            // Only Used for Modal
-            allyDna : null,
-            allyColors : [],
-            allyHistory : ''
-        }
-    }
+const AllyTile = function(props){
 
-    // Navigate user to specific ally page on click, passing the allyId as an additional variable
-    // navigateToAlly(){
-    //     history.push({
-    //         pathname: `${APP_ROOT}user-collection/${this.props.dna}`,
-    //         state: {
-    //             allyId : this.props.id
-    //         }
-    //     });
-    // }
-
-    determineBackground(color){
-        if(color !== null){
-            return `bg bg-${lowercaseDash(color)}`;
+    const determineBackground = function(variant){
+        if(variant !== null){
+            return `bg bg-${lowercaseDash(variant)}`;
         }
         return ''; 
     }
-
-    // When component mounts, decode ally information from the specific DNA passed in as a prop
-    // Then set state to fully decoded ally data
-    componentDidMount(){
-        const ally = decodeAlly(this.props.dna);
-        this.setState(() =>({allyDna : this.props.dna, allyHistory : ally.basics.history, allyColors : ally.basics.colors, allyName : ally.basics.character, allyDescription : ally.basics.description, allySkills:ally.skills,allyImage:ally.image, allyId : this.props.id, allySign : ally.sign, allyAlignment : ally.alignment, allyColor:ally.color, allyPower:ally.power, allyUltimate: ally.ultimate}));
-    }
     
-    render(){
-        return(
-            <aside className="ally">
-                {/* <div className="ally-title">
-                    <h3>{this.state.allyName}</h3>
-                    <h4>{ this.state.allyDescription }</h4>
-                </div>
-                <VariantBar color={this.state.allyColor} alignment={this.state.allyAlignment} sign={this.state.allySign} /> */}
-                <div className={`ally-image`} onClick={this.props.openModal.bind(this, this.state )}>
-                    <img className={`${this.determineBackground(this.state.allyColor)}`} src={ this.state.allyImage } />
-                </div>
-                {/* <div className="ally-skills">
-                    <ul>
-                        { this.state.allySkills.map((skill, i)=>(<li key={i}>{skill}</li>)) }
-                        {
-                            this.state.allyUltimate ? <li className="ultimate_ability"><strong>{this.state.allyUltimate}</strong></li> : null
-                        }
-                    </ul>
-                </div>
-                <div className="ally-power">
-                    <img className="fist" src={fist} /> <strong>{this.state.allyPower}</strong>
-                </div> */}
-            </aside>
-        );
-    }
+    return(
+        <aside className="ally">
+            <div className={`ally-image`} onClick={props.openModal.bind(this, props )}>
+                <img className={`${determineBackground(props.color)}`} src={ props.image } />
+            </div>
+        </aside>
+    );
 }
+
+export default AllyTile;
 
 // PROP-TYPES
 AllyTile.propTypes = {
-    dna : PropTypes.string.isRequired,
-    id : PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    openModal : PropTypes.func.isRequired
+    openModal : PropTypes.func.isRequired,
+    basics : PropTypes.object,
+    alignment : PropTypes.string,
+    color : PropTypes.string,
+    dna : PropTypes.string,
+    id : PropTypes.string,
+    image : PropTypes.string.isRequired,
+    power : PropTypes.number,
+    sign : PropTypes.string,
+    skills : PropTypes.arrayOf(PropTypes.string),
+    ultimate : PropTypes.string
 };
