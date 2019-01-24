@@ -129,6 +129,17 @@ router.get('/logout', function(req, res){
 
 router.get('/logged-in', function(req, res, next){
   console.log('CHECKING IF LOGGED IN', req.user);
+  if(!req.user){
+    res.status(200).send({
+      success: true,
+      message: `You are not logged in!`,
+      email: '',
+      publicEthKey: '',
+      fullAccount : false,
+    });
+    return;
+  }
+
   User.find({
     where : {
     email : req.user

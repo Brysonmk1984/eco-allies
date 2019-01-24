@@ -54,9 +54,8 @@ const logout = function(){
 
 
     return axios.get(`${endpoint}users/logout`, {withCredentials:true})
-    .then((data) => {console.log('in lo');
+    .then((data) => {console.log('in lo', data);
         if(data.status === 200){
-            //console.log(data,'cookie-', getCookie('brysonsession'));
             const errorObj = data.data.error;
             if(errorObj){
                 return {
@@ -69,7 +68,7 @@ const logout = function(){
         }else{
             return {type : 'Server Error', message : `There was a server error with a status code of ${data.status}`}
         }
-    }).catch((error) => {
+    }).catch((error) => {console.log('ERRs', error);
         return { error : [{type : 'AJAX Error', message : `Couldn't communicate with server to log out!`}] }
     })
 };

@@ -10,7 +10,6 @@ import Logo from '~/assets/images/logo2.png';
 // COMPONENT
 const Nav = function(props){
   const [open, setOpen] = useState(false);
-
   return (
     <nav className="nav-wrapper">
         <div onClick={() => setOpen(!open)} className={`opaque-backdrop ${open ? 'backdrop-visible' : 'backdrop-hidden'}`}></div>

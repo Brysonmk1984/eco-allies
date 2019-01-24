@@ -8,25 +8,21 @@ import GalleryListPage from './GalleryListPage/GalleryListPage';
 import GalleryAllyPage from './GalleryAllyPage/GalleryAllyPage';
 
 // COMPONENT
-export default class UserCollection extends React.Component{
+const UserCollection = function(){
     
     // One of two different views is rendered depending on if a user navigates
     // to /gallery or /gallery/{{allyCharacter}} (allyCharacter will only reference the allylist.json file)
     // withRouter(component) grants browser history functionality
-    render(){
-        return(
-            <div className="page-wrapper gallery-page">
-                <Route exact path={`${APP_ROOT}gallery/`}  render={() => (
-                    <GalleryListPage  />
-                )} />
-                <Route path={`${APP_ROOT}gallery/:allyCharacter`}  render={
-                    withRouter((props) => ( <GalleryAllyPage {...props} /> ))
-                } />
-            </div>
-        );
-    }
+    return(
+        <div className="page-wrapper gallery-page">
+            <Route exact path={`${APP_ROOT}gallery/`}  render={() => (
+                <GalleryListPage  />
+            )} />
+            <Route path={`${APP_ROOT}gallery/:allyCharacter`}  render={
+                withRouter((props) => ( <GalleryAllyPage {...props} /> ))
+            } />
+        </div>
+    );
 }
 
-// PROP-TYPES
-UserCollection.propTypes = {
-};
+export default UserCollection;

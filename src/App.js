@@ -66,7 +66,7 @@ export default class App extends React.Component {
     }else if(doLogin === false){
       return logout()
       .then((data)=>{
-        //console.log('Data', data);
+        console.log('Data', data);
         if(data.error){
           console.log('ERROR - ', data.error);
           return;
@@ -74,7 +74,7 @@ export default class App extends React.Component {
         this.setState(()=>({loggedIn:false, publicEthKey: ''}), ()=>{ setTimeout(()=>(history.push(`${APP_ROOT}login`)),1000);});
       })
       .catch((error)=>{
-        console.log('log out failure', error);
+        console.log('log out failure!!', error);
       });
     }
   }
@@ -202,7 +202,7 @@ export default class App extends React.Component {
     const num = generateSeed();
     if(this.state.fullAccount){
       this.instance.addAlly(num, {from : this.state.publicEthKey});
-    }else{
+    }else{console.log('making');
       insertSimpleToken(num, this.state.email)
       .then((data)=>{
         console.log('new inserted token', data);
@@ -262,7 +262,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Header>
-            <Nav handleLogin={this.handleLogin}  loggedIn={this.state.loggedIn} />
+            <Nav handleLogin={this.handleLogin.bind(this)}  loggedIn={this.state.loggedIn} />
             <div className="brand">
                 <h1>ECO ALLIES</h1>
                 <p>Defenders of Gaia</p>

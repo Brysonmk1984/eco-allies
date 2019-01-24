@@ -35,7 +35,7 @@ AllyTile.propTypes = {
     alignment : PropTypes.string,
     color : PropTypes.string,
     dna : PropTypes.string,
-    id : PropTypes.string,
+    id : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     image : PropTypes.string.isRequired,
     power : PropTypes.number,
     sign : PropTypes.string,
