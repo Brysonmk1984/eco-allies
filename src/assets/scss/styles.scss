@@ -29,8 +29,9 @@ body, html{
     display:none;
 }
 
-div.route-wrapper {
+div.route-wrapper, div.error-wrapper {
     background-image: url("../images/layout/grunge.jpg");
+    min-height:300px;
     h2{
         font-family: 'Futura','Avenir', Helvetica, sans-serif;
         font-size:3em;
@@ -123,6 +124,13 @@ div.route-wrapper {
             }
             
         }
+        &.error-section{
+            padding: 20px;
+            .error-image{
+                text-align:center;
+                font-size: 8em;
+            }
+        }
         .subsection{
             text-align:center;
             &.subsection-loading{
@@ -144,7 +152,6 @@ div.route-wrapper {
         border-color:#ffeeba;
         border-radius:.25rem;
         padding:.75rem 1.25rem;
-        margin: 20px;
         &.notification-error{
             color : #721c24;
             background-color: #f8d7da;

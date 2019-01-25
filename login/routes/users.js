@@ -54,23 +54,13 @@ router.post('/login', function(req, res, next){
     store.get(req.sessionID, (err,sess)=>{
       if(err){
         console.log('Error retrieving session - ', err);
-        return res.json({
-          error: "Error retrieving session ",
-          isAuthenticated : false,
-          requestType : 'POST',
-          success : false
-        });
+        return res.status(400).send('Error Retrieving Session...');
       }
     })
-    if (err) return next(err);
+
     if (!u.email) {
       console.log('No user found...');
-      return res.json({
-        error: "No user found...",
-        isAuthenticated : false,
-        requestType : 'POST',
-        success : false
-      });
+      return res.status(404).send('No User Found...');
     }
     // Manually establish the session...
     req.login(u.email, function(err) {
@@ -128,15 +118,9 @@ router.get('/logout', function(req, res){
 // });
 
 router.get('/logged-in', function(req, res, next){
-  console.log('CHECKING IF LOGGED IN', req.user);
+  //console.log('CHECKING IF LOGGED IN', req.user);
   if(!req.user){
-    res.status(200).send({
-      success: true,
-      message: `You are not logged in!`,
-      email: '',
-      publicEthKey: '',
-      fullAccount : false,
-    });
+    res.status(403).send('You are not logged in!');
     return;
   }
 

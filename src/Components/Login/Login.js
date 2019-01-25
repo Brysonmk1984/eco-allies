@@ -51,7 +51,6 @@ export default class Login extends React.Component{
                 });
                 this.handleErrors(errors);
             }else{
-               
                 this.props.modifyAppState({
                     loggedIn : true,
                     fullAccount : data.fullAccount,

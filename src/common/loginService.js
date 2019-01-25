@@ -18,9 +18,7 @@ const login = function(formData){
         }else{
             return {type : 'Server Error', message : `There was a server error with a status code of ${data.status}`}
         }
-    }).catch((error) => {
-        return { error : [{type : 'AJAX Error', message : `Email or password did not match our records!`}] }
-    })
+    });
 };
 
 const register = function(formData){
@@ -78,20 +76,13 @@ const loggedIn = function(){
     .then((data) => {
         console.log('LI data', data);
         return data;
-    })
-    .catch((error)=>{
-        console.log('li error', error);
     });
 };
 
 const accountDetails = function(){
     return axios.get(`${endpoint}users/logged-in`, {withCredentials:true})
     .then((data) => {
-        //console.log('AD data', data);
         return data;
-    })
-    .catch((error)=>{
-        console.log('AD error', error);
     });
 };
 

@@ -52,15 +52,8 @@ export default class App extends React.Component {
     if(doLogin){
       return login({ email, password })
       .then((data)=>{
-        if(data.error){
-          console.log('ERROR - ', data.error);
-          return;
-        }
         console.log('THE DATA', data);
         return data;
-      })
-      .catch((error)=>{
-        console.log('log out failure', error);
       });
       
     }else if(doLogin === false){
@@ -244,10 +237,9 @@ export default class App extends React.Component {
             this.initSimpleMode();
           })
         }
-      })
-      .catch((err) =>{
-        console.log('EEERR', err);
-      })
+      }).catch((err)=>{
+        history.push(`${APP_ROOT}login`);
+      });
     }
   }
 
@@ -278,7 +270,7 @@ export default class App extends React.Component {
             <Route path={`${APP_ROOT}gallery`} component={() => (<Gallery  /> )} />
             <Route path={`${APP_ROOT}user-collection`}  render={() => <UserCollection loggedIn={this.state.loggedIn} allies ={this.state.allies}  buildAlly={this.buildAlly.bind(this)}  transferAlly={this.transferAlly.bind(this)} />}   />
             <Route path={`${APP_ROOT}register`} component={() => (<Register  modifyAppState={this.modifyAppState.bind(this)} loggedIn={this.state.loggedIn}  /> )} />
-            <Route path={`${APP_ROOT}login`} component={() => (<Login modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.loggedIn}   /> )} /> 
+            <Route path={`${APP_ROOT}login`} component={() => (<Login modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn}   /> )} /> 
             <Route path={`${APP_ROOT}account`} component={() =>( <Account allies={this.state.allies} getAccountDetails={this.getAccountDetails.bind(this)} /> )}  />
             {/* <Route path="faq" component={Faq} />*/}
           </Switch>
