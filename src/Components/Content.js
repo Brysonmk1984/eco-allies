@@ -3,20 +3,39 @@ import React from 'react';
 // LIBRARIES
 import axios from 'axios';
 import history from '~/common/history';
-import { MdSentimentDissatisfied } from 'react-icons/lib/md';
 
 // COMPONENT
 // Error boundary - if an error occurs in the main content, this will prevent
 // the entire app from crashing and will display an error message.
 class ContentBoundary extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = { hasError: false, errorMessage : null}
+    
+    renderAlerts(){
+        const alertEls = this.props.alerts.map((a, i)=>{
+            if(a.type === 'error'){
+                return (
+                    <div key={`alert-${i}`} className="notification notification-error">
+                        <strong>ERROR : </strong> <span>{ a.message }</span>
+                    </div>
+                );
+            }else if(a.type === 'success'){
+                return (
+                    <div key={`alert-${i}`} className="notification notification-success">
+                        <strong>Success! : </strong> <span>You've been logged in.</span>
+                    </div>
+                );
+            }
+        });
+
+        return <div id="alertWrapper" key="alert-wrapper" className="alert-wrapper">
+            <section key="alert-section" className="alert-section">
+                {[...alertEls]}
+            </section>
+        </div>
     }
 
     // I think this trips if the component malfunctions
     componentDidCatch(error, info){
-        this.setState({ hasError: true });
+        this.props.modifyAppState({alerts : [...this.props.alerts, {type : 'error', message : 'Component Rendering Error'}]});
         // Add error logging service here
     }
 
@@ -28,7 +47,8 @@ class ContentBoundary extends React.Component{
             return config;
         }, function (error) {
             console.log('NO REQUEST MADE (IN INT) - ', error);
-            this.setState({ hasError: true, errorMessage : `No Request was made!` });
+            this.props.modifyAppState({alerts : [...this.props.alerts, {type : 'error', message : 'No Request was made!'}]});
+
             // Do something with request error
             return Promise.reject(error);
         });
@@ -48,18 +68,18 @@ class ContentBoundary extends React.Component{
                 if(error.response.status === 403){
                     history.push(`${APP_ROOT}login`);
                 }else{
-                    this.setState({ hasError: true, errorMessage : `There was an error with the status ${error.response.status} - ${error.response.data}`});
+                    this.props.modifyAppState({alerts : [...this.props.alerts, {type : 'error', message : `There was an error with the status ${error.response.status} - ${error.response.data}`}]});
                 }
             } else if (error.request) {
                 // The request was made but no response was received
                 // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                 // http.ClientRequest in node.js
                 console.log('ERROR - request made, no response');
-                this.setState({ hasError: true, errorMessage : `There was no response from the server!`});
+                this.props.modifyAppState({alerts : [...this.props.alerts, {type : 'error', message : 'There was no response from the server!'}]});
             } else {
                 // Something happened in setting up the request that triggered an Error
                 console.log('ERROR - occurred in setting up request -', error.message);
-                this.setState({ hasError: true, errorMessage : `an error occurred in setting up request` });
+                this.props.modifyAppState({alerts : [...this.props.alerts, {type : 'error', message : 'an error occurred in setting up request'}]});
             }
 
             // Do something with response error
@@ -76,28 +96,13 @@ class ContentBoundary extends React.Component{
 
 
     render(){
-        if(this.state.hasError){
+        if(this.props.alerts.length){
             
-            // Hide error after three seconds
-            // setTimeout(()=>{
-            //     this.setState({hasError : false, errorMessage : null});
-            // },3000);
-              
-            return (
-                <div className="error-wrapper">
-                    <section className="error-section">
-                        <div className="notification notification-error">
-                            <strong>ERROR : </strong> <span>{ this.state.errorMessage }</span>
-                        </div>
-                        <div className="error-image">
-                            <MdSentimentDissatisfied />
-                        </div>
-                    </section>
-                </div>
-            )
+            return [
+                this.renderAlerts(),
+                this.props.children
+            ]
                 
-     
-            
         }
         return this.props.children;
     }
@@ -108,7 +113,7 @@ class ContentBoundary extends React.Component{
 // Displays app content between header and footer depending on the route
 const Content = (props) =>{
     return (
-        <ContentBoundary>
+        <ContentBoundary {...props}>
             <div className="route-wrapper">{props.children}</div>
         </ContentBoundary>
     )

@@ -42,6 +42,12 @@ export default class App extends React.Component {
       email : '',
       fullAccount : false,
       loggedIn : false,
+      alerts : [
+        // {
+        //   type : 'error',
+        //   message : null
+        // }
+      ]
     };
     this.web3;
   }
@@ -186,7 +192,7 @@ export default class App extends React.Component {
     if(matchingEthAccount){
       this.getAlliesOfUser(this.state.fullAccount);
     }else{
-      alert(`Please sign into account ${this.state.publicEthKey} in metamask!`);
+      console.log(`Please sign into account ${this.state.publicEthKey} in metamask!`);
     }
   }
 
@@ -229,26 +235,24 @@ export default class App extends React.Component {
       .then((data)=>{
         console.log('D', data);
         if(data && data.data.fullAccount){
-          this.setState(() => ({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, publicEthKey : data.data.publicEthKey }), ()=>{
-            this.initWeb3();
-          })
+          this.setState(() => ({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, publicEthKey : data.data.publicEthKey }) );
         }else{
-          this.setState(() => ({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email }), ()=>{
-            this.initSimpleMode();
-          })
+          this.setState(() => ({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email }) );
         }
-      }).catch((err)=>{
-        console.log('ERRRR1', err);
-        //history.push(`${APP_ROOT}login`);
-      });
+      }).catch((e) =>{});
     }
   }
 
-  // componentDidUpdate(pp,ps){
-  //   if(ps.loggedIn === false && this.state.loggedIn){
-  //     this.initWeb3();
-  //   }
-  // }
+  // After a user logs in, or visits the site while already logged in,  get allies of user
+  componentDidUpdate(pp,ps){
+    if(ps.loggedIn === false && this.state.loggedIn){
+      if(this.state.fullAccount){
+        this.initWeb3();
+      }else{
+        this.initSimpleMode();
+      }
+    }
+  }
   
   
   render() {console.log('STATE', this.state);
@@ -262,7 +266,7 @@ export default class App extends React.Component {
             </div>
             <div className="belt"></div>
         </Header>
-        <Content>
+        <Content alerts={this.state.alerts} modifyAppState={this.modifyAppState.bind(this)} >
           <Switch>
             {/* <Route path={(`${APP_ROOT}`|`${APP_ROOT}about`)} component={About}  /> */}
             <Route path={`${APP_ROOT}proof`} component={() => (<Proof handleProof={this.handleProof.bind(this)} />)} />
@@ -270,8 +274,8 @@ export default class App extends React.Component {
             <Route path={`${APP_ROOT}redeem/:qr`} component={(props) => (<Redeem {...props}  handleRedeem={this.handleRedeem.bind(this)} checkParamAgainstCode={this.checkParamAgainstCode.bind(this)} getAccountDetails={this.getAccountDetails.bind(this)}  buildAlly={this.buildAlly.bind(this)} /> )} /> 
             <Route path={`${APP_ROOT}gallery`} component={() => (<Gallery  /> )} />
             <Route path={`${APP_ROOT}user-collection`}  render={() => <UserCollection loggedIn={this.state.loggedIn} allies ={this.state.allies}  buildAlly={this.buildAlly.bind(this)}  transferAlly={this.transferAlly.bind(this)} />}   />
-            <Route path={`${APP_ROOT}register`} component={() => (<Register  modifyAppState={this.modifyAppState.bind(this)} loggedIn={this.state.loggedIn}  /> )} />
-            <Route path={`${APP_ROOT}login`} component={() => (<Login modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn}   /> )} /> 
+            <Route path={`${APP_ROOT}register`} component={() => (<Register  modifyAppState={this.modifyAppState.bind(this)} loggedIn={this.state.loggedIn} alerts={this.state.alerts} /> )} />
+            <Route path={`${APP_ROOT}login`} component={() => (<Login modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} alerts={this.state.alerts}   /> )} /> 
             <Route path={`${APP_ROOT}account`} component={() =>( <Account allies={this.state.allies} getAccountDetails={this.getAccountDetails.bind(this)} /> )}  />
             {/* <Route path="faq" component={Faq} />*/}
           </Switch>

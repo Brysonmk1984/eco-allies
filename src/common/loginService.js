@@ -10,13 +10,13 @@ const login = function(formData){
             if(errorObj){
                 return {
                     error : errorObj.errors.map((error)=>{
-                        return {error : {type : 'Database Error', message : `${error.type} at ${error.path} input`}}
+                        return {error : {type : 'error', message : `${error.type} at ${error.path} input`}}
                     })
                 }
             }
             return data.data;
         }else{
-            return {type : 'Server Error', message : `There was a server error with a status code of ${data.status}`}
+            return {type : 'error', message : `There was a server error with a status code of ${data.status}`}
         }
     });
 };
@@ -29,16 +29,16 @@ const register = function(formData){
             if(errorObj){
                 return {
                     error : errorObj.errors.map((error)=>{
-                        return {error : {type : 'Database Error', message : `${error.type} at ${error.path} input`}}
+                        return {error : {type : 'error', message : `${error.type} at ${error.path} input`}}
                     })
                 }
             }console.log('EP', endpoint, data.data);
             return data.data;
         }else{
-            return {type : 'Server Error', message : `There was a server error with a status code of ${data.status}`}
+            return {type : 'error', message : `There was a server error with a status code of ${data.status}`}
         }
     }).catch((error) => {
-        return {type : 'AJAX Error', message : `${error}`}
+        return {type : 'error', message : `${error}`}
     })
 };
 

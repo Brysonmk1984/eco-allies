@@ -21,9 +21,9 @@ export default class Register extends React.Component{
             passwordConfirm : '',
             publicEthKey : '',
             fullAccount : false,
-            errors : [],
             successfulAccountCreation : false
         };
+  
     }
 
     // Handle Change of form
@@ -37,9 +37,6 @@ export default class Register extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         if(this.state.password === this.state.passwordConfirm){
-            if(this.state.errors.length){
-                this.setState(()=>({errors : []}));
-            }
             register({
                 username : this.state.username,
                 email : this.state.email,
@@ -53,22 +50,38 @@ export default class Register extends React.Component{
                     const errors = data.error.map((e) =>{
                         return {type:e.error.type, message:e.error.message}
                     });
-                    this.handleErrors(errors);
+                    this.props.modifyAppState({alerts : [...errors]}, () =>{
+                        const top = document.getElementById("alertWrapper").offsetTop;
+                        window.scrollTo(0, top)
+                    });
                 }else{
                     this.setState(()=>({successfulAccountCreation: true}), () => {
-                        var top = document.getElementById("registerPageAlert").offsetTop;
-                        window.scrollTo(0, top);
+                        this.props.modifyAppState({  alerts : [{type : 'success', message : 'Account successfully created!'}] }, () =>{
+                            const top = document.getElementById("alertWrapper").offsetTop;
+                            window.scrollTo(0, top);
+                            setTimeout(()=>{
+                                history.push(`${APP_ROOT}user-collection`);
+                                this.props.modifyAppState({alerts : []});
+                            },1200);
+                        });
+
                     });
                 }
                 
             })
             .catch((error) =>{
                 if(error){
-                    this.handleErrors([{type:error.type, message:error.message}])
+                    this.props.modifyAppState({ alerts : [{type:error.type, message:error.message}]}, () =>{
+                        const top = document.getElementById("alertWrapper").offsetTop;
+                        window.scrollTo(0, top);
+                    });
                 }
             });
         }else{
-            this.handleErrors([{type:'password',message:'Passwords do Not Match'}]);
+            this.props.modifyAppState({ alerts : [{type:'error',message:'Passwords do Not Match'}]}, () =>{
+                const top = document.getElementById("alertWrapper").offsetTop;
+                window.scrollTo(0, top);
+            });
         }
         
     }
@@ -78,23 +91,6 @@ export default class Register extends React.Component{
         });
     }
 
-    // Handle errors in the state
-    handleErrors(errors){
-        this.setState(()=>({errors : [...this.state.errors, ...errors]}));
-    }
-
-    // Render error allert sections
-    renderAlertSection(){
-        if(this.state.errors.length){
-            const errorEls = this.state.errors.map((error, i) =>(
-                    <div className="notification notification-error" key={i}>
-                        <strong>ERROR : </strong> <span>{error.message}</span>
-                    </div>
-                )
-            )
-            return errorEls;
-        }
-    }
 
     // Render success alert section
     renderSuccessSection(){
@@ -126,17 +122,6 @@ export default class Register extends React.Component{
         return false;
     }
 
-    // If there are new errors, rerender the alert section
-    componentDidUpdate(prevProps, prevState){
-        if(prevState.errors.length !== this.state.errors.length){
-            this.renderAlertSection();
-        }
-      
-    }
-
-
-
-
     render(){
         return(
             <div className="page-wrapper form-page register-page">
@@ -145,10 +130,6 @@ export default class Register extends React.Component{
                         <h1>Assemble Your Team</h1>
                         <p>Register Account</p>
                     </div>
-                </section>
-                <section className="alert-section">
-                    {this.renderAlertSection()}
-                    {this.renderSuccessSection()}
                 </section>
                 <section className="form-section">
                     <form id="registrationForm" onSubmit={this.handleSubmit.bind(this)}>
@@ -206,6 +187,7 @@ export default class Register extends React.Component{
 
 // PROP-TYPES
 Register.propTypes = {
+    alerts : PropTypes.arrayOf(PropTypes.shape({ type : PropTypes.string.isRequired, message : PropTypes.string.isRequired })).isRequired,
     modifyAppState : PropTypes.func.isRequired,
     loggedIn : PropTypes.bool.isRequired
 };

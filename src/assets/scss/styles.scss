@@ -29,9 +29,7 @@ body, html{
     display:none;
 }
 
-div.route-wrapper, div.error-wrapper {
-    background-image: url("../images/layout/grunge.jpg");
-    min-height:300px;
+div.route-wrapper, div.alert-wrapper {
     h2{
         font-family: 'Futura','Avenir', Helvetica, sans-serif;
         font-size:3em;
@@ -124,11 +122,28 @@ div.route-wrapper, div.error-wrapper {
             }
             
         }
-        &.error-section{
+        &.alert-section{
             padding: 20px;
-            .error-image{
-                text-align:center;
-                font-size: 8em;
+            .notification{
+                color : #856404;
+                background-color: #fff3cd;
+                border-color:#ffeeba;
+                border-radius:.25rem;
+                padding:.75rem 1.25rem;
+                margin-bottom:10px;
+                &.notification-error{
+                    color : #721c24;
+                    background-color: #f8d7da;
+                    border-color:#f5c6cb;
+                }
+                &.notification-success{
+                    color : #004085;
+                    background-color: #cce5ff;
+                    border-color:#b8daff;
+                }
+                &:last-of-type{
+                    margin-bottom:0px;
+                }
             }
         }
         .subsection{
@@ -146,25 +161,13 @@ div.route-wrapper, div.error-wrapper {
             }
         }
     }
-    .notification{
-        color : #856404;
-        background-color: #fff3cd;
-        border-color:#ffeeba;
-        border-radius:.25rem;
-        padding:.75rem 1.25rem;
-        &.notification-error{
-            color : #721c24;
-            background-color: #f8d7da;
-            border-color:#f5c6cb;
-            
-        }
-        &.notification-success{
-            color : #004085;
-            background-color: #cce5ff;
-            border-color:#b8daff;
-            
-        }
-    }
+   
+}
+div.route-wrapper{
+    background-image: url("../images/layout/grunge.jpg");
+}
+div.alert-wrapper{
+    background-color: $primaryBackground;
 }
 // MODAL
 .jw-modal{

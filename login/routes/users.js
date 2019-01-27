@@ -60,7 +60,7 @@ router.post('/login', function(req, res, next){
 
     if (!u.email) {
       console.log('No user found...');
-      return res.status(404).send('No User Found...');
+      return res.status(401).send('Email or Password is incorrect.');
     }
     // Manually establish the session...
     req.login(u.email, function(err) {
