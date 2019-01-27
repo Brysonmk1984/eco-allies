@@ -238,7 +238,8 @@ export default class App extends React.Component {
           })
         }
       }).catch((err)=>{
-        history.push(`${APP_ROOT}login`);
+        console.log('ERRRR1', err);
+        //history.push(`${APP_ROOT}login`);
       });
     }
   }

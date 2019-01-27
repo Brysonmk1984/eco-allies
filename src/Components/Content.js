@@ -17,13 +17,10 @@ class ContentBoundary extends React.Component{
     // I think this trips if the component malfunctions
     componentDidCatch(error, info){
         this.setState({ hasError: true });
-        // You can also log the error to an error reporting service
-        //logErrorToMyService(error, info);
+        // Add error logging service here
     }
 
     componentDidMount(){
-        const path = history.location.pathname;
-        const passThroughInterceptor = path.includes('login') || path.includes('register') ? true : false;
         
         this.requestInterceptor = axios.interceptors.request.use(function(config){
             // Do something before request is sent
@@ -48,7 +45,9 @@ class ContentBoundary extends React.Component{
                 console.log('ERROR - response data -',error.response.data);
                 console.log('ERROR - response status -', error.response.status);
                 console.log('ERROR - response header -', error.response.headers);
-                if(passThroughInterceptor === false){
+                if(error.response.status === 403){
+                    history.push(`${APP_ROOT}login`);
+                }else{
                     this.setState({ hasError: true, errorMessage : `There was an error with the status ${error.response.status} - ${error.response.data}`});
                 }
             } else if (error.request) {
@@ -56,15 +55,11 @@ class ContentBoundary extends React.Component{
                 // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                 // http.ClientRequest in node.js
                 console.log('ERROR - request made, no response');
-                if(passThroughInterceptor === false){
-                    this.setState({ hasError: true, errorMessage : `There was no response from the server!` });
-                }
+                this.setState({ hasError: true, errorMessage : `There was no response from the server!`});
             } else {
                 // Something happened in setting up the request that triggered an Error
                 console.log('ERROR - occurred in setting up request -', error.message);
-                if(passThroughInterceptor === false){
-                    this.setState({ hasError: true, errorMessage : `an error occurred in setting up request` });
-                }
+                this.setState({ hasError: true, errorMessage : `an error occurred in setting up request` });
             }
 
             // Do something with response error
@@ -84,9 +79,9 @@ class ContentBoundary extends React.Component{
         if(this.state.hasError){
             
             // Hide error after three seconds
-            setTimeout(()=>{
-                this.setState({hasError : false, errorMessage : null});
-            },3000);
+            // setTimeout(()=>{
+            //     this.setState({hasError : false, errorMessage : null});
+            // },3000);
               
             return (
                 <div className="error-wrapper">
