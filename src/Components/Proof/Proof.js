@@ -13,8 +13,7 @@ export default class Proof extends React.Component{
     this.state = {
       uploaded : false,
       confirmed : false,
-      message : '',
-      errors : [],
+      message : ''
     };
 
   }
@@ -23,8 +22,6 @@ export default class Proof extends React.Component{
   handleChange(e){
     e.persist();
     const newState = {};
-    //console.log('target',e.target, this.fileInput.current.files[0]);
-
     newState[e.target.name] = e.target.value;
     this.setState(() => (newState));
   }
@@ -39,9 +36,6 @@ export default class Proof extends React.Component{
   handleSubmit(e){
     e.preventDefault();
 
-    if(this.state.errors.length){
-        this.setState(()=>({errors : []}));
-    }
 
     const formData = new FormData();
     formData.append('file', this.uploadInput.files[0]);
@@ -51,48 +45,18 @@ export default class Proof extends React.Component{
     this.props.handleProof(formData)
     .then((data) =>{
       console.log('PROOF DATA', data);
+      this.props.modifyAppState({alerts : [{type : 'success', message : 'Your document has been submitted. Please allow 48 hours for processing.'}]}, () =>{
+        const top = document.getElementById("alertWrapper").offsetTop;
+        window.scrollTo(0, top);
+      });
+      
     })
-    
-
+  
   }
-
-  // Handle errors from server
-  handleErrors(errors){console.log('ERRORS', errors);
-    this.setState(()=>({errors : [...this.state.errors, ...errors]}));
-  }
-
-  // Render alert status messages
-  renderAlertSection(){
-    if(this.state.errors.length){
-        const errorEls = this.state.errors.map((error, i) =>(
-                <div className="notification notification-error" key={i}>
-                    <strong>ERROR : </strong> <span>{error.message}</span>
-                </div>
-            )
-        )
-        return errorEls;
-    }
-  }
-
-  // Render success alert message
-  renderSuccessSection(){
-    if(this.state.tokenCreated){
-      return(
-        <div className="notification notification-success">
-            <strong>Success! : </strong> <span>And your new Ally is...</span>
-        </div>
-      )
-    }
-  }
-
 
   render(){
     return(
       <div className="page-wrapper form-page proof-page">
-          <section className="alert-section">
-              {this.renderAlertSection()}
-              {this.renderSuccessSection()}
-          </section>
           <section className="form-section">
               <div className="subsection">
                   <h2>Submit Proof</h2>
@@ -130,5 +94,6 @@ export default class Proof extends React.Component{
 }
 
 Proof.propTypes = {
-
+  alerts : PropTypes.arrayOf(PropTypes.shape({ type : PropTypes.string.isRequired, message : PropTypes.string.isRequired })).isRequired,
+  modifyAppState : PropTypes.func.isRequired,
 }

@@ -9,7 +9,7 @@ const fetchSimpleTokens = function(owner){
   })
   .catch((error)=>{
       console.log('simple token error', error);
-      return { error : [{type : 'AJAX Error', message : `Couldn't communicate with server to fetch simple token!`}] }
+      return { error : [{type : 'error', message : `Couldn't communicate with server to fetch simple token!`}] }
   });
 };
 
@@ -20,7 +20,7 @@ const insertSimpleToken = function(token, owner){
     return data
   }).catch((error)=>{
     console.log('simple token error', error);
-    return { error : [{type : 'AJAX Error', message : `Couldn't communicate with server to insert token!`}] }
+    return { error : [{type : 'error', message : `Couldn't communicate with server to insert token!`}] }
   });
 };
 

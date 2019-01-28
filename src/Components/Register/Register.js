@@ -91,23 +91,6 @@ export default class Register extends React.Component{
         });
     }
 
-
-    // Render success alert section
-    renderSuccessSection(){
-        if(this.state.successfulAccountCreation){
-            setTimeout(()=>{
-                this.props.modifyAppState({loggedIn : true, fullAccount : this.state.fullAccount });
-                history.push(`${APP_ROOT}user-collection`);
-            },1500);
-            return(
-                <div id="registerPageAlert" className="notification notification-success">
-                    <strong>Success! : </strong> <span>Your Account has been created!</span>
-                </div>
-            )
-        }
-        
-    }
-
     renderAddress(){
         if(this.state.accountType === 'full'){
             return (

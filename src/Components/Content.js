@@ -11,19 +11,9 @@ class ContentBoundary extends React.Component{
     
     renderAlerts(){
         const alertEls = this.props.alerts.map((a, i)=>{
-            if(a.type === 'error'){
-                return (
-                    <div key={`alert-${i}`} className="notification notification-error">
-                        <strong>ERROR : </strong> <span>{ a.message }</span>
-                    </div>
-                );
-            }else if(a.type === 'success'){
-                return (
-                    <div key={`alert-${i}`} className="notification notification-success">
-                        <strong>Success! : </strong> <span>You've been logged in.</span>
-                    </div>
-                );
-            }
+            return <div key={`alert-${i}`} className={`notification ${a.type === 'error' ? 'notification-error' : a.type === 'success' ? 'notification-success' : null}`}>
+                <strong> {a.type === 'error' ? 'ERROR' : a.type === 'success' ? 'Success!' : null} : </strong> <span> { a.message }</span>
+            </div>
         });
 
         return <div id="alertWrapper" key="alert-wrapper" className="alert-wrapper">

@@ -19,7 +19,6 @@ export default class Redeem extends React.Component{
       this.state = {
           code : '',
           confirmed : false,
-          errors : [],
           email : '',
           tokenCreated : false
       };
@@ -41,59 +40,26 @@ export default class Redeem extends React.Component{
     handleSubmit(e){
       e.preventDefault();
 
-      if(this.state.errors.length){
-          this.setState(()=>({errors : []}));
-      }
-
       this.props.handleRedeem(this.state.code, this.state.email)
       .then((data) =>{
           if(data.error){
-              this.handleErrors([data.error]);
+              this.props.modifyAppState({alerts : [data.error]})
           }else{
             this.props.buildAlly();
-            // this.setState(()=>({tokenCreated : true}));
+            //this.props.modifyAppState({alerts : [{ type : 'success', message : 'Token successfully created!' }]})
             // setTimeout(()=>{
             //     history.push(`${APP_ROOT}user-collection`);
-            // },1000);
+            // },1200);
 
           } 
           
       })
       .catch((error) =>{
           if(error){
-              this.handleErrors([{type:error.type, message:error.message}])
-          }
+              this.props.modifyAppState({alerts : [error]})
+            }
       });
 
-  }
-
-  // Handle errors from server
-  handleErrors(errors){console.log('ERRORS', errors);
-    this.setState(()=>({errors : [...this.state.errors, ...errors]}));
-  }
-
-  // Render alert status messages
-  renderAlertSection(){
-    if(this.state.errors.length){
-        const errorEls = this.state.errors.map((error, i) =>(
-                <div className="notification notification-error" key={i}>
-                    <strong>ERROR : </strong> <span>{error.message}</span>
-                </div>
-            )
-        )
-        return errorEls;
-    }
-  }
-
-  // Render success alert message
-  renderSuccessSection(){
-    if(this.state.tokenCreated){
-      return(
-        <div className="notification notification-success">
-            <strong>Success! : </strong> <span>And your new Ally is...</span>
-        </div>
-      )
-    }
   }
 
   // When component mounts, retrieve details about the account from the database
@@ -129,10 +95,6 @@ export default class Redeem extends React.Component{
   render(){
       return(
           <div className="page-wrapper form-page redeem-page">
-              <section className="alert-section">
-                  {this.renderAlertSection()}
-                  {this.renderSuccessSection()}
-              </section>
               <section className="form-section">
                   <div className="subsection">
                       <h2>Unlock your Ally</h2>
@@ -164,9 +126,11 @@ export default class Redeem extends React.Component{
 
 // PROP-TYPES
 Redeem.propTypes = {
-  handleRedeem : PropTypes.func.isRequired,
-  checkParamAgainstCode : PropTypes.func,
-  getAccountDetails : PropTypes.func.isRequired,
-  buildAlly : PropTypes.func.isRequired,
-  match : PropTypes.object
+    alerts : PropTypes.arrayOf(PropTypes.shape({ type : PropTypes.string.isRequired, message : PropTypes.string.isRequired })).isRequired,
+    modifyAppState : PropTypes.func.isRequired,
+    handleRedeem : PropTypes.func.isRequired,
+    checkParamAgainstCode : PropTypes.func,
+    getAccountDetails : PropTypes.func.isRequired,
+    buildAlly : PropTypes.func.isRequired,
+    match : PropTypes.object
 };

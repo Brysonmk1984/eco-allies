@@ -90,8 +90,8 @@ router.post('/proof', function(req, res, next){
       requestType : 'POST',
       info : data
     });
+    next();
   });
-  next();
 });
 
 router.post('/retrieve-simple-tokens', function(req, res, next){

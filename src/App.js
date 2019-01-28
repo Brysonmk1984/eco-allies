@@ -269,9 +269,9 @@ export default class App extends React.Component {
         <Content alerts={this.state.alerts} modifyAppState={this.modifyAppState.bind(this)} >
           <Switch>
             {/* <Route path={(`${APP_ROOT}`|`${APP_ROOT}about`)} component={About}  /> */}
-            <Route path={`${APP_ROOT}proof`} component={() => (<Proof handleProof={this.handleProof.bind(this)} />)} />
-            <Route exact path={`${APP_ROOT}redeem`} component={() => (<Redeem handleRedeem={this.handleRedeem.bind(this)} getAccountDetails={this.getAccountDetails.bind(this)}  buildAlly={this.buildAlly.bind(this)} /> )} /> 
-            <Route path={`${APP_ROOT}redeem/:qr`} component={(props) => (<Redeem {...props}  handleRedeem={this.handleRedeem.bind(this)} checkParamAgainstCode={this.checkParamAgainstCode.bind(this)} getAccountDetails={this.getAccountDetails.bind(this)}  buildAlly={this.buildAlly.bind(this)} /> )} /> 
+            <Route path={`${APP_ROOT}proof`} component={() => (<Proof handleProof={this.handleProof.bind(this)} modifyAppState={this.modifyAppState.bind(this)}  alerts={this.state.alerts} />)} />
+            <Route exact path={`${APP_ROOT}redeem`} component={() => (<Redeem handleRedeem={this.handleRedeem.bind(this)} getAccountDetails={this.getAccountDetails.bind(this)}  buildAlly={this.buildAlly.bind(this)} modifyAppState={this.modifyAppState.bind(this)}  alerts={this.state.alerts} /> )} /> 
+            <Route path={`${APP_ROOT}redeem/:qr`} component={(props) => (<Redeem {...props}  handleRedeem={this.handleRedeem.bind(this)} checkParamAgainstCode={this.checkParamAgainstCode.bind(this)} getAccountDetails={this.getAccountDetails.bind(this)}  buildAlly={this.buildAlly.bind(this)} modifyAppState={this.modifyAppState.bind(this)}  alerts={this.state.alerts} /> )} /> 
             <Route path={`${APP_ROOT}gallery`} component={() => (<Gallery  /> )} />
             <Route path={`${APP_ROOT}user-collection`}  render={() => <UserCollection loggedIn={this.state.loggedIn} allies ={this.state.allies}  buildAlly={this.buildAlly.bind(this)}  transferAlly={this.transferAlly.bind(this)} />}   />
             <Route path={`${APP_ROOT}register`} component={() => (<Register  modifyAppState={this.modifyAppState.bind(this)} loggedIn={this.state.loggedIn} alerts={this.state.alerts} /> )} />
