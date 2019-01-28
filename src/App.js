@@ -275,7 +275,7 @@ export default class App extends React.Component {
   }
   
   
-  render() {console.log('STATE', this.state);
+  render() {
     return (
       <div>
         <Header>

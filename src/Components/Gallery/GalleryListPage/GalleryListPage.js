@@ -25,6 +25,7 @@ export default class Gallery extends React.Component{
         const listCopy = JSON.parse(JSON.stringify(allyList));
         
         this.allyList = shuffleArray(listCopy);
+        this.timeOut;
     }
 
     openModal(activeAlly){
@@ -89,7 +90,10 @@ export default class Gallery extends React.Component{
     }
 
     componentDidMount(){
-        setTimeout(()=>{this.setState({loading:false})},250);
+        this.timeOut = setTimeout(()=>{ return this.setState({loading:false})},250);
+    }
+    componentWillUnmount(){
+        clearTimeout(this.timeOut);
     }
 
 

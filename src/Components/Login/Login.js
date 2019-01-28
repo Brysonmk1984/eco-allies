@@ -51,7 +51,7 @@ export default class Login extends React.Component{
                     this.props.modifyAppState({alerts : []});
                 },1200);
             });
-        });
+        }).catch(()=>{return;});
     }
 
     render(){
