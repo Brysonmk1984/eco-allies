@@ -184,20 +184,19 @@ export default class App extends React.Component {
   // Check if a web3 account of the user matches the account saved in our DB
   // Might need to modify this in case user is using multiple web3 accounts on metamask
   checkForAccountMatch(){
-    let index;
-    const matchingEthAccount = this.web3.eth.accounts.find((acc, i)=>{
-      if(acc === this.state.publicEthKey.toLowerCase()){
-        index = i;
-        return true;
+    this.web3.eth.getAccounts((err,accounts) =>{
+      const publicEthKey = this.state.publicEthKey.toLowerCase();
+      let metamaskError = null;
+      if(err) metamaskError = err;
+      if( accounts[0] === publicEthKey){
+        this.getAlliesOfUser(this.state.fullAccount);
+      }else{
+        metamaskError = `Please sign into account ${publicEthKey} in metamask!`;
+        this.setState(() =>({
+          alerts : [...this.state.alerts, {type : 'error', message : metamaskError}]
+        }));
       }
     });
-
-    // user is logged into correct meta mask account
-    if(matchingEthAccount){
-      this.getAlliesOfUser(this.state.fullAccount);
-    }else{
-      console.log(`Please sign into account ${this.state.publicEthKey} in metamask!`);
-    }
   }
 
   // Build a new ally on the blockchain
