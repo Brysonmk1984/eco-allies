@@ -168,6 +168,20 @@ div.route-wrapper{
 }
 div.alert-wrapper{
     background-color: $primaryBackground;
+
+    .notification{
+        position: relative;
+        .close-alert{
+            position:absolute;
+            display:block;
+            right:10px;
+            top:0px;
+            line-height:42px;
+            font-size: 1.5em;
+            cursor : pointer;
+        }
+    }
+
 }
 // MODAL
 .jw-modal{

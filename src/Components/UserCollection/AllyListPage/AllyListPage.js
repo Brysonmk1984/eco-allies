@@ -11,6 +11,7 @@ import { decodeAlly } from '~/common/crackDna';
 import * as AllyImages from '~/common/includedImages';
 import * as AllyBackgrounds from '~/common/includedBackgrounds';
 import { lowercaseUnderscore } from '~/common/helperFunctions';
+import history from '~/common/history';
 // ASSETS
 import './allyListPage.scss';
 

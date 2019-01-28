@@ -3,6 +3,7 @@ import React from 'react';
 // LIBRARIES
 import axios from 'axios';
 import history from '~/common/history';
+import { MdClose } from 'react-icons/lib/md';
 
 // COMPONENT
 // Error boundary - if an error occurs in the main content, this will prevent
@@ -12,7 +13,7 @@ class ContentBoundary extends React.Component{
     renderAlerts(){
         const alertEls = this.props.alerts.map((a, i)=>{
             return <div key={`alert-${i}`} className={`notification ${a.type === 'error' ? 'notification-error' : a.type === 'success' ? 'notification-success' : null}`}>
-                <strong> {a.type === 'error' ? 'ERROR' : a.type === 'success' ? 'Success!' : null} : </strong> <span> { a.message }</span>
+                <strong> {a.type === 'error' ? 'ERROR' : a.type === 'success' ? 'Success!' : null} : </strong> <span> { a.message }</span> <span className={`close-alert`} onClick={this.props.dismissAlert.bind(this,i)}><MdClose /></span>
             </div>
         });
 

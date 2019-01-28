@@ -45,11 +45,15 @@ export default class App extends React.Component {
       alerts : [
         // {
         //   type : 'error',
-        //   message : null
+        //   message : 'Some error Message'
         // }
-      ]
+      ],
+      route : '/'
     };
     this.web3;
+    this.routeUnlisten = history.listen((location, action )=>{
+      //console.log('hist', location, action);
+    });
   }
 
   // Handle login to node backend on heroku
@@ -225,9 +229,16 @@ export default class App extends React.Component {
     
   }
 
+  dismissAlert(i){
+    const alerts = this.state.alerts;
+    alerts.splice(i,1);
+    this.setState({alerts})
+  }
+
   // On component mount, if there is a cookie called 'sid' and the user is not logged in,
   // log the user in and initialize web3.
   componentDidMount(){
+
     const cookie = APP_ROOT === '/' ? getCookie('sid') : getCookie('__cfduid');
     console.log('COOKIE', cookie, APP_ROOT);
     if(!this.state.loggedIn /*&& cookie*/){
@@ -239,7 +250,7 @@ export default class App extends React.Component {
         }else{
           this.setState(() => ({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email }) );
         }
-      }).catch((e) =>{});
+      }).catch((e) =>{return;});
     }
   }
 
@@ -252,6 +263,15 @@ export default class App extends React.Component {
         this.initSimpleMode();
       }
     }
+
+    // reset alerts if user changes page
+    if(ps.route !== history.location.pathname){
+      this.setState({route : history.location.pathname, alerts : []});
+    }
+  }
+
+  componentWillUnmount(){
+    this.routeUnlisten();
   }
   
   
@@ -266,7 +286,7 @@ export default class App extends React.Component {
             </div>
             <div className="belt"></div>
         </Header>
-        <Content alerts={this.state.alerts} modifyAppState={this.modifyAppState.bind(this)} >
+        <Content alerts={this.state.alerts} dismissAlert={this.dismissAlert.bind(this)} modifyAppState={this.modifyAppState.bind(this)} >
           <Switch>
             {/* <Route path={(`${APP_ROOT}`|`${APP_ROOT}about`)} component={About}  /> */}
             <Route path={`${APP_ROOT}proof`} component={() => (<Proof handleProof={this.handleProof.bind(this)} modifyAppState={this.modifyAppState.bind(this)}  alerts={this.state.alerts} />)} />
