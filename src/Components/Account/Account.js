@@ -1,5 +1,6 @@
 // REACT
 import React from 'react';
+import { connect } from 'react-redux';
 // LIBRARIES
 import PropTypes from 'prop-types';
 import { MdFace } from 'react-icons/lib/md';
@@ -7,6 +8,7 @@ import { MdFace } from 'react-icons/lib/md';
 import { decodeAlly } from '~/common/crackDna';
 // ASSETS
 import './account.scss';
+
 
 
 // COMPONENT

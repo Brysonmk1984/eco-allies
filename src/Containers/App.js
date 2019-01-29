@@ -1,21 +1,22 @@
 // REACT
 import React from 'react';
 import { Route, Switch } from 'react-router';
+import { connect } from 'react-redux';
 // COMPONENTS
-import Header from './Components/Header/Header';
-import Nav from './Components/Header/Nav';
-import Content from './Components/Content';
-import About from './Components/About/About';
-import Gallery from './Components/Gallery/Gallery';
-import UserCollection from './Components/UserCollection/UserCollection';
-import Register from './Components/Register/Register';
-import Login from './Components/Login/Login';
-import Account from './Components/Account/Account';
-import Redeem from './Components/Redeem/Redeem';
-import Proof from './Components/Proof/Proof';
-import Footer from './Components/Footer/Footer';
+import Header from '~/Components/Header/Header';
+import Nav from '~/Components/Header/Nav';
+import Content from '~/Components/Content';
+import About from '~/Components/About/About';
+import Gallery from '~/Components/Gallery/Gallery';
+import UserCollection from '~/Components/UserCollection/UserCollection';
+import Register from '~/Components/Register/Register';
+import Login from '~/Components/Login/Login';
+import Account from '~/Containers/Account';
+import Redeem from '~/Components/Redeem/Redeem';
+import Proof from '~/Components/Proof/Proof';
+import Footer from '~/Components/Footer/Footer';
 // COMMON
-import generateSeed from './common/generateNum';
+import generateSeed from '~/common/generateNum';
 import { login, logout, loggedIn, accountDetails } from '~/common/loginService';
 import { sendRedeemCode, sendProof, checkParamAgainstCode } from '~/common/redeemService';
 import { fetchSimpleTokens, insertSimpleToken } from '~/common/tokenService';
@@ -25,19 +26,22 @@ import getCookie from '~/common/cookie';
 // BLOCK CHAIN
 import TruffleContract from 'truffle-contract';
   // for testing only
-import contractJson from '../build/contracts/EcoAllyCore.json';
+import contractJson from '../../build/contracts/EcoAllyCore.json';
 // ASSETS
-import './assets/scss/styles.scss';
+import '~/assets/scss/styles.scss';
 import 'materialize-css/dist/css/materialize.css'
-import './assets/scss/materialExtended.scss';
+import '~/assets/scss/materialExtended.scss';
 import 'materialize-css/dist/js/materialize.js'
+import { setAlliesToState } from '../actions/index.js';
 
 // COMPONENT
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      allies : [],
+      allies : [
+        // { dna : "3572130766735153", id : 9 }
+      ],
       publicEthKey : '',
       email : '',
       fullAccount : false,
@@ -168,7 +172,7 @@ export default class App extends React.Component {
               }
               allies.push({dna : allyDnaString, id : ally[1].toNumber()});
             });
-            this.setState({allies});
+            this.props.setAlliesToState(allies);
         });
 
       });
@@ -176,7 +180,7 @@ export default class App extends React.Component {
       fetchSimpleTokens(this.state.email)
       .then((data) =>{
         console.log('DATA', data);
-        this.setState({allies : data.tokenArray});
+        this.props.setAlliesToState(data.tokenArray);
       });
     }
   }
@@ -292,10 +296,10 @@ export default class App extends React.Component {
             <Route exact path={`${APP_ROOT}redeem`} component={() => (<Redeem handleRedeem={this.handleRedeem.bind(this)} getAccountDetails={this.getAccountDetails.bind(this)}  buildAlly={this.buildAlly.bind(this)} modifyAppState={this.modifyAppState.bind(this)}  alerts={this.state.alerts} /> )} /> 
             <Route path={`${APP_ROOT}redeem/:qr`} component={(props) => (<Redeem {...props}  handleRedeem={this.handleRedeem.bind(this)} checkParamAgainstCode={this.checkParamAgainstCode.bind(this)} getAccountDetails={this.getAccountDetails.bind(this)}  buildAlly={this.buildAlly.bind(this)} modifyAppState={this.modifyAppState.bind(this)}  alerts={this.state.alerts} /> )} /> 
             <Route path={`${APP_ROOT}gallery`} component={() => (<Gallery  /> )} />
-            <Route path={`${APP_ROOT}user-collection`}  render={() => <UserCollection loggedIn={this.state.loggedIn} allies ={this.state.allies}  buildAlly={this.buildAlly.bind(this)}  transferAlly={this.transferAlly.bind(this)} />}   />
+            <Route path={`${APP_ROOT}user-collection`}  render={() => <UserCollection loggedIn={this.state.loggedIn}  buildAlly={this.buildAlly.bind(this)}  transferAlly={this.transferAlly.bind(this)} />}   />
             <Route path={`${APP_ROOT}register`} component={() => (<Register  modifyAppState={this.modifyAppState.bind(this)} loggedIn={this.state.loggedIn} alerts={this.state.alerts} /> )} />
             <Route path={`${APP_ROOT}login`} component={() => (<Login modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} alerts={this.state.alerts}   /> )} /> 
-            <Route path={`${APP_ROOT}account`} component={() =>( <Account allies={this.state.allies} getAccountDetails={this.getAccountDetails.bind(this)} /> )}  />
+            <Route path={`${APP_ROOT}account`} component={() =>( <Account getAccountDetails={this.getAccountDetails.bind(this)} /> )}  />
             {/* <Route path="faq" component={Faq} />*/}
           </Switch>
         </Content>
@@ -305,3 +309,13 @@ export default class App extends React.Component {
   }
 }
 
+function mapStateToProps(state){
+  return {
+    allies : state.allies
+  }
+}
+const mapDispatchToProps = {
+  setAlliesToState : setAlliesToState
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
