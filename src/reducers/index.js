@@ -7,7 +7,8 @@ const initialAccountState = {
   publicEthKey : '',
   email : '',
   fullAccount : false,
-  loggedIn : false
+  loggedIn : false,
+  username : ''
 };
 
 const AccountReducer = function(state = initialAccountState, action = { type : null, payload : null}){

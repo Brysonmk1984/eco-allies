@@ -10,7 +10,7 @@ import AddModal from '../AddModal';
 import { decodeAlly } from '~/common/crackDna';
 import * as AllyImages from '~/common/includedImages';
 import * as AllyBackgrounds from '~/common/includedBackgrounds';
-import { lowercaseUnderscore } from '~/common/helperFunctions';
+import { lowercaseUnderscore, lowercaseDash } from '~/common/helperFunctions';
 import history from '~/common/history';
 // ASSETS
 import './allyListPage.scss';
@@ -39,12 +39,11 @@ export default class UserCollection extends React.Component{
 
     // Map all ally data belonging to this owner to individual ally components
     buildAllyList(){
-        
-        //console.log(ally);
         return this.props.allies.map((ally, i) => {
             const decodedAlly = decodeAlly(ally.dna);
+            const backgroundClasses = decodedAlly.color ? `bg bg-${lowercaseDash(decodedAlly.color)}` : '';
             return (
-                <AllyTile {...decodedAlly}  key={i} dna={ally.dna} id={ally.id} openModal={this.openModal.bind(this)}  />
+                <AllyTile {...decodedAlly}  key={i} dna={ally.dna} id={ally.id} openModal={this.openModal.bind(this)} backgroundClasses={backgroundClasses}  />
             );
         });
     }
@@ -99,11 +98,11 @@ export default class UserCollection extends React.Component{
         return false;
     }
 
-    render(){
+    render(){console.log(this.props);
         return(
             <div className="page-wrapper ally-list-page">
                 <section className="ally-section">
-                    <h2>Your Collection</h2>
+                    <h2>{this.props.username} Collection</h2>
                     <div className="subsection">
                         {this.buildAllyList()}
                     </div>
@@ -117,7 +116,5 @@ export default class UserCollection extends React.Component{
 
 // PROP-TYPES
 UserCollection.propTypes = {
-    loggedIn : PropTypes.bool.isRequired,
-    allies : PropTypes.array.isRequired,
     buildAlly : PropTypes.func.isRequired
 };

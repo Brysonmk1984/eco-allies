@@ -40,6 +40,7 @@ class LoginContainer extends React.Component{
               publicEthKey : data.publicEthKey,
               email : data.email,
               fullAccount : data.fullAccount,
+              username : data.username,
               loggedIn : true
             });
             setTimeout(()=>{

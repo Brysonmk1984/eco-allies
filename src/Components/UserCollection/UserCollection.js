@@ -14,11 +14,11 @@ class UserCollection extends React.Component{
     // One of two different views is rendered depending on if a user navigates
     // to /user-collection or /user-collection/{{allyDna}}
     // withRouter(component) grants browser history functionality
-    render(){console.log('!!', this.props);
+    render(){
         return(
             <div className="page-wrapper user-collection-page">
                 <Route exact path={`${APP_ROOT}user-collection`}  render={() => (
-                    <AllyListPage loggedIn={this.props.account.loggedIn} allies={this.props.allies}   buildAlly={this.props.buildAlly} />
+                    <AllyListPage loggedIn={this.props.account.loggedIn} username={this.props.account.username ? `${this.props.account.username}'s` : `Your` } allies={this.props.allies}   buildAlly={this.props.buildAlly} />
                 )} />
                 <Route path={`${APP_ROOT}user-collection/:allyDna`}  render={
                     withRouter((props) => ( <AllyPage {...props} allies={props.account.allies} transferAlly={props.transferAlly} /> ))

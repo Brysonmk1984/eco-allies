@@ -69,11 +69,12 @@ router.post('/login', function(req, res, next){
         where : {
           email : u.email
         },
-        attributes:['publicEthKey', 'fullAccount']
+        attributes:['publicEthKey', 'fullAccount', 'username']
       }).then((user, err) => {
         res.json({
         sessionId : req.sessionID,
         email : u.email,
+        username : u.username,
         publicEthKey : user.dataValues.publicEthKey,
         fullAccount : user.dataValues.fullAccount,
         isAuthenticated : true,
@@ -128,7 +129,7 @@ router.get('/logged-in', function(req, res, next){
     where : {
     email : req.user
   },
-  attributes:['publicEthKey', 'fullAccount']
+  attributes:['publicEthKey', 'fullAccount', 'username']
   })
   .then((user, err)=>{
     if (err) return next(err);
@@ -137,7 +138,8 @@ router.get('/logged-in', function(req, res, next){
       success: true,
       message: `You are logged in as ${req.user}`,
       email: req.user,
-      publicEthKey: user.dataValues.publicEthKey,
+      username : user.dataValues.username,
+      publicEthKey : user.dataValues.publicEthKey,
       fullAccount : user.dataValues.fullAccount,
       requestType : 'GET'
     });

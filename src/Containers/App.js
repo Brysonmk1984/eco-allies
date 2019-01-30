@@ -215,9 +215,9 @@ class App extends React.Component {
       loggedIn()
       .then((data)=>{
         if(data && data.data.fullAccount){
-          this.props.setAccountInfoToState({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, publicEthKey : data.data.publicEthKey });
+          this.props.setAccountInfoToState({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username, publicEthKey : data.data.publicEthKey });
         }else{
-          this.props.setAccountInfoToState({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email });
+          this.props.setAccountInfoToState({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username });
         }
       }).catch((e) =>{return;});
     }
@@ -281,15 +281,15 @@ function mapStateToProps(state){
     account : state.account
   }
 }
-function mapDispatchToProps(){
-  return {
+
+const mapDispatchToProps = {
     setAlliesToState,
     setAccountInfoToState,
     setAlertToState,
     clearSingleAlertFromState,
     clearAllAlertsFromState,
     setPathnameToState
-  };
+
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
