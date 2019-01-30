@@ -10,14 +10,14 @@ import allyList from '~/common/allyList.json';
 import {shuffleArray} from '~/common/helperFunctions';
 import * as AllyImages from '~/common/includedImages';
 import * as AllyBackgrounds from '~/common/includedBackgrounds';
-import { lowercaseUnderscore } from '~/common/helperFunctions';
+import { lowercaseUnderscore, lowercaseDash } from '~/common/helperFunctions';
 // ASSETS
 import './galleryListPage.scss';
 
 // COMPONENT
 export default class Gallery extends React.Component{
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state = {
             activeAlly : null,
             loading : true

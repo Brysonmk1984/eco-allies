@@ -42,7 +42,7 @@ class RedeemContainer extends React.Component{
             this.props.setAlertToState(data.error);
         }else{
           this.props.buildAlly();
-          this.props.setAlertToState({ type : 'success', message : 'Token successfully created!' });
+          this.props.setAlertToState([{ type : 'success', message : 'Token successfully created!' }]);
           // setTimeout(()=>{
           //     history.push(`${APP_ROOT}user-collection`);
           // },1200);

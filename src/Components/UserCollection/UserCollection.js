@@ -14,14 +14,14 @@ class UserCollection extends React.Component{
     // One of two different views is rendered depending on if a user navigates
     // to /user-collection or /user-collection/{{allyDna}}
     // withRouter(component) grants browser history functionality
-    render(){
+    render(){console.log('!!', this.props);
         return(
             <div className="page-wrapper user-collection-page">
                 <Route exact path={`${APP_ROOT}user-collection`}  render={() => (
-                    <AllyListPage loggedIn={this.props.loggedIn} allies={this.props.allies}   buildAlly={this.props.buildAlly} />
+                    <AllyListPage loggedIn={this.props.account.loggedIn} allies={this.props.allies}   buildAlly={this.props.buildAlly} />
                 )} />
                 <Route path={`${APP_ROOT}user-collection/:allyDna`}  render={
-                    withRouter((props) => ( <AllyPage {...props} allies={this.props.allies} transferAlly={this.props.transferAlly} /> ))
+                    withRouter((props) => ( <AllyPage {...props} allies={props.account.allies} transferAlly={props.transferAlly} /> ))
                 } />
             </div>
         );
@@ -30,15 +30,14 @@ class UserCollection extends React.Component{
 
 function mapStateToProps(state){
     return {
-        allies : state.allies
+        allies : state.allies,
+        account : state.account
     }
 }
 export default connect(mapStateToProps)(UserCollection);
 
 // PROP-TYPES
 UserCollection.propTypes = {
-    loggedIn : PropTypes.bool.isRequired,
-    //allies : PropTypes.array.isRequired,
     buildAlly : PropTypes.func.isRequired,
     transferAlly : PropTypes.func.isRequired
 };

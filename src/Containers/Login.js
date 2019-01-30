@@ -44,7 +44,7 @@ class LoginContainer extends React.Component{
             });
             setTimeout(()=>{
               history.push(`${APP_ROOT}user-collection`);
-              //this.props.clearAllAlertsFromState();
+              this.props.clearAllAlertsFromState();
             },1200);
         }).catch(()=>{return;});
     }

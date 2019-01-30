@@ -1,5 +1,5 @@
 // ACTIONS
-import { ACCOUNT_INFO_TO_STATE, ALLIES_TO_STATE, ALERT_TO_STATE, CLEAR_SINGLE_ALERT_FROM_STATE,  CLEAR_ALL_ALERTS_FROM_STATE } from '~/actions/actions';
+import { ACCOUNT_INFO_TO_STATE, ALLIES_TO_STATE, ALERT_TO_STATE, CLEAR_SINGLE_ALERT_FROM_STATE,  CLEAR_ALL_ALERTS_FROM_STATE, PATHNAME_TO_STATE } from '~/actions/actions';
 
 function setAccountInfoToState(payload = null){
   return {
@@ -36,4 +36,11 @@ function clearAllAlertsFromState(payload = null){
   }
 }
 
-export { setAccountInfoToState, setAlliesToState, setAlertToState, clearSingleAlertFromState, clearAllAlertsFromState };
+function setPathnameToState(payload = null){
+  return {
+    type : PATHNAME_TO_STATE,
+    payload
+  }
+}
+
+export { setAccountInfoToState, setAlliesToState, setAlertToState, clearSingleAlertFromState, clearAllAlertsFromState, setPathnameToState };
