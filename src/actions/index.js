@@ -1,11 +1,9 @@
-const FETCH_SIMPLE_ALLIES = 'FETCH_SIMPLE_ALLIES';
-const ALLIES_TO_STATE = 'ALLIES_TO_STATE';
-const ADD_SIMPLE_ALLY = 'ADD_SIMPLE_ALLY';
-const ADD_BLOCKCHAIN_ALLY = 'ADD_BLOCKCHAIN_ALLY';
+// ACTIONS
+import { ACCOUNT_INFO_TO_STATE, ALLIES_TO_STATE, ALERT_TO_STATE, CLEAR_SINGLE_ALERT_FROM_STATE,  CLEAR_ALL_ALERTS_FROM_STATE } from '~/actions/actions';
 
-function fetchSimpleAllies(payload = null){
+function setAccountInfoToState(payload = null){
   return {
-    type : FETCH_SIMPLE_ALLIES,
+    type : ACCOUNT_INFO_TO_STATE,
     payload
   }
 }
@@ -17,18 +15,25 @@ function setAlliesToState(payload = null){
   }
 }
 
-function addSimpleAlly(payload = null){
+function setAlertToState(payload = null){
   return {
-    type : ADD_SIMPLE_ALLY,
+    type : ALERT_TO_STATE,
     payload
   }
 }
 
-function addBlockchainAlly(payload = null){
+function clearSingleAlertFromState(payload = null){
   return {
-    type : ADD_BLOCKCHAIN_ALLY,
+    type : CLEAR_SINGLE_ALERT_FROM_STATE,
     payload
   }
 }
 
-export { fetchSimpleAllies, setAlliesToState, addSimpleAlly, addBlockchainAlly};
+function clearAllAlertsFromState(payload = null){
+  return {
+    type : CLEAR_ALL_ALERTS_FROM_STATE,
+    payload
+  }
+}
+
+export { setAccountInfoToState, setAlliesToState, setAlertToState, clearSingleAlertFromState, clearAllAlertsFromState };

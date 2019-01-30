@@ -12,29 +12,10 @@ import './account.scss';
 
 
 // COMPONENT
-export default class Account extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            account : {}
-        }
-    }
-
-    // When component mounts, retrieve details about the account from the database
-    // Does NOT include blockchain data
-    componentDidMount(){
-        this.props.getAccountDetails()
-        .then((data) =>{
-             if(data.data){
-                 const { email, publicEthKey, username } = data.data;
-                 this.setState(()=>({ email, publicEthKey, username}));
-             }
-        });
-     }
-
-    // Generates list items for each ally passed in from App State via props
-    renderAllyData(){
-        return this.props.allies.map((ally, i)=>{
+const Account = (props) =>{
+    function renderAllyData(){
+        // Generates list items for each ally passed in from App State via props
+        return props.allies.map((ally, i)=>{
             const decodedAlly = decodeAlly(ally.dna);
             const variant =  decodedAlly.color ? ` (${decodedAlly.color} Variant)` : null;
             
@@ -48,51 +29,53 @@ export default class Account extends React.Component{
                 
             </li>
         });
+
     }
 
-    render(){
-        return(
-            <div className="page-wrapper account-page">
-                <section className="title-section">
-                    <div className="subsection">
-                        <h1><MdFace /></h1>
-                        <p>{this.state.username}</p>
+    return(
+        <div className="page-wrapper account-page">
+            <section className="title-section">
+                <div className="subsection">
+                    <h1><MdFace /></h1>
+                    <p>{props.account.username}</p>
+                </div>
+            </section>
+            <section className="details-section">
+                <div className="subsection">
+                    <h2>Account Details</h2>
+                </div>
+                <div className="subsection subsection-account">
+                    <div>
+                        <span>Email: </span>
+                        <strong>{ props.account.email }</strong>
                     </div>
-                </section>
-                <section className="details-section">
-                    <div className="subsection">
-                        <h2>Account Details</h2>
+                    <div>
+                        <span>Public Key: </span>
+                        <strong>{ props.account.publicEthKey }</strong>
                     </div>
-                    <div className="subsection subsection-account">
-                        <div>
-                            <span>Email: </span>
-                            <strong>{ this.state.email }</strong>
-                        </div>
-                        <div>
-                            <span>Public Key: </span>
-                            <strong>{ this.state.publicEthKey }</strong>
-                        </div>
-                    </div>
-                    <div className="subsection">
-                        <h2>Your Allies</h2>
-                    </div>
-                    <div className="subsection subsection-allies">
-                        <ul>
-                            { this.renderAllyData() }
-                        </ul>
-                    </div>
-                    {/* <div className="subsection">
-                        <h2>Account Actions</h2>
-                    </div> */}
-          
-                </section>
-            </div>
-        );
-    }
-}
+                </div>
+                <div className="subsection">
+                    <h2>Your Allies</h2>
+                </div>
+                <div className="subsection subsection-allies">
+                    <ul>
+                        { renderAllyData() }
+                    </ul>
+                </div>
+            </section>
+        </div>
+    );
+} 
+
+export default Account;
 
 // PROP-TYPES
 Account.propTypes = {
     allies : PropTypes.array.isRequired,
-    getAccountDetails : PropTypes.func.isRequired
+    account : PropTypes.shape({
+        publicEthKey : PropTypes.string.isRequired,
+        email : PropTypes.string.isRequired,
+        fullAccount : PropTypes.bool.isRequired,
+        loggedIn : PropTypes.bool.isRequired
+    })
 };

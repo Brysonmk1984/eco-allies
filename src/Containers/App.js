@@ -2,6 +2,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 // COMPONENTS
 import Header from '~/Components/Header/Header';
 import Nav from '~/Components/Header/Nav';
@@ -9,11 +10,11 @@ import Content from '~/Components/Content';
 import About from '~/Components/About/About';
 import Gallery from '~/Components/Gallery/Gallery';
 import UserCollection from '~/Components/UserCollection/UserCollection';
-import Register from '~/Components/Register/Register';
-import Login from '~/Components/Login/Login';
-import Account from '~/Containers/Account';
-import Redeem from '~/Components/Redeem/Redeem';
-import Proof from '~/Components/Proof/Proof';
+import RegisterContainer from '~/Containers/Register';
+import LoginContainer from '~/Containers/Login';
+import AccountContainer from '~/Containers/Account';
+import RedeemContainer from '~/Containers/Redeem';
+import ProofContainer from '~/Containers/Proof';
 import Footer from '~/Components/Footer/Footer';
 // COMMON
 import generateSeed from '~/common/generateNum';
@@ -32,26 +33,18 @@ import '~/assets/scss/styles.scss';
 import 'materialize-css/dist/css/materialize.css'
 import '~/assets/scss/materialExtended.scss';
 import 'materialize-css/dist/js/materialize.js'
-import { setAlliesToState } from '../actions/index.js';
+// ACTIONS
+import { setAlliesToState, setAccountInfoToState, setAlertToState, clearSingleAlertFromState, clearAllAlertsFromState } from '../actions/index.js';
 
 // COMPONENT
 class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      allies : [
-        // { dna : "3572130766735153", id : 9 }
-      ],
       publicEthKey : '',
       email : '',
       fullAccount : false,
       loggedIn : false,
-      alerts : [
-        // {
-        //   type : 'error',
-        //   message : 'Some error Message'
-        // }
-      ],
       route : '/'
     };
     this.web3;
@@ -106,19 +99,6 @@ class App extends React.Component {
     return checkParamAgainstCode(param)
     .then((data)=>{
       return data;
-    });
-  }
-
-  // Get account details from node backend, returns a promise
-  getAccountDetails(){
-      return accountDetails();
-  }
-
-  // Helper method to set state and call a callback function if it exists
-  // Used for some child components to update the state without throwing a react memory leak error
-  modifyAppState(state, cb){
-    this.setState(()=>(state), ()=>{
-      if(cb) cb();
     });
   }
 
@@ -196,9 +176,7 @@ class App extends React.Component {
         this.getAlliesOfUser(this.state.fullAccount);
       }else{
         metamaskError = `Please sign into account ${publicEthKey} in metamask!`;
-        this.setState(() =>({
-          alerts : [...this.state.alerts, {type : 'error', message : metamaskError}]
-        }));
+        this.props.setAlertToState({type : 'error', message : metamaskError});
       }
     });
   }
@@ -232,12 +210,6 @@ class App extends React.Component {
     
   }
 
-  dismissAlert(i){
-    const alerts = this.state.alerts;
-    alerts.splice(i,1);
-    this.setState({alerts})
-  }
-
   // On component mount, if there is a cookie called 'sid' and the user is not logged in,
   // log the user in and initialize web3.
   componentDidMount(){
@@ -247,11 +219,12 @@ class App extends React.Component {
     if(!this.state.loggedIn /*&& cookie*/){
       loggedIn()
       .then((data)=>{
-        console.log('D', data);
         if(data && data.data.fullAccount){
           this.setState(() => ({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, publicEthKey : data.data.publicEthKey }) );
+          this.props.setAccountInfoToState({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, publicEthKey : data.data.publicEthKey });
         }else{
           this.setState(() => ({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email }) );
+          this.props.setAccountInfoToState({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email });
         }
       }).catch((e) =>{return;});
     }
@@ -269,7 +242,8 @@ class App extends React.Component {
 
     // reset alerts if user changes page
     if(ps.route !== history.location.pathname){
-      this.setState({route : history.location.pathname, alerts : []});
+      this.setState({route : history.location.pathname});
+      this.props.clearAllAlertsFromState();
     }
   }
 
@@ -289,17 +263,17 @@ class App extends React.Component {
             </div>
             <div className="belt"></div>
         </Header>
-        <Content alerts={this.state.alerts} dismissAlert={this.dismissAlert.bind(this)} modifyAppState={this.modifyAppState.bind(this)} >
+        <Content >
           <Switch>
             {/* <Route path={(`${APP_ROOT}`|`${APP_ROOT}about`)} component={About}  /> */}
-            <Route path={`${APP_ROOT}proof`} component={() => (<Proof handleProof={this.handleProof.bind(this)} modifyAppState={this.modifyAppState.bind(this)}  alerts={this.state.alerts} />)} />
-            <Route exact path={`${APP_ROOT}redeem`} component={() => (<Redeem handleRedeem={this.handleRedeem.bind(this)} getAccountDetails={this.getAccountDetails.bind(this)}  buildAlly={this.buildAlly.bind(this)} modifyAppState={this.modifyAppState.bind(this)}  alerts={this.state.alerts} /> )} /> 
-            <Route path={`${APP_ROOT}redeem/:qr`} component={(props) => (<Redeem {...props}  handleRedeem={this.handleRedeem.bind(this)} checkParamAgainstCode={this.checkParamAgainstCode.bind(this)} getAccountDetails={this.getAccountDetails.bind(this)}  buildAlly={this.buildAlly.bind(this)} modifyAppState={this.modifyAppState.bind(this)}  alerts={this.state.alerts} /> )} /> 
+            <Route path={`${APP_ROOT}proof`} component={() => (<ProofContainer handleProof={this.handleProof.bind(this)} />)} />
+            <Route exact path={`${APP_ROOT}redeem`} component={() => (<RedeemContainer handleRedeem={this.handleRedeem.bind(this)}  buildAlly={this.buildAlly.bind(this)} /> )} /> 
+            <Route path={`${APP_ROOT}redeem/:qr`} component={({match}) => (<RedeemContainer match={match}  handleRedeem={this.handleRedeem.bind(this)} checkParamAgainstCode={this.checkParamAgainstCode.bind(this)} buildAlly={this.buildAlly.bind(this)} /> )} /> 
             <Route path={`${APP_ROOT}gallery`} component={() => (<Gallery  /> )} />
             <Route path={`${APP_ROOT}user-collection`}  render={() => <UserCollection loggedIn={this.state.loggedIn}  buildAlly={this.buildAlly.bind(this)}  transferAlly={this.transferAlly.bind(this)} />}   />
-            <Route path={`${APP_ROOT}register`} component={() => (<Register  modifyAppState={this.modifyAppState.bind(this)} loggedIn={this.state.loggedIn} alerts={this.state.alerts} /> )} />
-            <Route path={`${APP_ROOT}login`} component={() => (<Login modifyAppState={this.modifyAppState.bind(this)} handleLogin={this.handleLogin.bind(this)} loggedIn={this.state.loggedIn} alerts={this.state.alerts}   /> )} /> 
-            <Route path={`${APP_ROOT}account`} component={() =>( <Account getAccountDetails={this.getAccountDetails.bind(this)} /> )}  />
+            <Route path={`${APP_ROOT}register`} component={() => (<RegisterContainer /> )} />
+            <Route path={`${APP_ROOT}login`} component={() => (<LoginContainer handleLogin={this.handleLogin.bind(this)} /> )} /> 
+            <Route path={`${APP_ROOT}account`} component={() =>( <AccountContainer /> )}  />
             {/* <Route path="faq" component={Faq} />*/}
           </Switch>
         </Content>
@@ -311,11 +285,15 @@ class App extends React.Component {
 
 function mapStateToProps(state){
   return {
-    allies : state.allies
+
   }
 }
 const mapDispatchToProps = {
-  setAlliesToState : setAlliesToState
+  setAlliesToState,
+  setAccountInfoToState,
+  setAlertToState,
+  clearSingleAlertFromState,
+  clearAllAlertsFromState
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
