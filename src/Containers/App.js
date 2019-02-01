@@ -34,7 +34,7 @@ import 'materialize-css/dist/css/materialize.css'
 import '~/assets/scss/materialExtended.scss';
 import 'materialize-css/dist/js/materialize.js'
 // ACTIONS
-import { setAlliesToState, setAccountInfoToState, setAlertToState, clearSingleAlertFromState, clearAllAlertsFromState, setPathnameToState } from '../actions/index.js';
+import { setAllies, setAccountInfo, setAlert, clearAlert, clearAllAllerts, setPathname } from '../actions/index.js';
 
 // COMPONENT
 class App extends React.Component {
@@ -64,7 +64,7 @@ class App extends React.Component {
           console.log('ERROR - ', data.error);
           return;
         } 
-        this.props.setAccountInfoToState({loggedIn:false, publicEthKey: ''});
+        this.props.setAccountInfo({loggedIn:false, publicEthKey: ''});
         setTimeout(()=>(history.push(`${APP_ROOT}login`)),1000);
      
       })
@@ -147,7 +147,7 @@ class App extends React.Component {
               }
               allies.push({dna : allyDnaString, id : ally[1].toNumber()});
             });
-            this.props.setAlliesToState(allies);
+            this.props.setAllies(allies);
         });
 
       });
@@ -155,7 +155,7 @@ class App extends React.Component {
       fetchSimpleTokens(this.props.account.email)
       .then((data) =>{
         console.log('DATA', data);
-        this.props.setAlliesToState(data.tokenArray);
+        this.props.setAllies(data.tokenArray);
       });
     }
   }
@@ -171,7 +171,7 @@ class App extends React.Component {
         this.getAlliesOfUser(this.props.account.fullAccount);
       }else{
         metamaskError = `Please sign into account ${publicEthKey} in metamask!`;
-        this.props.setAlertToState({type : 'error', message : metamaskError});
+        this.props.setAlert({type : 'error', message : metamaskError});
       }
     });
   }
@@ -215,9 +215,9 @@ class App extends React.Component {
       loggedIn()
       .then((data)=>{
         if(data && data.data.fullAccount){
-          this.props.setAccountInfoToState({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username, publicEthKey : data.data.publicEthKey });
+          this.props.setAccountInfo({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username, publicEthKey : data.data.publicEthKey });
         }else{
-          this.props.setAccountInfoToState({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username });
+          this.props.setAccountInfo({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username });
         }
       }).catch((e) =>{return;});
     }
@@ -235,8 +235,8 @@ class App extends React.Component {
 
     // reset alerts and set path in state if user changes page
     if(pp.route !== history.location.pathname){
-      this.props.setPathnameToState({pathname : history.location.pathname});
-      this.props.clearAllAlertsFromState();
+      this.props.setPathname({pathname : history.location.pathname});
+      this.props.clearAllAllerts();
     }
   }
 
@@ -283,12 +283,12 @@ function mapStateToProps(state){
 }
 
 const mapDispatchToProps = {
-    setAlliesToState,
-    setAccountInfoToState,
-    setAlertToState,
-    clearSingleAlertFromState,
-    clearAllAlertsFromState,
-    setPathnameToState
+    setAllies,
+    setAccountInfo,
+    setAlert,
+    clearAlert,
+    clearAllAllerts,
+    setPathname
 
 }
 

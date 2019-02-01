@@ -1,46 +1,46 @@
 // ACTIONS
-import { ACCOUNT_INFO_TO_STATE, ALLIES_TO_STATE, ALERT_TO_STATE, CLEAR_SINGLE_ALERT_FROM_STATE,  CLEAR_ALL_ALERTS_FROM_STATE, PATHNAME_TO_STATE } from '~/actions/actions';
+import { SET_ACCOUNT_INFO, SET_ALLIES, SET_ALERT, CLEAR_SINGLE_ALERT,  CLEAR_ALL_ALERTS, SET_PATHNAME } from '~/actions/actions';
 
-function setAccountInfoToState(payload = null){
+function setAccountInfo(payload = null){
   return {
-    type : ACCOUNT_INFO_TO_STATE,
+    type : SET_ACCOUNT_INFO,
     payload
   }
 }
 
-function setAlliesToState(payload = null){
+function setAllies(payload = null){
   return {
-    type : ALLIES_TO_STATE,
+    type : SET_ALLIES,
     payload
   }
 }
 
-function setAlertToState(payload = null){
+function setAlert(payload = null){
   return {
-    type : ALERT_TO_STATE,
+    type : SET_ALERT,
     payload
   }
 }
 
-function clearSingleAlertFromState(payload = null){
+function clearAlert(payload = null){
   return {
-    type : CLEAR_SINGLE_ALERT_FROM_STATE,
+    type : CLEAR_SINGLE_ALERT,
     payload
   }
 }
 
-function clearAllAlertsFromState(payload = null){
+function clearAllAllerts(payload = null){
   return {
-    type : CLEAR_ALL_ALERTS_FROM_STATE,
+    type : CLEAR_ALL_ALERTS,
     payload
   }
 }
 
-function setPathnameToState(payload = null){
+function setPathname(payload = null){
   return {
-    type : PATHNAME_TO_STATE,
+    type : SET_PATHNAME,
     payload
   }
 }
 
-export { setAccountInfoToState, setAlliesToState, setAlertToState, clearSingleAlertFromState, clearAllAlertsFromState, setPathnameToState };
+export { setAccountInfo, setAllies, setAlert, clearAlert, clearAllAllerts, setPathname };

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 // COMPONENTS
 import Proof from '~/Components/Proof/Proof';
 // ACTIONS
-import { setAlertToState } from '~/actions/index.js';
+import { setAlert } from '~/actions/index.js';
 
 
 class ProofContainer extends React.Component{
@@ -44,7 +44,7 @@ class ProofContainer extends React.Component{
 
     this.props.handleProof(formData)
     .then((data) =>{
-      this.props.setAlertToState({type : 'success', message : 'Your document has been submitted. Please allow 48 hours for processing.'});
+      this.props.setAlert({type : 'success', message : 'Your document has been submitted. Please allow 48 hours for processing.'});
       const top = document.getElementById("alertWrapper").offsetTop;
       window.scrollTo(0, top);
       
@@ -65,7 +65,7 @@ function mapStateToProps(state){
  }
 }
 const mapDispatchToProps = {
-  setAlertToState
+  setAlert
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProofContainer);
@@ -73,5 +73,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(ProofContainer);
 Proof.propTypes = {
   handleProof : PropTypes.func.isRequired,
   alerts : PropTypes.arrayOf(PropTypes.shape({ type : PropTypes.string.isRequired, message : PropTypes.string.isRequired })).isRequired,
-  setAlertToState : PropTypes.func.isRequired
+  setAlert : PropTypes.func.isRequired
 }

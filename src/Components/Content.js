@@ -6,7 +6,7 @@ import axios from 'axios';
 import history from '~/common/history';
 import { MdClose } from 'react-icons/lib/md';
 // ACTIONS
-import { setAlertToState, clearSingleAlertFromState, clearAllAlertsFromState } from '../actions/index.js';
+import { setAlert, clearAlert, clearAllAllerts } from '../actions/index.js';
 
 // COMPONENT
 // Error boundary - if an error occurs in the main content, this will prevent
@@ -16,7 +16,7 @@ class ContentBoundary extends React.Component{
     renderAlerts(){
         const alertEls = this.props.alerts.map((a, i)=>{
             return <div key={`alert-${i}`} className={`notification ${a.type === 'error' ? 'notification-error' : a.type === 'success' ? 'notification-success' : null}`}>
-                <strong> {a.type === 'error' ? 'ERROR' : a.type === 'success' ? 'Success!' : null} : </strong> <span> { a.message }</span> <span className={`close-alert`} onClick={this.props.clearSingleAlertFromState.bind(this, i)}><MdClose /></span>
+                <strong> {a.type === 'error' ? 'ERROR' : a.type === 'success' ? 'Success!' : null} : </strong> <span> { a.message }</span> <span className={`close-alert`} onClick={this.props.clearAlert.bind(this, i)}><MdClose /></span>
             </div>
         });
 
@@ -29,7 +29,7 @@ class ContentBoundary extends React.Component{
 
     // I think this trips if the component malfunctions
     componentDidCatch(error, info){
-        this.props.setAlertToState({type : 'error', message : 'Component Rendering Error'});
+        this.props.setAlert({type : 'error', message : 'Component Rendering Error'});
         // Add error logging service here
     }
 
@@ -41,7 +41,7 @@ class ContentBoundary extends React.Component{
             return config;
         }, function (error) {
             console.log('NO REQUEST MADE (IN INT) - ', error);
-            this.props.setAlertToState({type : 'error', message : 'No Request was made!'});
+            this.props.setAlert({type : 'error', message : 'No Request was made!'});
             // Do something with request error
             return Promise.reject(error);
         });
@@ -61,18 +61,18 @@ class ContentBoundary extends React.Component{
                 if(error.response.status === 403){
                     history.push(`${APP_ROOT}login`);
                 }else{
-                    this.props.setAlertToState({type : 'error', message : `There was an error with the status ${error.response.status} - ${error.response.data}`});
+                    this.props.setAlert({type : 'error', message : `There was an error with the status ${error.response.status} - ${error.response.data}`});
                 }
             } else if (error.request) {
                 // The request was made but no response was received
                 // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                 // http.ClientRequest in node.js
                 console.log('ERROR - request made, no response');
-                this.props.setAlertToState({type : 'error', message : 'There was no response from the server!'});
+                this.props.setAlert({type : 'error', message : 'There was no response from the server!'});
             } else {
                 // Something happened in setting up the request that triggered an Error
                 console.log('ERROR - occurred in setting up request -', error.message);
-                this.props.setAlertToState({type : 'error', message : 'an error occurred in setting up request'});
+                this.props.setAlert({type : 'error', message : 'an error occurred in setting up request'});
             }
 
             // Do something with response error
@@ -121,9 +121,9 @@ function mapStateToProps(state){
   }
 
   const mapDispatchToProps = {
-    setAlertToState,
-    clearSingleAlertFromState,
-    clearAllAlertsFromState
+    setAlert,
+    clearAlert,
+    clearAllAllerts
   };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

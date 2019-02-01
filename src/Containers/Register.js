@@ -9,7 +9,7 @@ import history from '~/common/history';
 // COMPONENTS
 import Register from '~/Components/Register/Register';
 // ACTIONS
-import { setAccountInfoToState, setAlertToState, clearAllAlertsFromState } from '~/actions';
+import { setAccountInfo, setAlert, clearAllAllerts } from '~/actions';
 
 // COMPONENT
 class RegisterContainer extends React.Component{
@@ -50,29 +50,29 @@ class RegisterContainer extends React.Component{
                     const errors = data.error.map((e) =>{
                         return {type:e.error.type, message:e.error.message}
                     });
-                    this.props.setAlertToState(errors);
+                    this.props.setAlert(errors);
                     const top = document.getElementById("alertWrapper").offsetTop;
                     window.scrollTo(0, top)
                 }else{
-                  this.props.setAlertToState({type : 'success', message : 'Account successfully created!'});
+                  this.props.setAlert({type : 'success', message : 'Account successfully created!'});
                   const top = document.getElementById("alertWrapper").offsetTop;
                   window.scrollTo(0, top);
                   setTimeout(()=>{
                       history.push(`${APP_ROOT}user-collection`);
-                      this.props.clearAllAlertsFromState();
+                      this.props.clearAllAllerts();
                   },1200);
                 }
                 
             })
             .catch((error) =>{
                 if(error){
-                  this.props.setAlertToState({ type : error.type, message : error.message });
+                  this.props.setAlert({ type : error.type, message : error.message });
                   const top = document.getElementById("alertWrapper").offsetTop;
                   window.scrollTo(0, top);
                 }
             });
         }else{
-            this.props.setAlertToState({type:'error',message:'Passwords do Not Match'});
+            this.props.setAlert({type:'error',message:'Passwords do Not Match'});
             const top = document.getElementById("alertWrapper").offsetTop;
             window.scrollTo(0, top);
         }
@@ -110,8 +110,8 @@ function mapStateToProps(){
 }
 
 const mapDispatchToProps = {
-  setAlertToState,
-  clearAllAlertsFromState
+  setAlert,
+  clearAllAllerts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);

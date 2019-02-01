@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 // COMPONENTS
 import Redeem from '~/Components/Redeem/Redeem';
 // ACTIONS
-import { setAlertToState } from '~/actions/index.js';
+import { setAlert } from '~/actions/index.js';
 
 // COMPONENT
 class RedeemContainer extends React.Component{
@@ -39,10 +39,10 @@ class RedeemContainer extends React.Component{
     this.props.handleRedeem(this.state.code, this.props.account.email)
     .then((data) =>{
         if(data.error){
-            this.props.setAlertToState(data.error);
+            this.props.setAlert(data.error);
         }else{
           this.props.buildAlly();
-          this.props.setAlertToState([{ type : 'success', message : 'Token successfully created!' }]);
+          this.props.setAlert([{ type : 'success', message : 'Token successfully created!' }]);
           // setTimeout(()=>{
           //     history.push(`${APP_ROOT}user-collection`);
           // },1200);
@@ -52,7 +52,7 @@ class RedeemContainer extends React.Component{
     })
     .catch((error) =>{
         if(error){
-            this.props.setAlertToState(error);
+            this.props.setAlert(error);
           }
     });
 
@@ -84,7 +84,7 @@ function mapStateToProps(state){
 }
 
 const mapDispatchToProps = {
-  setAlertToState
+  setAlert
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RedeemContainer));
