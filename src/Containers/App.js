@@ -16,7 +16,6 @@ import About from '~/Components/About/About';
 import Gallery from '~/Components/Gallery/Gallery';
 import Footer from '~/Components/Footer/Footer';
 // COMMON
-import { loggedIn } from '~/common/loginService';
 import history from '~/common/history';
 import getCookie from '~/common/cookie';
 // ASSETS
@@ -25,7 +24,7 @@ import 'materialize-css/dist/css/materialize.css'
 import '~/assets/scss/materialExtended.scss';
 import 'materialize-css/dist/js/materialize.js'
 // ACTIONS
-import { setAccountInfo, clearAllAllerts, setPathname, initWeb3, getAlliesOfUser } from '../actions/index.js';
+import { checkLoggedIn, setAccountInfo, clearAllAllerts, setPathname, initWeb3, getAlliesOfUser } from '../actions/index.js';
 
 // COMPONENT
 class App extends React.Component {
@@ -41,14 +40,7 @@ class App extends React.Component {
     //const cookie = APP_ROOT === '/' ? getCookie('sid') : getCookie('__cfduid');
     //console.log('COOKIE', cookie, APP_ROOT);
     if(!this.props.account.loggedIn /*&& cookie*/){
-      loggedIn()
-      .then((data)=>{
-        if(data && data.data.fullAccount){
-          this.props.setAccountInfo({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username, publicEthKey : data.data.publicEthKey });
-        }else{
-          this.props.setAccountInfo({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username });
-        }
-      }).catch((e) =>{return;});
+      this.props.checkLoggedIn();
     }
   }
 
@@ -110,7 +102,8 @@ const mapDispatchToProps = {
     clearAllAllerts,
     setPathname,
     initWeb3,
-    getAlliesOfUser
+    getAlliesOfUser,
+    checkLoggedIn
 
 }
 

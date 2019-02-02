@@ -3,12 +3,26 @@ import TruffleContract from 'truffle-contract';
   // for testing only
 import contractJson from '../../build/contracts/EcoAllyCore.json';
 // COMMON
-import { login, logout } from '~/common/loginService';
+import { login, logout, loggedIn } from '~/common/loginService';
 import history from '~/common/history';
+
 // ACTIONS
-import { SET_CONTRACT_INSTANCE, SET_ACCOUNT_INFO, SET_PATHNAME } from '~/actions/actions';
+import { SET_CONTRACT_INSTANCE, SET_ACCOUNT_INFO, SET_PATHNAME, CHECK_LOGGED_IN } from '~/actions/actions';
 import { setAllies, getAlliesOfUser, buildAlly, transferAlly, handleRedeem, handleProof, handleCheckParamAgainstCode } from '~/actions/tokens';
 import { setAlert, clearAlert, clearAllAllerts } from '~/actions/alerts';
+
+function checkLoggedIn(){
+  return (dispatch, getState) =>{
+    loggedIn()
+    .then((data)=>{
+      if(data && data.data.fullAccount){
+        dispatch(setAccountInfo({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username, publicEthKey : data.data.publicEthKey }));
+      }else{
+        dispatch(setAccountInfo({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username }));
+      }
+    }).catch((e) =>{return;});
+  }
+}
 
 // Handle login to node backend on heroku
 function handleLogin(doLogin, email, password){
@@ -29,7 +43,7 @@ function handleLogin(doLogin, email, password){
           console.log('ERROR - ', data.error);
           return dispatch(setAlert({type : 'error', message : data.error}));
         } 
-        setAccountInfo({loggedIn:false, publicEthKey: ''});
+        dispatch(setAccountInfo({loggedIn:false, publicEthKey: ''}));
         setTimeout(()=>(history.push(`${APP_ROOT}login`)),1000);
     
       })
@@ -91,4 +105,4 @@ function setPathname(payload = null){
   }
 }
 
-export { buildAlly, transferAlly, getAlliesOfUser, initWeb3, setAccountInfo, setAllies, setAlert, clearAlert, clearAllAllerts, setPathname, handleRedeem, handleProof, handleCheckParamAgainstCode, handleLogin };
+export { buildAlly, transferAlly, getAlliesOfUser, initWeb3, setAccountInfo, setAllies, setAlert, clearAlert, clearAllAllerts, setPathname, handleRedeem, handleProof, handleCheckParamAgainstCode, handleLogin, checkLoggedIn };
