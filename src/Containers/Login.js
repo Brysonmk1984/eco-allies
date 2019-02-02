@@ -1,14 +1,12 @@
 // REACT
 import React from 'react';
 import { connect } from 'react-redux';
-// LIBRARIES
-import PropTypes from 'prop-types';
 // COMMON
 import history from '~/common/history';
 // COMPONENTS
 import Login from '~/Components/Login/Login';
 // ACTIONS
-import { setAccountInfo, setAlert, clearAllAllerts } from '~/actions';
+import { handleLogin, setAccountInfo, setAlert, clearAllAllerts } from '~/actions';
 
 // COMPONENT
 class LoginContainer extends React.Component{
@@ -64,14 +62,10 @@ function mapStateToProps(state){
 }
 
 const mapDispatchToProps = {
-  setAccountInfo,
-  setAlert, 
-  clearAllAllerts
+    handleLogin,
+    setAccountInfo,
+    setAlert, 
+    clearAllAllerts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
-
-// PROP-TYPES
-LoginContainer.propTypes = {
-    handleLogin : PropTypes.func.isRequired
-};

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 // ACTIONS
-import { SET_ACCOUNT_INFO, SET_ALLIES , SET_ALERT, CLEAR_ALL_ALERTS, CLEAR_SINGLE_ALERT, SET_PATHNAME } from '~/actions/actions';
+import { SET_CONTRACT_INSTANCE, SET_ACCOUNT_INFO, SET_ALLIES , SET_ALERT, CLEAR_ALL_ALERTS, CLEAR_SINGLE_ALERT, SET_PATHNAME } from '~/actions/actions';
 import { isArray } from 'util';
 
 const initialAccountState = {
@@ -14,6 +14,8 @@ const initialAccountState = {
 const AccountReducer = function(state = initialAccountState, action = { type : null, payload : null}){
   switch(action.type){
     case SET_ACCOUNT_INFO :
+      return Object.assign({}, state, action.payload);
+    case SET_CONTRACT_INSTANCE :
       return Object.assign({}, state, action.payload);
     default :
       return state;
@@ -43,6 +45,8 @@ const AlliesReducer = function(state = [], action = { type:null, payload : null}
   switch (action.type){
       case SET_ALLIES:
         return [...action.payload];
+      // case BUILD_ALLY:
+      //   return state;
       default :
         return state;
   }

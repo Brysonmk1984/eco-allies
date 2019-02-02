@@ -1,12 +1,10 @@
 // REACT
 import React from 'react';
 import { connect } from 'react-redux';
-// LIBRARIES
-import PropTypes from 'prop-types';
 // COMPONENTS
 import Proof from '~/Components/Proof/Proof';
 // ACTIONS
-import { setAlert } from '~/actions/index.js';
+import { setAlert, handleProof } from '~/actions/index.js';
 
 
 class ProofContainer extends React.Component{
@@ -52,7 +50,7 @@ class ProofContainer extends React.Component{
   
   }
 
-  render(){console.log('dsa', this.props);
+  render(){
     return(
        <Proof message={this.state.message} uploaded={this.state.uploaded} confirmed={this.state.confirmed} handleSubmit={this.handleSubmit.bind(this)} handleCheckboxToggle={this.handleCheckboxToggle.bind(this)} handleChange={this.handleChange.bind(this)} />
     );
@@ -65,13 +63,8 @@ function mapStateToProps(state){
  }
 }
 const mapDispatchToProps = {
-  setAlert
+  setAlert,
+  handleProof
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProofContainer);
-
-Proof.propTypes = {
-  handleProof : PropTypes.func.isRequired,
-  alerts : PropTypes.arrayOf(PropTypes.shape({ type : PropTypes.string.isRequired, message : PropTypes.string.isRequired })).isRequired,
-  setAlert : PropTypes.func.isRequired
-}

@@ -5,11 +5,13 @@ import { connect } from 'react-redux';
 // LIBRARIES
 import PropTypes from 'prop-types';
 // COMPONENTS
-import AllyListPage from './AllyListPage/AllyListPage';
-import AllyPage from './AllyPage/AllyPage';
+import AllyListPage from '~/Components/UserCollection/AllyListPage/AllyListPage';
+import AllyPage from '~/Components/UserCollection/AllyPage/AllyPage';
+// ACTIONS
+import { buildAlly, transferAlly } from '~/actions';
 
 // COMPONENT
-class UserCollection extends React.Component{
+class UserCollectionContainer extends React.Component{
     
     // One of two different views is rendered depending on if a user navigates
     // to /user-collection or /user-collection/{{allyDna}}
@@ -34,10 +36,10 @@ function mapStateToProps(state){
         account : state.account
     }
 }
-export default connect(mapStateToProps)(UserCollection);
 
-// PROP-TYPES
-UserCollection.propTypes = {
-    buildAlly : PropTypes.func.isRequired,
-    transferAlly : PropTypes.func.isRequired
+const mapDispatchToProps = {
+  buildAlly,
+  transferAlly
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserCollectionContainer);

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 // COMPONENTS
 import Redeem from '~/Components/Redeem/Redeem';
 // ACTIONS
-import { setAlert } from '~/actions/index.js';
+import { setAlert, buildAlly, handleRedeem, handleCheckParamAgainstCode } from '~/actions/index.js';
 
 // COMPONENT
 class RedeemContainer extends React.Component{
@@ -62,7 +62,7 @@ class RedeemContainer extends React.Component{
   // On Mount, if there's a qrCode param, use it to retrieve the 9 digit code to retrieve ally
   componentDidMount(){
     if(this.props.match && this.props.match.params.qr){
-      this.props.checkParamAgainstCode(this.props.match.params.qr)
+      this.props.handleCheckParamAgainstCode(this.props.match.params.qr)
        .then((values) =>{
           this.setState({ code : values.code });
       })
@@ -84,15 +84,15 @@ function mapStateToProps(state){
 }
 
 const mapDispatchToProps = {
-  setAlert
+  setAlert,
+  buildAlly,
+  handleCheckParamAgainstCode,
+  handleRedeem
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RedeemContainer));
 
 // PROP-TYPES
 Redeem.propTypes = {
-    handleRedeem : PropTypes.func.isRequired,
-    checkParamAgainstCode : PropTypes.func,
-    buildAlly : PropTypes.func.isRequired,
     match : PropTypes.object
 };
