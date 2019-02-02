@@ -1,10 +1,11 @@
 @import "~/assets/scss/variables.scss";
 
 div.page-wrapper.user-collection-page{
-    display:grid;
-    grid-template-columns: auto;
-    grid-template-rows: 220px auto auto;
+    display:block;
     min-height:100vh;
-    place-items: stretch;
-    
+    padding: 30px 0px 60px;
+    h2{
+        margin-top:0px;
+        padding: 20px 0px 40px;
+    }
 }

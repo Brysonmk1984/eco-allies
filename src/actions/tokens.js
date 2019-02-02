@@ -1,8 +1,9 @@
 import generateSeed from '~/common/generateNum';
-import { insertSimpleToken } from '~/common/tokenService';
+import { insertSimpleToken, fetchSimpleTokens } from '~/common/tokenService';
 import { sendRedeemCode, sendProof, checkParamAgainstCode } from '~/common/redeemService';
 // ACTIONS
 import { SET_ALLIES } from '~/actions/actions';
+import { setAlert } from '~/actions/alerts';
 
 function setAllies(payload = null){
   return {
@@ -17,7 +18,6 @@ function getAlliesOfUser(fullAccount){
     const state = getState();
 
     if(fullAccount){
-      console.log(1);
       return state.account.contractInstance.tokensOfOwner.call(state.account.publicEthKey).then((tokens)=>{
         const tokenPositions = tokens.map((token) =>{
           return token.toNumber();
@@ -27,7 +27,6 @@ function getAlliesOfUser(fullAccount){
         const tokenPromises = tokenPositions.map((tp) => {
           return state.account.contractInstance.getEcoAlly(tp);
         });
-        console.log(2);
         Promise.all(tokenPromises).then((values) =>{
             values.forEach((ally,i)=>{
               let allyDnaString = ally[0].toString();
@@ -36,15 +35,14 @@ function getAlliesOfUser(fullAccount){
               }
               allies.push({dna : allyDnaString, id : ally[1].toNumber()});
             });
-            console.log(3);
             dispatch(setAllies(allies));
+        }).catch(error => { 
+          dispatch(setAlert({type : 'error', message : metamaskError}));
         });
-  
       });
     }else{
       fetchSimpleTokens(state.account.email)
       .then((data) =>{
-        console.log('DATA', data);
         dispatch(setAllies(data.tokenArray));
       });
     }
@@ -56,14 +54,17 @@ function buildAlly(payload = null){
     const state = getState();
     const num = generateSeed();
     if(state.account.fullAccount){
-      state.account.contractInstance.addAlly(num, {from : state.account.publicEthKey});
-    }else{console.log('making');
+      state.account.contractInstance.addAlly(num, {from : state.account.publicEthKey})
+      .then((data) =>{
+          dispatch(getAlliesOfUser(state.account.fullAccount));
+      });
+    }else{
       insertSimpleToken(num, state.account.email)
       .then((data)=>{
-        console.log('new inserted token', data);
+        dispatch(getAlliesOfUser(state.account.fullAccount));
       })
-      .catch((err) =>{
-        console.log('EEERR', err);
+      .catch((error) =>{
+        dispatch(setAlert({type : 'error', message : error}));
       })
     }
   }
@@ -75,10 +76,9 @@ function transferAlly(to, allyIndex = 0){
     const state = getState();
     const from = state.account.publicEthKey;
     if(to !== state.account.publicEthKey){
-      //console.log('going', to, allyIndex);
       state.account.contractInstance.transferEcoAlly(from, to, allyIndex, {from : state.account.publicEthKey});
     }else{
-      alert('please enter an account that\'s not your own');
+      dispatch(setAlert({type : 'error', message : 'please enter an account that\'s not your own'}));
     }
   }
   
@@ -86,26 +86,32 @@ function transferAlly(to, allyIndex = 0){
 
 // Handle redeem
 function handleRedeem(code, email){
-  return sendRedeemCode({code, email})
-  .then((data)=>{
-    return data;
-  });
+  return (dispatch, getState) =>{
+    return sendRedeemCode({code, email})
+    .then((data)=>{
+      return data;
+    });
+  };
 }
 
 // Handle redeem
 function handleProof(formData){
-  return sendProof(formData)
-  .then((data)=>{
-    return data;
-  });
+  return (dispatch, getState) =>{
+    return sendProof(formData)
+    .then((data)=>{
+      return data;
+    });
+  };
 }
 
 // Check URL param against code in DB
 function handleCheckParamAgainstCode(param){
-  return checkParamAgainstCode(param)
-  .then((data)=>{
-    return data;
-  });
+  return (dispatch, getState) =>{
+    return checkParamAgainstCode(param)
+    .then((data)=>{
+      return data;
+    });
+  };
 }
 
 export { setAllies, getAlliesOfUser, buildAlly, transferAlly, handleRedeem, handleProof, handleCheckParamAgainstCode };

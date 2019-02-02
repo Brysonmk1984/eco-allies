@@ -4,11 +4,9 @@ const endpoint = process.env.NODE_ENV === 'production' ?  'https://eco-allies.he
 const fetchSimpleTokens = function(owner){
   return axios.post(`${endpoint}tokens/retrieve-simple-tokens`, {owner}, {withCredentials:true})
   .then((data) => {
-    console.log('simple token data', data);
     return data.data;
   })
   .catch((error)=>{
-      console.log('simple token error', error);
       return { error : [{type : 'error', message : `Couldn't communicate with server to fetch simple token!`}] }
   });
 };
@@ -16,10 +14,8 @@ const fetchSimpleTokens = function(owner){
 const insertSimpleToken = function(token, owner){
   return axios.post(`${endpoint}tokens/insert-simple-token`, {token, owner}, {withCredentials:true})
   .then((data) =>{
-    console.log('insert token data', data);
     return data
   }).catch((error)=>{
-    console.log('simple token error', error);
     return { error : [{type : 'error', message : `Couldn't communicate with server to insert token!`}] }
   });
 };

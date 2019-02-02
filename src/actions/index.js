@@ -7,7 +7,7 @@ import { login, logout, loggedIn } from '~/common/loginService';
 import history from '~/common/history';
 
 // ACTIONS
-import { SET_CONTRACT_INSTANCE, SET_ACCOUNT_INFO, SET_PATHNAME, CHECK_LOGGED_IN } from '~/actions/actions';
+import { SET_CONTRACT_INSTANCE, SET_ACCOUNT_INFO, SET_PATHNAME } from '~/actions/actions';
 import { setAllies, getAlliesOfUser, buildAlly, transferAlly, handleRedeem, handleProof, handleCheckParamAgainstCode } from '~/actions/tokens';
 import { setAlert, clearAlert, clearAllAllerts } from '~/actions/alerts';
 
@@ -27,20 +27,16 @@ function checkLoggedIn(){
 // Handle login to node backend on heroku
 function handleLogin(doLogin, email, password){
   return (dispatch, getState) => {
-    const state = getState();
     if(doLogin){
       return login({ email, password })
       .then((data)=>{
-        console.log('THE DATA', data);
         return data;
       });
       
     }else if(doLogin === false){
       return logout()
       .then((data)=>{
-        console.log('Data', data);
         if(data.error){
-          console.log('ERROR - ', data.error);
           return dispatch(setAlert({type : 'error', message : data.error}));
         } 
         dispatch(setAccountInfo({loggedIn:false, publicEthKey: ''}));
@@ -48,7 +44,7 @@ function handleLogin(doLogin, email, password){
     
       })
       .catch((error)=>{
-        console.log('log out failure!!', error);
+        dispatch(setAlert({type : 'error', message : error}));
       });
     }
   }

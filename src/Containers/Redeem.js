@@ -59,8 +59,8 @@ class RedeemContainer extends React.Component{
   }
 
 
-  // On Mount, if there's a qrCode param, use it to retrieve the 9 digit code to retrieve ally
-  componentDidMount(){
+  // Before component mounts, if there's a qrCode param, use it to retrieve the 9 digit code to retrieve ally
+  componentWillMount(){
     if(this.props.match && this.props.match.params.qr){
       this.props.handleCheckParamAgainstCode(this.props.match.params.qr)
        .then((values) =>{
