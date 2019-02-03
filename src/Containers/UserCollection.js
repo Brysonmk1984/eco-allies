@@ -20,7 +20,7 @@ class UserCollectionContainer extends React.Component{
         return(
             <div className="page-wrapper user-collection-page">
                 <Route exact path={`${APP_ROOT}user-collection`}  render={() => (
-                    <AllyListPage loggedIn={this.props.account.loggedIn} username={this.props.account.username ? `${this.props.account.username}'s` : `Your` } allies={this.props.allies}   buildAlly={this.props.buildAlly} />
+                    <AllyListPage loggedIn={this.props.account.loggedIn} username={this.props.account.username} allies={this.props.allies}   buildAlly={this.props.buildAlly} />
                 )} />
                 <Route path={`${APP_ROOT}user-collection/:allyDna`}  render={
                     withRouter((props) => ( <AllyPage {...props} allies={props.account.allies} transferAlly={props.transferAlly} /> ))

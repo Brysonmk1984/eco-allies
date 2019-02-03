@@ -14,6 +14,7 @@ import { lowercaseUnderscore, lowercaseDash } from '~/common/helperFunctions';
 import history from '~/common/history';
 // ASSETS
 import './allyListPage.scss';
+import fist from '~/assets/images/fist.png';
 
 
 // COMPONENT
@@ -63,7 +64,6 @@ export default class UserCollection extends React.Component{
             return <JwModal id="jw-modal-2">
                 <div id="featureModalAlly" onClick={this.closeModal.bind(this)}>
                     <img src={ AllyImages[lowercaseUnderscore(a.basics.character)] } onClick={this.navigateToAllyPage.bind(this)}  />
-                    <div id="allyHighlight"></div>
                 </div>
                 <div id="featureModalContent" style={ {backgroundImage: `url(${AllyBackgrounds[lowercaseUnderscore(a.basics.character)]})`} }>
                     <div id="contentTitle">
@@ -83,6 +83,9 @@ export default class UserCollection extends React.Component{
                             <ul id="naturalAlignment" >
                                 <li style={ {color : a.basics.colors[1]} }>{ a.alignment }</li>
                             </ul>
+                            <h4 style={ {color : a.basics.colors[3],  borderBottom: `solid 2px ${a.basics.colors[3]}`  } }>Power</h4>
+                            <img className="fist fist-reversed" src={fist} /> 
+                            <span className="power" style={ {color : a.basics.colors[1]} }>{a.power}</span>
                         </div>
                         <p id="history" style={ {color : a.basics.colors[4] } }>
                             { a.history }
@@ -102,7 +105,7 @@ export default class UserCollection extends React.Component{
         return(
             <div className="page-wrapper ally-list-page">
                 <section className="ally-section">
-                    <h2>{this.props.username} Collection</h2>
+                    <h2>{this.props.username}'s Collection</h2>
                     <div className="subsection">
                         {this.buildAllyList()}
                     </div>

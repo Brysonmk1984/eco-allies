@@ -197,24 +197,10 @@ div.alert-wrapper{
         flex-direction: column;
         background-color: transparent !important;
         #featureModalAlly{
-            
-            background-color:transparent;
             text-align:center;
             z-index: 0;
             height: 50vh;
-            #allyHighlight{
-                position: absolute;
-                top:50px;
-                left: 50%;
-                margin-left: -200px;
-                border-radius: 50%;
-                width:400px;
-                height:400px;
-                max-height: 70%;
-                background-image: radial-gradient( white, transparent);
-                z-index: -1;
-                filter: blur(20px);
-            }
+            background:rgba(255,255,255,.8);
             img{
                 max-height: 100%;
                 max-width:100%;
@@ -279,7 +265,22 @@ div.alert-wrapper{
                 position: relative;
                 z-index: 0;
                 #attributes{
-                   
+                .fist{
+                    height: 50px;
+                    line-height:40px;
+                    display:inline-block;
+                    vertical-align:middle;
+                    &.fist-reversed{
+                        filter: invert(100%);
+                    }
+                }
+                .power{
+                    display:inline-block;
+                    vertical-align:middle;
+                    line-height:40px;
+                    font-size: 3.2rem;
+                    margin-left:10px;
+                }
                 }
                 #history{
                     margin-top:100px;

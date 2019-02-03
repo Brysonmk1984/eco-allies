@@ -33,7 +33,6 @@ class LoginContainer extends React.Component{
         this.props.handleLogin(true, this.state.email, this.state.password)
         .then((data) =>{
             console.log('in then hs', data);
-            this.props.setAlert({type : 'success', message : "You've been logged in."});
             this.props.setAccountInfo({
               publicEthKey : data.publicEthKey,
               email : data.email,
@@ -41,6 +40,7 @@ class LoginContainer extends React.Component{
               username : data.username,
               loggedIn : true
             });
+            this.props.setAlert({type : 'success', message : "You've been logged in."});
             setTimeout(()=>{
               history.push(`${APP_ROOT}user-collection`);
               this.props.clearAllAllerts();
@@ -57,7 +57,7 @@ class LoginContainer extends React.Component{
 
 function mapStateToProps(state){
   return {
-
+    alerts : state.alerts
   }
 }
 
