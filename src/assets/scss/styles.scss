@@ -21,7 +21,7 @@ body, html{
     margin:0px;
     padding:0px;
     font-family: 'Avenir', Helvetica, sans-serif;
-    .jw-modal-open{
+    .ally-modal-open{
         overflow: hidden;
     }
 }
@@ -184,9 +184,14 @@ div.alert-wrapper{
 
 }
 // MODAL
-.jw-modal{
-    position: relative;
-    .jw-modal-body{
+.ally-modal{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width:100%;
+    height: 100vh;
+    z-index: 1000;
+    .ally-modal-body{
         margin:0px !important;
         padding: 0px !important;
         position:absolute;
@@ -208,7 +213,7 @@ div.alert-wrapper{
             }
         }
         #featureModalContent{
-            flex: 1.5;
+            height: 50vh;
             background-color:$veryDarkBackground;
             overflow-y: visible;
             position: relative;
@@ -306,7 +311,7 @@ div.alert-wrapper{
   
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) { 
-    .jw-modal .jw-modal-body #featureModalContent {
+    .ally-modal .ally-modal-body #featureModalContent {
     
         #contentBody {
             #attributes{
@@ -380,8 +385,8 @@ div.alert-wrapper{
             }
         }
     }
-    .jw-modal{
-        .jw-modal-body{
+    .ally-modal{
+        .ally-modal-body{
             #featureModalAlly{
                 #allyHighlight{
                 }
@@ -437,27 +442,16 @@ div.alert-wrapper{
 
 // Laptop size (low height)
 @media (max-height: 800px) { 
-    .jw-modal{
+    .ally-modal{
 
-        .jw-modal-body{
+        .ally-modal-body{
             #featureModalAlly{
-                height: 30vh;
-                #allyHighlight{
-                    top:0%;
-                    left: 50%;
-                    margin-left: -100px;
-                    border-radius: 50%;
-                    width:200px;
-                    height:200px;
-                    max-height: 70%;
-                    background-image: radial-gradient( white, transparent);
-                    z-index: -1;
-                    filter: blur(20px);
-                }
+                height: 40vh;
                 img{
                 }
             }
             #featureModalContent{
+                height: 60vh;
                 #contentTitle{
                    
                 }

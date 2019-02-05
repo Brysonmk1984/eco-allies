@@ -2,10 +2,10 @@
 import React from 'react';
 // LIBRARIES
 import PropTypes from 'prop-types';
-import JwModal from 'jw-react-modal';
 // COMPONENTS
 import AllyTile from '../AllyTile/AllyTile';
 import AddModal from '../AddModal';
+import AllyModal from '~/Components/AllyModal/AllyCollectionModal';
 // COMMON
 import { decodeAlly } from '~/common/crackDna';
 import * as AllyImages from '~/common/includedImages';
@@ -29,13 +29,13 @@ export default class UserCollection extends React.Component{
     }
 
     openModal(activeAlly){
-        this.setState(() =>({activeAlly}), ()=>{
-            document.getElementById("openCollectionModal").click();
-        });
+        document.body.classList.add('ally-modal-open');
+        this.setState(() =>({ activeAlly }));
     }
 
     closeModal(){
-        document.getElementById("closeCollectionModal").click();
+        document.body.classList.remove('ally-modal-open');
+        this.setState(() =>({ activeAlly : null }));
     }
 
     // Map all ally data belonging to this owner to individual ally components
@@ -50,8 +50,9 @@ export default class UserCollection extends React.Component{
     }
 
     navigateToAllyPage(){
+
         history.push({
-            pathname: `${APP_ROOT}user-collection/${lowercaseDash(this.state.activeAlly.character)}`,
+            pathname: `${APP_ROOT}user-collection/${lowercaseDash(this.state.activeAlly.basics.character)}`,
             state: {
                 allyCharacter : this.state.activeAlly.character
             }
@@ -59,49 +60,13 @@ export default class UserCollection extends React.Component{
     }
 
     renderAllyModal(){
-        const a = this.state.activeAlly;
-        if(a){
-            return <JwModal id="jw-modal-2">
-                <div id="featureModalAlly" onClick={this.closeModal.bind(this)}>
-                    <img src={ AllyImages[lowercaseUnderscore(a.basics.character)] } onClick={this.navigateToAllyPage.bind(this)}  />
-                </div>
-                <div id="featureModalContent" style={ {backgroundImage: `url(${AllyBackgrounds[lowercaseUnderscore(a.basics.character)]})`} }>
-                    <div id="contentTitle">
-                        <h2 style={ {backgroundColor : a.basics.colors[0], color : a.basics.colors[1] } }>{a.basics.character}</h2>
-                        <h3 style={ {backgroundColor : a.basics.colors[2], color : a.basics.colors[3] } }>{ a.basics.description }</h3>
-                    </div>
-                    <div id="contentBody">
-                        <div id="attributes">
-                            <h4 style={ {color : a.basics.colors[3], borderBottom: `solid 2px ${a.basics.colors[3]}`  } }>Abilities</h4>
-                            <ul id="abilities">
-                                { a.ultimate ? <li id="ultimateAbility"  style={ {color : a.basics.colors[4], fontWeight : 'bold'} }><span>{ a.ultimate }</span></li> : '' }
-                                { a.skills.map((s, i) =>{
-                                    return <li className="regular_ability" key={i}  style={ {color : a.basics.colors[1] } }><span style={{paddingLeft : '4px'}}>{ s }</span></li>
-                                }) }
-                            </ul>
-                            <h4 style={ {color : a.basics.colors[3],  borderBottom: `solid 2px ${a.basics.colors[3]}`  } }>Heroic Alignment</h4>
-                            <ul id="naturalAlignment" >
-                                <li style={ {color : a.basics.colors[1]} }>{ a.alignment }</li>
-                            </ul>
-                            <h4 style={ {color : a.basics.colors[3],  borderBottom: `solid 2px ${a.basics.colors[3]}`  } }>Power</h4>
-                            <img className="fist fist-reversed" src={fist} /> 
-                            <span className="power" style={ {color : a.basics.colors[1]} }>{a.power}</span>
-                        </div>
-                        <p id="history" style={ {color : a.basics.colors[4] } }>
-                            { a.history }
-                        </p>
-                        <img id="allyKO" src={ AllyImages[`${lowercaseUnderscore(a.basics.character)}_ko`] } />
-                    </div>
-                    
-                </div>
-                <button id="closeCollectionModal" className="hide" onClick={JwModal.close('jw-modal-2')}>Close</button>
-                <button id="openCollectionModal" className="hide" onClick={JwModal.open('jw-modal-2')}>Open JW Modal 2</button>
-            </JwModal>
+        if(this.state.activeAlly){
+            return <AllyModal activeAlly={this.state.activeAlly} closeModal={this.closeModal.bind(this)} navigateToAllyPage={this.navigateToAllyPage.bind(this)} />
         }
-        return false;
+        return null;
     }
 
-    render(){console.log(this.props);
+    render(){
         return(
             <div className="page-wrapper ally-list-page">
                 <section className="ally-section">
@@ -111,7 +76,7 @@ export default class UserCollection extends React.Component{
                     </div>
                 </section>
                 <AddModal buildAlly={this.props.buildAlly.bind(this)} />
-                {this.renderAllyModal()}
+                { this.renderAllyModal() }
             </div>
         );
     }

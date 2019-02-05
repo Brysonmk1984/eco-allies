@@ -1,16 +1,13 @@
 // REACT
 import React from 'react';
-// LIBRARIES
-import JwModal from 'jw-react-modal';
 // COMPONENTS
 import GalleryAllyTile from '../GalleryAllyTile';
+import AllyGalleryModal from '~/Components/AllyModal/AllyGalleryModal';
 // COMMON
 import history from '~/common/history';
 import allyList from '~/common/allyList.json';
 import {shuffleArray} from '~/common/helperFunctions';
-import * as AllyImages from '~/common/includedImages';
-import * as AllyBackgrounds from '~/common/includedBackgrounds';
-import { lowercaseUnderscore, lowercaseDash } from '~/common/helperFunctions';
+import { lowercaseDash } from '~/common/helperFunctions';
 // ASSETS
 import './galleryListPage.scss';
 
@@ -29,13 +26,13 @@ export default class Gallery extends React.Component{
     }
 
     openModal(activeAlly){
-        this.setState(() =>({activeAlly}), ()=>{
-            document.getElementById("openModalButton").click();
-        });
+        document.body.classList.add('ally-modal-open');
+        this.setState(() =>({ activeAlly }));
     }
 
     closeModal(){
-        document.getElementById("closeModalButton").click();
+        document.body.classList.remove('ally-modal-open');
+        this.setState(() =>({ activeAlly : null }));
     }
 
     navigateToAllyPage(){
@@ -47,46 +44,11 @@ export default class Gallery extends React.Component{
         });
     }
 
-
     renderAllyModal(){
-        const a = this.state.activeAlly;
-        if(a){
-            return <JwModal id="jw-modal-1">
-                <div id="featureModalAlly" onClick={this.closeModal.bind(this)}>
-                    <img src={ AllyImages[lowercaseUnderscore(a.character)] } onClick={this.navigateToAllyPage.bind(this)}  />
-                    <div id="allyHighlight"></div>
-                </div>
-                <div id="featureModalContent" style={ {backgroundImage: `url(${AllyBackgrounds[lowercaseUnderscore(a.character)]})`} }>
-                    <div id="contentTitle">
-                        <h2 style={ {backgroundColor : a.colors[0], color : a.colors[1] } }>{a.character}</h2>
-                        <h3 style={ {backgroundColor : a.colors[2], color : a.colors[3] } }>{ a.description }</h3>
-                    </div>
-                    <div id="contentBody">
-                        <div id="attributes">
-                            <h4 style={ {color : a.colors[3], borderBottom: `solid 2px ${a.colors[3]}`  } }>Abilities</h4>
-                            <ul id="abilities">
-                                <li id="ultimateAbility"  style={ {color : a.colors[4], fontWeight : 'bold'} }><span>{ a.ultimate }</span></li>
-                                { a.skills.map((s, i) =>{
-                                    return <li className="regular_ability" key={i}  style={ {color : a.colors[1] } }><span style={{paddingLeft : '4px'}}>{ s }</span></li>
-                                }) }
-                            </ul>
-                            <h4 style={ {color : a.colors[3],  borderBottom: `solid 2px ${a.colors[3]}`  } }>Natural Alignment</h4>
-                            <ul id="naturalAlignment" >
-                                <li style={ {color : a.colors[1]} }>{ a.alignment }</li>
-                            </ul>
-                        </div>
-                        <p id="history" style={ {color : a.colors[4] } }>
-                            { a.history }
-                        </p>
-                        <img id="allyKO" src={ AllyImages[`${lowercaseUnderscore(a.character)}_ko`] } />
-                    </div>
-                    
-                </div>
-                <button id="closeModalButton" className="hide" onClick={JwModal.close('jw-modal-1')}>Close</button>
-                <button id="openModalButton" className="hide" onClick={JwModal.open('jw-modal-1')}>Open JW Modal 1</button>
-            </JwModal>
+        if(this.state.activeAlly){
+            return <AllyGalleryModal activeAlly={this.state.activeAlly} closeModal={this.closeModal.bind(this)} navigateToAllyPage={this.navigateToAllyPage.bind(this)} />
         }
-        return false;
+        return null;
     }
 
     componentDidMount(){
@@ -95,7 +57,6 @@ export default class Gallery extends React.Component{
     componentWillUnmount(){
         clearTimeout(this.timeOut);
     }
-
 
     render(){
         return(

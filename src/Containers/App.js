@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 // COMPONENTS
-import HeaderContainer from '~/Containers/HeaderContainer';
+import HeaderContainer from '~/Containers/Header';
 import UserCollectionContainer from '~/Containers/UserCollection';
 import RegisterContainer from '~/Containers/Register';
 import LoginContainer from '~/Containers/Login';
@@ -36,7 +36,6 @@ class App extends React.Component {
   // On component mount, if there is a cookie called 'sid' and the user is not logged in,
   // log the user in and initialize web3.
   componentDidMount(){
-
     //const cookie = APP_ROOT === '/' ? getCookie('sid') : getCookie('__cfduid');
     //console.log('COOKIE', cookie, APP_ROOT);
     if(!this.props.account.loggedIn /*&& cookie*/){
@@ -65,7 +64,6 @@ class App extends React.Component {
   componentWillUnmount(){
     this.routeUnlisten();
   }
-  
   
   render() {
     return (
