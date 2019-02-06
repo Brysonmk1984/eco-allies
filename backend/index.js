@@ -16,7 +16,7 @@ const userRoutes = require('./routes/users');
 const tokenRoutes = require('./routes/tokens');
 const sessionStore = require('./store').sessionStore;
 
-// test
+
 
   // http server
 app.listen( process.env.PORT || 3001, function () {
