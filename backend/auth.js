@@ -37,7 +37,7 @@ const auth = function(passport, LocalStrategy){
   // Gets information from the user object and serilizes it in a session
   // Happends when a user logs in
   passport.serializeUser(function(userId, done) {
-    console.log('SERIALIZE USER');
+    console.log('SERIALIZE USER', userId);
     // userId in this case is the user email
     // accessible in routes by req.session.passport.userId
     done(null, userId);
@@ -46,7 +46,7 @@ const auth = function(passport, LocalStrategy){
   // Turns the serilized user object back into a JS user object for use in the rest of the code
   // Happends any time a user visists a page that makes a call to the backend
   passport.deserializeUser(function(userId, done) {
-    console.log('DESERIALIZE USER ');
+    console.log('DESERIALIZE USER ', userId);
     done(null, userId);
   });
 

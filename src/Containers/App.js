@@ -24,22 +24,25 @@ import 'materialize-css/dist/css/materialize.css'
 import '~/assets/scss/materialExtended.scss';
 import 'materialize-css/dist/js/materialize.js'
 // ACTIONS
-import { checkLoggedIn, setAccountInfo, clearAllAllerts, setPathname, initWeb3, getAlliesOfUser } from '../actions/index.js';
+import { checkLoggedIn, setAccountInfo, clearAllAllerts, setAlert, setPathname, initWeb3, getAlliesOfUser } from '../actions/index.js';
 
 // COMPONENT
 class App extends React.Component {
   constructor(){
     super();
     this.routeUnlisten = history.listen((location, action )=>{});
+    this.timeout;
   }
 
   // On component mount, if there is a cookie called 'sid' and the user is not logged in,
   // log the user in and initialize web3.
   componentDidMount(){
-    //const cookie = APP_ROOT === '/' ? getCookie('sid') : getCookie('__cfduid');
-    //console.log('COOKIE', cookie, APP_ROOT);
-    if(!this.props.account.loggedIn /*&& cookie*/){
-      this.props.checkLoggedIn();
+    const cookie = APP_ROOT === '/' ? getCookie('sid') : getCookie('__cfduid');
+    if(cookie && !this.props.account.loggedIn){
+        this.props.checkLoggedIn();
+    }else{
+      this.props.setAlert({type : 'error', message : `You are not logged in!`});
+      this.timeout = setTimeout(() =>{ history.push(`${APP_ROOT}login`); }, 2200)
     }
   }
 
@@ -63,6 +66,7 @@ class App extends React.Component {
 
   componentWillUnmount(){
     this.routeUnlisten();
+    clearTimeout(this.timeout);
   }
   
   render() {
@@ -98,6 +102,7 @@ function mapStateToProps(state){
 const mapDispatchToProps = {
     setAccountInfo,
     clearAllAllerts,
+    setAlert,
     setPathname,
     initWeb3,
     getAlliesOfUser,

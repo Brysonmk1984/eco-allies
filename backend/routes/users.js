@@ -119,7 +119,7 @@ router.get('/logout', function(req, res){
 // });
 
 router.get('/logged-in', function(req, res, next){
-  //console.log('CHECKING IF LOGGED IN', req.user);
+  console.log('CHECKING IF LOGGED IN', req.user);
   if(!req.user){
     res.status(403).send('You are not logged in!');
     return;
