@@ -36,7 +36,7 @@ if(process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'proxy'){
       idle: 10000
     }
   }
-  const dbUrl = process.env.NODE_ENV === 'production' ? process.env.DATABASE_URL : "postgres://admin:admin@localhost/ecoAlliesLogin";
+  const dbUrl = process.env.NODE_ENV === 'production' ? process.env.DATABASE_URL : "postgres://admin:admin@localhost/ecoAllies";
   db = new Sequelize(dbUrl, sequelizeSettings);
 }
 

@@ -6,7 +6,7 @@ import history from '~/common/history';
 // COMPONENTS
 import Login from '~/Components/Login/Login';
 // ACTIONS
-import { handleLogin, setAccountInfo, setAlert, clearAllAllerts } from '~/actions';
+import { handleLogin, setAccountInfo, setAlert, clearAllAlerts } from '~/actions';
 
 // COMPONENT
 class LoginContainer extends React.Component{
@@ -40,10 +40,11 @@ class LoginContainer extends React.Component{
               username : data.username,
               loggedIn : true
             });
+            this.props.clearAllAlerts();
             this.props.setAlert({type : 'success', message : "You've been logged in."});
             setTimeout(()=>{
               history.push(`${APP_ROOT}user-collection`);
-              this.props.clearAllAllerts();
+              this.props.clearAllAlerts();
             },1200);
         }).catch(()=>{return;});
     }
@@ -65,7 +66,7 @@ const mapDispatchToProps = {
     handleLogin,
     setAccountInfo,
     setAlert, 
-    clearAllAllerts
+    clearAllAlerts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

@@ -24,7 +24,7 @@ import 'materialize-css/dist/css/materialize.css'
 import '~/assets/scss/materialExtended.scss';
 import 'materialize-css/dist/js/materialize.js'
 // ACTIONS
-import { checkLoggedIn, setAccountInfo, clearAllAllerts, setAlert, setPathname, initWeb3, getAlliesOfUser } from '../actions/index.js';
+import { checkLoggedIn, setAccountInfo, clearAllAlerts, setAlert, setPathname, initWeb3, getAlliesOfUser } from '../actions/index.js';
 
 // COMPONENT
 class App extends React.Component {
@@ -62,7 +62,7 @@ class App extends React.Component {
     // reset alerts and set path in state if user changes page
     if(pp.route !== history.location.pathname){
       this.props.setPathname({pathname : history.location.pathname});
-      this.props.clearAllAllerts();
+      //this.props.clearAllAlerts();
     }
   }
 
@@ -103,7 +103,7 @@ function mapStateToProps(state){
 
 const mapDispatchToProps = {
     setAccountInfo,
-    clearAllAllerts,
+    clearAllAlerts,
     setAlert,
     setPathname,
     initWeb3,

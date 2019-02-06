@@ -15,11 +15,11 @@ function clearAlert(payload = null){
   }
 }
 
-function clearAllAllerts(payload = null){
+function clearAllAlerts(payload = null){
   return {
     type : CLEAR_ALL_ALERTS,
     payload
   }
 }
 
-export { setAlert, clearAlert, clearAllAllerts };
+export { setAlert, clearAlert, clearAllAlerts };

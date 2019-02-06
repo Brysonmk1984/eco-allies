@@ -9,7 +9,7 @@ import history from '~/common/history';
 // COMPONENTS
 import Register from '~/Components/Register/Register';
 // ACTIONS
-import { setAccountInfo, setAlert, clearAllAllerts } from '~/actions';
+import { setAccountInfo, setAlert, clearAllAlerts } from '~/actions';
 
 // COMPONENT
 class RegisterContainer extends React.Component{
@@ -59,7 +59,7 @@ class RegisterContainer extends React.Component{
                   window.scrollTo(0, top);
                   setTimeout(()=>{
                       history.push(`${APP_ROOT}user-collection`);
-                      this.props.clearAllAllerts();
+                      this.props.clearAllAlerts();
                   },1200);
                 }
                 
@@ -111,7 +111,7 @@ function mapStateToProps(){
 
 const mapDispatchToProps = {
   setAlert,
-  clearAllAllerts
+  clearAllAlerts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);

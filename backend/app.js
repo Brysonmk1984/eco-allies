@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors')
 // sequelize
 const Sequelize = require('sequelize');
-const dbUrl = process.env.NODE_ENV === 'production' ? process.env.DATABASE_URL : "postgres://admin:admin@localhost/ecoAlliesLogin";
+const dbUrl = process.env.NODE_ENV === 'production' ? process.env.DATABASE_URL : "postgres://admin:admin@localhost/ecoAllies";
 const sequelizeSettings = {
     dialect: 'postgres',
     protocol: 'postgres',

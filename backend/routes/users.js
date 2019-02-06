@@ -74,7 +74,7 @@ router.post('/login', function(req, res, next){
         res.json({
         sessionId : req.sessionID,
         email : u.email,
-        username : u.username,
+        username : user.dataValues.username,
         publicEthKey : user.dataValues.publicEthKey,
         fullAccount : user.dataValues.fullAccount,
         isAuthenticated : true,

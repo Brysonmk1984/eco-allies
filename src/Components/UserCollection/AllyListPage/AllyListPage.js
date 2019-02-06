@@ -70,7 +70,7 @@ export default class UserCollection extends React.Component{
         return(
             <div className="page-wrapper ally-list-page">
                 <section className="ally-section">
-                    <h2>{this.props.username}'s Collection</h2>
+                    <h2>{this.props.username ? this.props.username + "'s Collection" : "Your Collection"}</h2>
                     <div className="subsection">
                         {this.buildAllyList()}
                     </div>

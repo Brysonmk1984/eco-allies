@@ -6,7 +6,7 @@ import axios from 'axios';
 import history from '~/common/history';
 import { MdClose } from 'react-icons/lib/md';
 // ACTIONS
-import { setAlert, clearAlert, clearAllAllerts } from '../actions/index.js';
+import { setAlert, clearAlert, clearAllAlerts } from '../actions/index.js';
 
 // COMPONENT
 // Error boundary - if an error occurs in the main content, this will prevent
@@ -123,7 +123,7 @@ function mapStateToProps(state){
   const mapDispatchToProps = {
     setAlert,
     clearAlert,
-    clearAllAllerts
+    clearAllAlerts
   };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

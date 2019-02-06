@@ -9,7 +9,7 @@ import history from '~/common/history';
 // ACTIONS
 import { SET_CONTRACT_INSTANCE, SET_ACCOUNT_INFO, SET_PATHNAME } from '~/actions/actions';
 import { setAllies, getAlliesOfUser, buildAlly, transferAlly, handleRedeem, handleProof, handleCheckParamAgainstCode } from '~/actions/tokens';
-import { setAlert, clearAlert, clearAllAllerts } from '~/actions/alerts';
+import { setAlert, clearAlert, clearAllAlerts } from '~/actions/alerts';
 
 function checkLoggedIn(email){
   return (dispatch, getState) =>{
@@ -105,4 +105,4 @@ function setPathname(payload = null){
   }
 }
 
-export { buildAlly, transferAlly, getAlliesOfUser, initWeb3, setAccountInfo, setAllies, setAlert, clearAlert, clearAllAllerts, setPathname, handleRedeem, handleProof, handleCheckParamAgainstCode, handleLogin, checkLoggedIn };
+export { buildAlly, transferAlly, getAlliesOfUser, initWeb3, setAccountInfo, setAllies, setAlert, clearAlert, clearAllAlerts, setPathname, handleRedeem, handleProof, handleCheckParamAgainstCode, handleLogin, checkLoggedIn };
