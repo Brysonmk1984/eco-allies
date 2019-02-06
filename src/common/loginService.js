@@ -43,14 +43,6 @@ const register = function(formData){
 };
 
 const logout = function(){
-    // const getCookie = (name) => {
-    //     return document.cookie.split('; ').reduce((r, v) => {
-    //       const parts = v.split('=')
-    //       return parts[0] === name ? decodeURIComponent(parts[1]) : r
-    //     }, '')
-    //   }
-
-
     return axios.get(`${endpoint}users/logout`, {withCredentials:true})
     .then((data) => {console.log('in lo', data);
         if(data.status === 200){
@@ -79,11 +71,12 @@ const loggedIn = function(){
     });
 };
 
-const accountDetails = function(){
-    return axios.get(`${endpoint}users/logged-in`, {withCredentials:true})
+const loggedInUsingLS = function(user){
+    return axios.post(`${endpoint}users/logged-in`, { user }, {withCredentials:true})
     .then((data) => {
+        console.log('LILS data', data);
         return data;
     });
 };
 
-export { login, register, logout, loggedIn, accountDetails }
+export { login, register, logout, loggedIn, loggedInUsingLS }

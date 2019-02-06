@@ -3,7 +3,7 @@ import TruffleContract from 'truffle-contract';
   // for testing only
 import contractJson from '../../build/contracts/EcoAllyCore.json';
 // COMMON
-import { login, logout, loggedIn } from '~/common/loginService';
+import { login, logout, loggedIn, loggedInUsingLS } from '~/common/loginService';
 import history from '~/common/history';
 
 // ACTIONS
@@ -11,15 +11,17 @@ import { SET_CONTRACT_INSTANCE, SET_ACCOUNT_INFO, SET_PATHNAME } from '~/actions
 import { setAllies, getAlliesOfUser, buildAlly, transferAlly, handleRedeem, handleProof, handleCheckParamAgainstCode } from '~/actions/tokens';
 import { setAlert, clearAlert, clearAllAllerts } from '~/actions/alerts';
 
-function checkLoggedIn(){
+function checkLoggedIn(email){
   return (dispatch, getState) =>{
     loggedIn()
+    //loggedInUsingLS(email)
     .then((data)=>{
       if(data && data.data.fullAccount){
         dispatch(setAccountInfo({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username, publicEthKey : data.data.publicEthKey }));
       }else{
         dispatch(setAccountInfo({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username }));
       }
+      localStorage.setItem('user', JSON.stringify(data.data.email));
     }).catch((e) =>{return;});
   }
 }
@@ -30,6 +32,7 @@ function handleLogin(doLogin, email, password){
     if(doLogin){
       return login({ email, password })
       .then((data)=>{
+        localStorage.setItem('user', JSON.stringify(email));
         return data;
       });
       
@@ -39,6 +42,7 @@ function handleLogin(doLogin, email, password){
         if(data.error){
           return dispatch(setAlert({type : 'error', message : data.error}));
         } 
+        localStorage.removeItem('user');
         dispatch(setAccountInfo({loggedIn:false, publicEthKey: ''}));
         setTimeout(()=>(history.push(`${APP_ROOT}login`)),1000);
     
