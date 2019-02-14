@@ -20,7 +20,7 @@ const login = function(formData){
         }
     });
 };
-//test
+
 const register = function(formData){
     return axios.post(`${endpoint}users/register`,formData)
     .then((data) => {console.log('data!', data);
