@@ -1,6 +1,6 @@
 import axios from 'axios';
 const endpoint = process.env.NODE_ENV === 'production' ?  'https://eco-allies.herokuapp.com/' : 'http://localhost:3001/';
-//const endpoint = process.env.NODE_ENV === 'production' ?  'https://eco-allies.herokuapp.com/' : 'https://eco-allies.herokuapp.com/';
+//const endpoint = 'https://eco-allies.herokuapp.com/';
 const login = function(formData){
 
     return axios.post(`${endpoint}users/login`,{email: formData.email, password: formData.password}, {withCredentials:true})

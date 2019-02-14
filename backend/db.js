@@ -36,6 +36,7 @@ if(process.env.NODE_ENV === 'production'){
       idle: 10000
     }
   }
+  
   dbUrl = "postgres://admin:admin@localhost/ecoAllies";
 
 }
