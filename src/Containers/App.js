@@ -39,7 +39,6 @@ class App extends React.Component {
   componentDidMount(){
     const cookie = APP_ROOT === '/' ? getCookie('sid') : getCookie('__cfduid');
     if(cookie && !this.props.account.loggedIn){
-        //const lsUser = JSON.parse(localStorage.getItem('user'));
         //this.props.checkLoggedIn(lsUser);
         this.props.checkLoggedIn();
     }else{

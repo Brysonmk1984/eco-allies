@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router(); 
 const User = require('../db').User;
+const jwt = require('jsonwebtoken');
 const passport = require('passport');
 // express-validator
 const { buildCheckFunction, validationResult } = require('express-validator/check');
@@ -50,7 +51,7 @@ router.post('/register', [
 // LOGIN TO EXISTING ACCOUNT
 router.post('/login', function(req, res, next){
   console.log('trying to log in');
-  passport.authenticate('local',function(err, u, info){
+  passport.authenticate('local', { session : false }, function(err, u, info){
     store.get(req.sessionID, (err,sess)=>{
       if(err){
         console.log('Error retrieving session - ', err);
@@ -63,7 +64,7 @@ router.post('/login', function(req, res, next){
       return res.status(401).send('Email or Password is incorrect.');
     }
     // Manually establish the session...
-    req.login(u.email, function(err) {
+    req.login(u.email, { session : false }, function(err) {
       if (err) return next(err);
       User.find({
         where : {
@@ -71,6 +72,8 @@ router.post('/login', function(req, res, next){
         },
         attributes:['publicEthKey', 'fullAccount', 'username']
       }).then((user, err) => {
+
+        const token = jwt.sign({ email : u.email }, 'secret');
         res.json({
         sessionId : req.sessionID,
         email : u.email,
@@ -79,9 +82,11 @@ router.post('/login', function(req, res, next){
         fullAccount : user.dataValues.fullAccount,
         isAuthenticated : true,
         requestType : 'POST',
-        success : true
+        success : true,
+        token
         });
         next();
+
       });
     });
   })(req, res, next);
@@ -163,6 +168,7 @@ router.post('/logged-in', function(req, res, next){
   .then((user, err)=>{
     if (err) return next(err);
       res.header('Access-Control-Allow-Credentials', 'true');
+      const token = jwt.sign({ email : u.email }, 'secret');
       res.status(200).send({
       success: true,
       message: `You are logged in as ${req.user}`,
@@ -170,7 +176,8 @@ router.post('/logged-in', function(req, res, next){
       username : user.dataValues.username,
       publicEthKey : user.dataValues.publicEthKey,
       fullAccount : user.dataValues.fullAccount,
-      requestType : 'GET'
+      requestType : 'GET',
+      token
     });
     next();
   });

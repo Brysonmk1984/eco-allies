@@ -21,7 +21,7 @@ function checkLoggedIn(email){
       }else{
         dispatch(setAccountInfo({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username }));
       }
-      localStorage.setItem('user', JSON.stringify(data.data.email));
+      localStorage.setItem('token', data.data.token);
     }).catch((e) =>{return;});
   }
 }
@@ -32,7 +32,7 @@ function handleLogin(doLogin, email, password){
     if(doLogin){
       return login({ email, password })
       .then((data)=>{
-        localStorage.setItem('user', JSON.stringify(email));
+        localStorage.setItem('token', data.token);
         return data;
       });
       
@@ -42,7 +42,7 @@ function handleLogin(doLogin, email, password){
         if(data.error){
           return dispatch(setAlert({type : 'error', message : data.error}));
         } 
-        localStorage.removeItem('user');
+        localStorage.removeItem('token');
         dispatch(setAccountInfo({loggedIn:false, publicEthKey: ''}));
         setTimeout(()=>(history.push(`${APP_ROOT}login`)),1000);
     

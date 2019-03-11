@@ -38,8 +38,9 @@ class LoginContainer extends React.Component{
               email : data.email,
               fullAccount : data.fullAccount,
               username : data.username,
-              loggedIn : true
+              loggedIn : true,
             });
+            
             this.props.clearAllAlerts();
             this.props.setAlert({type : 'success', message : "You've been logged in."});
             setTimeout(()=>{
