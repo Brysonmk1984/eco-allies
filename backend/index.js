@@ -18,8 +18,7 @@ const fileUpload = require('express-fileupload');
 // COMMON
 const userRoutes = require('./routes/users');
 const tokenRoutes = require('./routes/tokens');
-const sessionStore = require('./store').sessionStore;
-
+const jwtRoutes = require('./routes/jwt');
 
 
   // http server
@@ -35,36 +34,16 @@ app.listen( process.env.PORT || 3001, function () {
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(cookieParser('1123ddsgfdrtrthsds'));
   app.set('trust proxy', 1);
-  app.use(sessionStore);
   app.use(passport.initialize());
-  app.use(passport.session());
+
   app.use(fileUpload());
   require('./auth.js')(passport, LocalStrategy, JWTStrategy, ExtractJWT );
   
   app.options('*', cors())
   // HTTP Routes
-  app.use('/users', passport.authenticate('jwt', {session: false}), userRoutes);
-  app.use('/tokens', passport.authenticate('jwt', {session: false}), tokenRoutes);
-  // app.use('/test', passport.authenticate('jwt', {session: false}), () => {
-  //   app.get('/jwt', function(req, res, next){
-  //     console.log('HEY LOOOOOOOOOOOOOOOK AT THIS');
-  //     user.find({
-  //     where : {
-  //     email : req.user
-  //     },
-  //     attributes:['publicEthKey']
-  //     })
-  //     .then((user, error)=>{
-  //         res.status(200).send({
-  //         success: true,
-  //         message: `You are logged in as ${req.user}`,
-  //         publicEthKey: user.dataValues.publicEthKey,
-  //         requestType : 'GET'
-  //         });
-  //         next();
-  //     });
-  //   });
-  // });
+  app.use('/users', userRoutes);
+  app.use('/tokens', tokenRoutes);
+  app.use('/jwt', passport.authenticate('jwt', {session: false}), jwtRoutes);
 });
 
 

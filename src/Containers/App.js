@@ -37,13 +37,14 @@ class App extends React.Component {
   // On component mount, if there is a cookie called 'sid' and the user is not logged in,
   // log the user in and initialize web3.
   componentDidMount(){
-    const cookie = APP_ROOT === '/' ? getCookie('sid') : getCookie('__cfduid');
-    if(cookie && !this.props.account.loggedIn){
+
+    if(!this.props.account.loggedIn){
         //this.props.checkLoggedIn(lsUser);
+        console.log('ACC', this.props.account);
         this.props.checkLoggedIn();
     }else{
-      this.props.setAlert({type : 'error', message : `You are not logged in!`});
-      this.timeout = setTimeout(() =>{ history.push(`${APP_ROOT}login`); }, 2200)
+      //this.props.setAlert({type : 'error', message : `You are not logged in!`});
+      //this.timeout = setTimeout(() =>{ history.push(`${APP_ROOT}login`); }, 2200)
     }
   }
 

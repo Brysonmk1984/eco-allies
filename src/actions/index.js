@@ -13,16 +13,22 @@ import { setAlert, clearAlert, clearAllAlerts } from '~/actions/alerts';
 
 function checkLoggedIn(email){
   return (dispatch, getState) =>{
-    loggedIn()
-    //loggedInUsingLS(email)
-    .then((data)=>{
-      if(data && data.data.fullAccount){
-        dispatch(setAccountInfo({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username, publicEthKey : data.data.publicEthKey }));
-      }else{
-        dispatch(setAccountInfo({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username }));
-      }
-      localStorage.setItem('token', data.data.token);
-    }).catch((e) =>{return;});
+    const token = localStorage.getItem('token');
+    
+    if(token){console.log('EMAIL', email);
+      loggedIn()
+      .then((data)=>{
+        console.log('DATA', data);
+        if(data && data.data.fullAccount){
+          dispatch(setAccountInfo({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username, publicEthKey : data.data.publicEthKey }));
+        }else{
+          dispatch(setAccountInfo({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username }));
+        }
+      }).catch((e) =>{return;});
+    } else {
+      dispatch(setAlert({type : 'error', message : "No JWT"}));
+      setTimeout(()=>(history.push(`${APP_ROOT}login`)),1000);
+    }
   }
 }
 
