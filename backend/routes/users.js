@@ -6,7 +6,7 @@ const passport = require('passport');
 // express-validator
 const { buildCheckFunction, validationResult } = require('express-validator/check');
 const checkBody = buildCheckFunction(['body']);
-const store = require('../store').store;
+
 
 // REGISTER NEW ACCOUNT
 router.post('/register', [
@@ -89,66 +89,6 @@ router.get('/logout', function(req, res){
 
   req.logout();
   res.json({isAuthenticated : false, requestType : 'GET', success : true});
-});
-
-// router.get('/logged-in', function(req, res, next){
-//   console.log('CHECKING IF LOGGED IN', req.user);
-//   if(!req.user){
-//     res.status(403).send('You are not logged in!');
-//     return;
-//   }
-
-//   User.find({
-//     where : {
-//     email : req.user
-//   },
-//   attributes:['publicEthKey', 'fullAccount', 'username']
-//   })
-//   .then((user, err)=>{
-//     if (err) return next(err);
-//       res.header('Access-Control-Allow-Credentials', 'true');
-//       res.status(200).send({
-//       success: true,
-//       message: `You are logged in as ${req.user}`,
-//       email: req.user,
-//       username : user.dataValues.username,
-//       publicEthKey : user.dataValues.publicEthKey,
-//       fullAccount : user.dataValues.fullAccount,
-//       requestType : 'GET'
-//     });
-//     next();
-//   });
-// });
-
-router.post('/logged-in', function(req, res, next){
-  console.log('CHECKING IF LOGGED IN!!!!', req.user, req.body, req.headers);
-  if(!req.user){
-    res.status(403).send('You are not logged in!');
-    return;
-  }
-
-  User.find({
-    where : {
-    email : req.user
-  },
-  attributes:['publicEthKey', 'fullAccount', 'username']
-  })
-  .then((user, err)=>{
-    if (err) return next(err);
-      res.header('Access-Control-Allow-Credentials', 'true');
-      const token = jwt.sign({ email : u.email }, process.env.JWTSECRET);
-      res.status(200).send({
-      success: true,
-      message: `You are logged in as ${req.user}`,
-      email: req.user,
-      username : user.dataValues.username,
-      publicEthKey : user.dataValues.publicEthKey,
-      fullAccount : user.dataValues.fullAccount,
-      requestType : 'GET',
-      token
-    });
-    next();
-  });
 });
 
 module.exports = router;

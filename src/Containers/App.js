@@ -17,7 +17,6 @@ import Gallery from '~/Components/Gallery/Gallery';
 import Footer from '~/Components/Footer/Footer';
 // COMMON
 import history from '~/common/history';
-import getCookie from '~/common/cookie';
 // ASSETS
 import '~/assets/scss/styles.scss';
 import 'materialize-css/dist/css/materialize.css'

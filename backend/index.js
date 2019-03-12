@@ -7,13 +7,7 @@ const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const passportJWT = require("passport-jwt");
-const JWTStrategy   = passportJWT.Strategy;
-const ExtractJWT = passportJWT.ExtractJwt;
-
 const fileUpload = require('express-fileupload');
 // COMMON
 const userRoutes = require('./routes/users');
@@ -32,17 +26,17 @@ app.listen( process.env.PORT || 3001, function () {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(express.static(path.join(__dirname, 'public')));
-  app.use(cookieParser('1123ddsgfdrtrthsds'));
   app.set('trust proxy', 1);
   app.use(passport.initialize());
 
   app.use(fileUpload());
-  require('./auth.js')(passport, LocalStrategy, JWTStrategy, ExtractJWT );
+  require('./auth.js')(passport);
   
   app.options('*', cors())
   // HTTP Routes
   app.use('/users', userRoutes);
   app.use('/tokens', tokenRoutes);
+  // Protected routes
   app.use('/jwt', passport.authenticate('jwt', {session: false}), jwtRoutes);
 });
 

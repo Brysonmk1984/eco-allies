@@ -5,7 +5,7 @@ import contractJson from '../../build/contracts/EcoAllyCore.json';
 // COMMON
 import { login, logout, loggedIn, loggedInUsingLS } from '~/common/loginService';
 import history from '~/common/history';
-
+import { openRoutes } from '~/common/config';
 // ACTIONS
 import { SET_CONTRACT_INSTANCE, SET_ACCOUNT_INFO, SET_PATHNAME } from '~/actions/actions';
 import { setAllies, getAlliesOfUser, buildAlly, transferAlly, handleRedeem, handleProof, handleCheckParamAgainstCode } from '~/actions/tokens';
@@ -18,7 +18,6 @@ function checkLoggedIn(email){
     if(token){console.log('EMAIL', email);
       loggedIn()
       .then((data)=>{
-        console.log('DATA', data);
         if(data && data.data.fullAccount){
           dispatch(setAccountInfo({ loggedIn : true, fullAccount : data.data.fullAccount, email : data.data.email, username : data.data.username, publicEthKey : data.data.publicEthKey }));
         }else{
@@ -26,8 +25,14 @@ function checkLoggedIn(email){
         }
       }).catch((e) =>{return;});
     } else {
-      dispatch(setAlert({type : 'error', message : "No JWT"}));
-      setTimeout(()=>(history.push(`${APP_ROOT}login`)),1000);
+      const isOpenRoute = openRoutes.find((route) => {
+        return route === history.location.pathname;
+      });
+      // If the route is protected, dispatch an alert and redirect the user
+      if(!isOpenRoute){
+        dispatch(setAlert({type : 'error', message : "You are not authenticated; please login."}));
+        setTimeout(()=>(history.push(`${APP_ROOT}login`)),1000);
+      }
     }
   }
 }

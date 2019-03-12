@@ -1,20 +1,22 @@
+const LocalStrategy = require('passport-local').Strategy;
+const passportJWT = require("passport-jwt");
+const JWTStrategy   = passportJWT.Strategy;
+const ExtractJWT = passportJWT.ExtractJwt;
 const bcrypt = require('bcrypt-nodejs');
 const User = require('./db').User;
 
-const auth = function(passport, LocalStrategy, JWTStrategy, ExtractJWT){
-  console.log('HERE', process.env.JWTSECRET, ExtractJWT.fromAuthHeaderAsBearerToken());
+const auth = function(passport){
   passport.use(new JWTStrategy({
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
     secretOrKey   : process.env.JWTSECRET
   },
   function (jwtPayload, cb) {
-
-    console.log('DID I MAKE IT HERE', jwtPayload);
       //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
       return User.find({
         where : {
           email : jwtPayload.email
-        }
+        },
+        attributes : ['publicEthKey', 'fullAccount', 'username', 'email']
       })
       .then(user => {
         console.log('JTW USER', user);

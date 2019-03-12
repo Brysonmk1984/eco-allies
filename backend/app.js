@@ -23,7 +23,6 @@ if(process.env.NODE_ENV === 'production'){
 const db = new Sequelize(dbUrl, sequelizeSettings);
 // parsers
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
 // express-validator
 const { buildCheckFunction, validationResult } = require('express-validator/check');
 const checkBody = buildCheckFunction(['body']);
@@ -31,9 +30,6 @@ const checkBody = buildCheckFunction(['body']);
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const flash = require('connect-flash');
-// initalize sequelize with session store
-
 const bcrypt = require('bcrypt-nodejs');
 const UserModel = require('./models');
 const user = UserModel(db, Sequelize);
@@ -43,7 +39,6 @@ module.exports = function(app){
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(express.static(path.join(__dirname, 'public')));
-    app.use(cookieParser('1123ddsgfdrtrthsds'));
    
     app.set('trust proxy', 1);
     app.use(passport.initialize());
