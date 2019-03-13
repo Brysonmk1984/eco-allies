@@ -43,7 +43,7 @@ class RegisterContainer extends React.Component{
                 password : this.state.password,
                 passwordConfirm : this.state.passwordConfirm,
                 publicEthKey : this.state.publicEthKey,
-                accountType : this.state.accountType,
+                fullAccount : this.state.fullAccount,
             })
             .then((data) =>{console.log('in then hs', data);
                 if(data.error){
@@ -80,7 +80,7 @@ class RegisterContainer extends React.Component{
     }
     handleOptionChange(e){
         this.setState({
-            accountType : e.target.value
+            fullAccount : e.target.value === 'full' ? true : false
         });
     }
 

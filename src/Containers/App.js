@@ -13,6 +13,7 @@ import RedeemContainer from '~/Containers/Redeem';
 import ProofContainer from '~/Containers/Proof';
 import Content from '~/Components/Content';
 import About from '~/Components/About/About';
+import FAQ from '~/Components/FAQ/FAQ';
 import Gallery from '~/Components/Gallery/Gallery';
 import Footer from '~/Components/Footer/Footer';
 // COMMON
@@ -76,7 +77,7 @@ class App extends React.Component {
         <HeaderContainer />
         <Content >
           <Switch>
-            {/* <Route path={(`${APP_ROOT}`|`${APP_ROOT}about`)} component={About}  /> */}
+            <Route path={`${APP_ROOT}about`} component={() => (<About />)}  />
             <Route path={`${APP_ROOT}proof`} component={() => (<ProofContainer />)} />
             <Route exact path={`${APP_ROOT}redeem`} component={() => (<RedeemContainer /> )} /> 
             <Route path={`${APP_ROOT}redeem/:qr`} component={({match}) => (<RedeemContainer match={match} /> )} /> 
@@ -85,7 +86,7 @@ class App extends React.Component {
             <Route path={`${APP_ROOT}register`} component={() => (<RegisterContainer /> )} />
             <Route path={`${APP_ROOT}login`} component={() => (<LoginContainer /> )} /> 
             <Route path={`${APP_ROOT}account`} component={() =>( <AccountContainer /> )}  />
-            {/* <Route path="faq" component={Faq} />*/}
+            <Route path={`${APP_ROOT}faq`} component={() => (<FAQ />)}  />
           </Switch>
         </Content>
         <Footer />

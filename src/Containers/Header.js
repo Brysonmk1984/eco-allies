@@ -10,7 +10,7 @@ import { handleLogin } from '~/actions';
 // COMPONENT
 const HeaderContainer = (props) => {
     return  <header>
-        <Nav account={props.account} handleLogin={props.handleLogin} />
+        <Nav account={props.account} pathname={props.pathname} handleLogin={props.handleLogin} />
         <div className="brand">
         <h1>ECO ALLIES</h1>
         <p>Defenders of Gaia</p>
@@ -21,7 +21,8 @@ const HeaderContainer = (props) => {
 
 function mapStateToProps(state){
     return {
-        account : state.account
+        account : state.account,
+        pathname : state.route.pathname ? state.route.pathname : '/'
     }
 }
 

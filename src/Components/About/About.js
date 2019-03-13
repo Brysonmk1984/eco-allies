@@ -38,7 +38,17 @@ const About = () => (
                 <h3>Help the Fight for our Environment</h3>
             </div>
             <div className="subsection">
-                <p>Eco Allies is built on blockchain technology—the same breakthrough that makes things like Bitcoin and Ethereum possible. Bitcoin and ether are cryptocurrencies but Eco Allies are cryptocollectibles. You can trade your CryptoKitty like it was a traditional collectible, or hold onto it as a badge of honor for helping Gaea. Your Ally is secure in the knowledge that blockchain will track ownership securely.</p>
+                <p>Eco Allies is built on blockchain technology—the same breakthrough that makes things like Bitcoin and Ethereum possible. Bitcoin and ether are cryptocurrencies but Eco Allies are cryptocollectibles. You can trade your allies like it was a traditional collectible, or hold onto it as a badge of honor for helping Gaea. Your Ally is secure in the knowledge that blockchain will track ownership securely.</p>
+                <p><strong>But I don't know what all that stuff is...</strong><br />That's ok! We have a basic account option that sidesteps use of the blockchain if you'd like. You will not have full account functionality with this option though.</p>
+            </div>
+        </section>
+        <section className="creator-section">
+            <div className="subsection">
+                <h2>About the Author</h2>
+                <h3>Bryson Michael Kruk</h3>
+            </div>
+            <div className="subsection">
+                <p>Bryson Michael Kruk is the developer, designer, and creative force behind Eco Allies. As a child, he was very drawn to games, heroes, fantasy and creating fun activities with his creative faucet. With a graphic design degree, a programming career and a tireless desire to witness a better world, Eco Allies was born!</p>
             </div>
         </section>
     </div>

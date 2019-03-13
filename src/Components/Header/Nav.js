@@ -11,6 +11,12 @@ import './header.scss';
 // COMPONENT
 const Nav = function(props){
   const [open, setOpen] = useState(false);
+  const [route] = useState('/');
+
+  function manualNavHighlight(matchingRoute){
+    return route === matchingRoute ? 'active' : '';
+  };
+
   return (
         <nav className="nav-wrapper">
             <div onClick={() => setOpen(!open)} className={`opaque-backdrop ${open ? 'backdrop-visible' : 'backdrop-hidden'}`}></div>
@@ -18,15 +24,15 @@ const Nav = function(props){
                 <img src={Logo} className="logo" />
             </a>
             <ul id="nav-mobile" className="right hide-on-small-only">
-                <li><NavLink to={`${APP_ROOT}gallery`} activeClassName="active">Gallery</NavLink></li>
-                <li><NavLink to={`${APP_ROOT}faq`} activeClassName="active">FAQ</NavLink></li>
-                <li><NavLink to={`${APP_ROOT}about`} activeClassName="active">About</NavLink></li>
+                <li><NavLink to={`${APP_ROOT}gallery`} activeClassName="active" exact><span className={manualNavHighlight('/gallery')}>Gallery</span></NavLink></li>
+                <li><NavLink to={`${APP_ROOT}faq`} activeClassName="active" exact><span className={manualNavHighlight('/faq')}>FAQ</span></NavLink></li>
+                <li><NavLink to={`${APP_ROOT}about`} activeClassName="active" exact><span className={manualNavHighlight('/about')}>About</span></NavLink></li>
                 {
                     props.account.loggedIn ?
                     [
-                        <li key="userCollection"><NavLink to={`${APP_ROOT}user-collection`} activeClassName="active">Collection</NavLink></li>,
+                        <li key="userCollection"><NavLink to={`${APP_ROOT}user-collection`} activeClassName="active"><span className={manualNavHighlight('/user-collection')}>Collection</span></NavLink></li>,
                         <li key="redeem">
-                            <NavLink to={`${APP_ROOT}redeem`} activeClassName="active">Redeem Ally</NavLink>
+                            <NavLink to={`${APP_ROOT}redeem`} activeClassName="active"><span className={manualNavHighlight('/redeem')}>Redeem Ally</span></NavLink>
                         </li>,
                         <li key="account">
                             <span className="account">
