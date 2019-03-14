@@ -77,6 +77,7 @@ class App extends React.Component {
         <HeaderContainer />
         <Content >
           <Switch>
+            <Route path={`${APP_ROOT}`} component={() => (<About />)}  />
             <Route path={`${APP_ROOT}about`} component={() => (<About />)}  />
             <Route path={`${APP_ROOT}proof`} component={() => (<ProofContainer />)} />
             <Route exact path={`${APP_ROOT}redeem`} component={() => (<RedeemContainer /> )} /> 
