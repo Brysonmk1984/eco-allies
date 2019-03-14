@@ -46,6 +46,10 @@ class App extends React.Component {
       //this.props.setAlert({type : 'error', message : `You are not logged in!`});
       //this.timeout = setTimeout(() =>{ history.push(`${APP_ROOT}login`); }, 2200)
     }
+    // Needed because of the way my rewrite works in htaccess
+    if(history.location.pathname === '/'){
+      history.push(`${APP_ROOT}about`);
+    }
   }
 
   // After a user logs in, or visits the site while already logged in,  get allies of user
@@ -77,7 +81,6 @@ class App extends React.Component {
         <HeaderContainer />
         <Content >
           <Switch>
-            <Route path={`${APP_ROOT}`} component={() => (<About />)}  />
             <Route path={`${APP_ROOT}about`} component={() => (<About />)}  />
             <Route path={`${APP_ROOT}proof`} component={() => (<ProofContainer />)} />
             <Route exact path={`${APP_ROOT}redeem`} component={() => (<RedeemContainer /> )} /> 
