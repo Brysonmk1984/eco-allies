@@ -28,21 +28,11 @@ const register = function(formData){
     return axios.post(`${endpoint}users/register`,formData)
     .then((data) => {console.log('data!', data);
         if(data.status === 200){
-            const errorObj = data.data.error;
-            if(errorObj){
-                return {
-                    error : errorObj.errors.map((error)=>{
-                        return {error : {type : 'error', message : `${error.type} at ${error.path} input`}}
-                    })
-                }
-            }console.log('EP', endpoint, data.data);
             return data.data;
         }else{
-            return {type : 'error', message : `There was a server error with a status code of ${data.status}`}
+            return {error : [{type : 'error', message : `There was a server error with a status code of ${data.status}`}]}
         }
-    }).catch((error) => {
-        return {type : 'error', message : `${error}`}
-    })
+    });
 };
 
 const logout = function(){

@@ -11,7 +11,7 @@ import '~/assets/scss/forms.scss';
 const Register = function(props){
 
     function renderAddress(){
-        if(props.accountType === 'full'){
+        if(props.fullAccount){
             return (
                 <div className="input_container">
                     <label>

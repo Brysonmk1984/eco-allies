@@ -9,7 +9,7 @@ import history from '~/common/history';
 // COMPONENTS
 import Register from '~/Components/Register/Register';
 // ACTIONS
-import { setAccountInfo, setAlert, clearAllAlerts } from '~/actions';
+import { setLsJwt, setAccountInfo, setAlert, clearAllAlerts } from '~/actions';
 
 // COMPONENT
 class RegisterContainer extends React.Component{
@@ -47,29 +47,30 @@ class RegisterContainer extends React.Component{
             })
             .then((data) =>{console.log('in then hs', data);
                 if(data.error){
-                    const errors = data.error.map((e) =>{
-                        return {type:e.error.type, message:e.error.message}
+                    const errors = data.error.map((e) =>{console.log('E', e);
+                        return {type:e.type, message:e.message};
                     });
                     this.props.setAlert(errors);
                     const top = document.getElementById("alertWrapper").offsetTop;
-                    window.scrollTo(0, top)
+                    window.scrollTo(0, top);
                 }else{
                   this.props.setAlert({type : 'success', message : 'Account successfully created!'});
                   const top = document.getElementById("alertWrapper").offsetTop;
                   window.scrollTo(0, top);
+                  this.props.setAccountInfo({
+                    publicEthKey : data.publicEthKey,
+                    email : data.email,
+                    fullAccount : data.fullAccount,
+                    username : data.username,
+                    loggedIn : true,
+                  });
+                  setLsJwt(data.token);
                   setTimeout(()=>{
                       history.push(`${APP_ROOT}user-collection`);
                       this.props.clearAllAlerts();
                   },1200);
                 }
                 
-            })
-            .catch((error) =>{
-                if(error){
-                  this.props.setAlert({ type : error.type, message : error.message });
-                  const top = document.getElementById("alertWrapper").offsetTop;
-                  window.scrollTo(0, top);
-                }
             });
         }else{
             this.props.setAlert({type:'error',message:'Passwords do Not Match'});
@@ -111,6 +112,7 @@ function mapStateToProps(){
 
 const mapDispatchToProps = {
   setAlert,
+  setAccountInfo,
   clearAllAlerts
 };
 

@@ -65,6 +65,10 @@ function handleLogin(doLogin, email, password){
   }
 }
 
+function setLsJwt(token){
+  localStorage.setItem('token', token);
+}
+
 function initWeb3(){
   return (dispatch, getState) =>{
     // Check if Web 3 has been injected by the browser
@@ -116,4 +120,4 @@ function setPathname(payload = null){
   }
 }
 
-export { buildAlly, transferAlly, getAlliesOfUser, initWeb3, setAccountInfo, setAllies, setAlert, clearAlert, clearAllAlerts, setPathname, handleRedeem, handleProof, handleCheckParamAgainstCode, handleLogin, checkLoggedIn };
+export { setLsJwt, buildAlly, transferAlly, getAlliesOfUser, initWeb3, setAccountInfo, setAllies, setAlert, clearAlert, clearAllAlerts, setPathname, handleRedeem, handleProof, handleCheckParamAgainstCode, handleLogin, checkLoggedIn };

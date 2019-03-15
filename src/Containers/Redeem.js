@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 // LIBRARIES
 import PropTypes from 'prop-types';
+// COMMON
+import history from '~/common/history';
 // COMPONENTS
 import Redeem from '~/Components/Redeem/Redeem';
 // ACTIONS
@@ -43,9 +45,9 @@ class RedeemContainer extends React.Component{
         }else{
           this.props.buildAlly();
           this.props.setAlert([{ type : 'success', message : 'Token successfully created!' }]);
-          // setTimeout(()=>{
-          //     history.push(`${APP_ROOT}user-collection`);
-          // },1200);
+          setTimeout(()=>{
+              history.push(`${APP_ROOT}user-collection`);
+          },1200);
 
         } 
         
