@@ -11,6 +11,7 @@ import LoginContainer from '~/Containers/Login';
 import AccountContainer from '~/Containers/Account';
 import RedeemContainer from '~/Containers/Redeem';
 import ProofContainer from '~/Containers/Proof';
+import ContactContainer from '~/Containers/Contact';
 import Content from '~/Components/Content';
 import About from '~/Components/About/About';
 import FAQ from '~/Components/FAQ/FAQ';
@@ -91,6 +92,7 @@ class App extends React.Component {
             <Route path={`${APP_ROOT}login`} component={() => (<LoginContainer /> )} /> 
             <Route path={`${APP_ROOT}account`} component={() =>( <AccountContainer /> )}  />
             <Route path={`${APP_ROOT}faq`} component={() => (<FAQ />)}  />
+            <Route path={`${APP_ROOT}contact`} component={() => (<ContactContainer />)}  />
           </Switch>
         </Content>
         <Footer />
