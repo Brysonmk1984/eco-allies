@@ -3,7 +3,8 @@ import TruffleContract from 'truffle-contract';
   // for testing only
 import contractJson from '../../build/contracts/EcoAllyCore.json';
 // COMMON
-import { login, logout, loggedIn, loggedInUsingLS } from '~/common/loginService';
+import { login, logout, loggedIn } from '~/common/loginService';
+import { emailSubmit } from '~/common/contactService';
 import history from '~/common/history';
 import { openRoutes } from '~/common/config';
 // ACTIONS
@@ -54,7 +55,7 @@ function handleLogin(doLogin, email, password){
           return dispatch(setAlert({type : 'error', message : data.error}));
         } 
         localStorage.removeItem('token');
-        dispatch(setAccountInfo({loggedIn:false, publicEthKey: ''}));
+        dispatch(setAccountInfo({loggedIn:false, publicEthKey: '', fullAccount: false, username:'',email:'', contractInstance:null}));
         setTimeout(()=>(history.push(`${APP_ROOT}login`)),1000);
     
       })
@@ -104,6 +105,15 @@ function initWeb3(){
   }
 }
 
+function handleEmailSubmit(email, message, accountInfo){
+  return emailSubmit()
+  .then((data) => {
+    if(data.error){
+      return dispatch(setAlert({type : 'error', message : data.error}));
+    } 
+  });
+}
+
 
 function setAccountInfo(payload = null){
   return {
@@ -120,4 +130,4 @@ function setPathname(payload = null){
   }
 }
 
-export { setLsJwt, buildAlly, transferAlly, getAlliesOfUser, initWeb3, setAccountInfo, setAllies, setAlert, clearAlert, clearAllAlerts, setPathname, handleRedeem, handleProof, handleCheckParamAgainstCode, handleLogin, checkLoggedIn };
+export { handleEmailSubmit, setLsJwt, buildAlly, transferAlly, getAlliesOfUser, initWeb3, setAccountInfo, setAllies, setAlert, clearAlert, clearAllAlerts, setPathname, handleRedeem, handleProof, handleCheckParamAgainstCode, handleLogin, checkLoggedIn };

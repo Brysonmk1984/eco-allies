@@ -18,25 +18,23 @@ class ContactContainer extends React.Component{
 
     // Handle change of email input and elements and update states
     handleEmailChange(e){
-      this.setState(() => ({
-        email : e.target.value
-      }));
+      const email = e.target.value;
+      this.setState(() => ({email}));
     }
 
     // Handle change of textarea and update states
     handleMessageChange(e){
-      this.setState(() => ({
-        message : e.target.value
-      }));
+      const message = e.target.value;
+      this.setState(() => ({message}));
     }
 
     // Handle submit of form: send form data to back end, which handles sending the email logic
     // If message was sent successfully, display success message, otherwise display error message
     handleSubmit(e){
         e.preventDefault();
-        console.log('ACC', this.props.account);
-
-        this.props.handleEmailSubmit(this.state.email, this.state.message)
+        console.log('ACCs', this.props.account);
+        const accountInfo = this.props.account.loggedIn ? this.props.account : null
+        this.props.handleEmailSubmit({ email :this.state.email, message : this.state.message, accountInfo : accountInfo })
         .then((data) =>{
             console.log('in email sent then', data);
             

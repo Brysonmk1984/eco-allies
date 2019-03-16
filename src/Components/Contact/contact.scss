@@ -1,0 +1,15 @@
+.page-wrapper.contact-page{
+  #emailForm{
+    text-align:left;
+    textarea{
+      height:150px;
+    }
+  }
+  #directEmail{
+    margin-top:50px;
+    strong{
+      display:block;
+      margin-bottom:30px;
+    }
+  }
+}

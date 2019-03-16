@@ -41,7 +41,6 @@ class App extends React.Component {
 
     if(!this.props.account.loggedIn){
         //this.props.checkLoggedIn(lsUser);
-        console.log('ACC', this.props.account);
         this.props.checkLoggedIn();
     }else{
       //this.props.setAlert({type : 'error', message : `You are not logged in!`});
