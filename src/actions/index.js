@@ -4,7 +4,7 @@ import TruffleContract from 'truffle-contract';
 import contractJson from '../../build/contracts/EcoAllyCore.json';
 // COMMON
 import { login, logout, loggedIn } from '~/common/loginService';
-import { emailSubmit } from '~/common/contactService';
+import { sendEmail } from '~/common/contactService';
 import history from '~/common/history';
 import { openRoutes } from '~/common/config';
 // ACTIONS
@@ -105,13 +105,15 @@ function initWeb3(){
   }
 }
 
-function handleEmailSubmit(email, message, accountInfo){
-  return emailSubmit()
-  .then((data) => {
-    if(data.error){
-      return dispatch(setAlert({type : 'error', message : data.error}));
-    } 
-  });
+function handleEmailSubmit(formData){
+
+  return (dispatch, getState) =>{
+    return sendEmail(formData)
+    .then((data)=>{
+      return data;
+    });
+  };
+  
 }
 
 

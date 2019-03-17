@@ -1,10 +1,11 @@
 import axios from 'axios';
 const endpoint = process.env.NODE_ENV === 'production' ?  'https://eco-allies.herokuapp.com/' : 'http://localhost:3001/';
 
-const emailSubmit = function(formData){
-  return axios.post( `${endpoint}users/contact`, formData, { withCredentials : true })
+const sendEmail = function(formData){
+  console.log('FD', formData);
+  return axios.post( `${endpoint}users/contact`, formData, {withCredentials:true})
   .then((data) =>{
-    console.log(data);
+    console.log('THE DATA',data);
     if(data.status === 200){
         return data.data;
     }else{
@@ -16,4 +17,4 @@ const emailSubmit = function(formData){
   });
 }
 
-export { emailSubmit };
+export { sendEmail };

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router(); 
 const RetrievalCode = require('../db').RetrievalCode;
 const SimpleToken = require('../db').SimpleToken;
-const sendMail = require('../mail.js');
+const sendProofEmail = require('../mail.js').sendProofEmail;
 
 // LOGIN TO EXISTING ACCOUNT
 router.post('/retrieval-code', function(req, res, next){
@@ -83,7 +83,7 @@ router.post('/check-param', function(req, res, next){
 
 router.post('/proof', function(req, res, next){
   new Promise((resolve, reject) =>{
-    sendMail({filename : req.files.file.name, message : req.body.message, file : req.files.file.data}, resolve, reject);
+    sendProofEmail({email: req.body.email, filename : req.files.file.name, message : req.body.message, file : req.files.file.data}, resolve, reject);
   }).then((data) =>{
     res.json({
       success : true,

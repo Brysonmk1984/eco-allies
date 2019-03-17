@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 import Contact from '~/Components/Contact/Contact';
 // ACTIONS
 import { handleEmailSubmit, setAlert, clearAllAlerts } from '~/actions';
+import { debug } from 'util';
 
 // COMPONENT
 class ContactContainer extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            email : '',
+            email : props.account.loggedIn ? props.account.email : '',
             message : ''
         };
     }
@@ -32,18 +33,21 @@ class ContactContainer extends React.Component{
     // If message was sent successfully, display success message, otherwise display error message
     handleSubmit(e){
         e.preventDefault();
-        console.log('ACCs', this.props.account);
-        const accountInfo = this.props.account.loggedIn ? this.props.account : null
+        let accountInfo = this.props.account;
+        if(accountInfo.loggedIn){
+          accountInfo = Object.assign({}, this.props.account);
+          delete accountInfo.contractInstance;
+        }else{
+          accountInfo = null;
+        }
+
         this.props.handleEmailSubmit({ email :this.state.email, message : this.state.message, accountInfo : accountInfo })
         .then((data) =>{
-            console.log('in email sent then', data);
-            
             this.props.clearAllAlerts();
             this.props.setAlert({type : 'success', message : "Email has been sent! We will try to respond to your message in a timely manner."});
-            setTimeout(()=>{
-              this.props.clearAllAlerts();
-            },3000);
-        }).catch(()=>{return;});
+            const top = document.getElementById("alertWrapper").offsetTop;
+            window.scrollTo(0, top);
+        });
     }
 
     render(){

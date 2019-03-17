@@ -36,6 +36,7 @@ class ProofContainer extends React.Component{
   handleSubmit(inputs){
 
     const formData = new FormData();
+    formData.append('email', this.props.account.email);
     formData.append('file', inputs.uploadInput.files[0]);
     formData.append('filename', inputs.fileName.value);
     formData.append('message', this.state.message);
@@ -59,7 +60,8 @@ class ProofContainer extends React.Component{
 
 function mapStateToProps(state){
  return {
-   alerts : state.alerts
+   alerts : state.alerts,
+   account : state.account
  }
 }
 const mapDispatchToProps = {
