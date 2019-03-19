@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.5.0;
 
 //// @dev EcoAllyAccessControl is intended for top level access to special functions only from the CEO
 contract EcoAllyAccessControl {

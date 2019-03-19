@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.5.0;
 
 import "./EcoAllyAccessControl.sol";
 
@@ -36,7 +36,7 @@ contract EcoAllyBase is EcoAllyAccessControl {
     
     /// @dev Generates Unique DNA
     function _generateRandomDna(uint _seed) internal view returns (uint) {
-        uint rand = uint(keccak256(_seed));
+        uint rand = uint(keccak256(abi.encodePacked(_seed)));
         return rand % dnaModulus;
     }
 
@@ -69,7 +69,7 @@ contract EcoAllyBase is EcoAllyAccessControl {
         emit Creation(msg.sender, newEcoAllyId, _dna);
 
         // This will assign ownership, and also the Transfer event as per ERC721 draft
-        _transfer(0, msg.sender, newEcoAllyId);
+        _transfer(0x0000000000000000000000000000000000000000, msg.sender, newEcoAllyId);
 
         return ecoAllyIndexToOwner[newEcoAllyId];
     }

@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.5.0;
 
 import "./EcoAllyBase.sol";
 import "./Ownable.sol";
@@ -104,7 +104,7 @@ contract EcoAllyOwnership is EcoAllyBase, ERC721 {
     ///  expensive (it walks the entire EcoAlly array looking for cats belonging to owner),
     ///  but it also returns a dynamic array, which is only supported for web3 calls, and
     ///  not contract-to-contract calls.
-    function tokensOfOwner(address _owner) external view returns(uint256[] ownerTokens) {
+    function tokensOfOwner(address _owner) external view returns(uint256[] memory ownerTokens) {
         uint256 tokenCount = balanceOf(_owner);
 
         if(tokenCount == 0){
