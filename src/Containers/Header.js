@@ -5,14 +5,15 @@ import { connect } from 'react-redux';
 import Nav from '~/Components/Header/Nav';
 // ACTIONS
 import { handleLogin } from '~/actions';
-
+// ASSETS
+import beta from '~/assets/images/beta.png';
 
 // COMPONENT
 const HeaderContainer = (props) => {
     return  <header>
         <Nav account={props.account} pathname={props.pathname} handleLogin={props.handleLogin} />
         <div className="brand">
-        <h1>ECO ALLIES</h1>
+        <h1>ECO ALLIES<img src={beta} className="beta" /></h1>
         <p>Defenders of Gaia</p>
         </div>
         <div className="belt"></div>

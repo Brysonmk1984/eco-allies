@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FaUser } from 'react-icons/lib/fa';
 // ASSETS
-import Logo from '~/assets/images/logo2.png';
+import logo from '~/assets/images/logo2.png';
 import './header.scss';
 
 // COMPONENT
@@ -21,7 +21,7 @@ const Nav = function(props){
         <nav className="nav-wrapper">
             <div onClick={() => setOpen(!open)} className={`opaque-backdrop ${open ? 'backdrop-visible' : 'backdrop-hidden'}`}></div>
             <a href ="/" className="brand-logo left">
-                <img src={Logo} className="logo" />
+                <img src={logo} className="logo" />
             </a>
             <ul id="nav-mobile" className="right hide-on-small-only">
                 <li><NavLink to={`${APP_ROOT}gallery`} activeClassName="active" exact><span className={manualNavHighlight('/gallery')}>Gallery</span></NavLink></li>

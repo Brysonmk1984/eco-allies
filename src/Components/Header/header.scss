@@ -127,6 +127,14 @@ header{
             font-family: 'Futura', 'Avenir', 'Helvetica', serif;
             font-size: 7em;
             margin:20px;
+            position:relative;
+            .beta{
+                padding:0px 0px 0px 20px;
+                margin: 45px 0px 0px -30px;
+                width:100px;
+                transform: rotate(-90deg);
+                vertical-align:top;
+            }
         }
         p{
             font-family: 'Futura', 'Avenir', 'Helvetica', serif;
