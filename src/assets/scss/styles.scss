@@ -215,7 +215,7 @@ div.alert-wrapper{
         #featureModalContent{
             height: 50vh;
             background-color:$veryDarkBackground;
-            overflow-y: visible;
+            overflow-y: auto;
             position: relative;
             background-size:auto;
             background-repeat:no-repeat;
