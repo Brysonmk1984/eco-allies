@@ -3903,8 +3903,8 @@
     "4": {
       "events": {},
       "links": {},
-      "address": "0x13aDD11c1801cFe8a0D0c921182a0929D922A015",
-      "transactionHash": "0x75a3bef1d8778040d4b7a86cc706cd826970a28ced450ea20e1ac0e38c56096f"
+      "address": "0x9b338DDA876aFBf5F9C569399C052e58C282dc8C",
+      "transactionHash": "0x06ce0671681ef5ae2424d85107fe4b80fa167ba7f0fffb546855814ff0276ad7"
     },
     "5777": {
       "events": {},
@@ -3914,7 +3914,7 @@
     }
   },
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-20T22:31:46.824Z",
+  "updatedAt": "2019-03-23T14:20:00.100Z",
   "devdoc": {
     "author": "Bryson Kruk Design and Development",
     "details": "The main EcoAllies Contract, keeps track of all allies.",

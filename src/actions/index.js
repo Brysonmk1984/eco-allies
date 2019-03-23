@@ -1,6 +1,8 @@
+// LIBRARIES\
+import nodeWeb3 from 'web3';
 // BLOCK CHAIN
 import TruffleContract from 'truffle-contract';
-  // for testing only
+import Fortmatic from 'fortmatic';
 import contractJson from '../../build/contracts/EcoAllyCore.json';
 // COMMON
 import { login, logout, loggedIn } from '~/common/loginService';
@@ -49,6 +51,9 @@ function handleLogin(doLogin, email, password){
       });
       
     }else if(doLogin === false){
+      const fm = new Fortmatic(W3_PROVIDER);
+      fm.user.logout();
+
       return logout()
       .then((data)=>{
         if(data.error){
@@ -70,40 +75,79 @@ function setLsJwt(token){
   localStorage.setItem('token', token);
 }
 
+// Use Fortmatic for web 3
 function initWeb3(){
-  return (dispatch, getState) =>{
-    // Check if Web 3 has been injected by the browser
-    if(typeof web3 !== 'undefined'){
-      // Use Browser/metamask version
-      const web3Provider = web3.currentProvider;
-      web3Provider.enable();
-
-      web3 = new Web3(web3Provider);
-      // instantiate a new truffle contract
-      const tContract = TruffleContract(contractJson);
-      tContract.setProvider(web3Provider);
-      // Deploy smart Contract
-      return tContract.deployed().then((instance) => {
-        // Set contract instance to state
-        dispatch({type : SET_CONTRACT_INSTANCE,payload : {contractInstance : instance}});
-        // Check for matching account between registered eth key and the currently active metamask account.
-        return web3.eth.getAccounts((err,accounts) =>{
-          const publicEthKey = getState().account.publicEthKey.toLowerCase();
-          let metamaskError = null;
-          if(err) metamaskError = err;
-          if( accounts[0] === publicEthKey){
-            return dispatch(getAlliesOfUser(getState().account.fullAccount));
-          }else{
-            metamaskError = `Please sign into account ${publicEthKey} in metamask!`;
-            return dispatch(setAlert({type : 'error', message : metamaskError}));
-          }
-        });
-      });
-    }else{
-      dispatch(setAlert({type : 'error', message : 'You must have metamask installed and enabled for a Full Account.'}));
+  return(dispatch, getState) =>{
+    const fm = new Fortmatic(W3_PROVIDER);
+    window.web3 = new nodeWeb3(fm.getProvider());
+    console.log(fm, fm.getProvider());
+    // if no fortmatic localstorage token, trigger login window
+    if(!localStorage.getItem('X-Fortmatic-API-Key')){
+      fm.getProvider().enable();
     }
+    //0x13aDD11c1801cFe8a0D0c921182a0929D922A015
+    //0x9b338DDA876aFBf5F9C569399C052e58C282dc8C
+    const contract = new web3.eth.Contract(contractJson.abi, '0x9b338DDA876aFBf5F9C569399C052e58C282dc8C');
+    web3.eth.defaultAccount = getState().account.publicEthKey;
+    // Set contract instance to state
+      dispatch({type : SET_CONTRACT_INSTANCE,payload : {contractInstance : contract}});
+      // Check for matching account between registered eth key and the currently active metamask account.
+      console.log('TT', web3.eth.defaultAccount);
+      return web3.eth.getAccounts()
+      .then((accounts, err) =>{
+        const acc = accounts[0];
+        console.log('ACCOUNT - ', acc);
+        //dispatch(setAccountInfo({ publicEthKey : '0xe79B3b4b2C6414362C8B3583F989bb3800bCF0be' }));
+
+        if(err) dispatch(setAlert({type : 'error', message : err}));
+
+        return dispatch(getAlliesOfUser(true));
+      });
+
+
+       
+
   }
 }
+
+
+// function initWeb3(){
+//   return (dispatch, getState) =>{
+//     // Check if Web 3 has been injected by the browser
+//     if(typeof web3 !== 'undefined'){
+//       // Use Browser/metamask version
+//       const web3Provider = web3.currentProvider;
+//       web3Provider.enable();
+//       web3 = new Web3(web3Provider);
+
+//       console.log('W3Pro', web3Provider);
+      
+//       // instantiate a new truffle contract
+//       const tContract = TruffleContract(contractJson);
+//       tContract.setProvider(web3Provider);
+    
+//       //Deploy smart Contract
+//       return tContract.deployed().then((instance) => {
+//         // Set contract instance to state
+//         dispatch({type : SET_CONTRACT_INSTANCE,payload : {contractInstance : instance}});
+//         // Check for matching account between registered eth key and the currently active metamask account.
+//         return web3.eth.getAccounts((err,accounts) =>{
+//           const publicEthKey = getState().account.publicEthKey.toLowerCase();
+//           let metamaskError = null;
+//           if(err) metamaskError = err;
+//           if( accounts[0] === publicEthKey){
+//             return dispatch(getAlliesOfUser(getState().account.fullAccount));
+//           }else{
+//             metamaskError = `Please sign into account ${publicEthKey} in metamask!`;
+//             return dispatch(setAlert({type : 'error', message : metamaskError}));
+//           }
+//         });
+//       });
+//     }else{
+//       dispatch(setAlert({type : 'error', message : 'You must have metamask installed and enabled for a Full Account.'}));
+//     }
+//   }
+// }
 
 function handleEmailSubmit(formData){
 

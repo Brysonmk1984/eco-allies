@@ -5,7 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const   plugins = [
   new HtmlWebpackPlugin({filename:'index.html', template: 'index.html'}),
   new webpack.HotModuleReplacementPlugin(),
-  new webpack.DefinePlugin({APP_ROOT : "'/'"})
+  new webpack.DefinePlugin({APP_ROOT : "'/'"}),
+  new webpack.DefinePlugin({W3_PROVIDER : "'pk_test_27F90D84C58ECA28'"})
 ];
 
 module.exports = {
