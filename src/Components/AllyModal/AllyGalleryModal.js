@@ -12,7 +12,7 @@ const AllyGalleryModal = function(props){
     <div id="allyModal" className="ally-modal">
       <div className="ally-modal-body">
       <div id="featureModalAlly" onClick={props.closeModal}>
-            <img src={ AllyImages[lowercaseUnderscore(a.character)] } onClick={props.navigateToAllyPage}  />
+            <img src={ AllyImages[lowercaseUnderscore(a.character)] }  />
             <div id="allyHighlight"></div>
         </div>
         <div id="featureModalContent" style={ {backgroundImage: `url(${AllyBackgrounds[lowercaseUnderscore(a.character)]})`} }>
@@ -61,5 +61,5 @@ AllyGalleryModal.propTypes = {
     ultimate: PropTypes.string.isRequired
   }).isRequired,
   closeModal : PropTypes.func.isRequired,
-  navigateToAllyPage : PropTypes.func.isRequired
+  //navigateToAllyPage : PropTypes.func.isRequired
 }

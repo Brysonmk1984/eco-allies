@@ -49,19 +49,19 @@ export default class UserCollection extends React.Component{
         });
     }
 
-    navigateToAllyPage(){
+    // navigateToAllyPage(){
 
-        history.push({
-            pathname: `${APP_ROOT}user-collection/${lowercaseDash(this.state.activeAlly.basics.character)}`,
-            state: {
-                allyCharacter : this.state.activeAlly.character
-            }
-        });
-    }
+    //     history.push({
+    //         pathname: `${APP_ROOT}user-collection/${lowercaseDash(this.state.activeAlly.basics.character)}`,
+    //         state: {
+    //             allyCharacter : this.state.activeAlly.character
+    //         }
+    //     });
+    // }
 
     renderAllyModal(){
         if(this.state.activeAlly){
-            return <AllyModal activeAlly={this.state.activeAlly} closeModal={this.closeModal.bind(this)} navigateToAllyPage={this.navigateToAllyPage.bind(this)} />
+            return <AllyModal activeAlly={this.state.activeAlly} closeModal={this.closeModal.bind(this)}  />
         }
         return null;
     }

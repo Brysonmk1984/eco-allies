@@ -35,18 +35,18 @@ export default class Gallery extends React.Component{
         this.setState(() =>({ activeAlly : null }));
     }
 
-    navigateToAllyPage(){
-        history.push({
-            pathname: `${APP_ROOT}gallery/${lowercaseDash(this.state.activeAlly.character)}`,
-            state: {
-                allyCharacter : this.state.activeAlly.character
-            }
-        });
-    }
+    // navigateToAllyPage(){
+    //     history.push({
+    //         pathname: `${APP_ROOT}gallery/${lowercaseDash(this.state.activeAlly.character)}`,
+    //         state: {
+    //             allyCharacter : this.state.activeAlly.character
+    //         }
+    //     });
+    // }
 
     renderAllyModal(){
         if(this.state.activeAlly){
-            return <AllyGalleryModal activeAlly={this.state.activeAlly} closeModal={this.closeModal.bind(this)} navigateToAllyPage={this.navigateToAllyPage.bind(this)} />
+            return <AllyGalleryModal activeAlly={this.state.activeAlly} closeModal={this.closeModal.bind(this)}  />
         }
         return null;
     }
