@@ -3,7 +3,7 @@ const endpoint = process.env.NODE_ENV === 'production' ?  'https://eco-allies.he
 //const endpoint = process.env.NODE_ENV === 'production' ?  'https://eco-allies.herokuapp.com/' : 'https://eco-allies.herokuapp.com/';
 const sendRedeemCode = function(formData){console.log('FD', formData);
     return axios.post(`${endpoint}tokens/retrieval-code`,{code: formData.code, email: formData.email}, {withCredentials:true})
-    .then((data) => {console.log('data', data);
+    .then((data) => {console.log('datad', data);
         if(data.status === 200){
             const error = data.data.error;
             if(error){    
