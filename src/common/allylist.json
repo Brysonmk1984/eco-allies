@@ -44,13 +44,13 @@
 },
 {
     "active" : true,
-    "character" : "Geothermal Golem",
-    "skills" : ["Heat Breath","Vaporize","Geothermal Vents","Sauna Recovery","Hot Rock Punch"],
-    "ultimate" : "Tectonic Turmoil",
+    "character" : "Boulder Bro",
+    "skills" : ["Boulder Bash","Mud Slippery Slide","Rubble Rouser","Sediment Force Field","Rock n' Rain"],
+    "ultimate" : "Agro Crag",
     "alignment" : "True Neutral",
-    "image" : "geothermal_golem.png",
-    "description" : "Creature of the Crust",
-    "history" : "Believed to have originated in yellowstone national park, the Geothermal Golem is a force of nature with the spirit of a grizzly bear defending its cubs: planet earth and its inhabitants. By combining extreme pressure with the earth elements and water, it’s a dangerous force with abilities that strike fear in enemies of the environment.",
+    "image" : "boulder_bro.png",
+    "description" : "The Stone Soldier",
+    "history" : "Chad Johnson was content as a middle aged man child, still reliving his college glory days. All that changed after his drunken tumble down a quarry and became lodged under a pile of rocks. He emerged days later, with a new direction in life as a rock role model for all weak men out there looking to turn their life around.",
     "colors" : ["#000000", "#FFFFFF", "#6E4520","#986435", "#F8E71C"]
 },
 {

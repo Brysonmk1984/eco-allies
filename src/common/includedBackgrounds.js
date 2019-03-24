@@ -1,6 +1,6 @@
  import filter_bot from '~/assets/images/allies/filter_bot/filter_bot_bg.jpg';
  import solar_sprite from '~/assets/images/allies/solar_sprite/solar_sprite_bg.jpg';
- import geothermal_golem from '~/assets/images/allies/geothermal_golem/geothermal_golem_bg.jpg';
+ import boulder_bro from '~/assets/images/allies/boulder_bro/boulder_bro_bg.jpg';
  import compost_creature from '~/assets/images/allies/compost_creature/compost_creature_bg.jpg';
  import chrono_guy from '~/assets/images/allies/chrono_guy/chrono_guy_bg.jpg';
  import natural_ninja from '~/assets/images/allies/natural_ninja/natural_ninja_bg.jpg';
@@ -10,5 +10,5 @@
  import reuse_bot from '~/assets/images/allies/reuse_bot/reuse_bot_bg.jpg';
 
 export {
-  filter_bot, solar_sprite, geothermal_golem, compost_creature, chrono_guy, natural_ninja, timber_terror, wild_speaker, the_empath, reuse_bot
+  filter_bot, solar_sprite, boulder_bro, compost_creature, chrono_guy, natural_ninja, timber_terror, wild_speaker, the_empath, reuse_bot
 };
