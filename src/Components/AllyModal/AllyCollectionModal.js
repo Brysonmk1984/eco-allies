@@ -14,7 +14,7 @@ const AllyCollectionModal = function(props){
     <div id="allyModal" className="ally-modal">
       <div className="ally-modal-body">
         <div id="featureModalAlly" onClick={props.closeModal}>
-          <img src={ AllyImages[lowercaseUnderscore(a.basics.character)] }   />
+          <img src={ AllyImages[lowercaseUnderscore(a.basics.character) + '_ns'] }   />
         </div>
         <div id="featureModalContent" style={ {backgroundImage: `url(${AllyBackgrounds[lowercaseUnderscore(a.basics.character)]})`} }>
             <div id="contentTitle">
