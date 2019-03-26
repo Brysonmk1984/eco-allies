@@ -33,6 +33,29 @@
   color: $emphasisText;
   text-transform: uppercase;
 }
+.display_power{
+  font-size: 2em;
+  color: $darkText;
+  font-family: 'Futura', Helvetica, sans-serif;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  flex-direction:row;
+  span{
+    background-color: transparent;
+    box-shadow: 1px 2px 3px rgba(172, 172, 172, 0.5);
+    line-height:1.5;
+    height:40px;
+    width: 100px;
+    display:flex;
+    align-items:center;
+    img{
+      height:35px;
+      line-height:1.5;
+      vertical-align: middle;
+    }
+  }
+}
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) { 

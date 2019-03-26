@@ -4,6 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // ASSETS
 import './allyTile.scss';
+// ASSETS
+import fist from '~/assets/images/fist.png';
 
 // COMPONENT
 const AllyTile = function(props){
@@ -11,6 +13,12 @@ const AllyTile = function(props){
         <aside className="ally">
             <div className={`ally-image`} onClick={props.openModal.bind(this, props )}>
                 <img className={` ${props.backgroundClasses}`} src={ props.image } />
+                <div className="display_power">
+                    <span>
+                        <img src={fist} />
+                        <span>{props.power}</span>
+                    </span>
+                </div>
             </div>
         </aside>
     );
