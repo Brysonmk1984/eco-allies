@@ -55,6 +55,7 @@ function handleLogin(doLogin, email, password){
           return dispatch(setAlert({type : 'error', message : data.error}));
         } 
         localStorage.removeItem('token');
+        dispatch(clearAllAlerts());
         dispatch(setAccountInfo({loggedIn:false, publicEthKey: '', fullAccount: false, username:'',email:'', contractInstance:null}));
         setTimeout(()=>(history.push(`${APP_ROOT}login`)),1000);
     

@@ -3,7 +3,7 @@ import { insertSimpleToken, fetchSimpleTokens } from '~/common/tokenService';
 import { sendRedeemCode, sendProof, checkParamAgainstCode } from '~/common/redeemService';
 // ACTIONS
 import { SET_ALLIES } from '~/actions/actions';
-import { setAlert } from '~/actions/alerts';
+import { setAlert, clearAllAlerts } from '~/actions/alerts';
 
 function setAllies(payload = null){
   return {
@@ -54,16 +54,23 @@ function buildAlly(payload = null){
     const state = getState();
     const num = generateSeed();
     if(state.account.fullAccount){
-      state.account.contractInstance.addAlly(num, {from : state.account.publicEthKey})
+      dispatch(setAlert({ type : 'actionRequired', message : 'Please finish redeeming token by completing transaction in Metamask or Fortmatic.' }));
+      return state.account.contractInstance.addAlly(num, {from : state.account.publicEthKey})
       .then((data) =>{
-          dispatch(getAlliesOfUser(state.account.fullAccount));
-      });
+          return data;
+      })
+      .catch((error) =>{
+        dispatch(clearAllAlerts());
+        dispatch(setAlert({type : 'error', message : error.message}));
+      })
     }else{
       insertSimpleToken(num, state.account.email)
       .then((data)=>{
+        dispatch(clearAllAlerts());
         dispatch(getAlliesOfUser(state.account.fullAccount));
       })
       .catch((error) =>{
+        dispatch(clearAllAlerts());
         dispatch(setAlert({type : 'error', message : error}));
       })
     }

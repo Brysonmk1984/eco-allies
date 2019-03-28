@@ -9,7 +9,7 @@ import history from '~/common/history';
 // COMPONENTS
 import Redeem from '~/Components/Redeem/Redeem';
 // ACTIONS
-import { setAlert, buildAlly, handleRedeem, handleCheckParamAgainstCode } from '~/actions/index.js';
+import { setAlert, clearAllAlerts, buildAlly, handleRedeem, handleCheckParamAgainstCode } from '~/actions/index.js';
 
 // COMPONENT
 class RedeemContainer extends React.Component{
@@ -43,19 +43,36 @@ class RedeemContainer extends React.Component{
         if(data.error){
             this.props.setAlert(data.error);
         }else{
-          this.props.buildAlly();
-          this.props.setAlert([{ type : 'success', message : 'Token successfully created!' }]);
-          setTimeout(()=>{
-              history.push(`${APP_ROOT}user-collection`);
-          },1200);
+          
+          this.props.buildAlly()
+          .then((data) =>{console.log('D here',data);
+            if(data && data.receipt){
+              
+              this.props.clearAllAlerts();
+              this.props.setAlert({ type : 'success', message : 'Token successfully created!' });
+              setTimeout(()=>{
+                  history.push(`${APP_ROOT}user-collection`);
+              },1200);
+            }else{
+              this.props.setAlert({type : 'error', message : 'There was an error communicating with the blockchain.'});
+            }
+
+          })
+          .catch((error) =>{
+            if(error){
+                this.props.setAlert({type : 'error', message : error});
+              }
+          });
+          
+          
 
         } 
         
     })
     .catch((error) =>{
-        if(error){
-            this.props.setAlert(error);
-          }
+      if(error){
+          this.props.setAlert(error);
+        }
     });
 
   }
@@ -87,6 +104,7 @@ function mapStateToProps(state){
 
 const mapDispatchToProps = {
   setAlert,
+  clearAllAlerts,
   buildAlly,
   handleCheckParamAgainstCode,
   handleRedeem

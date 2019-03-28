@@ -15,8 +15,8 @@ class ContentBoundary extends React.Component{
     
     renderAlerts(){
         const alertEls = this.props.alerts.map((a, i)=>{
-            return <div key={`alert-${i}`} className={`notification ${a.type === 'error' ? 'notification-error' : a.type === 'success' ? 'notification-success' : null}`}>
-                <strong> {a.type === 'error' ? 'ERROR' : a.type === 'success' ? 'Success!' : null} : </strong> <span> { a.message }</span> <span className={`close-alert`} onClick={this.props.clearAlert.bind(this, i)}><MdClose /></span>
+            return <div key={`alert-${i}`} className={`notification ${a.type === 'error' ? 'notification-error' : a.type === 'success' ? 'notification-success' : a.type === 'loading' ? 'notification-loading' : a.type === 'actionRequired' ? 'notification-action-required' : null}`}>
+                <strong> {a.type === 'error' ? 'ERROR' : a.type === 'success' ? 'Success!' : a.type === 'loading' ? 'One moment please' : a.type === 'actionRequired' ? 'Action Required' : null} : </strong> <span> { a.message }</span> <span className={`close-alert`} onClick={this.props.clearAlert.bind(this, i)}><MdClose /></span>
             </div>
         });
 
