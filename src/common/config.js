@@ -1,2 +1,2 @@
-const openRoutes =  ['/login', '/register', '/about', '/faq', '/gallery', '/contact', '/'];
+const openRoutes =  ['/login', '/register', '/about', '/faq', '/gallery', '/contact', '/superrare', '/'];
 export { openRoutes };
