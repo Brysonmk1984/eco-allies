@@ -42,7 +42,8 @@ class App extends React.Component {
 
     if(!this.props.account.loggedIn){
         //this.props.checkLoggedIn(lsUser);
-        this.props.checkLoggedIn();
+        // Uncomment after DB fix
+        //this.props.checkLoggedIn();
     }else{
       //this.props.setAlert({type : 'error', message : `You are not logged in!`});
       //this.timeout = setTimeout(() =>{ history.push(`${APP_ROOT}login`); }, 2200)

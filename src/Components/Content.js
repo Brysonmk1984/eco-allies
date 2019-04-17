@@ -92,7 +92,8 @@ class ContentBoundary extends React.Component{
         if(this.props.alerts.length){
             
             return [
-                this.renderAlerts(),
+                // uncomment this after database fix
+                //this.renderAlerts(),
                 this.props.children
             ]
                 

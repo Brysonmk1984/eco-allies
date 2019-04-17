@@ -28,7 +28,8 @@ const Nav = function(props){
                 <li><NavLink to={`${APP_ROOT}faq`} activeClassName="active" exact><span className={manualNavHighlight('/faq')}>FAQ</span></NavLink></li>
                 <li><NavLink to={`${APP_ROOT}about`} activeClassName="active" exact><span className={manualNavHighlight('/about')}>About</span></NavLink></li>
                 <li><NavLink to={`${APP_ROOT}contact`} activeClassName="active" exact><span className={manualNavHighlight('/contact')}>Contact</span></NavLink></li>
-                {
+                {/* Uncomment this after DB fix */}
+                {/* {
                     props.account.loggedIn ?
                     [
                         <li key="userCollection"><NavLink to={`${APP_ROOT}user-collection`} activeClassName="active"><span className={manualNavHighlight('/user-collection')}>Collection</span></NavLink></li>,
@@ -58,7 +59,7 @@ const Nav = function(props){
                     <li>
                         <NavLink to={`${APP_ROOT}register`} activeClassName="active" className="btn-small">Get Started</NavLink>
                     </li>
-                }
+                } */}
             </ul>
         </nav>
   )
