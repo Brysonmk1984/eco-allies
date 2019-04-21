@@ -11,7 +11,7 @@ const SuperRare = () => (
     <div className="page-wrapper superrare-page">
         <section className="title-section collectable-section">
           <div className="subsection">
-              <h2>SuperRare EcoAllies</h2>
+              <h2>Super-Rare EcoAllies</h2>
               <p>Defend Gaia - Collect Unique Artwork</p>
           </div>
           <div className="subsection">
@@ -56,7 +56,7 @@ const SuperRare = () => (
           <div className="subsection">
             <h3>EcoAllies on SuperRare</h3>
             <p>
-              There will be an initial wave of the ten original allies with an exclusive <strong>Tectonic Ten</strong> badge for sale, one new Ally every week. After the initial ten pieces, a randomly generated new ally token will be added once per week. All these tokens will be uniquely verifyable on SuperRare, but also on our own smart contract. You can see for yourself by visiting <a href="https://rinkeby.etherscan.io/" target="_blank">rinkeby.etherscan.io</a>.
+              There will be an initial wave of the ten original allies with an exclusive <strong>Tectonic Ten</strong> badge for sale, one new Ally every week. After the initial ten pieces, a randomly generated new ally token will be added once per week. All these tokens will be uniquely verifyable on SuperRare, but also on our own smart contract. You can see for yourself by visiting <a href="https://etherscan.io/address/0x7148F604150db2110106A86Ee120DB9D8C09EAD0" target="_blank">etherscan.io</a>.
             </p>
           </div>
           <div className="subsection">
