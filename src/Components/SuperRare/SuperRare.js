@@ -17,34 +17,43 @@ const SuperRare = () => (
           <div className="subsection">
           <div className="card-container">
                 <img className="card" src={ChronoGuy} />
-                <strong>Released on: 4/22/19</strong>
+                <strong>Released 4/22/19</strong>
               </div>
               <div className="card-container">
                 <img className="card card-back" src={CardBack} />
+                <strong>Coming 4/29/19</strong>
               </div>
               <div className="card-container">
                 <img className="card card-back" src={CardBack} />
+                <strong>Coming 5/6/19</strong>
               </div>
               <div className="card-container">
                 <img className="card card-back" src={CardBack} />
+                <strong>Coming 5/13/19</strong>
               </div>
               <div className="card-container">
                 <img className="card card-back" src={CardBack} />
+                <strong>Coming 5/20/19</strong>
               </div>
               <div className="card-container">
                 <img className="card card-back" src={CardBack} />
+                <strong>Coming 5/27/19</strong>
               </div>
               <div className="card-container">
                 <img className="card card-back" src={CardBack} />
+                <strong>Coming 6/3/19</strong>
               </div>
               <div className="card-container">
                 <img className="card card-back" src={CardBack} />
+                <strong>Coming 6/10/19</strong>
               </div>
               <div className="card-container">
                 <img className="card card-back" src={CardBack} />
+                <strong>Coming 6/17/19</strong>
               </div>
               <div className="card-container">
                 <img className="card card-back" src={CardBack} />
+                <strong>Coming 6/24/19</strong>
               </div>
           </div>
         </section>

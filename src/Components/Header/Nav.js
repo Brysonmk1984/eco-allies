@@ -27,8 +27,8 @@ const Nav = function(props){
                 <li><NavLink to={`${APP_ROOT}gallery`} activeClassName="active" exact><span className={manualNavHighlight('/gallery')}>Gallery</span></NavLink></li>
                 <li><NavLink to={`${APP_ROOT}faq`} activeClassName="active" exact><span className={manualNavHighlight('/faq')}>FAQ</span></NavLink></li>
                 <li><NavLink to={`${APP_ROOT}about`} activeClassName="active" exact><span className={manualNavHighlight('/about')}>About</span></NavLink></li>
-                <li><NavLink to={`${APP_ROOT}contact`} activeClassName="active" exact><span className={manualNavHighlight('/contact')}>Contact</span></NavLink></li>
                 {/* Uncomment this after DB fix */}
+                {/* <li><NavLink to={`${APP_ROOT}contact`} activeClassName="active" exact><span className={manualNavHighlight('/contact')}>Contact</span></NavLink></li> */}
                 {/* {
                     props.account.loggedIn ?
                     [

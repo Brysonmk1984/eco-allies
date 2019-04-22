@@ -10,7 +10,7 @@ import { lowercaseUnderscore } from '~/common/helperFunctions';
 
 // COMPONENT
 const GalleryAllyTile = function(props){
-
+    console.log(AllyImages[lowercaseUnderscore(props.ally.character)]);
     return(
         <aside className="ally">
             <div className="ally-image" onClick={props.openModal.bind(this, props.ally)}>
