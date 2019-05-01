@@ -6,18 +6,18 @@
     "alignment" : "Chaotic Neutral",
     "image" : "chrono_guy.png",
     "description" : "Time Traveling Renegade",
-    "history" : "The mysterious time traveller known as Chrono Guy is as powerful as he is enigmatic. While he himself has explained publically that he’s from a few hundred years in the future and here to ‘maintain the timeline of order’, it’s unclear what his exact motives are, who he works for and what the implications are of his very existence.",
+    "history" : "The enigmatic time traveler known as Chrono Guy has been appearing with increasing frequency. While he has explained publicly that he's from two thousand years in the future and here to 'maintain the timeline of order', it's unclear what his exact motives are, who he works for and what the implications are of his very existence.",
     "colors" : ["#000000", "#FFFFFF", "#2E2B29", "#7E7E82", "#E25926"]
 },
 {
     "active" : true,
     "character" : "Compost Creature",
-    "skills" : ["Rapid Decay","Mulch Munch","Regenerate Land","Spawn Creepy Crawlers","Potent Stench"],
+    "skills" : ["Unsatisfactory Olfactory","Mulch Munch","Regenerative Recess","Coons & Creepy Crawlers","Decomposing Breath"],
     "ultimate" : "Purge, Plant & Propagate",
     "alignment" : "True Neutral",
     "image" : "compost_creature.png",
-    "description" : "Animated Bio Decay",
-    "history" : "Compost Creature was initially a bioengineering experiment gone wrong, but gone right for humanity. While it appears quite terrifying and has a scent that can literally cause nerve damage, it seems to maintain convictions of preserving of the environment and improving soil health. Interestingly, it becomes incredibly hostile around plastics.",
+    "description" : "Animated Biodecay",
+    "history" : "A bioengineering experiment gone wrong, Compost Creature managed to escape its existence as a test subject under government control. While it appears quite terrifying and has a scent that can literally cause nerve damage, it seems to maintain a strong moral conviction for preserving the environment and improving soil health. Interestingly, it becomes incredibly hostile around plastics.",
     "colors" : ["#000000", "#FFFFFF", "#253A33", "#786C1C", "#F2EC99"]
 },
 {

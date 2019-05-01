@@ -25,9 +25,20 @@ section{
       width:320px;
       vertical-align: top;
       background-color: transparent;
-      strong{
-        font-weight: bolder;
-        position:relative;
+      .card-details{
+        position:absolute;
+        bottom: -30px;
+        left: 0px;
+        width: 100%;
+        text-align:center;
+        min-height:42px;
+        strong{
+          font-weight: bolder;
+          display:block;
+        }
+        a{
+          display:block;
+        }
       }
       .card{
         position: relative;
@@ -77,12 +88,7 @@ section{
         height:272px;
         vertical-align: top;
         background-color: transparent;
-        strong{
-          font-weight: bolder;
-          position:absolute;
-          bottom: -10px;
-          left: 40px;
-        }
+        
         .card{
           position: absolute;
           top:0px;
