@@ -22,7 +22,7 @@ const SuperRare = () => (
                 </a>
                 <div className="card-details">
                   <strong>Released 4/22/19</strong>
-                  <a href="https://medium.com/@brysonmk1984/chrono-guy-eco-allies-artist-commentary-89c03cdc1042">Artist Commentary</a>
+                  <a href="https://medium.com/@brysonmk1984/chrono-guy-eco-allies-artist-commentary-89c03cdc1042" target="_blank">Artist Commentary</a>
                 </div>
               </div>
               <div className="card-container">
@@ -31,6 +31,7 @@ const SuperRare = () => (
                 </a>
                 <div className="card-details">
                   <strong>Released 4/29/19</strong>
+                  <a href="https://www.youtube.com/watch?v=H4A7yb-xk_E" target="_blank">Cobi's Card Review</a>
                 </div>
               </div>
               <div className="card-container">
