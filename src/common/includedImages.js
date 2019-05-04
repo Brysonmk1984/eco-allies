@@ -1,4 +1,4 @@
-import filtron_5 from '~/assets/images/allies/filtron_5/filtron_5.png';
+import filtron_five from '~/assets/images/allies/filtron_five/filtron_five.png';
 import solar_sprite from '~/assets/images/allies/solar_sprite/solar_sprite.png';
 import boulder_bro from '~/assets/images/allies/boulder_bro/boulder_bro.png';
 import compost_creature from '~/assets/images/allies/compost_creature/compost_creature.png';
@@ -9,7 +9,7 @@ import wild_speaker from '~/assets/images/allies/wild_speaker/wild_speaker.png';
 import empath_aurelia from '~/assets/images/allies/empath_aurelia/empath_aurelia.png';
 import reuse_bot from '~/assets/images/allies/reuse_bot/reuse_bot.png';
 
-import filtron_5_ns from '~/assets/images/allies/filtron_5/filtron_5_ns.png';
+import filtron_five_ns from '~/assets/images/allies/filtron_five/filtron_five_ns.png';
 import solar_sprite_ns from '~/assets/images/allies/solar_sprite/solar_sprite_ns.png';
 import boulder_bro_ns from '~/assets/images/allies/boulder_bro/boulder_bro_ns.png';
 import compost_creature_ns from '~/assets/images/allies/compost_creature/compost_creature_ns.png';
@@ -20,7 +20,7 @@ import wild_speaker_ns from '~/assets/images/allies/wild_speaker/wild_speaker_ns
 import empath_aurelia_ns from '~/assets/images/allies/empath_aurelia/empath_aurelia_ns.png';
 import reuse_bot_ns from '~/assets/images/allies/reuse_bot/reuse_bot_ns.png';
 
-import filtron_5_ko from '~/assets/images/allies/filtron_5/filtron_5_ko.png';
+import filtron_five_ko from '~/assets/images/allies/filtron_five/filtron_five_ko.png';
 import solar_sprite_ko from '~/assets/images/allies/solar_sprite/solar_sprite_ko.png';
 import boulder_bro_ko from '~/assets/images/allies/boulder_bro/boulder_bro_ko.png';
 import compost_creature_ko from '~/assets/images/allies/compost_creature/compost_creature_ko.png';
@@ -33,7 +33,7 @@ import reuse_bot_ko from '~/assets/images/allies/reuse_bot/reuse_bot_ko.png';
 
 
 export {
-  filtron_5,solar_sprite,boulder_bro,compost_creature,chrono_guy,natural_ninja,timber_terror,wild_speaker,empath_aurelia,reuse_bot,
-  filtron_5_ko,solar_sprite_ko,boulder_bro_ko,compost_creature_ko,chrono_guy_ko,natural_ninja_ko,timber_terror_ko,wild_speaker_ko,empath_aurelia_ko,reuse_bot_ko,
-  filtron_5_ns,solar_sprite_ns,boulder_bro_ns,compost_creature_ns,chrono_guy_ns,natural_ninja_ns,timber_terror_ns,wild_speaker_ns,empath_aurelia_ns,reuse_bot_ns
+  filtron_five,solar_sprite,boulder_bro,compost_creature,chrono_guy,natural_ninja,timber_terror,wild_speaker,empath_aurelia,reuse_bot,
+  filtron_five_ko,solar_sprite_ko,boulder_bro_ko,compost_creature_ko,chrono_guy_ko,natural_ninja_ko,timber_terror_ko,wild_speaker_ko,empath_aurelia_ko,reuse_bot_ko,
+  filtron_five_ns,solar_sprite_ns,boulder_bro_ns,compost_creature_ns,chrono_guy_ns,natural_ninja_ns,timber_terror_ns,wild_speaker_ns,empath_aurelia_ns,reuse_bot_ns
 };
