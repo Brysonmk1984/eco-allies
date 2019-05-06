@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import './superRare.scss';
 import ChronoGuy from  '~/assets/images/misc/card-chrono-guy.png';
 import CompostCreature from  '~/assets/images/misc/card-compost-creature.png';
+import FiltronFive from  '~/assets/images/misc/card-filtron-five.png';
 import CardBack from  '~/assets/images/misc/card-back-tt.png';
 
 // COMPONENT
@@ -32,52 +33,55 @@ const SuperRare = () => (
                 <div className="card-details">
                   <strong>Released 4/29/19</strong>
                   <a href="https://www.youtube.com/watch?v=H4A7yb-xk_E" target="_blank">Cobi's Card Review</a>
+                  <a href="https://medium.com/@brysonmk1984/compost-creature-eco-allies-artist-commentary-4912fbc188c" target="_blank">Artist Commentary</a>
                 </div>
               </div>
               <div className="card-container">
-                <img className="card card-back" src={CardBack} />
+                <a href="https://superrare.co/artwork/filtron-five-(tectonic-ten)-5-6-19-3089" target="_blank">
+                  <img className="card" src={FiltronFive} />
+                </a>
                 <div className="card-details">
-                  <strong>Coming 5/6/19</strong>
+                  <strong>Released 5/6/19</strong>
                 </div>
               </div>
               <div className="card-container">
-                <img className="card card-back" src={CardBack} />
+                <a><img className="card card-back" src={CardBack} /></a>
                 <div className="card-details">
                   <strong>Coming 5/13/19</strong>
                 </div>
               </div>
               <div className="card-container">
-                <img className="card card-back" src={CardBack} />
+                <a><img className="card card-back" src={CardBack} /></a>
                 <div className="card-details">
                   <strong>Coming 5/20/19</strong>
                 </div>
               </div>
               <div className="card-container">
-                <img className="card card-back" src={CardBack} />
+                <a><img className="card card-back" src={CardBack} /></a>
                 <div className="card-details">
                   <strong>Coming 5/27/19</strong>
                 </div>
               </div>
               <div className="card-container">
-                <img className="card card-back" src={CardBack} />
+                <a><img className="card card-back" src={CardBack} /></a>
                 <div className="card-details">
                   <strong>Coming 6/3/19</strong>
                 </div>
               </div>
               <div className="card-container">
-                <img className="card card-back" src={CardBack} />
+                <a><img className="card card-back" src={CardBack} /></a>
                 <div className="card-details">
                   <strong>Coming 6/10/19</strong>
                 </div>
               </div>
               <div className="card-container">
-                <img className="card card-back" src={CardBack} />
+                <a><img className="card card-back" src={CardBack} /></a>
                 <div className="card-details">
                   <strong>Coming 6/17/19</strong>
                 </div>
               </div>
               <div className="card-container">
-                <img className="card card-back" src={CardBack} />
+                <a><img className="card card-back" src={CardBack} /></a>
                 <div className="card-details">
                   <strong>Coming 6/24/19</strong>
                 </div>

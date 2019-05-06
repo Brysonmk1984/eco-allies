@@ -20,18 +20,18 @@ section{
     background-color :  $primaryBackground;
     .card-container{
       display: inline-block;
-      margin-bottom:20px;
+      margin-bottom:0px 20px 40px;
       position:relative;
-      width:320px;
+      width:auto;
       vertical-align: top;
       background-color: transparent;
       .card-details{
-        position:absolute;
-        bottom: -30px;
+        position:relative;
         left: 0px;
         width: 100%;
         text-align:center;
-        min-height:42px;
+        min-height:80px;
+        padding-top:10px;
         strong{
           font-weight: bolder;
           display:block;
@@ -40,18 +40,23 @@ section{
           display:block;
         }
       }
-      .card{
-        position: relative;
-        top:0px;
-        left:0px;
+      > a{
         display:block;
-        width: 300px;
-        
-        background-color: transparent;
-        margin:20px;
-        z-index:999;
-        
+        position:relative;
+        min-height: 220px;
+        .card{
+          position: relative;
+          top:0px;
+          left:0px;
+          display:block;
+          
+          background-color: transparent;
+          margin:0px 20px;
+          z-index:999;
+          
+        }
       }
+      
     }
   }
 }
@@ -82,10 +87,9 @@ section{
       background-color :  $primaryBackground;
       .card-container{
         display: inline-block;
-        margin-bottom:20px;
         position:relative;
         width:190px;
-        height:272px;
+        height:320px;
         vertical-align: top;
         background-color: transparent;
         
@@ -95,6 +99,7 @@ section{
           left:0px;
           display:block;
           width: 150px;
+          
           background-color: transparent;
           margin:20px;
           z-index:999;
