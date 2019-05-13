@@ -6,6 +6,7 @@ import './superRare.scss';
 import ChronoGuy from  '~/assets/images/misc/card-chrono-guy.png';
 import CompostCreature from  '~/assets/images/misc/card-compost-creature.png';
 import FiltronFive from  '~/assets/images/misc/card-filtron-five.png';
+import EmpathAurelia from  '~/assets/images/misc/card-empath-aurelia.png';
 import CardBack from  '~/assets/images/misc/card-back-tt.png';
 
 // COMPONENT
@@ -42,12 +43,16 @@ const SuperRare = () => (
                 </a>
                 <div className="card-details">
                   <strong>Released 5/6/19</strong>
+                  <a href="https://youtu.be/Q1b5RG8FcYg" target="_blank">Cobi's Card Review</a>
+                  <a href="https://medium.com/@brysonmk1984/for-every-ally-ill-be-releasing-a-commentary-on-my-artistic-choices-for-the-character-593fbb393153" target="_blank">Artist Commentary</a>
                 </div>
               </div>
               <div className="card-container">
-                <a><img className="card card-back" src={CardBack} /></a>
+                <a href="https://superrare.co/artwork/empath-aurelia-(tectonic-ten)-5-13-19-3152" target="_blank">
+                  <img className="card" src={EmpathAurelia} />
+                </a>
                 <div className="card-details">
-                  <strong>Coming 5/13/19</strong>
+                  <strong>Released 5/13/19</strong>
                 </div>
               </div>
               <div className="card-container">

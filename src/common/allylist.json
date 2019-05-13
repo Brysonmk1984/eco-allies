@@ -34,12 +34,12 @@
 {
     "active" : true,
     "character" : "Empath Aurelia",
-    "skills" : ["Intuitive Teamwork","Toroidal Force Field","Reflect Inner Demons","Hypnotic Entrance", "Funnel of Forgiveness"],
+    "skills" : ["Intuitive Teamwork","Toroidal Force Field","Reflect Inner Demons","Hold the Space", "Funnel of Forgiveness"],
     "ultimate" : "Gift of Divine Love",
     "alignment" : "Chaotic Good",
     "image" : "the_empath.png",
-    "description" : "Clairsentient Intuitive",
-    "history" : "Aurelia Kinsmen, aka The Empath lived a hard life of abuse growing up, yet always seemed to have room in her heart for others. She took their burdens and emotionally made them her own. While nobel, this also left her in a state of being continuously drained of energy. It hasn’t been until recently that she was able to remain fully present for any experience while maintaining her inner balance.",
+    "description" : "Clairsentient Enchantress",
+    "history" : "Aurelia Kinsmen had a traumatic childhood, yet always seemed to have room in her heart for others. She took their burdens and emotionally made them her own. While noble, this left her in a state of being utterly drained of energy. Over the years, she has learned how to be fully present in any experience while discerning her emotions from the emotions of those around her. She's not a healer, she shows others how to heal themselves.",
     "colors" : ["#000000", "#FFFFFF", "#7D0110", "#F97888", "#F9F18E"]
 },
 {
