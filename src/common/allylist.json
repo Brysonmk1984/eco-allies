@@ -45,12 +45,12 @@
 {
     "active" : true,
     "character" : "Boulder Bro",
-    "skills" : ["Boulder Bash","Mud Slippery Slide","Rubble Rouser","Sediment Force Field","Rock n' Roll"],
-    "ultimate" : "Agro Crag",
+    "skills" : ["Seismic Slam","Rubble Rouser","Party Hardy","Sentiment of the Sediment", "Muddy Slippery Slide"],
+    "ultimate" : "The Aggro Crag",
     "alignment" : "True Neutral",
     "image" : "boulder_bro.png",
-    "description" : "The Stone Soldier",
-    "history" : "Chad Johnson was content as a middle aged man child, still reliving his college glory days. All that changed after he drunkenly tumbled down a quarry and became lodged under a pile of rocks. He emerged days later, with a new direction in life as a rock role model for all weak men out there looking to turn their lives around.",
+    "description" : "The Party Rock",
+    "history" : "After a drunken tumbled down a quarry, former man-child Chad Johnson emerged days later with a new perspective on life and a new physique to boot! If he's not smashing and bashing, Boulder Bro works on his new career as a rock role model for other weak men looking to turn their lives around.",
     "colors" : ["#000000", "#FFFFFF", "#6E4520","#986435", "#F8E71C"]
 },
 {

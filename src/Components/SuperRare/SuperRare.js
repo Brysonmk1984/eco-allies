@@ -7,6 +7,7 @@ import ChronoGuy from  '~/assets/images/misc/card-chrono-guy.png';
 import CompostCreature from  '~/assets/images/misc/card-compost-creature.png';
 import FiltronFive from  '~/assets/images/misc/card-filtron-five.png';
 import EmpathAurelia from  '~/assets/images/misc/card-empath-aurelia.png';
+import BoulderBro from  '~/assets/images/misc/card-boulder-bro.png';
 import CardBack from  '~/assets/images/misc/card-back-tt.png';
 
 // COMPONENT
@@ -53,12 +54,15 @@ const SuperRare = () => (
                 </a>
                 <div className="card-details">
                   <strong>Released 5/13/19</strong>
+                  <a href="https://www.youtube.com/watch?v=FAobFYEZ9gw" target="_blank">Cobi's Card Review</a>
                 </div>
               </div>
               <div className="card-container">
-                <a><img className="card card-back" src={CardBack} /></a>
+                <a href="https://superrare.co/artwork/boulder-bro-(tectonic-ten)-5-20-19-3241" target="_blank">
+                  <img className="card" src={BoulderBro} />
+                </a>
                 <div className="card-details">
-                  <strong>Coming 5/20/19</strong>
+                <strong>Released 5/20/19</strong>
                 </div>
               </div>
               <div className="card-container">
