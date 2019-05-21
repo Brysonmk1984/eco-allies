@@ -13,6 +13,16 @@ import CardBack from  '~/assets/images/misc/card-back-tt.png';
 // COMPONENT
 const SuperRare = () => (
     <div className="page-wrapper superrare-page">
+      <div className="paypal-button">
+        {/* DONATE BUTTON */}
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_donations" />
+          <input type="hidden" name="business" value="KTF2EBXTGM63U" />
+          <input type="hidden" name="currency_code" value="USD" />
+          <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+          <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+        </form>
+      </div>
         <section className="title-section collectable-section">
           <div className="subsection">
               <h2>Super-Rare EcoAllies</h2>
@@ -104,8 +114,9 @@ const SuperRare = () => (
           </div>
           <div className="subsection">
             <h3>EcoAllies on SuperRare</h3>
+            <a href="https://medium.com/@brysonmk1984/eco-allies-swoop-in-to-raise-money-for-social-impact-efforts-in-colorado-48aa37d08b2c" target="_blank"><strong>Press Release</strong></a>
             <p>
-              One third of proceeds will go to charities working on solving global climate issues. There will be an initial wave of the ten original allies with an exclusive <strong>Tectonic Ten</strong> badge for sale, one new Ally every week. After the initial ten pieces, a randomly generated new ally token will be added once per week. The supply will be restricted to these allies, with the exception of small limited released that may happen a few times per year. All these tokens will be uniquely verifyable on SuperRare, but also on our own smart contract. You can see for yourself by visiting <a href="https://etherscan.io/address/0x7148F604150db2110106A86Ee120DB9D8C09EAD0" target="_blank">etherscan.io</a>.
+              All proceeds for the limited edition, Tectonic Ten will go to charities working on solving social and climate issues in Colorado! The Tectonic Ten will have an exclusive <strong>Tectonic Ten</strong> badge, with one new Ally for sale every week. After the initial ten pieces, a randomly generated new ally token will be added once per week. The supply will be restricted to these allies, with the exception of small limited released that may happen a few times per year. All these tokens will be uniquely verifyable on SuperRare, but also on our own smart contract. You can see for yourself by visiting <a href="https://etherscan.io/address/0x7148F604150db2110106A86Ee120DB9D8C09EAD0" target="_blank">etherscan.io</a>.
             </p>
           </div>
           <div className="subsection">

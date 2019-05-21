@@ -1,4 +1,13 @@
 @import "~/assets/scss/variables.scss";
+.page-wrapper{
+  position:relative;
+  .paypal-button{
+    position:absolute;
+    left:50%;
+    top:20px;
+    margin-left:-80px;
+  }
+}
 section{
   padding:60px;
   &.title-section{
@@ -62,7 +71,16 @@ section{
 }
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) { 
-
+  .page-wrapper{
+    position:relative;
+    .paypal-button{
+      position:absolute;
+      right:20px;
+      left:auto;
+      top:20px;
+      margin-left: 0px;
+    }
+  }
 }
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) { 
