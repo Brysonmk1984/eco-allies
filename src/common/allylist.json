@@ -56,23 +56,23 @@
 {
     "active" : true,
     "character" : "Natural Ninja",
-    "skills" : ["Bamboo Blade","Hemp Net Trap","Sneak in Solidarity","Fermented Stealth Elixer","Obsidian Shuriken"],
+    "skills" : ["Bamboo Blade","Hemp Hogtie","Sneak in Solidarity","All Natural Nunchaku","Obsidian Shuriken"],
     "ultimate" : "Fermentation Frenzy",
     "alignment" : "Chaotic Neutral",
     "image" : "natural_ninja.png",
-    "description" : "Silent Sentinal",
-    "history" : "The Natural Ninja's history is unknown, but his first believed appearance was in a Tokyo street market performing an act of vigilante environmentalism. Dashing in and out of alley ways, confiscating all non biodegradable shopping bags, the Natural Ninja left only a note hanging from a shuriken stuck in the wall reading 'NO MORE'.",
+    "description" : "Sentinal of Sustainability",
+    "history" : "The Natural Ninja is shrouded in mystery, first appearing in a Tokyo street market in an act of vigilante environmentalism. Dashing in and out of alleyways, all plastic shopping bags, drinking straws, and takeout containers were snatched in the blink of an eye. Only a note remained, hanging from a throwing star: 'Sustainability or the sword, choose wisely!'.",
     "colors" : ["#000000", "#FFFFFF", "#989E91","#787D72", "#B5BDAD"]
 },
 {
     "active" : true,
-    "character" : "Reuse Bot",
-    "skills" : ["Repurpose Trash","Assemble Drones","Revert to Supplies","Trash Cannon","Uncanny Decoy"],
-    "ultimate" : "Reduce, Reuse, Recycle Foe",
+    "character" : "RePete",
+    "skills" : ["Scrapyard Scavenge","Reduce, Reuse, Recycle Foe","Law-Binding Lasso","Muffler Mortar","Uncanny Decoy"],
+    "ultimate" : "Mini RePete Multiplicity",
     "alignment" : "Lawful Good",
-    "image" : "reuse_bot.png",
+    "image" : "repete.png",
     "description" : "Reduce, Reuse, Recycle",
-    "history" : "The Reuse-bot is the product of a genius kid inventory in New Delhi. He says the concept and blueprints continuously come to him in his dreams from a past life version of himself. The robot is completely autonomous and will actively scavenge and improve it’s form from junk in dumpster and litter on the streets. If it doesn’t need the trash,, a built-in recycling process converts it to something useful.",
+    "history" : "The Reuse-bot nicknamed RePete is the product of a genius kid inventory, already a senior in college at age 12. He says the concept and blueprints randomly come to him in his dreams from a past life version of himself. The robot is completely autonomous and will actively scavenge and improve its form from junk in dumpster and litter on the streets. If it doesn’t need the trash for an upgrade, the remaining waste is used as ammo for the powerful Muffler Mortar.",
     "colors" : ["#000000", "#FFFFFF", "#5B5B5B","#D3E070", "#D3E070"]
 },
 {
@@ -88,22 +88,22 @@
 },
 {
     "active" : true,
-    "character" : "Solar Sprite",
+    "character" : "Solar Celeste",
     "skills" : ["Concentrated Solar Beam","Solar Shield","Photon Speed","Blinding Flash","EMP Flare"],
     "ultimate" : "Avatar of the Sun",
     "alignment" : "Lawful Neutral",
-    "image" : "solar_sprite.png",
+    "image" : "solar_celeste.png",
     "description" : "Extra Terrestrial Spirit",
     "history" : "The 4th dimensional Solar Sprite is a complete mystery to the scientific community and much of Earth. She is in the form of a human female sometimes and pure white light others. Her motives seem to be to provide desperate areas on earth with unlimited free solar energy, while actively delaying progress in fracking and coal explorations by temporarily blinding the workers.",
     "colors" : ["#000000", "#FFFFFF", "#F7CF8D", "#FFF685", "#F8E71C"]
 },
 {
     "active" : true,
-    "character" : "Wild Speaker",
+    "character" : "Wilhelm the Wild",
     "skills" : ["Call the Crows","Assemble the Pack","Commune with the Wilds","Axecution","Resourceful Preparation"],
     "ultimate" : "Neverending Stampede",
     "alignment" : "Lawful Good",
-    "image" : "wild_speaker.png",
+    "image" : "wilhelm_the_wild.png",
     "description" : "Summoner of Beasts",
     "history" : "Dirk Mullaney never fit in with society and often prefered the solitude of nature and felt a kinship with animals. During the crisis of 08, in frustration with the misguided priorities of society, Dirk became a hermit living completely in the woods. It is speculated that during this time he developed the remarkable ability to communicate with animals and some even believe he can mirror their spirit.",
     "colors" : ["#000000", "#FFFFFF", "#523B26", "#A3A59B", "#9A6247"]

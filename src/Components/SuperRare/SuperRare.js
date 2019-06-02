@@ -8,6 +8,8 @@ import CompostCreature from  '~/assets/images/misc/card-compost-creature.png';
 import FiltronFive from  '~/assets/images/misc/card-filtron-five.png';
 import EmpathAurelia from  '~/assets/images/misc/card-empath-aurelia.png';
 import BoulderBro from  '~/assets/images/misc/card-boulder-bro.png';
+import NaturalNinja from  '~/assets/images/misc/card-natural-ninja.png';
+import RePete from  '~/assets/images/misc/card-repete.png';
 import CardBack from  '~/assets/images/misc/card-back-tt.png';
 
 // COMPONENT
@@ -65,6 +67,7 @@ const SuperRare = () => (
                 <div className="card-details">
                   <strong>Released 5/13/19</strong>
                   <a href="https://www.youtube.com/watch?v=FAobFYEZ9gw" target="_blank">Cobi's Card Review</a>
+                  <a href="https://medium.com/@brysonmk1984/empath-aurelia-eco-allies-artist-commentary-3171e04277da" target="_blank">Artist Commentary</a>
                 </div>
               </div>
               <div className="card-container">
@@ -73,18 +76,24 @@ const SuperRare = () => (
                 </a>
                 <div className="card-details">
                 <strong>Released 5/20/19</strong>
+                <a href="https://www.youtube.com/watch?v=uSP88IS67kU" target="_blank">Cobi's Card Review</a>
                 </div>
               </div>
               <div className="card-container">
-                <a><img className="card card-back" src={CardBack} /></a>
+                <a href="https://superrare.co/artwork/natural-ninja-(tectonic-ten)-5-27-19-3344" target="_blank">
+                  <img className="card" src={NaturalNinja} />
+                </a>
                 <div className="card-details">
-                  <strong>Coming 5/27/19</strong>
+                <strong>Released 5/27/19</strong>
                 </div>
               </div>
               <div className="card-container">
-                <a><img className="card card-back" src={CardBack} /></a>
+                <a href="https://superrare.co/artwork/natural-ninja-(tectonic-ten)-5-27-19-3344" target="_blank">
+                  <img className="card" src={RePete} />
+                </a>
                 <div className="card-details">
-                  <strong>Coming 6/3/19</strong>
+                <strong>Released 6/03/19</strong>
+                <a href="https://brysonkruk.com/misc-images/eco-allies/guest-art-repete.jpg" target="_blank">Guest Art - David Weaver</a>
                 </div>
               </div>
               <div className="card-container">
