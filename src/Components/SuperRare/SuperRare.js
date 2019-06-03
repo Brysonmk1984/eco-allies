@@ -88,7 +88,7 @@ const SuperRare = () => (
                 </div>
               </div>
               <div className="card-container">
-                <a href="https://superrare.co/artwork/natural-ninja-(tectonic-ten)-5-27-19-3344" target="_blank">
+                <a href="https://superrare.co/artwork/repete-(tectonic-ten)-6-3-19-3440" target="_blank">
                   <img className="card" src={RePete} />
                 </a>
                 <div className="card-details">
