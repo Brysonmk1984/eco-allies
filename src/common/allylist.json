@@ -78,23 +78,23 @@
 {
     "active" : true,
     "character" : "Timber Terror",
-    "skills" : ["Spawn Saprolings", "Ten Ton Stomp","Outgrow and Overpower", "Rabid Squirrels", "Recursive Regeneration"],
+    "skills" : ["Surprise Saprolings", "Ten Ton Stomp","Recursive Regeneration", "Rabid Squirrel Stampede", "Perennial Pounding"],
     "ultimate" : "Purify by Chlorophyll",
     "alignment" : "Chaotic Good",
     "image" : "timber_terror.png",
-    "description" : "Forest Striding Avenger",
-    "history" : "The Timber Terror awakened during after the California Fires of 2018. It's believed the energy of the forest manifested itself as the massive treant. Systematically, the wooded walker seems to be taking revenge for the destruction of its homeland by targeting oil and gas executives, factory farms, the military, and other heavy polluters.",
+    "description" : "Indomitable Forest Strider",
+    "history" : "The Timber Terror awakened after the California Fires of 2018, with the energy of the forest manifesting as a massive treant. Systematically, the wooded walker is taking revenge for the destruction of its homeland by targeting all those guilty of deforestation, especially loggers and global corporations.",
     "colors" : ["#000000", "#FFFFFF", "#B09953", "#D9CB9F", "#999017"]
 },
 {
     "active" : true,
     "character" : "Solar Celeste",
-    "skills" : ["Concentrated Solar Beam","Solar Shield","Photon Speed","Blinding Flash","EMP Flare"],
+    "skills" : ["Million-Degree Beam","Core-Forged Aegis","Speed of Light Strike","Photon Flashbang","Solar Flare EMP"],
     "ultimate" : "Avatar of the Sun",
     "alignment" : "Lawful Neutral",
     "image" : "solar_celeste.png",
     "description" : "Extra Terrestrial Spirit",
-    "history" : "The 4th dimensional Solar Sprite is a complete mystery to the scientific community and much of Earth. She is in the form of a human female sometimes and pure white light others. Her motives seem to be to provide desperate areas on earth with unlimited free solar energy, while actively delaying progress in fracking and coal explorations by temporarily blinding the workers.",
+    "history" : "Solar Celeste is a higher-dimensional life-form inhabiting our sun and baffling the scientific community on Earth. Taking the form of both a human female and a ball of pure white light, she is enabling unlimited free solar energy to communities most in in need. She avoids harming her foes when possible, opting to delay fracking and coal explorations by temporarily blinding the operation.",
     "colors" : ["#000000", "#FFFFFF", "#F7CF8D", "#FFF685", "#F8E71C"]
 },
 {
