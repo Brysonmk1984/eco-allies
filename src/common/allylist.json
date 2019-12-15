@@ -100,12 +100,12 @@
 {
     "active" : true,
     "character" : "Wilhelm the Wild",
-    "skills" : ["Call the Crows","Assemble the Pack","Commune with the Wilds","Axecution","Resourceful Preparation"],
-    "ultimate" : "Neverending Stampede",
+    "skills" : ["Collude with the Crows","Wolf Pack Attack","Beastly Behavior","Off-the-Grid Offense","Axecution"],
+    "ultimate" : "Every Beast Stampede",
     "alignment" : "Lawful Good",
     "image" : "wilhelm_the_wild.png",
-    "description" : "Summoner of Beasts",
-    "history" : "Dirk Mullaney never fit in with society and often prefered the solitude of nature and felt a kinship with animals. During the crisis of 08, in frustration with the misguided priorities of society, Dirk became a hermit living completely in the woods. It is speculated that during this time he developed the remarkable ability to communicate with animals and some even believe he can mirror their spirit.",
+    "description" : "Barbaric Beastmaster",
+    "history" : "Dirk Wilhelm never fit in with society, often favoring the solitude of nature and his kinship with animals. Frustrated with the misguided priorities and growing insanity of the collective, Dirk renounced his citizenship and began living off the land and in isolation. Over the years, he developed the remarkable ability to communicate with animals to fight on his side.",
     "colors" : ["#000000", "#FFFFFF", "#523B26", "#A3A59B", "#9A6247"]
 }]
 

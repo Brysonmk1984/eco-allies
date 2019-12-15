@@ -10,6 +10,9 @@ import EmpathAurelia from  '~/assets/images/misc/card-empath-aurelia.png';
 import BoulderBro from  '~/assets/images/misc/card-boulder-bro.png';
 import NaturalNinja from  '~/assets/images/misc/card-natural-ninja.png';
 import RePete from  '~/assets/images/misc/card-repete.png';
+import TimberTerror from  '~/assets/images/misc/card-timber-terror.png';
+import SolarCeleste from  '~/assets/images/misc/card-solar-celeste.png';
+import WilhelmTheWild from  '~/assets/images/misc/card-wilhelm-the-wild.png';
 import CardBack from  '~/assets/images/misc/card-back-tt.png';
 
 // COMPONENT
@@ -97,21 +100,27 @@ const SuperRare = () => (
                 </div>
               </div>
               <div className="card-container">
-                <a><img className="card card-back" src={CardBack} /></a>
+                <a href="https://superrare.co/artwork/timber-terror-(tectonic-ten)-6-10-19-3521" target="_blank">
+                  <img className="card" src={TimberTerror} />
+                </a>
                 <div className="card-details">
-                  <strong>Coming 6/10/19</strong>
+                <strong>Released 6/10/19</strong>
                 </div>
               </div>
               <div className="card-container">
-                <a><img className="card card-back" src={CardBack} /></a>
+                <a href="https://superrare.co/artwork/solar-celeste-(tectonic-ten)-6-17-19-3615" target="_blank">
+                  <img className="card" src={SolarCeleste} />
+                </a>
                 <div className="card-details">
-                  <strong>Coming 6/17/19</strong>
+                  <strong>Released 6/17/19</strong>
                 </div>
               </div>
               <div className="card-container">
-                <a><img className="card card-back" src={CardBack} /></a>
+                <a href="https://superrare.co/artwork/wilhelm-the-wild-(tectonic-ten)-6-24-19-3695" target="_blank">
+                  <img className="card" src={WilhelmTheWild} />
+                </a>
                 <div className="card-details">
-                  <strong>Coming 6/24/19</strong>
+                  <strong>Released 6/24/19</strong>
                 </div>
               </div>
           </div>
@@ -124,9 +133,9 @@ const SuperRare = () => (
           <div className="subsection">
             <h3>EcoAllies on SuperRare</h3>
             <a href="https://medium.com/@brysonmk1984/eco-allies-swoop-in-to-raise-money-for-social-impact-efforts-in-colorado-48aa37d08b2c" target="_blank"><strong>Press Release</strong></a>
-            <p>
+            {/* <p>
               All proceeds for the limited edition, Tectonic Ten will go to charities working on solving social and climate issues in Colorado! The Tectonic Ten will have an exclusive <strong>Tectonic Ten</strong> badge, with one new Ally for sale every week. After the initial ten pieces, a randomly generated new ally token will be added once per week. The supply will be restricted to these allies, with the exception of small limited released that may happen a few times per year. All these tokens will be uniquely verifyable on SuperRare, but also on our own smart contract. You can see for yourself by visiting <a href="https://etherscan.io/address/0x7148F604150db2110106A86Ee120DB9D8C09EAD0" target="_blank">etherscan.io</a>.
-            </p>
+            </p> */}
           </div>
           <div className="subsection">
               <a href="https://superrare.co/" target="_blank">
