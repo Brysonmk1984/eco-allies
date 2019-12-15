@@ -17,11 +17,11 @@ const About = () => (
                 <p>A crypto collectable game to save our global envirionment</p>
             </div>
             {/* Uncomment after db fix */}
-            {/* <div className="subsection">
+            <div className="subsection">
                 <Link to={`${APP_ROOT}register`}>
                     <button className="btn btn-primary">Get Started</button>
                 </Link>
-            </div> */}
+            </div>
             
         </section>
         <section className="collectable-section">
